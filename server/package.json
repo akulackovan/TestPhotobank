@@ -1,0 +1,30 @@
+{
+  "name": "photobank",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "server": "nodemon index.js ",
+    "client": "npm run start --prefix=client",
+    "dev": "concurrently \"npm run client\" \"npm run server\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akulackovan/PhotoBank.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/akulackovan/PhotoBank/issues"
+  },
+  "homepage": "https://github.com/akulackovan/PhotoBank#readme",
+  "dependencies": {
+    "bootstrap": "^5.2.3",
+    "express": "^4.18.2",
+    "mongoose": "^6.7.4",
+    "node-sass": "^8.0.0",
+    "nodemon": "^2.0.20",
+    "react-bootstrap": "^2.7.0"
+  }
+}
