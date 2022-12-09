@@ -5,23 +5,22 @@ const NavBar = () => {
     return(
         <nav>
             <div className="nav-wrapper navbar">
-                <a href='/' className="left photobank">ФОТОБАНК</a>
-                <ul className="listHeader">
+                <a href='/popular' className="left photobank">ФОТОБАНК</a>
+                <ul className="list">
                     <li><a href='/popular' className="listHeader">Популярное</a></li>
                     <li><a href='/subsc' className="listHeader">Подписки</a></li>
                     <li><a href='/profile' className="listHeader">Профиль</a></li>
                     <li><a href='/settings' className="listHeader">Настройки</a></li>
-                    <li>
-                        <form className="search" action="/search" method="get">
-                            <input
-                                type="text"
-                                id="header-search"
-                                placeholder="ПОИСК"
-                                name="s" 
-                            />
-                        </form>
-                        </li>
-                    </ul>
+                </ul>
+                    <form className="search" action="/search" method="get" >
+                        <input
+                            className="input"
+                            type="text"
+                            placeholder="ПОИСК"
+                            name="user"
+                        />
+                    </form>
+                    
                 </div> 
         </nav>
     )

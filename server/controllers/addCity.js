@@ -1,4 +1,4 @@
-import User from '../../../../../project/youtube-src-main/server/models/City.js'
+import User from '../models/City.js'
 
 
 export const addCity = async (req, res) => {
