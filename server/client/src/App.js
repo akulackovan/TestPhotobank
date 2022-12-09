@@ -9,4 +9,13 @@ function App() {
   );
 }
 
+
+function AuthPage() {
+  return (
+    <div className="App">
+      <NavBar />
+    </div>
+  );
+}
+
 export default App;
