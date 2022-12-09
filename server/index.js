@@ -1,36 +1,32 @@
-
 import express from 'express'
 import dotenv from 'dotenv'
-import mongoose from 'mongoose'
-import cors from 'cors'
-import authRoute from './router/auth.js'
 
+const mongoose = require('mongoose')
+const PORT = process.env.PORT || 3000
 const app = express()
-dotenv.config()
-
-const PORT = process.env.PORT || 3001
-const DB_USER = process.env.DB_USER
-const DB_PASSWORD = process.env.DB_PASSWORD
-const DB_NAME = process.env.DB_NAME
-
-app.use(cors())
-app.use(express.json())
-
-app.use('/auth', authRoute)
-// app.use('/posts', postRoute)
 
 async function init() {
     try {
-        await mongoose.connect(
-            `mongodb+srv://${DB_USER}:${DB_PASSWORD}@${DB_NAME}.qidx0uu.mongodb.net/?retryWrites=true&w=majority`,
-        )
+        await mongoose.connect('mongodb+srv://admin:admin@photobank.qidx0uu.mongodb.net/photobank?retryWrites=true&w=majority',
+        {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+            useCreateIndex: true,
+            useFindAndModify: true
+        })
 
         app.listen(PORT, () => {
-            console.log(`Start server on port ${PORT}`)
+            console.log("Start server on port ${PORT}")
         })
-    } catch (error) {
-        console.error(error)
+
+    }
+    catch(err)
+    {
+        console.error(err)
     }
 }
+
+
+dotenv.config()
 
 init()
