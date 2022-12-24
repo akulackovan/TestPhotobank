@@ -18,7 +18,7 @@
         .login {
             width: 80%;
             padding-left: 2%;
-            color: #48523d;
+            color: var(--green-front);
             background-color: #eceeeb;
             font-weight: 900;
             border: none;
@@ -27,7 +27,7 @@
         .pass {
             width: 80%;
             padding-left: 2%;
-            color: #48523d;
+            color: var(--green-front);
             background-color: #eceeeb;
             font-weight: 900;
             border: none;
@@ -36,9 +36,29 @@
         .city {
             width: 80%;
             padding-left: 2%;
-            color: #48523d;
+            color: var(--green-front);
             background-color: #eceeeb;
             font-weight: 900;
+            border: none;
+            border-radius: 10px;
+        }
+
+        
+        .auth-page h3 {
+            color: var(--green-front);
+            font-size: 50px;
+            font-weight: 1000;
+        }
+
+
+
+        .auth-page button {
+            width: 90%;
+            height: 10%;
+            font-size: 25px;
+            background-color: #6d9ea3ff;
+            font-weight: 700;
+            color: #ffffff;
             border: none;
             border-radius: 10px;
         }
@@ -46,22 +66,3 @@
     }
 }
 
-
-.auth-page h3 {
-    color: #48523d;
-    font-size: 50px;
-    font-weight: 1000;
-}
-
-
-
-.auth-page button {
-    width: 90%;
-    height: 10%;
-    font-size: 25px;
-    background-color: #6d9ea3ff;
-    font-weight: 700;
-    color: #ffffff;
-    border: none;
-    border-radius: 10px;
-}

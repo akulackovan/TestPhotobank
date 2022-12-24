@@ -1,13 +1,24 @@
-import './App.scss';
-import NavBar from './components/NavBar/NavBar';
-import AuthPage from './pages/AuthPage'
+import React from "react"
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
+import "./App.scss";
+import RegPage from "./pages/RegPage/RegPage"
+import AuthPage from "./pages/AuthPage/AuthPage"
+import NavBar from "./components/NavBar/NavBar"
 
 function App() {
   return (
-    <div className="App">
-      <NavBar />
-      <AuthPage />
-    </div>
+    <Router>
+      <div className="App">
+        <Switch>
+          <Route exact path='/reg' component={RegPage}>
+            <RegPage />
+          </Route>
+          <Route exact path='/auth' component={RegPage}>
+            <AuthPage />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   );
 }
 

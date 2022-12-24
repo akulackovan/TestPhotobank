@@ -1,0 +1,15 @@
+{
+  
+  "dependencies": {
+  
+    
+  "http-proxy-middleware": "^2.0.6",
+  
+    
+  "node-sass": "^8.0.0",
+  
+    
+  "react-router-dom": "^5.3.3"
+  
+  }
+}
