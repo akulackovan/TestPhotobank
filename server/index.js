@@ -1,9 +1,17 @@
 import express from 'express'
 import dotenv from 'dotenv'
+import authRoute from './router/auth.js'
+import cors from 'cors'
 
 const mongoose = require('mongoose')
 const PORT = process.env.PORT || 3000
 const app = express()
+
+app.use(cors())
+app.use(express.json())
+
+app.use('/auth', authRoute)
+// app.use('/posts', postRoute)
 
 async function init() {
     try {
