@@ -1,9 +1,44 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
 import { Link } from "react-router-dom"
 import axios from 'axios'
 import './AuthPage.scss'
+import { AuthContext } from '../../context/AuthContext'
 
 const AuthPage = () => {
+
+    const [form, setForm] = useState(
+        {
+            username: '',
+            password: ''
+        }
+    )
+
+    const changeForm = (event) => {
+        setForm({...form, [event.target.name]: event.target.value})
+        console.log(form)
+    }
+
+    const {login} = useContext(AuthContext)
+
+
+    const authHandler = async () =>
+    {
+        try {
+            await axios.post('/auth/login', {...form}, {
+                headers:
+                {
+                    'Context-Type': 'application/json'
+                }
+            })
+            .then(response => 
+                {
+                    login(response.data.token, response.data.userId)
+                })
+        }
+        catch (error) {
+            console.log(error)
+        }
+    }
 
     return (
         <div className='auth'>
@@ -13,18 +48,19 @@ const AuthPage = () => {
                     className="login"
                     type="text"
                     placeholder="Логин" 
-                    name="user"
+                    name="username"
                     onChange={changeForm}
                 />
                 <input
                     className="pass"
                     type="text"
                     placeholder="Пароль"
-                    name="pass"
+                    name="password"
                     onChange={changeForm}
                 />
                 <div className='regButton'>
-                    <button>ВОЙТИ</button>
+                    <button
+                    onClick={authHandler}>ВОЙТИ</button>
                     <Link to="/reg"><button>РЕГИСТРАЦИЯ</button></Link>
                 </div>
             </div>
