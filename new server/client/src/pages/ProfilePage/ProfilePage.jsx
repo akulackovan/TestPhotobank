@@ -4,39 +4,8 @@ import axios from 'axios'
 import './AuthPage.scss'
 import { AuthContext } from '../../context/AuthContext'
 
-const AuthPage = () => {
+const ProfilePage = () => {
 
-    const [form, setForm] = useState(
-        {
-            username: '',
-            password: ''
-        }
-    )
-
-    const changeForm = (event) => {
-        setForm({...form, [event.target.name]: event.target.value})
-        console.log(form)
-    }
-
-    const { login } = useContext(AuthContext)
-
-
-    const authHandler = async () =>
-    {
-        try {
-            await axios.post('/auth/login', {...form}, {
-                headers:
-                {
-                    'Context-Type': 'application/json'
-                }
-            })
-            .then(response => 
-                login(response.data.token, response.data.user._id))
-        }
-        catch (error) {
-            console.log(error)
-        }
-    }
 
     return (
         <div className='auth'>

@@ -11,16 +11,16 @@ import {useAuth} from './hooks/auth.hook'
 function App() {
   const {login, logout, token, userId, isReady} = useAuth()
   const isLogin = !!token
-  
   const routes = useRoutes(isLogin)
+  console.log(token)
   return (
-  <AuthContext.Provider value={login, logout, userId, isReady, isLogin}>
-  <Router>
-      <div className="App">
-        { routes }
+    <AuthContext.Provider value= {{login, logout, token, userId, isReady, isLogin}}>
+      <div className="app">
+        <Router>
+            { routes }
+        </Router>
       </div>
-    </Router>
-  </AuthContext.Provider>
+    </AuthContext.Provider>
   );
 }
 

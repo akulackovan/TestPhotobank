@@ -29,6 +29,7 @@ export const register = async (req, res) => {
             username,
             city: idCity,
             password: hash,
+            text: '',
         })
         
         console.log(newUser)

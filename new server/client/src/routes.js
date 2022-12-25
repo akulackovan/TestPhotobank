@@ -11,19 +11,22 @@ export const useRoutes = (isLogin) =>
     {
         console.log(isLogin)
         return (
-            <Switch>
-                <Route path='/popular' exact component={PopularPage} />
-            </Switch>
+            <div className="app">
+                    <NavBar />
+                    <Router>
+                        <Switch>
+                            <Route exact path='/popular' component={PopularPage} />
+                            <Redirect to='/popular' />
+                        </Switch>
+                    </Router>
+                
+            </div>
         )
     }
     return (
         <Switch>
-            <Route exact path='/registration' component={RegPage}>
-                <RegPage />
-            </Route>
-            <Route exact path='/auth' component={AuthPage}>
-                <AuthPage />
-            </Route>
+            <Route exact path='/reg' component={RegPage} />
+            <Route exact path='/auth' component={AuthPage} />
         </Switch>
     )
 }

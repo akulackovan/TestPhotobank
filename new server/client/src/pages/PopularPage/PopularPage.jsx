@@ -1,13 +1,12 @@
-import React, {useState, useContext} from 'react'
+import React from 'react'
+import NavBar from '../../components/NavBar/NavBar'
 
 
 const PopularPage = () => {
 
     return (
         <div className='popular'>
-            <div className='center auth-page'>
                 <h3>Popular</h3>
-            </div>
         </div>
     )
 }
