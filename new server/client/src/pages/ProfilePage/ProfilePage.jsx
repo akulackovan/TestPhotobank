@@ -8,6 +8,9 @@ import {Buffer} from 'buffer';
     const {userId} = useContext(AuthContext)
 
 
+    const [username, setUsername] = useState('');
+    const [city, setCity] = useState('');
+    const [text, setText] = useState('');
     const [userProfileImage, setUserProfileImage] = useState({});
 
     console.log(userId)
@@ -27,7 +30,8 @@ import {Buffer} from 'buffer';
             .then(response => 
                 {
                     setUserProfileImage(`data:${response.data.user.typeImg};base64, ${Buffer.from(response.data.user.image).toString('base64')}`);
-                    console.log(userProfileImage)
+                    setUsername(response.data.user.username)
+                    setText(response.data.user.text)
                 }
                )
         }
@@ -40,8 +44,10 @@ import {Buffer} from 'buffer';
     return (
         <div className='auth'>
             <div className='center auth-page'>
-                <h3>ПРОФИЛЬ</h3>
                 <img src={userProfileImage}/>
+                <h3>{username}</h3>
+                <dev>Описание {text}</dev>
+                <dev>Город {city}</dev>
             </div>
         </div>
     )
