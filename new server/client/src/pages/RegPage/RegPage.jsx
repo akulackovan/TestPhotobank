@@ -32,7 +32,7 @@ const RegPage = () => {
             })
                 .then(response => {
                     console.log(response)
-                    setErrorMessage(response.data.message + "Вы будете перенаправлены на страницу авторизации через 5 секунд")
+                    setErrorMessage(response.data.message + "           Вы будете перенаправлены на страницу авторизации через 5 секунд")
                     setReg(true)
                     setTimeout(() => setRedirect(true), 5000)
                 })

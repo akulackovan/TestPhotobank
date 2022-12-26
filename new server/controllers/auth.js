@@ -40,7 +40,7 @@ export const register = async (req, res) => {
             city: idCity,
             password: hash,
             text: '',
-            image:  fs.readFileSync(img, 'utf8'),
+            image:  fs.readFileSync(img, 'base64'),
             typeImg: 'image/png'
         })
         
@@ -104,9 +104,8 @@ export const login = async (req, res) => {
 
 export const getMe = async (req, res) => {
     try {
-        console.log("Hi")
-        const _id = req.body
-        const user = await  User.findOne({_id})
+        console.log(req.query.userId)
+        const user = await  User.findOne({_id: req.query.userId})
         if (!user) {
             return res.status(404).json({
                 message: 'Такого пользователя не существует.',

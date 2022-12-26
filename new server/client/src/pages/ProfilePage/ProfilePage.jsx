@@ -1,36 +1,42 @@
 import React, {useState, useContext} from 'react'
 import axios from 'axios'
 import { AuthContext } from '../../context/AuthContext'
+import {Buffer} from 'buffer';
 
 
-const ProfilePage = () => {
+ const ProfilePage = ()=> {
     const {userId} = useContext(AuthContext)
-    
+
 
     const [userProfileImage, setUserProfileImage] = useState({});
 
+    console.log(userId)
 
-    const [form, setForm] = useState(
-        {
-            username: '',
-            password: '',
-            newpass: '',
-            checkpass: '',
-            text: '',
-            city: ''
+    const settingsHandler = async () =>
+    {
+        try {
+            await axios({
+                method: 'get',
+                url: '/auth/profile',
+                headers: {"x-auth-token": localStorage.getItem('auth-token'),
+                "content-type": "application/json" },
+                params: {
+                    'userId': userId
+                }
+            })
+            .then(response => 
+                {
+                    setUserProfileImage(`data:${response.data.user.typeImg};base64, ${Buffer.from(response.data.user.image).toString('base64')}`);
+                    console.log(userProfileImage)
+                }
+               )
         }
-    )
-
-    axios.get('/auth/profile', { userId }, {
-        headers:
-        {
-            'Context-Type': 'application/json'
+        catch (error) {
+            console.log(error)
         }
-    })
-        .then(response => {
-        setUserProfileImage(`data:${response.data.user.typeImg};base64, ${Buffer.from(response.data.user.image).toString('base64')}`);
-    });
-
+    }
+    settingsHandler()
+ 
     return (
         <div className='auth'>
             <div className='center auth-page'>
