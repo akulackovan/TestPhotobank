@@ -66,7 +66,6 @@ const AuthPage = () => {
     }
 
     return (
-        <body className='background'>
         <div className='auth'>
             <div className='center back'>
                 <h3 className="head">ФОТОБАНК</h3>
@@ -86,14 +85,11 @@ const AuthPage = () => {
                 />
                     <button className='button'
                     onClick={authHandler}>ВОЙТИ</button>
-                    <div className='link'>
-                    <a classname='link' onClick={handleOnClick}>РЕГИСТРАЦИЯ</a>
-                    </div>
+                    <button className='button' onClick={handleOnClick}>РЕГИСТРАЦИЯ</button>
                     {errorMessage && <div className="error"> {errorMessage} </div>}
                     {redirect && <Redirect to='/reg'/>}
             </div>
         </div>
-        </body>
     )
 }
 

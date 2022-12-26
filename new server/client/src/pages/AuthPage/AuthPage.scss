@@ -3,6 +3,8 @@
     
     .back
     {
+        width: 400px;
+        height: 400px;
         .input {
             margin-top: 2%;
             width: 80%;
@@ -15,15 +17,8 @@
     }    
 }
 
-/*.auth-page h3 {
-    //background-color: #b6c9c3d9;
-    color: var(--green-front);
-    font-size: 50px;
-    font-weight: 1000;
-}*/
-
 .auth button {
-    margin-top: 10%;
+    margin-top: 5%;
     width: 90%;
     height: 10%;
     font-size: 25px;

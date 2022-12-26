@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import './RegPage.scss'
-import { Redirect } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 
 const RegPage = () => {
 
@@ -81,7 +81,8 @@ const RegPage = () => {
                     onClick={registerHandler}
                 >ЗАРЕГИСТРИРОВАТЬСЯ</button>
                 {errorMessage && <div className="error"> {errorMessage} </div>}
-
+                <a className='link'><Link to ="/auth">ОБРАТНО</Link></a>
+                    
             </div>
         </div>
     )

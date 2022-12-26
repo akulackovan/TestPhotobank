@@ -45,10 +45,10 @@ const SettingsPage = () => {
 
     return (
         <div className='settings'>
-            <div className='center auth-page'>
-                <h3>ФОТОБАНК</h3>
+            <div className='back'>
+            
                 <input
-                    className="username"
+                    className="input"
                     type="text"
                     placeholder="Логин"
                     name="username"
@@ -56,41 +56,41 @@ const SettingsPage = () => {
                     
                 />
                 <input
-                    className="password"
+                    className="input"
                     type="text"
                     placeholder="Cтарый пароль"
                     name="password"
                     onChange={changeForm}
                 />
                 <input
-                    className="newpass"
+                    className="input"
                     type="text"
                     placeholder="Новый пароль"
                     name="newpass"
                     onChange={changeForm}
                 />
                 <input
-                    className="checkpass"
+                    className="input"
                     type="text"
                     placeholder="Подтверждение пароля"
                     name="checkpass"
                     onChange={changeForm}
                 />
                 <input
-                    className="text"
+                    className="input"
                     type="text"
                     placeholder="Описание пользователя"
                     name="text"
                     onChange={changeForm}
                 />
                 <input
-                    className="city"
+                    className="input"
                     type="text"
                     placeholder="Город"
                     name="city"
                     onChange={changeForm}
                 />
-                <button
+                <button className='button'
                 onClick={settingsHandler}>СОХРАНИТЬ</button>
                 <button className='button'
                 onClick={logout}><Link to="/auth">ВЫЙТИ</Link></button>
