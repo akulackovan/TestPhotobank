@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-d
 import NavBar from "./components/NavBar/NavBar";
 import AuthPage from "./pages/AuthPage/AuthPage";
 import PopularPage from './pages/PopularPage/PopularPage'
+import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import RegPage from "./pages/RegPage/RegPage";
 import SettingsPage from "./pages/SettingsPage/SettingPage";
 
@@ -18,6 +19,7 @@ export const useRoutes = (isLogin) =>
                         <Switch>
                             <Route exact path='/popular' component={PopularPage} />
                             <Route exact path='/settings' component={SettingsPage} />
+                            <Route exact path='/profile' component={ProfilePage} />
                         </Switch>
                     </Router>
             </div>

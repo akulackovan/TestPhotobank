@@ -2,8 +2,8 @@ import User from '../models/User.js'
 import City from '../models/City.js'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
-import * as fs from 'fs';
-
+import * as fs from 'fs'
+import path from 'path'
 
 export const register = async (req, res) => {
     try {
@@ -30,12 +30,18 @@ export const register = async (req, res) => {
         const salt = bcrypt.genSaltSync(10)
         const hash = bcrypt.hashSync(password, salt)
 
+        
+        const __dirname = path.resolve();
+        console.log(__dirname)
+        const img = path.join(__dirname +'/uploads/avatar/user_image_default.png')
+        console.log(img)
         const newUser = new User({
             username,
             city: idCity,
             password: hash,
             text: '',
-            image: fs.readFileSync('D:/GitHub/Another/new server/uploads/avatar/user_image_default.png', 'utf8')
+            image:  fs.readFileSync(img, 'utf8'),
+            typeImg: 'image/png'
         })
         
         const token = jwt.sign(
@@ -98,7 +104,9 @@ export const login = async (req, res) => {
 
 export const getMe = async (req, res) => {
     try {
-        const user = await User.findById(req.userId)
+        console.log("Hi")
+        const _id = req.body
+        const user = await  User.findOne({_id})
         if (!user) {
             return res.status(404).json({
                 message: 'Такого пользователя не существует.',
@@ -119,6 +127,7 @@ export const getMe = async (req, res) => {
             message: 'Профиль успешен =)',
         })
     } catch (error) {
-        res.status(401).json({message: 'Нет доступа'})
+        console.log(error)
+        res.status(401).json({message: 'Нет'})
     }
 }
