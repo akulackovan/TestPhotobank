@@ -2,6 +2,7 @@ import User from '../models/User.js'
 import City from '../models/City.js'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
+import * as fs from 'fs';
 
 
 export const register = async (req, res) => {
@@ -28,11 +29,13 @@ export const register = async (req, res) => {
         const idCity = isCity._id
         const salt = bcrypt.genSaltSync(10)
         const hash = bcrypt.hashSync(password, salt)
+
         const newUser = new User({
             username,
             city: idCity,
             password: hash,
             text: '',
+            image: fs.readFileSync('D:/GitHub/Another/new server/uploads/avatar/user_image_default.png', 'utf8')
         })
         
         const token = jwt.sign(
@@ -42,8 +45,6 @@ export const register = async (req, res) => {
             process.env.JWT_SECRET,
             {expiresIn: '30d'},
         )
-        
-        console.log("Test2")
 
         await newUser.save()
 

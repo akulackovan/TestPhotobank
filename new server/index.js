@@ -20,8 +20,6 @@ const storage = multer.diskStorage({
 
 const upload = multer({storage})
 
-
-
 app.use(cors());
 
 app.use(express.json())
