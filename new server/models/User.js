@@ -15,7 +15,7 @@ const UserSchema = new mongoose.Schema(
             type: String,
         },
         city: { type: mongoose.Schema.Types.ObjectId, ref: 'City'  },
-        image: { type: Buffer },
+        image: { type: String },
         typeImg: {type: String},
         posts: [
             {

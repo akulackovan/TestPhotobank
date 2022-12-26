@@ -32,6 +32,7 @@ import {Buffer} from 'buffer';
                     setUserProfileImage(`data:${response.data.user.typeImg};base64, ${Buffer.from(response.data.user.image).toString('base64')}`);
                     setUsername(response.data.user.username)
                     setText(response.data.user.text)
+                    console.log(userProfileImage)
                 }
                )
         }

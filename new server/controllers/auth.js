@@ -4,6 +4,8 @@ import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import * as fs from 'fs'
 import path from 'path'
+import imageToBase64 from 'image-to-base64'
+
 
 export const register = async (req, res) => {
     try {
@@ -34,13 +36,21 @@ export const register = async (req, res) => {
         const __dirname = path.resolve();
         console.log(__dirname)
         const img = path.join(__dirname +'/uploads/avatar/user_image_default.png')
-        console.log(img)
+        var base = ''
+        imageToBase64(img).then(
+            (response) => {
+                console.log(response);
+                base = response;
+            }
+        )
+
+
         const newUser = new User({
             username,
             city: idCity,
             password: hash,
             text: '',
-            image:  fs.readFileSync(img, 'base64'),
+            image:  base,
             typeImg: 'image/png'
         })
         
@@ -102,10 +112,13 @@ export const login = async (req, res) => {
     }
 }
 
+
+
+
 export const getMe = async (req, res) => {
     try {
         console.log(req.query.userId)
-        const user = await  User.findOne({_id: req.query.userId})
+        const user = await  User.findOne({_id:req.query.userId})
         if (!user) {
             return res.status(404).json({
                 message: 'Такого пользователя не существует.',
@@ -130,3 +143,4 @@ export const getMe = async (req, res) => {
         res.status(401).json({message: 'Нет'})
     }
 }
+
