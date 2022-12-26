@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { AuthContext } from '../../context/AuthContext'
 import './NavBar.scss'
 
 const NavBar = () => {
-    
+
+    const {logout} = useContext(AuthContext)
 
 
     return(
@@ -24,7 +26,8 @@ const NavBar = () => {
                         />
                     </form>
 
-                    <button>Выйти</button>
+                    <button
+                    onClick={logout}>Выйти</button>
                     
                 </div> 
         </nav>

@@ -1,5 +1,5 @@
 import React, {useState, useContext} from 'react'
-import { Link } from "react-router-dom"
+import { Link, Redirect } from "react-router-dom"
 import axios from 'axios'
 import './AuthPage.scss'
 import { AuthContext } from '../../context/AuthContext'
@@ -12,7 +12,8 @@ const AuthPage = () => {
             password: ''
         }
     )
-
+    const [errorMessage, setErrorMessage] = React.useState("");
+    const [redirect, setRedirect] = React.useState(false);
     const changeForm = (event) => {
         setForm({...form, [event.target.name]: event.target.value})
         console.log(form)
@@ -35,7 +36,12 @@ const AuthPage = () => {
         }
         catch (error) {
             console.log(error)
+            setErrorMessage(error.response.data.message)
         }
+    }
+
+    const handleOnClick = async () => {
+        setRedirect(true)
     }
 
     return (
@@ -58,8 +64,9 @@ const AuthPage = () => {
                 />
                     <button
                     onClick={authHandler}>ВОЙТИ</button>
-                    <button><Link to="/reg">РЕГИСТРАЦИЯ</Link></button>
-
+                    <button onClick={handleOnClick}>РЕГИСТРАЦИЯ</button>
+                    {errorMessage && <div className="error"> {errorMessage} </div>}
+                    {redirect && <Redirect to='/reg'/>}
             </div>
         </div>
     )

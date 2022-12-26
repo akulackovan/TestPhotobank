@@ -15,13 +15,12 @@ export const useRoutes = (isLogin) =>
         return (
             <div className="app">
                     <NavBar />
-                    <Router>
+                    <Router >
                         <Switch>
                             <Route exact path='/popular' component={PopularPage} />
                             <Route exact path='/settings' component={SettingsPage} />
                         </Switch>
                     </Router>
-                
             </div>
         )
     }
