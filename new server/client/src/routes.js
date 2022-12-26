@@ -8,10 +8,9 @@ import SettingsPage from "./pages/SettingsPage/SettingPage";
 
 export const useRoutes = (isLogin) =>
 {
-    console.log(isLogin)
+    
     if (isLogin)
     {
-        console.log("isLogin")
         return (
             <div className="app">
                     <NavBar />
@@ -25,6 +24,7 @@ export const useRoutes = (isLogin) =>
         )
     }
     return (
+        
         <Switch>
             <Route exact path='/reg' component={RegPage} />
             <Route exact path='/auth' component={AuthPage} />

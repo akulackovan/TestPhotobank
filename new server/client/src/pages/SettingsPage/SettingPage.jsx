@@ -5,6 +5,7 @@ import { AuthContext } from '../../context/AuthContext'
 
 
 const SettingsPage = () => {
+    const { logout } = useContext(AuthContext)
 
     const {userId} = useContext(AuthContext)
     const [form, setForm] = useState(
@@ -91,6 +92,8 @@ const SettingsPage = () => {
                 />
                 <button
                 onClick={settingsHandler}>СОХРАНИТЬ</button>
+                <button className='button'
+                onClick={logout}><Link to="/auth">ВЫЙТИ</Link></button>
             </div>
         </div>
     )

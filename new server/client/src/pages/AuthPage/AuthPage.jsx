@@ -1,5 +1,5 @@
 import React, {useState, useContext} from 'react'
-import { Link, Redirect } from "react-router-dom"
+import { Redirect } from "react-router-dom"
 import axios from 'axios'
 import './AuthPage.scss'
 import { AuthContext } from '../../context/AuthContext'
@@ -14,6 +14,10 @@ const AuthPage = () => {
     )
     const [errorMessage, setErrorMessage] = React.useState("");
     const [redirect, setRedirect] = React.useState(false);
+    const [token, setToken] = React.useState("");
+    const [userId, setUserID] = React.useState("");
+    const [authRed, setAuthRed] = React.useState(false);
+    
     const changeForm = (event) => {
         setForm({...form, [event.target.name]: event.target.value})
         console.log(form)
@@ -32,7 +36,15 @@ const AuthPage = () => {
                 }
             })
             .then(response => 
-                login(response.data.token, response.data.user._id))
+                {
+                setAuthRed(true)
+                
+                console.log(authRed)
+                console.log("authRed")
+                console.log("RES")  
+                setToken(response.data.token)
+                setUserID(response.data.user._id)              
+        })
         }
         catch (error) {
             console.log(error)
@@ -43,32 +55,45 @@ const AuthPage = () => {
     const handleOnClick = async () => {
         setRedirect(true)
     }
+    console.log(authRed)
+    console.log("authRed")
+    if (authRed)
+    {
+        login(token, userId)
+        return(
+            <Redirect to='/popular'/>
+        )
+    }
 
     return (
+        <body className='background'>
         <div className='auth'>
-            <div className='center auth-page'>
-                <h3>ФОТОБАНК</h3>
+            <div className='center back'>
+                <h3 className="head">ФОТОБАНК</h3>
                 <input
-                    className="login"
+                    className="input"
                     type="text"
                     placeholder="Логин" 
                     name="username"
                     onChange={changeForm}
                 />
                 <input
-                    className="pass"
+                    className="input"
                     type="text"
                     placeholder="Пароль"
                     name="password"
                     onChange={changeForm}
                 />
-                    <button
+                    <button className='button'
                     onClick={authHandler}>ВОЙТИ</button>
-                    <button onClick={handleOnClick}>РЕГИСТРАЦИЯ</button>
+                    <div className='link'>
+                    <a classname='link' onClick={handleOnClick}>РЕГИСТРАЦИЯ</a>
+                    </div>
                     {errorMessage && <div className="error"> {errorMessage} </div>}
                     {redirect && <Redirect to='/reg'/>}
             </div>
         </div>
+        </body>
     )
 }
 

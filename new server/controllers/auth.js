@@ -7,6 +7,12 @@ import jwt from 'jsonwebtoken'
 export const register = async (req, res) => {
     try {
         const {username, password, city} = req.body
+        if (username =='' || password == '' || city == '')
+        {
+            return res.status(400).json({
+                message: 'Заполнены не все поля',
+            })
+        }
         const isUsed = await User.findOne({username})
         if (isUsed) {
             return res.status(409).json({

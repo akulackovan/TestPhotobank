@@ -53,30 +53,31 @@ const RegPage = () => {
     return (
 
         <div className='box'>
-            <div className='center auth-page'>
-                <h3>ФОТОБАНК</h3>
+            <div className='center back'>
+                <h3 className='head'>ФОТОБАНК</h3>
                 <input
-                    className="login"
+                    className="input"
                     type="text"
                     placeholder="Логин"
                     name="username"
                     onChange={changeForm}
                 />
                 <input
-                    className="pass"
+                    className="input"
                     type="text"
                     placeholder="Пароль"
                     name="password"
                     onChange={changeForm}
                 />
                 <input
-                    className="city"
+                    className="input"
                     type="text"
                     placeholder="Город"
                     name="city"
                     onChange={changeForm}
                 />
                 <button
+                className='button'
                     onClick={registerHandler}
                 >ЗАРЕГИСТРИРОВАТЬСЯ</button>
                 {errorMessage && <div className="error"> {errorMessage} </div>}
