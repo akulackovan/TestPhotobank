@@ -2,6 +2,9 @@ import React from 'react'
 import './NavBar.scss'
 
 const NavBar = () => {
+    
+
+
     return(
         <nav>
             <div className="nav-wrapper navbar">
@@ -20,6 +23,8 @@ const NavBar = () => {
                             name="user"
                         />
                     </form>
+
+                    <button>Выйти</button>
                     
                 </div> 
         </nav>

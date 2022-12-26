@@ -4,19 +4,21 @@ import NavBar from "./components/NavBar/NavBar";
 import AuthPage from "./pages/AuthPage/AuthPage";
 import PopularPage from './pages/PopularPage/PopularPage'
 import RegPage from "./pages/RegPage/RegPage";
+import SettingsPage from "./pages/SettingsPage/SettingPage";
 
 export const useRoutes = (isLogin) =>
 {
+    console.log(isLogin)
     if (isLogin)
     {
-        console.log(isLogin)
+        console.log("isLogin")
         return (
             <div className="app">
                     <NavBar />
                     <Router>
                         <Switch>
                             <Route exact path='/popular' component={PopularPage} />
-                            <Redirect to='/popular' />
+                            <Route exact path='/settings' component={SettingsPage} />
                         </Switch>
                     </Router>
                 

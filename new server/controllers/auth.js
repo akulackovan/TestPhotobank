@@ -8,8 +8,6 @@ export const register = async (req, res) => {
     try {
         const {username, password, city} = req.body
         const isUsed = await User.findOne({username})
-        console.log("Reg")
-        console.log(isUsed)
         if (isUsed) {
             return res.status(409).json({
                 message: 'Логин занят. Выберите другой',
@@ -22,7 +20,6 @@ export const register = async (req, res) => {
             })
         }
         const idCity = isCity._id
-        console.log(idCity)
         const salt = bcrypt.genSaltSync(10)
         const hash = bcrypt.hashSync(password, salt)
         const newUser = new User({
@@ -32,7 +29,6 @@ export const register = async (req, res) => {
             text: '',
         })
         
-        console.log(newUser)
         const token = jwt.sign(
             {
                 id: newUser._id,

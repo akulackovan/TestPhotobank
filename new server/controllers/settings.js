@@ -6,22 +6,32 @@ import jwt from 'jsonwebtoken'
 
 export const settings = async (req, res) => {
     try {
-        const {userId, oldpass, newpass, checkpass} = req.body
+        const {userId, username, password, newpass, checkpass, text, city} = req.body
         const user = await User.findOne({userId})
         if (!user) {
             return res.status(404).json({
                 message: 'Такого пользователя не существует.',
             })
         }
-        if (oldpass != '')
+        if (username != '')
         {
-            const isPasswordCorrect = await bcrypt.compare(oldpass, user.password)
+            const isUsed = await User.findOne({username})
+            if (isUsed) {
+                return res.status(409).json({
+                message: 'Логин занят. Выберите другой',
+                })
+            }
+            user.username = username
+        }
+
+        if (password != '')
+        {
+            const isPasswordCorrect = await bcrypt.compare(password, user.password)
             if (!isPasswordCorrect) {
                 return res.status(401).json({
                     message: 'Неверный пароль.',
                 })
             }
-            console.log(newpass.localeCompare(checkpass))
             if (newpass.localeCompare(checkpass) != 0)
             {
                 return res.status(401).json({
@@ -30,11 +40,31 @@ export const settings = async (req, res) => {
             } 
             const salt = bcrypt.genSaltSync(10)
             const hash = bcrypt.hashSync(newpass, salt)
-            user.password = hash   
-            await user.save()   
+            user.password = hash 
         }
-
-
+        if (text != '')
+        {
+            if (text.length > 512)
+            {
+                return res.status(401).json({
+                    message: 'Описание пользователя содержит больше 512 символов.',
+                })
+            }
+            user.text = text   
+        }
+        if (city != '')
+        {
+            const isCity= await City.findOne({city})
+            if (!isCity) {
+                return res.status(409).json({
+                    message: 'Такого города нет',
+                })
+            }
+            const idCity = isCity._id
+            user.city = idCity
+        }
+          
+        await user.save()
 
         res.status(201).json({
             user,
