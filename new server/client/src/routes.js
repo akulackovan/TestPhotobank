@@ -11,7 +11,6 @@ import SubscribePage from "./pages/SubscribePage/PopularPage";
 
 export const useRoutes = (isLogin) =>
 {
-    
     if (isLogin)
     {
         return (
@@ -28,7 +27,6 @@ export const useRoutes = (isLogin) =>
         )
     }
     return (
-        
         <Switch>
             <Route exact path='/reg' component={RegPage} />
             <Route exact path='/auth' component={AuthPage} />

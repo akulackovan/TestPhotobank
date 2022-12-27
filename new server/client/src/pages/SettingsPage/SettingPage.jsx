@@ -3,6 +3,8 @@ import { Link, Redirect } from "react-router-dom"
 import axios from 'axios'
 import { AuthContext } from '../../context/AuthContext'
 import './SettingsPage.scss'
+import ReactCrop from "react-image-crop";
+import  { useRef } from "react";
 
 const SettingsPage = () => {
     const { logout } = useContext(AuthContext)
@@ -21,6 +23,7 @@ const SettingsPage = () => {
     )
     const [errorMessage, setErrorMessage] = React.useState("")
     const [log, setLog] = React.useState(false)
+    const [selectedImage, setSelectedImage] = useState(null);
 
     const changeForm = (event) => {
         setForm({ ...form, [event.target.name]: event.target.value })
@@ -61,7 +64,7 @@ const SettingsPage = () => {
 
 
 
-    return (
+    /*return (
         <div className='settings'>
             <div className='back'>
                 <div className='rowC'>
@@ -112,29 +115,46 @@ const SettingsPage = () => {
                         />
                     </div>
                 </div>
-                <div className='theme'>
-                <h2 className='radio1'>Тема:</h2>
-                        <div className="radio">
-                            <label>
-                                <input type="radio" value="option1" checked={true} />
-                                <h2 className='radio1'>Светлая</h2>
-                            </label>
-                        </div>
-                        <div className="radio">
-                            <label>
-                                <input type="radio" value="option2" checked={false}/>
-                                <h2 className='radio1'>Темная</h2>
-                            </label>
-                        </div>
-                </div>
+                
                 <button className='button'
                     onClick={settingsHandler}>СОХРАНИТЬ</button>
                 <button className='button'
                     onClick={changeOut}>ВЫЙТИ</button>
                 {errorMessage && <div className="error"> {errorMessage} </div>}
             </div>
-        </div>
-    )
+    )*/
+
+    const inputRef = useRef();
+
+    const handleOnChange = (event) => {
+      if (event.target.files && event.target.files.length > 0) {
+        const reader = new FileReader();
+        reader.readAsDataURL(event.target.files[0]);
+        reader.onload = function (e) {
+          onImageSelected(reader.result);
+        };
+      }
+    };
+  
+    const onChooseImg = () => {
+      inputRef.current.click();
+    };
+  
+    return (
+      <div>
+        <input
+          type="file"
+          accept="image/*"
+          ref={inputRef}
+          onChange={handleOnChange}
+          style={{ display: "none" }}
+        />
+  
+        <button className="btn" onClick={onChooseImg}>
+          Choose Image
+        </button>
+      </div>
+    );
 }
 
 export default SettingsPage
