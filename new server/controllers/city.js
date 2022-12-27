@@ -47,10 +47,10 @@ export const getCity = async (req, res) => {
 
 export const getAllCity = async (req, res) => {
     try {
-        const city = await City
+        const city = await City.find()
         res.json({
             city,
-            message: 'Город найден',
+            message: 'Города получены',
         })
     } catch (error) {
         res.json({ message: 'Ошибка при получении города' })

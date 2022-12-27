@@ -1,7 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom"
+import CityCombobox from "./components/CityCombobox/CityCombobox";
 import NavBar from "./components/NavBar/NavBar";
-import AddPostPage from "./pages/AddPostPAge/AddPostPage";
+import AddPostPage from "./pages/AddPostPage/AddPostPage";
 import AuthPage from "./pages/AuthPage/AuthPage";
 import PopularPage from './pages/PopularPage/PopularPage'
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
@@ -22,6 +23,8 @@ export const useRoutes = (isLogin) =>
                             <Route exact path='/profile' component={ProfilePage} />
                             <Route exact path='/addpost' component={AddPostPage} />
                             <Route exact path='/subsc' component={SubscribePage} />
+                            
+                            <Route exact path='/city' component={CityCombobox} />
                         </Switch>
             </div>
         )

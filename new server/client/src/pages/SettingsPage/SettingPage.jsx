@@ -3,8 +3,6 @@ import { Link, Redirect } from "react-router-dom"
 import axios from 'axios'
 import { AuthContext } from '../../context/AuthContext'
 import './SettingsPage.scss'
-import ReactCrop from "react-image-crop";
-import  { useRef } from "react";
 
 const SettingsPage = () => {
     const { logout } = useContext(AuthContext)
@@ -23,7 +21,6 @@ const SettingsPage = () => {
     )
     const [errorMessage, setErrorMessage] = React.useState("")
     const [log, setLog] = React.useState(false)
-    const [selectedImage, setSelectedImage] = useState(null);
 
     const changeForm = (event) => {
         setForm({ ...form, [event.target.name]: event.target.value })
@@ -36,6 +33,27 @@ const SettingsPage = () => {
 
 
     const settingsHandler = async () => {
+
+        if(form.username != '' && !form.username.match(/^[A-Za-z0-9]+$/)){
+            setErrorMessage("Имя пользователя должно содержать только цифры и латинские буквы");
+            return;
+         }
+         if(!(form.username.length <= 128)){
+            setErrorMessage("Имя пользователя должно быть меньше 128 символов");
+            return;
+         }
+         if(form.newpass != '' && !form.newpass.match(/^[A-Za-z0-9]+$/)){
+            setErrorMessage("Пароль должен содержать только цифры и латинские буквы");
+            return;
+         }
+         if(!(form.newpass.length <= 128)){
+            setErrorMessage("Пароль должен быть меньше 128 символов");
+            return;
+         }
+         if(!(form.checkpass == form.newpass)){
+            setErrorMessage("Пароли не совпадают");
+            return;
+         }
         try {
             await axios.post('/settings', { ...form }, {
                 headers:
@@ -64,7 +82,7 @@ const SettingsPage = () => {
 
 
 
-    /*return (
+    return (
         <div className='settings'>
             <div className='back'>
                 <div className='rowC'>
@@ -122,39 +140,8 @@ const SettingsPage = () => {
                     onClick={changeOut}>ВЫЙТИ</button>
                 {errorMessage && <div className="error"> {errorMessage} </div>}
             </div>
-    )*/
-
-    const inputRef = useRef();
-
-    const handleOnChange = (event) => {
-      if (event.target.files && event.target.files.length > 0) {
-        const reader = new FileReader();
-        reader.readAsDataURL(event.target.files[0]);
-        reader.onload = function (e) {
-          onImageSelected(reader.result);
-        };
-      }
-    };
-  
-    const onChooseImg = () => {
-      inputRef.current.click();
-    };
-  
-    return (
-      <div>
-        <input
-          type="file"
-          accept="image/*"
-          ref={inputRef}
-          onChange={handleOnChange}
-          style={{ display: "none" }}
-        />
-  
-        <button className="btn" onClick={onChooseImg}>
-          Choose Image
-        </button>
-      </div>
-    );
+        </div>
+    )
 }
 
 export default SettingsPage

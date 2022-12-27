@@ -14,7 +14,6 @@ const RegPage = () => {
     )
     const [errorMessage, setErrorMessage] = React.useState("")
     const [redirect, setRedirect] = React.useState(false)
-    const [reg, setReg] = React.useState(false)
 
 
     const changeForm = (event) => {
@@ -22,7 +21,46 @@ const RegPage = () => {
         console.log(form)
     }
 
+    const getAllCity = async () => {
+        try {
+            await axios({
+                method: 'get',
+                url: '/city/getallcity',
+                headers: {
+                    "x-auth-token": localStorage.getItem('auth-token'),
+                    "content-type": "application/json"
+                },
+                params: {
+                    
+                }
+            })
+                .then(response => {
+
+                }
+                )
+        }
+        catch (error) {
+            console.log(error)
+        }
+    }
+
     const registerHandler = async () => {
+        if (!form.username.match(/^[A-Za-z0-9]+$/)) {
+            setErrorMessage("Имя пользователя должно содержать только цифры и латинские буквы");
+            return;
+        }
+        if (!(form.username.length < 128)) {
+            setErrorMessage("Имя пользователя должно быть меньше 128 символов");
+            return;
+        }
+        if (!form.password.match(/^[A-Za-z0-9]+$/)) {
+            setErrorMessage("Пароль должен содержать только цифры и латинские буквы");
+            return;
+        }
+        if (!(form.password.length < 128)) {
+            setErrorMessage("Пароль должен быть меньше 128 символов");
+            return;
+        }
         try {
             await axios.post('/auth/reg', { ...form }, {
                 headers:
@@ -32,8 +70,7 @@ const RegPage = () => {
             })
                 .then(response => {
                     console.log(response)
-                    setErrorMessage(response.data.message + "           Вы будете перенаправлены на страницу авторизации через 5 секунд")
-                    setReg(true)
+                    setErrorMessage(response.data.message + "    Вы будете перенаправлены на страницу авторизации через 5 секунд")
                     setTimeout(() => setRedirect(true), 5000)
                 })
         }
@@ -77,12 +114,12 @@ const RegPage = () => {
                     onChange={changeForm}
                 />
                 <button
-                className='button'
+                    className='button'
                     onClick={registerHandler}
                 >ЗАРЕГИСТРИРОВАТЬСЯ</button>
                 {errorMessage && <div className="error"> {errorMessage} </div>}
-                <a className='link'><Link to ="/auth">ОБРАТНО</Link></a>
-                    
+                <a className='link'><Link to="/auth">ОБРАТНО</Link></a>
+
             </div>
         </div>
     )
