@@ -7,6 +7,7 @@ import PopularPage from './pages/PopularPage/PopularPage'
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import RegPage from "./pages/RegPage/RegPage";
 import SettingsPage from "./pages/SettingsPage/SettingPage";
+import SubscribePage from "./pages/SubscribePage/PopularPage";
 
 export const useRoutes = (isLogin) =>
 {
@@ -21,6 +22,7 @@ export const useRoutes = (isLogin) =>
                             <Route exact path='/settings' component={SettingsPage} />
                             <Route exact path='/profile' component={ProfilePage} />
                             <Route exact path='/addpost' component={AddPostPage} />
+                            <Route exact path='/subsc' component={SubscribePage} />
                         </Switch>
             </div>
         )

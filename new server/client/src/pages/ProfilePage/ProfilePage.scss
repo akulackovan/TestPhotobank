@@ -1,27 +1,60 @@
 .profile{
-    .back
-    {
-        width: 90%;
-    }
-    .header{display:flex; flex-direction:row;}
-    .first{
-        background-color: aqua;
-        
-        display: flex;
-        justify-content: center;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    
+    .header{
+        display:flex; 
+        flex-direction:row;
         align-items: center;
     }
-        
+    .first{
+        display: flex;
+        flex-direction:row;
+        align-items: center;
+        margin-left: 10%
+    }
         .second{
-            background-color: (#DCDCDC);
-            width: 65%;
-            margin-left: 5%;
+            margin-left: 10%;
             border: 10px;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        .username{
+        .user{
             font-size: 300%;
             color: var(--front-h2);
-            margin-left: 10%;   
+        }
+
+        .city{
+            padding-left: 10px;
+        }
+        .h2{
+            color: var(--front-h2);
+        }
+        .back2{
+            background-color: rgba(236, 236, 236, 0.20);
+            box-shadow: #323235 0 10px 20px -10px;
+            border: none;
+            border-radius: 30px;
+            width: 80%;
+        }
+        .back1{
+            display: flex;
+            flex-direction:row;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(236, 236, 236, 0.20);
+            box-shadow: #323235 0 10px 20px -10px;
+            border: none;
+            border-radius: 30px;
+            width: 80%;
+            height: 300px;
+        }
+        .h3{
+
         }
 }
