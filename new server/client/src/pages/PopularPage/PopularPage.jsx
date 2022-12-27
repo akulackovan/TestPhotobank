@@ -6,7 +6,7 @@ const PopularPage = () => {
 
     return (
         <div className='popular'>
-                <h3>Popular</h3>
+                <h3>Это страница с популярными</h3>
         </div>
     )
 }

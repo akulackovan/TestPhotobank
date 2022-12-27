@@ -1,0 +1,27 @@
+.profile{
+    .back
+    {
+        width: 90%;
+    }
+    .header{display:flex; flex-direction:row;}
+    .first{
+        background-color: aqua;
+        
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+        
+        .second{
+            background-color: (#DCDCDC);
+            width: 65%;
+            margin-left: 5%;
+            border: 10px;
+        }
+
+        .username{
+            font-size: 300%;
+            color: var(--front-h2);
+            margin-left: 10%;   
+        }
+}

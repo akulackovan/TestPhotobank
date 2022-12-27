@@ -3,6 +3,7 @@ import dotenv from 'dotenv'
 import mongoose from 'mongoose'
 import authRoute from './router/auth.js'
 import settingRoute from './router/settings.js'
+import cityRoute from './router/city.js'
 import cors from 'cors'
 import multer from 'multer'
 
@@ -25,6 +26,8 @@ app.use(cors());
 app.use(express.json())
 app.use('/auth', authRoute)
 app.use('/settings', settingRoute)
+
+app.use('/city', cityRoute)
 /*app.use('/post', postRoute)
 app.post('/upload', upload.single('image'), (req, res) => {
     res.json(        {

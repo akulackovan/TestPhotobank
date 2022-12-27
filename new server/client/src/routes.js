@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom"
 import NavBar from "./components/NavBar/NavBar";
+import AddPostPage from "./pages/AddPostPAge/AddPostPage";
 import AuthPage from "./pages/AuthPage/AuthPage";
 import PopularPage from './pages/PopularPage/PopularPage'
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
@@ -15,13 +16,12 @@ export const useRoutes = (isLogin) =>
         return (
             <div className="app">
                     <NavBar />
-                    <Router >
                         <Switch>
                             <Route exact path='/popular' component={PopularPage} />
                             <Route exact path='/settings' component={SettingsPage} />
                             <Route exact path='/profile' component={ProfilePage} />
+                            <Route exact path='/addpost' component={AddPostPage} />
                         </Switch>
-                    </Router>
             </div>
         )
     }
