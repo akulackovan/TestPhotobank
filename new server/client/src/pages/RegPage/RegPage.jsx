@@ -21,29 +21,7 @@ const RegPage = () => {
         console.log(form)
     }
 
-    const getAllCity = async () => {
-        try {
-            await axios({
-                method: 'get',
-                url: '/city/getallcity',
-                headers: {
-                    "x-auth-token": localStorage.getItem('auth-token'),
-                    "content-type": "application/json"
-                },
-                params: {
-                    
-                }
-            })
-                .then(response => {
-
-                }
-                )
-        }
-        catch (error) {
-            console.log(error)
-        }
-    }
-
+   
     const registerHandler = async () => {
         if (!form.username.match(/^[A-Za-z0-9]+$/)) {
             setErrorMessage("Имя пользователя должно содержать только цифры и латинские буквы");

@@ -3,6 +3,7 @@ import { Link, Redirect } from "react-router-dom"
 import axios from 'axios'
 import { AuthContext } from '../../context/AuthContext'
 import './SettingsPage.scss'
+import CityCombobox from '../../components/CityCombobox/CityCombobox'
 
 const SettingsPage = () => {
     const { logout } = useContext(AuthContext)
@@ -124,20 +125,14 @@ const SettingsPage = () => {
                             name="text"
                             onChange={changeForm}
                         />
-                        <input
-                            className="input"
-                            type="text"
-                            placeholder="Город"
-                            name="city"
-                            onChange={changeForm}
-                        />
+                        <CityCombobox />
                     </div>
                 </div>
                 
                 <button className='button'
                     onClick={settingsHandler}>СОХРАНИТЬ</button>
                 <button className='button'
-                    onClick={changeOut}>ВЫЙТИ</button>
+                    onClick={changeOut}>ВЫЙТИ ИЗ АККАУНТА</button>
                 {errorMessage && <div className="error"> {errorMessage} </div>}
             </div>
         </div>

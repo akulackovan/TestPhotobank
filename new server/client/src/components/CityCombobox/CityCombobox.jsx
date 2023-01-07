@@ -1,13 +1,11 @@
-import React, {useState, useContext} from 'react'
-import { Redirect } from "react-router-dom"
+import React from 'react'
 import axios from 'axios'
+import Select from "react-select"
 
+const CityCombobox = () => {
 
-const CityCombobox = () =>
-{
-
-    const [cityarr, setCity] = React.useState('')
-    
+    const [cityarr, setCity] = React.useState("")
+    const [value, setValue] = React.useState({});
 
     const getAllCity = async () => {
         try {
@@ -19,39 +17,44 @@ const CityCombobox = () =>
                     "content-type": "application/json"
                 },
                 params: {
-                    
+
                 }
             })
                 .then(response => {
                     setCity([])
-                    console.log(response.data.city)
-                    response.data.city.map(city=>
-                        {
-                            setCity(cityarr => [...cityarr, city.city])
-                        })
+                        setCity(response.data.city)
                 }
-            )
+                )
         }
         catch (error) {
             console.log(error)
         }
     }
 
-    getAllCity()
-    
-    console.log("Array")
-    console.log(cityarr)
-    
-      return (
-            <select id="selectIndustry">
-                {cityarr.map((city) => (
-                <option>{city}</option>
-            ))}
-            </select>
-      )
-
-    
-
+    if (cityarr == "")
+    {
+        getAllCity()
+        return (
+            <>
+            <p>I would like to render a dropdown here from the values object</p>
+            </>
+        )
+    }
+    else
+    {
+        return (
+            <>
+            <Select
+                name="combobox"
+                options={cityarr}
+                value={value}
+                onChange={setValue}
+                getOptionLabel={(city) => city.city}
+                getOptionValue={(city) => city._id}
+            />
+            </>
+        )
+    }
 }
 
 
