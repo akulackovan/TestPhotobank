@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import './RegPage.scss'
 import { Link, Redirect } from 'react-router-dom'
+import CityCombobox from '../../components/CityCombobox/CityCombobox'
 
 const RegPage = () => {
 
@@ -66,7 +67,6 @@ const RegPage = () => {
     }
 
     return (
-
         <div className='box'>
             <div className='center back'>
                 <h3 className='head'>ФОТОБАНК</h3>
@@ -84,13 +84,9 @@ const RegPage = () => {
                     name="password"
                     onChange={changeForm}
                 />
-                <input
-                    className="input"
-                    type="text"
-                    placeholder="Город"
-                    name="city"
-                    onChange={changeForm}
-                />
+                <div style={{width: '80%', margin: 'auto', textAlign: 'left'}}>
+                <CityCombobox className="city" name="city" />
+                </div>
                 <button
                     className='button'
                     onClick={registerHandler}

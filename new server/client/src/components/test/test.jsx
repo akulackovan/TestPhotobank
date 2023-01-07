@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import Select from "react-select"
 
-const CityCombobox = () => {
+const Test = () => {
 
     const [cityarr, setCity] = React.useState("")
     const [value, setValue] = React.useState({});
@@ -56,4 +56,4 @@ const CityCombobox = () => {
 }
 
 
-export default CityCombobox
+export default Test

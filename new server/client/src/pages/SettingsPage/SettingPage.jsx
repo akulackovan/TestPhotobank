@@ -6,8 +6,8 @@ import './SettingsPage.scss'
 import CityCombobox from '../../components/CityCombobox/CityCombobox'
 
 const SettingsPage = () => {
+    
     const { logout } = useContext(AuthContext)
-
     const { userId } = useContext(AuthContext)
     const [form, setForm] = useState(
         {
@@ -55,6 +55,10 @@ const SettingsPage = () => {
             setErrorMessage("Пароли не совпадают");
             return;
          }
+         if(!(form.text.length < 512)){
+            setErrorMessage("Описание должно быть меньше 512 символов");
+            return;
+         }
         try {
             await axios.post('/settings', { ...form }, {
                 headers:
@@ -66,6 +70,11 @@ const SettingsPage = () => {
 
                     console.log(response)
                     setErrorMessage(response.data.message)
+                    document.getElementById("username").value = ''
+                    document.getElementById("password").value = ''
+                    document.getElementById("newpass").value = ''
+                    document.getElementById("checkpass").value = ''
+                    document.getElementById("text").value = ''
                 })
         }
         catch (error) {
@@ -117,7 +126,7 @@ const SettingsPage = () => {
                             onChange={changeForm}
                         />
                     </div>
-                    <div className='second'>
+                    <div className='second'  style ={{textAlign: 'left'}}>
                         <input
                             className="input"
                             type="text"
@@ -125,7 +134,7 @@ const SettingsPage = () => {
                             name="text"
                             onChange={changeForm}
                         />
-                        <CityCombobox />
+                        <CityCombobox name='city' />
                     </div>
                 </div>
                 

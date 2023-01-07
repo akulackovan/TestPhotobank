@@ -71,25 +71,29 @@ const ProfilePage = () => {
                         <img className='img' src={userProfileImage} />
                     </div>
                     <div className='second'>
-                        <div className='header'>
-                            <div className='user'>{username}</div>
-                            <div className='city'>г. {city}</div>
-                        </div>
-                        <div className='text'>
-                            <div className='back2'>
-                                <div className='h2'>Описание:</div>
-                                {text == '' && <div> Нет описания</div>}
-                                {text != '' && <div> {text} </div>}
+                        <div className='in'>
+                            <div className='header'>
+                                <div className='user'>{username}</div>
+                                <div className='city'>г. {city}</div>
+                            </div>
+                            <div className='text'>
+                                <div className='back2'>
+                                    <div className='h2'>Описание:</div>
+                                    {text == '' && <div> Нет описания</div>}
+                                    {text != '' && <div> {text} </div>}
+                                </div>
+                            </div>
+                            <div className='end'>
+                                <div className='sub'>
+                                    <div className='h2'>Количество подписчиков: </div>
+                                    60000000
+                                </div>
+                                <button className='button'><Link to='addpost'>Добавить фото</Link></button>
                             </div>
                         </div>
-                        <button className='button'><Link to='addpost'>Добавить фото</Link></button>
                     </div>
                 </div>
             </div>
-            <div className='line' style={{
-                borderTop: "10px solid #6d9ea3", marginLeft: 30, marginRight: 30,
-                borderRadius: 30,
-            }}></div>
             <h3 className='h3'>{post}</h3>
         </div>
     )
