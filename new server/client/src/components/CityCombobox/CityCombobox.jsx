@@ -1,6 +1,5 @@
 import React from 'react'
 import axios from 'axios'
-import Select from "react-select"
 
 const CityCombobox = () => {
 
@@ -30,7 +29,7 @@ const CityCombobox = () => {
             console.log(error)
         }
     }
-
+    console.log("Hi")
     if (cityarr == "")
     {
         getAllCity()
@@ -43,14 +42,7 @@ const CityCombobox = () => {
     else
     {
         return (
-            <Select
-                name="combobox"
-                options={cityarr}
-                value={value}
-                onChange={setValue}
-                getOptionLabel={(city) => city.city}
-                getOptionValue={(city) => city._id}
-            />
+            <ul>1</ul>
         )
     }
 }

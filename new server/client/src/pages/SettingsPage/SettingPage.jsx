@@ -70,11 +70,12 @@ const SettingsPage = () => {
 
                     console.log(response)
                     setErrorMessage(response.data.message)
-                    document.getElementById("username").value = ''
+                    form.username.value = ''
                     document.getElementById("password").value = ''
                     document.getElementById("newpass").value = ''
                     document.getElementById("checkpass").value = ''
                     document.getElementById("text").value = ''
+                    alert('alert')
                 })
         }
         catch (error) {

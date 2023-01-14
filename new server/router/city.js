@@ -1,5 +1,5 @@
 import {Router} from "express"
-import {getCity, getAllCity, addCityFromFile} from '../controllers/city.js'
+import {getCity, getAllCity} from '../controllers/city.js'
 
 const router = new Router()
 

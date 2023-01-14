@@ -1,12 +1,13 @@
 import React from 'react'
 import axios from 'axios'
-import Select from "react-select"
+import { Tooltip } from '@skbkontur/react-ui';
+import { ComboBox } from '@skbkontur/react-ui/components/ComboBox';
 
 const Test = () => {
+    const delay = time => args => new Promise(resolve => setTimeout(resolve, time, args));
 
-    const [cityarr, setCity] = React.useState("")
-    const [value, setValue] = React.useState({});
-
+    let maybeReject = x => (Math.random() * 3 < 1 ? Promise.reject() : Promise.resolve(x));
+    const [cityarr, setCity] = React.useState([])
     const getAllCity = async () => {
         try {
             await axios({
@@ -22,7 +23,7 @@ const Test = () => {
             })
                 .then(response => {
                     setCity([])
-                        setCity(response.data.city)
+                    setCity([...cityarr, response.data.city])
                 }
                 )
         }
@@ -30,30 +31,54 @@ const Test = () => {
             console.log(error)
         }
     }
-
-    if (cityarr == "")
-    {
+    while (cityarr.length == 0){
+        console.log("Go")
         getAllCity()
-        return (
-            <>
-            <p>I would like to render a dropdown here from the values object</p>
-            </>
-        )
     }
-    else
-    {
-        return (
-            <Select
-                name="combobox"
-                options={cityarr}
-                value={value}
-                onChange={setValue}
-                getOptionLabel={(city) => city.city}
-                getOptionValue={(city) => city._id}
-            />
-        )
-    }
+    console.log(cityarr)
+        for (var i = 0; i < cityarr.length; i++)
+                        var newItem = { 
+                            value: cityarr[i]._id, label: cityarr[i].city,
+                        }
+                        console.log(newItem)
+
+    let getItems = q =>
+        Promise.resolve(
+            [
+                ...cityarr
+            ])
+            .then(delay(500))
+            .then(maybeReject);
+
+    const [selected, setSelected] = React.useState({});
+    const [error, setError] = React.useState(false);
+
+    let handleValueChange = value => {
+        setSelected(value);
+        setError(false);
+    };
+
+    let handleUnexpectedInput = () => {
+        setSelected(null);
+        setError(true);
+    };
+
+    let handleFocus = () => setError(false);
+    return (<Tooltip closeButton={false} render={() => 'Item must be selected!'} trigger={error ? 'opened' : 'closed'}>
+        <ComboBox
+            error={error}
+            getItems={getItems}
+            onValueChange={handleValueChange}
+            onFocus={handleFocus}
+            onUnexpectedInput={handleUnexpectedInput}
+            placeholder="Enter number"
+            value={selected}
+        />
+    </Tooltip>
+    )
 }
 
 
+
 export default Test
+
