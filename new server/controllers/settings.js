@@ -11,7 +11,7 @@ export const settings = async (req, res) => {
 
         if (!user) {
             return res.status(400).json({
-                message: 'Такого пользователя не существует.',
+                message: 'Такого пользователя не существует',
             })
         }
         if (username != '')
@@ -29,13 +29,13 @@ export const settings = async (req, res) => {
             const isPasswordCorrect = await bcrypt.compare(password, user.password)
             if (!isPasswordCorrect) {
                 return res.status(400).json({
-                    message: 'Неверный пароль.',
+                    message: 'Указан неверный пароль',
                 })
             }
             if (newpass.localeCompare(checkpass) != 0)
             {
                 return res.status(400).json({
-                    message: 'Пароли не совпадают.',
+                    message: 'Пароли не совпадают',
                 })
             } 
         }
@@ -44,7 +44,7 @@ export const settings = async (req, res) => {
             if (text.length > 512)
             {
                 return res.status(401).json({
-                    message: 'Описание пользователя содержит больше 512 символов.',
+                    message: 'Описание пользователя содержит больше 512 символов',
                 })
             }
         }
@@ -79,7 +79,7 @@ export const settings = async (req, res) => {
             message: 'Настройки изменены',
         })
     } catch (error) {
-        res.status(400).json({message: 'Ошибка при изменении настроек.'})
+        res.status(400).json({message: 'Неизвестная ошибка при изменении настроек'})
     }
 }
 

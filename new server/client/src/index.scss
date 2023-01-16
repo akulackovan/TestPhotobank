@@ -3,7 +3,52 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;
-
-    
   }
+
+  html[data-theme='dark'] {
+    --button-text-color: #eceeeb;
+    --button-background-color: #4e005c;
+
+    --nav-bar-background-color: #4e005c;
+
+    --font-color: #eceeeb;
+    
+  
+    --background-color: #292929;
+    --icon-color: #ba8fc2;
+  }
+  
+  html[data-theme='light'] {
+    --button-text-color: #eceeeb;
+    --button-background-color: #6d9ea3ff;
+
+    --nav-bar-background-color: #6d9ea3ff;
+    --font-color: #323235;
+  
+    --background-color: #ffffff;
+    --icon-color: #4e005c;
+  }
+
+html [data-theme='light'] {
+  --main-front: #48523d;
+  --button-color: #6d9ea3ff;
+  --back: #eceeeb;
+  --back-color: #a2c1c3ff;
+  --front-color: #d3d2cdff;
+  --front-h2: #6d9ea3;
+  --shadow: #323235 0 10px 20px -10px;
+  --background-color: #dfdfdf;
+}
+
+html [data-theme='dark'] {
+  --main-front: #4e005c;
+  --button-color: #201d1d;
+  --back: #4e005c;
+  --back-color: #4e005c;
+  --front-color: #ffffff;
+  --front-h2: #ffffff;
+  --shadow: #ba8fc2 0 10px 20px -10px;
+
+  --background-color: #292929;
+}
 

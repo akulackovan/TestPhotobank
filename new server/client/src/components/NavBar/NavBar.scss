@@ -1,8 +1,10 @@
 .navbar
 {
-   background-color: #6d9ea3ff;
+   background-color: var(--nav-bar-background-color);
    color: #f3f2ef;
    padding-left: 2%;
+   
+  transition: background-color 500ms linear;
    .photobank{ 
     font-size: 35px;
     font-weight: 1000;
