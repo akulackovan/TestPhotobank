@@ -6,7 +6,7 @@ import jwt from 'jsonwebtoken'
 
 export const settings = async (req, res) => {
     try {
-        const {userId, username, password, newpass, checkpass, text, city} = req.body
+        const {userId, username, password, newpass, checkpass, text, city, base64, type} = req.body
         const user = await User.findOne({_id: userId})
 
         if (!user) {
@@ -48,7 +48,7 @@ export const settings = async (req, res) => {
                 })
             }
         }
-        const isCity= await City.findOne({_id: city})
+        const isCity= await City.findOne({id: city})
         if (city != '' && !isCity) {
             return res.status(400).json({
                     message: 'Такого города нет',
@@ -73,6 +73,9 @@ export const settings = async (req, res) => {
         {
             const idCity = isCity._id
             await User.updateOne({_id: userId}, {city: idCity})  
+        }
+        if (base64 != ""){
+            await User.updateOne({image: base64, typeImg: type})  
         }
 
         res.status(201).json({

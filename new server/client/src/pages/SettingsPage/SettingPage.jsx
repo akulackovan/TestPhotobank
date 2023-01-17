@@ -6,6 +6,7 @@ import './SettingsPage.scss'
 import CityCombobox from '../../components/CityCombobox/CityCombobox'
 import { Gapped, Radio, RadioGroup } from '@skbkontur/react-ui';
 import { useTheme } from '../../hooks/use.theme'
+import Cropper from '../../components/Cropper/cropper'
 
 const SettingsPage = () => {
 
@@ -19,7 +20,9 @@ const SettingsPage = () => {
             newpass: '',
             checkpass: '',
             text: '',
-            city: ''
+            city: '',
+            base64: '',
+            type: ''
         }
     )
     const [errorMessage, setErrorMessage] = React.useState("")
@@ -103,9 +106,9 @@ const SettingsPage = () => {
 
     return (
         <div className='settings'>
-            <div className='container'>
+            <div className='container-s'>
                 <div className='rowC'>
-                    <div className='first'>
+                    <div className='fiels'>
                         <input
                             className="input"
                             type="text"
@@ -135,7 +138,7 @@ const SettingsPage = () => {
                             onChange={changeForm}
                         />
                     </div>
-                    <div className='second' style={{ textAlign: 'left' }}>
+                    <div className='sec' style={{ textAlign: 'left' }}>
                         <input
                             className="input"
                             type="text"
@@ -156,7 +159,7 @@ const SettingsPage = () => {
                         </Gapped>
                     </RadioGroup>
                 </div>
-
+                <Cropper onChange={(value) => setForm({...form, base64: value.base64, type: value.type})} />
                 <button className='button'
                     onClick={settingsHandler}>СОХРАНИТЬ</button>
                 <button className='button'

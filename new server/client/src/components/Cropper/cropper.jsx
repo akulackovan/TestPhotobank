@@ -63,12 +63,13 @@ const Cropper = ({ x = 480, y = 480, onChange, size = 7 }) => {
         
         setImage(src)
         setSrc(null)
-        onChange(base64Image)
+        onChange({base64: base64Image,
+            type: info.type})
     };
 
     const ChangeCrop = () => {
         setOutput(null)
-        setSrc(im)
+        setSrc(image)
 
     }
 
