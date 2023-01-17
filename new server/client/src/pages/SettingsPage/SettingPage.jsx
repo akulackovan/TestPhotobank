@@ -80,6 +80,7 @@ const SettingsPage = () => {
                     console.log(newTheme)
                     setTheme(newTheme)
                     setErrorMessage(response.data.message)
+                    setTimeout(() => setErrorMessage(""), 2000)
                 })
         }
         catch (error) {
@@ -89,9 +90,7 @@ const SettingsPage = () => {
     }
 
 
-    /*
-        По требованиям нет кнопки выхода, перед сдачей почистить
-    */
+
     if (log) {
         logout()
         return (
@@ -104,7 +103,7 @@ const SettingsPage = () => {
 
     return (
         <div className='settings'>
-            <div className='back'>
+            <div className='container'>
                 <div className='rowC'>
                     <div className='first'>
                         <input
@@ -144,7 +143,7 @@ const SettingsPage = () => {
                             name="text"
                             onChange={changeForm}
                         />
-                        <CityCombobox name='city' />
+                        <CityCombobox name='city' onChange={(value) => setForm({...form, city: value})}/>
                     </div>
                 </div>
 
@@ -152,8 +151,8 @@ const SettingsPage = () => {
                     <RadioGroup name="number-complex" defaultValue={now}>
                         <Gapped horizontal gap={0}>
                             <b>Тема: </b>
-                            <Radio value="light" onChange={changeTheme}>Светлая</Radio>
-                            <Radio value="dark" onChange={changeTheme}>Темная</Radio>
+                            <Radio className ="radio" value="light" onChange={changeTheme}/> <b>Светлая</b>
+                            <Radio className ="radio" value="dark" onChange={changeTheme} /> <b>Темная</b>
                         </Gapped>
                     </RadioGroup>
                 </div>

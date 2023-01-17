@@ -85,7 +85,7 @@ const RegPage = () => {
                     onChange={changeForm}
                 />
                 <div style={{width: '80%', margin: 'auto', textAlign: 'left'}}>
-                <CityCombobox className="city" name="city" />
+                <CityCombobox className="city" name="city" onChange={(value) => setForm({...form, city: value})} />
                 </div>
                 <button
                     className='button'

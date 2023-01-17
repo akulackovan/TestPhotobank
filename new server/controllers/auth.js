@@ -20,7 +20,7 @@ export const register = async (req, res) => {
                 message: 'Логин занят. Выберите другой',
             })
         }
-        const isCity= await City.findOne({city})
+        const isCity= await City.findOne({_id: city})
         if (!isCity) {
             return res.status(409).json({
                 message: 'Такого города нет',

@@ -1,85 +1,137 @@
-import React, { useState, useContext, useEffect } from 'react'
+import React, { useState, useContext, useEffect, useRef} from 'react'
 import axios from 'axios'
-import { Gapped, Radio, RadioGroup } from '@skbkontur/react-ui';
-import { Tooltip } from '@skbkontur/react-ui';
-import { ComboBox } from '@skbkontur/react-ui/components/ComboBox';
-import { useTheme } from '../../hooks/use.theme'
-const Test = () => {
-    const delay = time => args => new Promise(resolve => setTimeout(resolve, time, args));
+import Combobox from "react-widgets/Combobox";
+import "./test.scss";
 
-    let maybeReject = x => (Math.random() * 3 < 1 ? Promise.reject() : Promise.resolve(x));
-    const [cityarr, setCity] = React.useState([])
-    const getAllCity = async () => {
-        try {
-            await axios({
-                method: 'get',
-                url: '/city/getallcity',
-                headers: {
-                    "x-auth-token": localStorage.getItem('auth-token'),
-                    "content-type": "application/json"
-                },
-                params: {
 
-                }
-            })
-                .then(response => {
-                    setCity([])
-                    setCity([...cityarr, response.data.city])
-                }
-                )
-        }
-        catch (error) {
-            console.log(error)
-        }
-    }
-    while (cityarr.length == 0){
-        console.log("Go")
-        getAllCity()
-    }
-    console.log(cityarr)
-        for (var i = 0; i < cityarr.length; i++)
-                        var newItem = { 
-                            value: cityarr[i]._id, label: cityarr[i].city,
-                        }
-                        console.log(newItem)
+const Test = ({ placeHolder }) => {
 
-    let getItems = q =>
-        Promise.resolve(
-            [
-                ...cityarr
-            ])
-            .then(delay(500))
-            .then(maybeReject);
+  const getDisplay = () => {
+    return placeHolder;
+  };
 
-    const [selected, setSelected] = React.useState({});
-    const [error, setError] = React.useState(false);
+  /*for (var i = 0; i < cityarr.length; i++)
+                  var newItem = { 
+                      value: cityarr[i]._id, label: cityarr[i].city,
+                  }
+                  console.log(newItem)*/
 
-    let handleValueChange = value => {
-        setSelected(value);
-        setError(false);
-    };
+  /*return (
 
-    let handleUnexpectedInput = () => {
-        setSelected(null);
-        setError(true);
-    };
+      <select>{
+          [speciesList].map( (_id,city) => 
+            <option key={_id}>{city}</option> )
+        }</select>
+  )*/
 
-    let handleFocus = () => setError(false);
-    return (<Tooltip closeButton={false} render={() => 'Item must be selected!'} trigger={error ? 'opened' : 'closed'}>
-        <ComboBox
-            error={error}
-            getItems={getItems}
-            onValueChange={handleValueChange}
-            onFocus={handleFocus}
-            onUnexpectedInput={handleUnexpectedInput}
-            placeholder="Enter number"
-            value={selected}
-        />
-    </Tooltip>
-    )
+  
 
+  return (
+    <Dropdown onChange={(value) => console.log(value)}/>
+  );
 }
 
+const Dropdown = ({  onChange }) => {
+
+  const [showMenu, setShowMenu] = useState(false);
+  const [selected, setSelected] = useState(null);
+  const [searchValue, setSearchValue] = useState("");
+
+  const [options, setOptions] = useState([])
+
+  useEffect(() => {
+    try {
+      axios({
+        method: 'get',
+        url: '/city/getallcity'
+      })
+        .then(response => {
+          setOptions(response.data.city)
+        }
+        )
+    }
+    catch (error) {
+      console.log(error)
+    }
+  }, []);
+
+  const searchRef = useRef();
+  useEffect(() => {
+    setSearchValue("");
+    if (showMenu && searchRef.current) {
+      searchRef.current.focus();
+    }
+  }, [showMenu]);
+  let newValue;
+
+
+  useEffect(() => {
+    const handler = () => setShowMenu(false)
+
+    window.addEventListener("click", handler);
+    return () => {
+      window.removeEventListener("click", handler)
+    }
+  }
+  )
+  const handleInputClick = (e) => {
+    e.stopPropagation()
+    setShowMenu(!showMenu)
+  }
+
+  const getDisplay = () => {
+    if (selected) {
+      return selected.city;
+    }
+    return "Город";
+  };
+
+  const onItemClick = (option) => {
+    setSelected(option)
+    onChange(option._id)
+  }
+
+  const onSearch = (e) => {
+    setSearchValue(e.target.value);
+    onChange(newValue);
+  };
+  const getOptions = () => {
+    if (!searchValue) {
+        return options;
+    }
+    return options.filter((option) => option.city.toLowerCase().indexOf(searchValue.toLowerCase()) >= 0);
+};
+
+  return (
+    <div className="dropdown-container">
+      <div className="dropdown-input" onClick={handleInputClick}>
+        <div className="dropdown-selected-value">{getDisplay()}</div>
+        <div className="dropdown-tools">
+          <div className="dropdown-tool">
+          <svg className="icon" height="20" width="20" viewBox="0 0 20 20">
+            <path d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"></path>
+          </svg>
+          </div>
+        </div>
+      </div>
+      {showMenu && (<div className='dropdown-menu'>
+            <div className="search-box">
+                <input onChange={onSearch} value={searchValue} ref={searchRef} />
+            </div>
+        {getOptions().map((option) => (
+          <div className={'dropdown-item'}
+            onClick={() => onItemClick(option)}
+          >
+            {option.city}
+            </div>
+        ))}
+      </div>)}
+    </div>
+  );
+};
 
 
 export default Test
+
+/*
+*/
