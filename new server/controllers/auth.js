@@ -125,13 +125,62 @@ export const login = async (req, res) => {
 
 export const getMe = async (req, res) => {
     try {
-        console.log(req.query.userId)
         const user = await  User.findOne({_id:req.query.userId})
         if (!user) {
             return res.status(404).json({
                 message: 'Такого пользователя не существует.',
             })
         }
+
+
+        const [subscibe] = await User.find({subscription: user})
+        
+
+        const token = jwt.sign(
+            {
+                id: user._id,
+            },
+            process.env.JWT_SECRET,
+            {expiresIn: '30d'},
+        )
+
+       
+        res.json({
+            user,
+            subscibe,
+            token,
+            message: 'Профиль успешен =)',
+        })
+    } catch (error) {
+        console.log(error)
+        res.status(401).json({message: 'Нет'})
+    }
+}
+
+export const subscibe = async (req, res) => {
+    try {
+        console.log(req.body.userId)
+        if (req.body.userId == req.body.subscibe){
+            return res.status(404).json({
+                message: 'Такого пользователя не существует.',
+            })
+        }
+        const user = await User.findOne({_id: req.body.userId})
+        if (!user) {
+            return res.status(404).json({
+                message: 'Такого пользователя не существует.',
+            })
+        }
+        
+        const user2 = await User.findOne({_id: req.body.subscibe})
+        if (!user2) {
+            return res.status(404).json({
+                message: 'Такого пользователя не существует 2.',
+            })
+        }
+
+        await User.updateOne({_id: user2}, {$push: {subscriptions: user}})  
+
 
         const token = jwt.sign(
             {
@@ -142,13 +191,11 @@ export const getMe = async (req, res) => {
         )
 
         res.json({
-            user,
-            token,
-            message: 'Профиль успешен =)',
+            message: 'Пользователь успешно подписан',
         })
     } catch (error) {
         console.log(error)
-        res.status(401).json({message: 'Нет'})
+        res.status(401).json({message: 'Подписка не успешна'})
     }
 }
 

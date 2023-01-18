@@ -1,11 +1,12 @@
 import {Router} from "express"
 const router = new Router()
+import {getPostById, getMyPost} from '../controllers/post.js'
 
 /*router.post('/post', addPost) //создание поста*/
 
-/*router.get('/post',) //получение всех постов
+router.get('/', getPostById) //получение всех постов
 
-router.get('/post/me',) //получение всех постов пользователя*/
+router.get('/getMe', getMyPost)
 
 
 export default router

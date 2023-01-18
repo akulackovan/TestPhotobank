@@ -10,7 +10,7 @@ import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import RegPage from "./pages/RegPage/RegPage";
 import SettingsPage from "./pages/SettingsPage/SettingPage";
 import SubscribePage from "./pages/SubscribePage/PopularPage";
-import Cropper from './components/Cropper/cropper'
+import PostPage from "./pages/PostPage/PostPage"
 export const useRoutes = (isLogin) =>
 {
     if (isLogin)
@@ -19,13 +19,12 @@ export const useRoutes = (isLogin) =>
             <div className="app">
                     <NavBar />
                         <Switch>
-                        <Route exact path='/' component={Cropper} />
                             <Route exact path='/popular' component={PopularPage} />
                             <Route exact path='/settings' component={SettingsPage} />
                             <Route exact path='/profile' component={ProfilePage} />
-                            <Route exact path='/addpost' component={AddPostPage} />
+                            <Route exact path='/post' component={AddPostPage} />
                             <Route exact path='/subsc' component={SubscribePage} />
-                            
+                            <Route exact path='/post/:id' component={PostPage} />
                             <Route exact path='/test' component={Test} />
                         </Switch>
             </div>
