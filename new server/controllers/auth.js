@@ -205,7 +205,7 @@ export const search = async (req, res) => {
         const search = await User.find({"username": {$regex: `${name}`, $options: 'ix'}})
         if (!search) {
             return res.status(200).json({
-                message: 'Нет подходящих под запрос пользователей',
+                message: 'Ничего не найдено',
             })
         }
         return res.status(200).json({
