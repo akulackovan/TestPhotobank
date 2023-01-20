@@ -22,7 +22,7 @@ export const useRoutes = (isLogin) =>
                             <Route exact path='/popular' component={PopularPage} />
                             <Route exact path='/settings' component={SettingsPage} />
                             <Route exact path='/profile' component={ProfilePage} />
-                            <Route exact path='/post' component={AddPostPage} />
+                            <Route exact path='/post/' component={AddPostPage} />
                             <Route exact path='/subsc' component={SubscribePage} />
                             <Route exact path='/post/:id' component={PostPage} />
                             <Route exact path='/test' component={Test} />

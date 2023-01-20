@@ -6,7 +6,7 @@ import jwt from 'jsonwebtoken'
 
 export const settings = async (req, res) => {
     try {
-        const {userId, username, password, newpass, checkpass, text, city, base64} = req.body
+        const {userId, username, password, newpass, checkpass, text, city, base64, type} = req.body
         const user = await User.findOne({_id: userId})
 
         if (!user) {
@@ -75,7 +75,7 @@ export const settings = async (req, res) => {
             await User.updateOne({_id: userId}, {city: idCity})  
         }
         if (base64 != ""){
-            await User.updateOne({image: base64})  
+            await User.updateOne({image: base64, typeImg: type})  
         }
 
         res.status(201).json({

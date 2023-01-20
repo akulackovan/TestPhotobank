@@ -1,20 +1,29 @@
 import Post from '../models/Post.js'
 import User from '../models/User.js'
+import City from '../models/City.js'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 
 export const getPostById = async (req, res) => {
     try {
-        const isPost = await Post.findOne({id: req.query.id})
+        const {id} = req.query
+        const isPost = await Post.findOne({_id: id[1]})
         if (!isPost) {
             return res.status(400).json({
                 message: 'Поста не существует'
             })
         }
+
+        const autor = await User.findOne({_id: isPost.author})
+
+        const city = await City.findOne({_id: isPost.city})
         
 
         return res.json({
             isPost,
+            autor,
+            city,
+
             message: 'Пост получен',
         })
     } catch (error) {

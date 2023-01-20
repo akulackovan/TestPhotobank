@@ -21,11 +21,10 @@ const SettingsPage = () => {
             checkpass: '',
             text: '',
             city: '',
-            base64: null,
+            base64: '',
             type: ''
         }
     )
-    const [base, setBase] = useState(null)
     const [errorMessage, setErrorMessage] = React.useState("")
     const [log, setLog] = React.useState(false)
 
@@ -109,6 +108,19 @@ const SettingsPage = () => {
                     setTimeout(() => setErrorMessage(""), 2000)
                     setFormKey(formKey + 1)
                     document.getElementById("inputs").reset();
+                    setForm({
+                        userId: userId,
+                        username: '',
+                        password: '',
+                        newpass: '',
+                        checkpass: '',
+                        text: '',
+                        city: '',
+                        base64: '',
+                        type: ''
+                    })
+
+
                 })
         }
         catch (error) {
@@ -127,20 +139,11 @@ const SettingsPage = () => {
         )
     }
 
-    const handleChange = (value) => {
-        var base64 = value
-        base64 = base64.toString()
-        setForm({...form, base64: base64})
-        console.log(base64)
-    }
-
 
 
 
     return (
         <div className='settings'>
-
-
             <div className='container-s'>
                 <form id="inputs">
                     <div className='rowC'>
@@ -175,14 +178,12 @@ const SettingsPage = () => {
                             />
                         </div>
                         <div className='sec' style={{ textAlign: 'left' }}>
-                            <textarea
-                                className="textarea"
+                            <input
+                                className="input"
                                 type="text"
                                 placeholder="Описание пользователя"
                                 name="text"
                                 onChange={changeForm}
-                                maxlength="512"
-                                style={{ height: '16vh' }}
                             />
                             <CityCombobox name='city' onChange={(value) => setForm({ ...form, city: value })} key={formKey} />
                         </div>
@@ -202,7 +203,7 @@ const SettingsPage = () => {
                     </RadioGroup>
                 </div>
                 <div>
-                    <Cropper onChange={handleChange}
+                    <Cropper onChange={(value) => setForm({ ...form, city: value })}
                         onSelect={(value) => setForm({ ...form, onSelect: value })} key={formKey} />
                 </div>
                 <div className='buttons'>

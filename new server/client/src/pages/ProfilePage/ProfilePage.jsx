@@ -12,7 +12,6 @@ const ProfilePage = () => {
     const [post, setPost] = useState('');
     const [userProfileImage, setUserProfileImage] = useState({});
     const [subscriptions, setSubscriptions] = useState(0)
-    const [posts, setPosts] = useState([])
 
     useEffect(() => {
         axios({
@@ -27,10 +26,10 @@ const ProfilePage = () => {
             }
         })
             .then(response => {
-                setUserProfileImage(`data:${response.data.user.typeImg};base64, ${response.data.user.image}`);
+                setUserProfileImage(`${response.data.user.image}`);
                 setUsername(response.data.user.username)
                 setText(response.data.user.text)
-                setSubscriptions(response.data.subscriptions)
+                setSubscriptions(response.data.subscibe.length)
                 console.log(response.data.subscibe)
                 if (response.data.user.posts == "") {
                     setPost('Нет постов')
@@ -60,7 +59,7 @@ const ProfilePage = () => {
                             <div className='h2'>Количество подписчиков: {subscriptions}</div>
                         </div>
                         <div>
-                            <button className='button'><Link to='addpost'>Добавить фото</Link></button>
+                            <button className='button'><Link to='post'>Добавить фото</Link></button>
                         </div>
                     </div>
                 </div>

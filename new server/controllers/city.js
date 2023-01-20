@@ -16,7 +16,9 @@ export const getCity = async (req, res) => {
             message: 'Город найден',
         })
     } catch (error) {
-        res.json({ message: 'Ошибка при получении города' })
+        return res.status(400).json({
+            message: 'Ошибка при получении города'
+        })
     }
 }
 
@@ -29,7 +31,9 @@ export const getAllCity = async (req, res) => {
             message: 'Города получены',
         })
     } catch (error) {
-        res.json({ message: 'Ошибка при получении города' })
+        return res.status(400).json({
+            message: 'Ошибка при получении городов'
+        })
     }
 }
 

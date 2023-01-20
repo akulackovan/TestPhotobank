@@ -1,7 +1,7 @@
 import React, { useState, useEffect, Component } from 'react'
 import axios from 'axios'
 import './PostTable.scss'
-import { Redirect } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
 
 const PostTable = ({ id }) => {
 
@@ -37,26 +37,28 @@ const PostTable = ({ id }) => {
         }
     }, []);
 
+    if (post.length == 0)
+    {return (
+        <div className="wrapper">
+            <h1>Нет постов</h1>
+        </div>
+    )
+    }
 
 
-
-        if (postId) {
-            var id = JSON.stringify(postId)
-            var str = id.toString();
-            
-                    var p = typeof postId === 'object'
-                    console.log(p)
-                    //return (<Redirect to={'/post&id='+{str}} / >)
-            }
-
-        
     return (
-        <div class="wrapper">
+        <div className="wrapper">
             {post && <div className='gal'>
-                <div class="gallery">
+                <div className="gallery">
                     <ul>
                         {post.map((option) => (
-                            <li><img style={{ width: 351, height: 262 }} src={`data:img/png;base64, ${option.image}`} onClick={() => imageClick(option._id)} /></li>
+                            <Link to={`/post/${option._id}`}>
+                            <li>
+                                    <img style={{ width: 351, height: 262 }}
+                                        href={'/post/'+option._id}
+                                        src={`data:img/png;base64, ${option.image}`} onClick={() => imageClick(option)} />
+                                </li>
+                                </Link>
                         ))}
 
                     </ul>
