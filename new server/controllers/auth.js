@@ -199,3 +199,20 @@ export const subscibe = async (req, res) => {
     }
 }
 
+export const search = async (req, res) => {
+    try {
+        const {name} = req.body
+        const search = await User.find({"username": {$regex: `${name}`, $options: 'ix'}})
+        if (!search) {
+            return res.status(200).json({
+                message: 'Нет подходящих под запрос пользователей',
+            })
+        }
+        return res.status(200).json({
+            user: search,
+            message: 'Профили пользователей',
+        })
+    } catch (error) {
+        res.status(401).json({message: 'Ошибка в поиске пользователя'})
+    }
+}
