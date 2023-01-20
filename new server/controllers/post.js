@@ -53,3 +53,20 @@ export const getMyPost = async (req, res) => {
         })
     }
 }
+
+export const getPostComments = async (req, res) => {
+    try {
+        const post = await Post.findById(req.params.id)
+        const list = await Promise.all(
+            post.comments.map((comment) => {
+                return Comment.findById(comment)
+            }),
+        )
+        res.status(200).json({
+            list,
+            message: 'Комментарии получены',
+        })
+    } catch (error) {
+        res.status(400).json({ message: 'Ошибка при получении комментариев к посту' })
+    }
+}
