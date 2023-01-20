@@ -37,7 +37,7 @@ const PostTable = ({ id }) => {
         }
     }, []);
 
-    if (post.length == 0)
+    if (post == [])
     {return (
         <div className="wrapper">
             <h1>Нет постов</h1>

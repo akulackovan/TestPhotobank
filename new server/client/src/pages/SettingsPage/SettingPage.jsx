@@ -45,7 +45,6 @@ const SettingsPage = () => {
     const now = localStorage.getItem('app-theme')
     const [newTheme, setNewTheme] = useState(now)
     const { theme, setTheme } = useTheme()
-    const [load, setLoad] = useState(false)
 
     const changeTheme = (event) => {
         setNewTheme(event.target.value)
@@ -139,9 +138,6 @@ const SettingsPage = () => {
         )
     }
 
-
-
-
     return (
         <div className='settings'>
             <div className='container-s'>
@@ -203,8 +199,7 @@ const SettingsPage = () => {
                     </RadioGroup>
                 </div>
                 <div>
-                    <Cropper onChange={(value) => setForm({ ...form, city: value })}
-                        onSelect={(value) => setForm({ ...form, onSelect: value })} key={formKey} />
+                    <Cropper setData={(value) => setForm({ ...form, base64: value })} key={formKey} />
                 </div>
                 <div className='buttons'>
                     <button className='button'

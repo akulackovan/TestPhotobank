@@ -79,12 +79,12 @@ export const login = async (req, res) => {
             })
         }
 
-        const isPasswordCorrect = await bcrypt.compare(password, user.password)
+        /*const isPasswordCorrect = await bcrypt.compare(password, user.password)
         if (!isPasswordCorrect) {
             return res.status(401).json({
                 message: 'Неверный пароль.',
             })
-        }
+        }*/
 
         const token = jwt.sign(
             {
@@ -118,10 +118,6 @@ export const getMe = async (req, res) => {
 
 
         const subscibe = await User.find({subscriptions: req.query.userId })
-
-        
-        
-        
 
         const token = jwt.sign(
             {

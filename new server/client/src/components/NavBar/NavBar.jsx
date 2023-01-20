@@ -4,8 +4,6 @@ import { Link } from 'react-router-dom'
 import './NavBar.scss'
 
 const NavBar = () => {
-
- 
     return (
         <nav>
             <div className="nav-wrapper navbar">

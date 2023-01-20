@@ -14,6 +14,7 @@ export const settings = async (req, res) => {
                 message: 'Такого пользователя не существует.',
             })
         }
+
         if (username != '')
         {
             const isUsed = await User.findOne({username})
@@ -37,7 +38,7 @@ export const settings = async (req, res) => {
                 return res.status(400).json({
                     message: 'Пароли не совпадают.',
                 })
-            } 
+            }
         }
         if (text != '')
         {
@@ -74,7 +75,7 @@ export const settings = async (req, res) => {
             const idCity = isCity._id
             await User.updateOne({_id: userId}, {city: idCity})  
         }
-        if (base64 != ""){
+        if (base64 != ''){
             await User.updateOne({image: base64, typeImg: type})  
         }
 

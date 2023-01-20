@@ -2,6 +2,7 @@ import React, { useState, useEffect, Component } from 'react'
 import axios from 'axios'
 import PostPageComponet from '../../components/PostPage/PostPageComponent';
 
+
 export default class PostPage extends Component {
     /*constructor(){
         
@@ -10,6 +11,7 @@ export default class PostPage extends Component {
 
     render() {
         
+    
         
         return (
         <div className='postPage'>

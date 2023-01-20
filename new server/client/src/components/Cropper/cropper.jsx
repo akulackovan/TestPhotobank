@@ -6,8 +6,7 @@ import 'react-image-crop/dist/ReactCrop.css'
 import 'react-image-crop/src/ReactCrop.scss'
 
 
-const Cropper = ({ x = 480, y = 480, onChange, size = 7, onSelect }) => {
-
+const Cropper = ({ x = 480, y = 480, size = 7, setData}) => {
     const [info, setInfo] = useState({
         x: null,
         y: null,
@@ -28,7 +27,6 @@ const Cropper = ({ x = 480, y = 480, onChange, size = 7, onSelect }) => {
 
     const selectImage = (e) => {
         setErrorMessage(null)
-        onSelect(true)
         setOutput(null)
         setSrc(null)
         const temp = URL.createObjectURL(e.target.files[0])
@@ -73,10 +71,8 @@ const Cropper = ({ x = 480, y = 480, onChange, size = 7, onSelect }) => {
         setOutput(base64Image)
         setImage(src)
         setSrc(null)
-        var arrayOfStrings = base64Image.split('base64,')
-        onChange(base64Image)
+        setData(base64Image)
         console.log(base64Image)
-        onSelect(false)
     };
 
 

@@ -1,0 +1,45 @@
+.allPost
+{
+    text-align: center;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    border: none;
+    border-radius: 30px;
+
+    .back
+{
+    height: 800px;
+    margin-top: 3%;
+    display:flex; 
+    flex-direction:row;
+    padding: 2%;
+}
+    
+}
+
+
+
+.first
+{
+    flex-direction: column;
+    align-items: center;
+}
+
+.stat{
+        display:flex; flex-direction:row;
+}
+
+.headPost{
+    display:flex; 
+    flex-direction:row;
+}
+
+.second{
+    width: 400px;
+}
+.comment{
+    
+    display:flex; 
+    flex-direction:row;
+}

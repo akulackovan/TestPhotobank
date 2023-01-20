@@ -17,7 +17,7 @@ const AuthPage = () => {
     const [token, setToken] = React.useState("");
     const [userId, setUserID] = React.useState("");
     const [authRed, setAuthRed] = React.useState(false);
-    
+
     const changeForm = (event) => {
         setForm({...form, [event.target.name]: event.target.value})
         console.log(form)
@@ -38,10 +38,7 @@ const AuthPage = () => {
             .then(response => 
                 {
                 setAuthRed(true)
-                
                 console.log(authRed)
-                console.log("authRed")
-                console.log("RES")  
                 setToken(response.data.token)
                 setUserID(response.data.user._id)              
         })
