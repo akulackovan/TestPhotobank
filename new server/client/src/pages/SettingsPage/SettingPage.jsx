@@ -198,7 +198,7 @@ const SettingsPage = () => {
                         </Gapped>
                     </RadioGroup>
                 </div>
-                <div>
+                <div className='cropper'>
                     <Cropper setData={(value) => setForm({ ...form, base64: value })} key={formKey} />
                 </div>
                 <div className='buttons'>
