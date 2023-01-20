@@ -1,11 +1,17 @@
 import React, { useState, useEffect, Component } from 'react'
 import axios from 'axios'
 import './PostTable.scss'
+import { Redirect } from 'react-router-dom'
 
 const PostTable = ({ id }) => {
 
     const [post, setPost] = useState(null)
+    const [postId, setPostId] = useState(null)
+    const imageClick = (id) => {
+        console.log(id);
+        setPostId(id)
 
+    }
 
     useEffect(() => {
         try {
@@ -31,29 +37,37 @@ const PostTable = ({ id }) => {
         }
     }, []);
 
-/*                
-                    {post.map((option) => (
-                          <li><img style={{ width: 351, height: 262 }} src={`data:img/png;base64, ${option.image}`} /></li>
-                    
-                         
-                      ))} */
 
-    return (
-	<div class="wrapper">
-		{post && <div className='gal'>
-        <div class="gallery">
-			<ul>
-<li><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/53819/8.png" /></li>
-				<li><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/53819/6.png" /></li>
-			</ul>
-		</div>
-        <div>
-        <h2 className='h2'>Фотографии закончились</h2>
-        </div>
-        </div>}
-	</div>
+
+
+        if (postId) {
+            var id = JSON.stringify(postId)
+            var str = id.toString();
             
+                    var p = typeof postId === 'object'
+                    console.log(p)
+                    //return (<Redirect to={'/post&id='+{str}} / >)
+            }
+
         
+    return (
+        <div class="wrapper">
+            {post && <div className='gal'>
+                <div class="gallery">
+                    <ul>
+                        {post.map((option) => (
+                            <li><img style={{ width: 351, height: 262 }} src={`data:img/png;base64, ${option.image}`} onClick={() => imageClick(option._id)} /></li>
+                        ))}
+
+                    </ul>
+                </div>
+                <div>
+                    <h2 className='h2'>Фотографии закончились</h2>
+                </div>
+            </div>}
+        </div>
+
+
     )
 }
 

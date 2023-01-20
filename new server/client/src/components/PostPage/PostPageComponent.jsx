@@ -3,7 +3,6 @@ import axios from 'axios'
 
 const PostPageComponent = ({id}) => {
 
-
     const [post, setPost] = useState(
         {
             id: null,
@@ -41,7 +40,7 @@ const PostPageComponent = ({id}) => {
 
     return (
         <div className='profile'>
-            
+            <h1>{id}</h1>
         </div>
     )
 }

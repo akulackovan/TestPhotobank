@@ -1,3 +1,5 @@
+
+
 .gal{
     display: flex;
     flex-direction: column;
@@ -8,16 +10,14 @@
 }
 
 div.gallery {
+	
+	text-align: center;
+	display: block;
 	margin-top: 30px;
     margin-left: auto;
     margin-right: auto;
-    width: 80%;
 }
 
-div.gallery ul {
-	list-style-type: none;
-	margin-left: 35px;
-}
 
 div.gallery ul li {
 	position: relative;
@@ -29,10 +29,3 @@ div.gallery ul li {
 	z-index: 0;
 }
 
-
-/* Responsive hack */
-@media only screen and (min-width: 499px) and (max-width: 1212px) {
-	.wrapper {
-		width: 500px;
-	}
-}
