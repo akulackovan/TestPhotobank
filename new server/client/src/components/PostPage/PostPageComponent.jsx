@@ -67,7 +67,7 @@ const PostPageComponent = ({ id, idUser }) => {
     useEffect(() => {
         axios({
             method: 'get',
-            url: '/post?id=',
+            url: '/post/post/id',
             headers: {
                 "content-type": "application/json"
             },

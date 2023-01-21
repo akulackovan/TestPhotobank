@@ -1,9 +1,11 @@
-import React, {useEffect, useState} from 'react'
+import React, {useContext, useEffect, useState} from 'react'
 import axios from "axios";
 import './SubscribePage.scss'
 import {Link} from "react-router-dom";
+import {AuthContext} from "../../context/AuthContext";
 
 const SubscribePage = () => {
+    const {userId} = useContext(AuthContext)
     const [post, setPosts] = useState([])
     const [errorMessage, setErrorMessage] = React.useState("")
     const [postId, setPostId] = useState(null)
@@ -19,29 +21,35 @@ const SubscribePage = () => {
         try {
             axios({
                 method: 'get',
-                url: '/post/subsc',
+                url: '/post/subscription',
                 headers: {
                     "x-auth-token": localStorage.getItem('auth-token'),
                     "content-type": "application/json"
+                },
+                params: {
+                    id: userId
                 }
             })
                 .then(response => {
-                        console.log(response.data.posts)
-                        setPosts(response.data.posts)
+                        console.log(response.data.returnedPosts)
+                        setPosts(response.data.returnedPosts)
 
                     }
-                )
+                ).catch(error => {
+                console.log("HERE " + error.response.data.message)
+                if (error) {
+                    setErrorMessage(error.response.data.message)
+                }
+            })
 
-        } catch (error) {
-            console.log(error)
-            setErrorMessage(error.response.data.message)
+        } catch {
         }
     }, [])
 
     if (errorMessage !== "") {
         return (
             <div className="wrapper1">
-                <h1>${errorMessage}</h1>
+                <h1>{errorMessage}</h1>
             </div>
         )
     }
@@ -57,6 +65,7 @@ const SubscribePage = () => {
 
     return (
         <div className="wrapper1">
+            {errorMessage && <h1>errorMessage</h1>}
 
             {post && <div className='gal1'>
                 <div className="gallery1">

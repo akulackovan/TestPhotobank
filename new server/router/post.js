@@ -12,6 +12,8 @@ router.get('/', getPopular) //получение всех постов
 
 router.get('/getMe', getMyPost)
 
+router.get('/post/id', getPostById)
+
 router.get('/comments', getPostComments)
 
 router.post('/comments', createComment)
@@ -20,7 +22,7 @@ router.get('/getLike', getLike)
 
 router.get('/popular', getPopular)
 
-router.get('/subsc', getSubscriptionPosts)
+router.get('/subscription', getSubscriptionPosts)
 
 router.post('/addView', addView)
 router.post('/setLike', setLike)

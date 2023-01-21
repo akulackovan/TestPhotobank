@@ -6,7 +6,7 @@ const PostSchema = new mongoose.Schema(
         city: { type: mongoose.Schema.Types.ObjectId, ref: 'City' },
         image: { type: String },
         typeImg: {type: String},
-        text: { type: String, required: true },
+        text: { type: String },
         views: { type: Number, default: 0 },
         likes: { type: Number, default: 0 },
         timestamps: {type: Date},

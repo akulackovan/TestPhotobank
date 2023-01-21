@@ -8,8 +8,7 @@ import path from 'path'
 export const register = async (req, res) => {
     try {
         const {username, password, city} = req.body
-        if (username =='' || password == '' || city == '')
-        {
+        if (username == '' || password == '' || city == '') {
             return res.status(400).json({
                 message: 'Заполнены не все поля',
             })
@@ -20,7 +19,7 @@ export const register = async (req, res) => {
                 message: 'Логин занят. Выберите другой',
             })
         }
-        const isCity= await City.findOne({_id: city})
+        const isCity = await City.findOne({_id: city})
         if (!isCity) {
             return res.status(409).json({
                 message: 'Такого города нет',
@@ -30,7 +29,7 @@ export const register = async (req, res) => {
         const salt = bcrypt.genSaltSync(10)
         const hash = bcrypt.hashSync(password, salt)
 
-        
+
         const __dirname = path.resolve();
         console.log(__dirname)
         //const img = path.join(__dirname +'/uploads/avatar/user_image_default.png')
@@ -42,10 +41,10 @@ export const register = async (req, res) => {
             city: idCity,
             password: hash,
             text: '',
-            image:  base,
+            image: base,
             typeImg: 'image/png'
         })
-        
+
         const token = jwt.sign(
             {
                 id: newUser._id,
@@ -106,15 +105,30 @@ export const login = async (req, res) => {
 
 export const getAnother = async (req, res) => {
     try {
-        const user = await  User.findOne({username:req.query.userId})
+        const {myId, userId} = req.query
+        console.log(myId + " " + userId)
+        const user = await User.findOne({_id: userId})
+        const me = await User.findOne({_id: myId})
         if (!user) {
             return res.status(404).json({
                 message: 'Такого пользователя не существует.',
             })
         }
+        let isSubscribe = false
 
 
-        const subscibe = await User.find({subscriptions: req.query.userId })
+        const subscibe = await User.find({subscriptions: userId})
+
+        const subscriptions = me.subscriptions
+        if (subscriptions && subscriptions.length > 0) {
+            for (let i = 0; i < subscriptions.length; i++) {
+                console.log(subscriptions[i] + " " + userId)
+                if (subscriptions[i] == userId) {
+                    isSubscribe = true
+                    break
+                }
+            }
+        }
 
         const token = jwt.sign(
             {
@@ -124,11 +138,13 @@ export const getAnother = async (req, res) => {
             {expiresIn: '30d'},
         )
 
-
+        const city = await City.findOne({_id:user.city})
         res.json({
             user,
             subscibe,
+            city:city.city,
             token,
+            isSubscribe,
             message: 'Профиль успешен =)',
         })
     } catch (error) {
@@ -140,7 +156,8 @@ export const getAnother = async (req, res) => {
 
 export const getMe = async (req, res) => {
     try {
-        const user = await  User.findOne({_id:req.query.userId})
+        const user = await User.findOne({_id: req.query.userId})
+        console.log(user + " " + req.query.userId)
         if (!user) {
             return res.status(404).json({
                 message: 'Такого пользователя не существует.',
@@ -148,7 +165,7 @@ export const getMe = async (req, res) => {
         }
 
 
-        const subscibe = await User.find({subscriptions: req.query.userId })
+        const subscibe = await User.find({subscriptions: req.query.userId})
 
         const token = jwt.sign(
             {
@@ -158,7 +175,7 @@ export const getMe = async (req, res) => {
             {expiresIn: '30d'},
         )
 
-       
+
         res.json({
             user,
             subscibe,
@@ -173,30 +190,31 @@ export const getMe = async (req, res) => {
 
 export const subscibe = async (req, res) => {
     try {
-        console.log(req.body.userId)
-        if (req.body.userId == req.body.subscibe){
-            return res.status(404).json({
-                message: 'Такого пользователя не существует.',
-            })
-        }
-        const user = await User.findOne({_id: req.body.userId})
+        console.log(req.body)
+        let {userId, subscribe, isSubs} = req.body
+        const user = await User.findOne({id: userId})
         if (!user) {
             return res.status(404).json({
                 message: 'Такого пользователя не существует.',
             })
         }
-        
-        const user2 = await User.findOne({_id: req.body.subscibe})
+        console.log(userId + " " + subscribe)
+
+        const user2 = await User.findOne({id: subscribe})
         if (!user2) {
             return res.status(404).json({
                 message: 'Такого пользователя не существует 2.',
             })
         }
+        if (isSubs) {
+            await User.updateOne({_id: userId}, {$push: {subscriptions: subscribe}})
+        } else {
+            await User.updateOne({_id: userId}, {$pull: {subscriptions: subscribe}})
+        }
 
-        await User.updateOne({_id: user2}, {$push: {subscriptions: user}})  
-
-
+        isSubs = !isSubs
         res.json({
+            isSubs,
             message: 'Пользователь успешно подписан',
         })
     } catch (error) {

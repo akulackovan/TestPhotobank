@@ -1,9 +1,11 @@
-import React, {useEffect, useState} from 'react'
+import React, {useContext, useEffect, useState} from 'react'
 import axios from "axios";
 import './PopularPage.scss'
 import {Link} from "react-router-dom";
+import {AuthContext} from "../../context/AuthContext";
 
 const PopularPage = () => {
+    const { userId } = useContext(AuthContext)
     const [post, setPosts] = useState([])
     const [errorMessage, setErrorMessage] = React.useState("")
     const [postId, setPostId] = useState(null)
@@ -23,6 +25,9 @@ const PopularPage = () => {
                 headers: {
                     "x-auth-token": localStorage.getItem('auth-token'),
                     "content-type": "application/json"
+                },
+                params: {
+                    id: userId
                 }
             })
                 .then(response => {
@@ -32,6 +37,9 @@ const PopularPage = () => {
                         // createPhoto(response.data.posts)
                     }
                 )
+                .catch(error => {
+                    setErrorMessage(error.response.data.message)
+                })
 
         } catch (error) {
             console.log(error)
@@ -42,7 +50,7 @@ const PopularPage = () => {
     if (errorMessage !== "") {
         return (
             <div className="wrapper1">
-                <h1>${errorMessage}</h1>
+                <h1>{errorMessage}</h1>
             </div>
         )
     }

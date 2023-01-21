@@ -4,21 +4,23 @@ import Post from "../models/Post.js";
 export const getPopular = async (req, res) => {
     try {
         var isToday = false
-        const {userId} = req.body;
-        const user = await User.findOne({userId});
+        const {id} = req.query;
+        console.log("here1 " + id)
+        const user = await User.findOne({_id:id});
         if (!user) {
             return res.status(404).json({
                 message: 'Такого пользователя не существует.',
             });
         }
         const city = user.city;
+        console.log("city" + city)
         if (!city) {
             return res.status(404).json({
                 message: 'Ошибка в получении города пользователя.',
             });
         }
         const posts = await Post.find({city: city});
-        if (!posts) {
+        if (!posts || posts.length == 0) {
             return res.status(404).json({
                 message: 'Фотографий в городе нет',
             });

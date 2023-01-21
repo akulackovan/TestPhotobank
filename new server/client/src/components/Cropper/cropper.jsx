@@ -26,7 +26,13 @@ const Cropper = ({x = 480, y = 480, size = 7, setData}) => {
     const [error, setErrorMessage] = useState(null)
 
     const selectImage = (e) => {
-        document.getElementById("label-cropper").remove()
+        const name = e.target.files[0].name
+        if (!((name[name.length - 1] == 'g' && name[name.length - 2] == 'n' && name[name.length - 3] == 'p' && name[name.length - 4] == '.') ||
+            (name[name.length - 1] == 'g' && name[name.length - 2] == 'p' && name[name.length - 3] == 'j' && name[name.length - 4] == '.') ||
+            (name[name.length - 1] == 'g' && name[name.length - 2] == 'e' && name[name.length - 3] == 'p' && name[name.length - 4] == 'j' && name[name.length - 5] == '.'))) {
+            setErrorMessage("Формат файла не является jpg, jpeg или png")
+            return
+        }
         setErrorMessage(null)
         setOutput(null)
         setSrc(null)
@@ -34,20 +40,29 @@ const Cropper = ({x = 480, y = 480, size = 7, setData}) => {
         var img = new Image();
         img.onload = function () {
             setInfo({...info, y: img.height, x: img.width})
-
+            if ((!(img.height > y && img.width > x) && x == y) || (!(img.height > 590 && img.width > 738) && x != y)) {
+                setErrorMessage("Загружаемое фото пользователя иметь разрешение от " + x + "х" + y)
+                return
+            }
         }
 
         img.src = window.URL.createObjectURL(e.target.files[0]);
 
         console.log(info)
-        if (e.target.files[0].size > 7340032) {
-            setErrorMessage("Загружаемое фото пользователя должно быть не больше 7 Мб и иметь разрешение от 480х480")
+        if (e.target.files[0].size > size * 7340032 / 7) {
+            setErrorMessage("Загружаемое фото пользователя должно быть не больше " + size + " Мб")
             return
         }
-        setInfo({...info, type: 'image/png'})
+        console.log(e.target.files[0].name)
+
+            // if (e.target.files[0].name > size*7340032/7) {
+            //     setErrorMessage("Загружаемое фото пользователя должно быть не больше "+ size+ " Мб")
+            //     return
+            // }
+            setInfo({...info, type: 'image/png'})
         console.log(info)
         setSrc(temp)
-
+        document.getElementById("label-cropper").remove()
     };
 
     const cropImageNow = () => {
@@ -94,11 +109,15 @@ const Cropper = ({x = 480, y = 480, size = 7, setData}) => {
         return (
             <div className="App">
                 <center>
-                    <input name="photo" type="file" id="input__file" accept="image/*" className="input input__file" onChange={(e) => {
-                    selectImage(e);
-                }}/>
+                    <input name="photo" type="file" id="input__file" accept="image/*" className="input input__file"
+                           onChange={(e) => {
+                               selectImage(e);
+                           }}/>
                     <label id="label-cropper" htmlFor="input__file" className="input__file-button">
-                        <div className="input__file-icon-wrapper"><img className="input__file-icon" src="https://cdn-icons-png.flaticon.com/512/70/70310.png"  alt="Добавить изображение" width="300px" height="300px"/></div>
+                        <div className="input__file-icon-wrapper"><img className="input__file-icon"
+                                                                       src="https://cdn-icons-png.flaticon.com/512/70/70310.png"
+                                                                       alt="Добавить изображение" width="300px"
+                                                                       height="300px"/></div>
                     </label>
                     <div>
                         {src && (
@@ -118,7 +137,7 @@ const Cropper = ({x = 480, y = 480, size = 7, setData}) => {
 
                     <div>{error}</div>
                 </center>
-                {src &&<button className="button " onClick={cropImageNow}>Обрезать</button>}
+                {src && <button className="button " onClick={cropImageNow}>Обрезать</button>}
             </div>
 
         );
@@ -126,11 +145,15 @@ const Cropper = ({x = 480, y = 480, size = 7, setData}) => {
     return (
         <div className="App">
             <center>
-                <input name="photo" type="file" id="input__file" accept="image/*" className="input input__file" onChange={(e) => {
-                    selectImage(e);
-                }}/>
+                <input name="photo" type="file" id="input__file" accept="image/*" className="input input__file"
+                       onChange={(e) => {
+                           selectImage(e);
+                       }}/>
                 <label id="label-cropper" htmlFor="input__file" className="input__file-button">
-                    <div className="input__file-icon-wrapper"><img className="input__file-icon" src="https://cdn-icons-png.flaticon.com/512/70/70310.png"  alt="Добавить изображение" width="300px" height="300px"/></div>
+                    <div className="input__file-icon-wrapper"><img className="input__file-icon"
+                                                                   src="https://cdn-icons-png.flaticon.com/512/70/70310.png"
+                                                                   alt="Добавить изображение" width="300px"
+                                                                   height="300px"/></div>
                 </label>
                 <div>
                     {src && (
@@ -150,7 +173,7 @@ const Cropper = ({x = 480, y = 480, size = 7, setData}) => {
 
                 <div>{error}</div>
             </center>
-            {src &&<button className="button " onClick={cropImageNow}>Обрезать</button>}
+            {src && <button className="button " onClick={cropImageNow}>Обрезать</button>}
         </div>
 
     );

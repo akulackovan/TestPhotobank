@@ -3,7 +3,7 @@ import Post from "../models/Post.js";
 export const createPost = async (req, res) => {
     try {
         const {city, photo, description, userId} = req.body;
-        if (!city || !photo || !description) {
+        if (!city || !photo) {
             return res.status(400).json({
                 message: 'Ошибка при создании поста',
             });
@@ -25,7 +25,8 @@ export const createPost = async (req, res) => {
             newPost,
             message: 'Успешно созданный пост',
         });
-    } catch {
+    } catch (error){
+        console.log(error)
         res.status(400).json({message: 'Ошибка при создании поста'});
     }
 };

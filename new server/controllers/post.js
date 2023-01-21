@@ -8,7 +8,7 @@ import jwt from 'jsonwebtoken'
 export const getPostById = async (req, res) => {
     try {
         const { id } = req.query
-        const isPost = await Post.findOne({ _id: id[1] })
+        const isPost = await Post.findOne({ _id: id })
         if (!isPost) {
             return res.status(400).json({
                 message: 'Поста не существует'
@@ -43,9 +43,9 @@ export const getMyPost = async (req, res) => {
         }
 
         const isPost = await Post.find({ author: req.query.id })
-        if (!isPost) {
+        if (!isPost || isPost.length == 0) {
             return res.status(400).json({
-                message: 'Поста не существует'
+                message: 'Фото нет'
             })
         }
 

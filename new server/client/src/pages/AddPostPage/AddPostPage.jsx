@@ -45,8 +45,8 @@ const AddPostPage = () => {
             setErrorMessage("Необходимо выбрать город");
             return;
         }
-        if (form.description.length > 128) {
-            setErrorMessage("Комментарий должен быть меньше 128 символов");
+        if (form.description.length > 512) {
+            setErrorMessage("Описание поста должно содержать от 0 до 512 символов");
             return;
         }
         try {
@@ -77,7 +77,7 @@ const AddPostPage = () => {
         <div>
             <div className='addPost'>
                 <div className='center back'>
-                    <Cropper y={360} x={480} setData={(value) => setForm({...form, photo: value})}></Cropper>
+                    <Cropper size = {16} y={360} x={480} setData={(value) => setForm({...form, photo: value})}></Cropper>
                     <br/>
                     <div style={{width: '80%', margin: 'auto', textAlign: 'left'}}>
                         <CityCombobox name='city' onChange={(value) => setForm({ ...form, city: value })} key={formKey} />

@@ -61,7 +61,7 @@ const ProfilePage = () => {
                             <div className='h2'>Количество подписчиков: {subscriptions}</div>
                         </div>
                         <div>
-                            <button className='button'><Link to='post'>Добавить фото</Link></button>
+                            <Link to='post'><button className='button'>Добавить фото</button></Link>
                         </div>
                     </div>
                 </div>
