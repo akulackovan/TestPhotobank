@@ -14,23 +14,6 @@ import {AuthContext} from "../../context/AuthContext";
 // }
 
 
-function encodeImageFileAsURL(element) {
-    var filesSelected = document.getElementById("input__file").files;
-    if (filesSelected.length > 0) {
-        var fileToLoad = filesSelected[0];
-
-        var fileReader = new FileReader();
-        var buffer = ''
-        fileReader.onload = function (fileLoadedEvent) {
-            buffer = fileLoadedEvent.target.result
-            element.photo = buffer
-            return buffer
-        }
-        fileReader.readAsDataURL(fileToLoad);
-        console.log("buff2 " + buffer)
-        return buffer
-    }
-}
 
 const AddPostPage = () => {
     const [errorMessage, setErrorMessage] = React.useState("")
