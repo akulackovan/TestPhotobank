@@ -45,6 +45,7 @@ const PostTable = ({ id }) => {
     )
     }
 
+
     return (
         <div className="wrapper">
             {post && <div className='gal'>
@@ -55,7 +56,7 @@ const PostTable = ({ id }) => {
                             <li>
                                     <img style={{ width: 351, height: 262 }}
                                         href={'/post/'+option._id}
-                                        src={`${option.image}`} onClick={() => imageClick(option)} />
+                                        src={option.image} onClick={() => imageClick(option)} />
                                 </li>
                                 </Link>
                         ))}

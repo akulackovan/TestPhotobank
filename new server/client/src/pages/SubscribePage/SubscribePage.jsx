@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react'
 import axios from "axios";
-import './PopularPage.scss'
+import './SubscribePage.scss'
 import {Link} from "react-router-dom";
 
-const PopularPage = () => {
+const SubscribePage = () => {
     const [post, setPosts] = useState([])
     const [errorMessage, setErrorMessage] = React.useState("")
     const [postId, setPostId] = useState(null)
@@ -19,7 +19,7 @@ const PopularPage = () => {
         try {
             axios({
                 method: 'get',
-                url: '/post/popular',
+                url: '/post/subsc',
                 headers: {
                     "x-auth-token": localStorage.getItem('auth-token'),
                     "content-type": "application/json"
@@ -28,8 +28,7 @@ const PopularPage = () => {
                 .then(response => {
                         console.log(response.data.posts)
                         setPosts(response.data.posts)
-                        setToday(response.data.isToday)
-                        // createPhoto(response.data.posts)
+
                     }
                 )
 
@@ -60,7 +59,6 @@ const PopularPage = () => {
         <div className="wrapper1">
 
             {post && <div className='gal1'>
-                {!isToday && <h3>Фотографий за день нет</h3>}
                 <div className="gallery1">
                     <ul className="center">
                         {post.map((option) => (
@@ -86,4 +84,4 @@ const PopularPage = () => {
     )
 }
 
-export default PopularPage
+export default SubscribePage

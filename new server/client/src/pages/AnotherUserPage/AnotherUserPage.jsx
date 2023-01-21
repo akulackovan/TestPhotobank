@@ -3,9 +3,9 @@ import axios from 'axios'
 import { AuthContext } from '../../context/AuthContext'
 import { Redirect, Link } from "react-router-dom"
 import PostTable from '../../components/PostsTable/PostsTable'
-import './ProfilePage.scss'
+import './AnotherUserPage.scss'
 
-const ProfilePage = () => {
+const AnotherUserPage = (id) => {
     const { userId } = useContext(AuthContext)
     const [username, setUsername] = useState('');
     const [text, setText] = useState('');
@@ -22,7 +22,7 @@ const ProfilePage = () => {
                 "content-type": "application/json"
             },
             params: {
-                'userId': userId
+                'userId': id
             }
         })
             .then(response => {
@@ -71,4 +71,4 @@ const ProfilePage = () => {
     )
 }
 
-export default ProfilePage
+export default AnotherUserPage

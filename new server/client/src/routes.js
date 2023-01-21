@@ -9,9 +9,10 @@ import PopularPage from './pages/PopularPage/PopularPage'
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import RegPage from "./pages/RegPage/RegPage";
 import SettingsPage from "./pages/SettingsPage/SettingPage";
-import SubscribePage from "./pages/SubscribePage/PopularPage";
+import SubscribePage from "./pages/SubscribePage/SubscribePage";
 import PostPage from "./pages/PostPage/PostPage"
 import SearchPage from "./pages/SearchPage/SearchPage"
+import AnotherUserPage from "./pages/AnotherUserPage/AnotherUserPage";
 export const useRoutes = (isLogin) =>
 {
     if (isLogin)
@@ -26,7 +27,7 @@ export const useRoutes = (isLogin) =>
                             <Route exact path='/post/' component={AddPostPage} />
                             <Route exact path='/subsc' component={SubscribePage} />
                             <Route exact path='/post/:id' component={PostPage} />
-                            <Route exact path='/search/:id' component={SearchPage} />
+                            <Route exact path='/search/:id' component={AnotherUserPage} />
                             <Route exact path='/test' component={Test} />
                         </Switch>
             </div>

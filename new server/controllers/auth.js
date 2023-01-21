@@ -104,7 +104,38 @@ export const login = async (req, res) => {
     }
 }
 
+export const getAnother = async (req, res) => {
+    try {
+        const user = await  User.findOne({username:req.query.userId})
+        if (!user) {
+            return res.status(404).json({
+                message: 'Такого пользователя не существует.',
+            })
+        }
 
+
+        const subscibe = await User.find({subscriptions: req.query.userId })
+
+        const token = jwt.sign(
+            {
+                id: user._id,
+            },
+            process.env.JWT_SECRET,
+            {expiresIn: '30d'},
+        )
+
+
+        res.json({
+            user,
+            subscibe,
+            token,
+            message: 'Профиль успешен =)',
+        })
+    } catch (error) {
+        console.log(error)
+        res.status(401).json({message: 'Нет'})
+    }
+}
 
 
 export const getMe = async (req, res) => {

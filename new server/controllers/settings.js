@@ -8,7 +8,7 @@ export const settings = async (req, res) => {
     try {
         const {userId, username, password, newpass, checkpass, text, city, base64, type} = req.body
         const user = await User.findOne({_id: userId})
-
+        console.log(user)
         if (!user) {
             return res.status(400).json({
                 message: 'Такого пользователя не существует.',
@@ -76,7 +76,7 @@ export const settings = async (req, res) => {
             await User.updateOne({_id: userId}, {city: idCity})  
         }
         if (base64 != ''){
-            await User.updateOne({_id: userId},{image: base64, typeImg: type})  
+            await User.updateOne({_id: userId},{image: base64, typeImg: type})
         }
 
         res.status(201).json({
