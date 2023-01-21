@@ -39,9 +39,6 @@ const SettingsPage = () => {
         setLog(true)
     }
 
-
-
-
     const now = localStorage.getItem('app-theme')
     const [newTheme, setNewTheme] = useState(now)
     const { theme, setTheme } = useTheme()

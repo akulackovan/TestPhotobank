@@ -1,6 +1,6 @@
 import {Router} from "express"
 const router = new Router()
-import {getPostById, getMyPost, getPostComments, getLike} from '../controllers/post.js'
+import {getPostById, getMyPost, getPostComments, getLike, addView} from '../controllers/post.js'
 import {createComment} from '../controllers/comments.js'
 
 /*router.post('/post', addPost) //создание поста*/
@@ -14,6 +14,8 @@ router.get('/comments', getPostComments)
 router.post('/comments', createComment)
 
 router.get('/getLike', getLike)
+
+router.post('/addView', addView)
 
 
 export default router

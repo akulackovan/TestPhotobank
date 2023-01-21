@@ -122,3 +122,17 @@ export const getLike = async (req, res) => {
         res.status(400).json({ message: 'Ошибка при получении статуса лайка' })
     }
 }
+
+
+export const addView = async (req, res) => {
+    try {
+        const post = await Post.findById(req.query.id)
+        await Post.updateOne({_id: req.query.id}, {views: post.views + 1})  
+        res.status(200).json({
+            message: 'Успешно',
+        })
+    } catch (error) {
+        console.log(error)
+        res.status(400).json({ message: 'Ошибка при получении статуса лайка' })
+    }
+}

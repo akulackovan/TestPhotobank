@@ -16,6 +16,7 @@ const PostPageComponent = ({ id, idUser }) => {
     const { userId } = useContext(AuthContext)
     const [like, setLike] = useState()
     console.log(userId)
+    const [view, setView] = useState(false)
 
     const getLike = () => {
         axios({
@@ -34,6 +35,8 @@ const PostPageComponent = ({ id, idUser }) => {
                 console.log(like)
             }).catch(error => {
                 setErrorMessage(error.response.data.message)
+
+                setTimeout(() => setErrorMessage(""), 2000)
             })
     }
 
@@ -53,6 +56,8 @@ const PostPageComponent = ({ id, idUser }) => {
                 setComments(response.data.total)
             }).catch(error => {
                 setErrorMessage(error.response.data.message)
+
+                setTimeout(() => setErrorMessage(""), 2000)
             })
     }
 
@@ -78,10 +83,40 @@ const PostPageComponent = ({ id, idUser }) => {
 
             }).catch(error => {
                 setErrorMessage(error.response.data.message)
+                setTimeout(() => setErrorMessage(""), 2000)
             })
+
     }, [])
+    useEffect(() => {
+        if (!view) {
+            axios({
+                method: 'post',
+                url: '/post/addView',
+                headers: {
+                    "content-type": "application/json"
+                },
+                params: {
+                    'id': id
+                }
+            })
+                .then(response => {
+                    console.log(response.data)
+                    setView(true)
+
+                }).catch(error => {
+                    setErrorMessage(error.response.data.message)
+                    setTimeout(() => setErrorMessage(""), 2000)
+                })
+        }
+    }, [view])
+
 
     const changeForm = (event) => {
+        if (!(comment.length <= 128)) {
+            setErrorMessage("Имя пользователя должно быть меньше 128 символов");
+            setTimeout(() => setErrorMessage(""), 2000)
+            return;
+        }
         setComment(event.target.value)
         console.log(comment)
     }
@@ -119,21 +154,23 @@ const PostPageComponent = ({ id, idUser }) => {
             {error && <h1>{error}</h1>}
             {post &&
                 <div className='back'>
-                    <div className='first'>
-                        <div classNmae='headPost'>
-                            <div>
-                                <Link to={`/profile/${post.author._id}`} style={{ textAlign: 'left' }}>
+                    <div >
+                        <div >
+                            <div className='user'>
+                                <Link to={`/profile/${post.author._id}`} >
                                     {post.author.username}
                                 </Link>
                             </div>
-                            <div>
-                                {post.timestamps.split('T')[0]}
-                            </div>
-                            <div>
-                                г. {post.city.city}
+                            <div className='under'>
+                                <div className='data' style={{ width: '300px' }}>
+                                    {post.timestamps[8]}{post.timestamps[9]}\{post.timestamps[5]}{post.timestamps[6]}\{post.timestamps[2]}{post.timestamps[3]}
+                                </div>
+                                <div className='city'>
+                                    г. {post.city.city}
+                                </div>
                             </div>
                         </div>
-                        <img className='img' style={{ width: '738px', height: '590px' }} src={`data:image/jpeg;base64, ${post.image}`} />
+                        <img className='img' style={{ width: '738px', height: '590px' }} src={`${post.image}`} />
                         <div className='stat'>
                             <svg className='icon'>
                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9999 7.5C9.5146 7.5 7.49988 9.51472 7.49988 12C7.49988 14.4853 9.5146 16.5 11.9999 16.5C14.4852 16.5 16.4999 14.4853 16.4999 12C16.4999 9.51472 14.4852 7.5 11.9999 7.5ZM9.49988 12C9.49988 10.6193 10.6192 9.5 11.9999 9.5C13.3806 9.5 14.4999 10.6193 14.4999 12C14.4999 13.3807 13.3806 14.5 11.9999 14.5C10.6192 14.5 9.49988 13.3807 9.49988 12Z" fill="#000000" />
@@ -145,6 +182,18 @@ const PostPageComponent = ({ id, idUser }) => {
                                 <path d="M2,22H18.644a3.036,3.036,0,0,0,3-2.459l1.305-7a2.962,2.962,0,0,0-.637-2.439A3.064,3.064,0,0,0,19.949,9H15.178V5c0-2.061-2.113-3-4.076-3a1,1,0,0,0-1,1c0,1.907-.34,3.91-.724,4.284L6.593,10H2a1,1,0,0,0-1,1V21A1,1,0,0,0,2,22ZM8,11.421l2.774-2.7c.93-.907,1.212-3.112,1.3-4.584.542.129,1.109.38,1.109.868v5a1,1,0,0,0,1,1h5.771a1.067,1.067,0,0,1,.824.38.958.958,0,0,1,.21.8l-1.3,7A1.036,1.036,0,0,1,18.644,20H8ZM3,12H6v8H3Z" /></svg>
                             <p>{post.likes}</p>
 
+                            <svg>
+                                <g clip-path="url(#clip0_429_11233)">
+                                    <path d="M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 13.4876 3.36093 14.891 4 16.1272L3 21L7.8728 20C9.10904 20.6391 10.5124 21 12 21Z" stroke="#292929" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_429_11233">
+                                        <rect width="24" height="24" fill="white" />
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                            <p>{post.comments.length}</p>
+
                         </div>
                         <div>
                             {post.text}
@@ -153,37 +202,35 @@ const PostPageComponent = ({ id, idUser }) => {
                     <div className='second'>
 
                         <div className='comment'>
-                        {like && <bitton >
+                            {like && <bitton >
                                 <svg width="40px" height="40px">
                                     <path d="M2,22H18.644a3.036,3.036,0,0,0,3-2.459l1.305-7a2.962,2.962,0,0,0-.637-2.439A3.064,3.064,0,0,0,19.949,9H15.178V5c0-2.061-2.113-3-4.076-3a1,1,0,0,0-1,1c0,1.907-.34,3.91-.724,4.284L6.593,10H2a1,1,0,0,0-1,1V21A1,1,0,0,0,2,22ZM8,11.421l2.774-2.7c.93-.907,1.212-3.112,1.3-4.584.542.129,1.109.38,1.109.868v5a1,1,0,0,0,1,1h5.771a1.067,1.067,0,0,1,.824.38.958.958,0,0,1,.21.8l-1.3,7A1.036,1.036,0,0,1,18.644,20H8ZM3,12H6v8H3Z" /></svg>
-                                    
-
                             </bitton>}
                             <form id='inputs'>
-                            <textarea
-                                className="textarea"
-                                type="text"
-                                placeholder="Комментарий"
-                                name="text"
-                                onChange={changeForm}
-                                maxLength='128'
-                            />
+                                <textarea
+                                    className="textarea"
+                                    type="text"
+                                    placeholder="Комментарий"
+                                    name="text"
+                                    onChange={changeForm}
+                                    maxLength='128'
+                                />
                             </form>
-                            <button onClick={commentHandler}>
-                                <svg width="40px" height="40px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M13.0874 2.02906C12.7431 1.96564 12.3883 2.00663 12.0678 2.14611C11.7474 2.2855 11.4771 2.51629 11.2883 2.80727C11.0997 3.09808 11.0001 3.43711 11 3.78241L11 7.03095C7.25861 7.26795 4.72577 8.85318 3.15451 11.341C1.5013 13.9586 1 17.4414 1 21C1 21.424 1.26733 21.8018 1.66711 21.943C2.06688 22.0841 2.5122 21.9578 2.77837 21.6278C4.01283 20.0973 4.90572 18.9971 6.17555 18.2297C7.26436 17.5717 8.70545 17.1206 11 17.0208L11 20.2164C11.0001 20.5617 11.0997 20.9008 11.2883 21.1916C11.4771 21.4826 11.7474 21.7134 12.0678 21.8528C12.3883 21.9922 12.7431 22.0332 13.0874 21.9698C13.4316 21.9064 13.7476 21.742 13.9972 21.4997L22.4587 13.2827C22.6309 13.1154 22.7672 12.9151 22.8599 12.6947C22.9525 12.4744 23 12.238 23 11.9994C23 11.7609 22.9525 11.5244 22.8599 11.3041C22.7672 11.0838 22.6312 10.8837 22.459 10.7164L13.9973 2.49935C13.7478 2.25698 13.4316 2.09244 13.0874 2.02906ZM13 4.31872L13 9H12C8.29522 9 6.13808 10.3624 4.84549 12.409C3.88672 13.927 3.35775 15.8935 3.13254 18.1422C3.72922 17.5324 4.37809 16.9791 5.14111 16.518C6.7965 15.5176 8.89011 15 12 15H13L13 19.6801L20.9094 11.9994L13 4.31872Z" fill="#000000" />
-                                </svg>
-                            </button>
+                            <div onClick={commentHandler}>
+                                <button className='button'>Опубликовать</button>
+                            </div>
                         </div>
+
                         {comments && <div className='comments'>
-                        {comments.map(item => (
-        <div className='elementComments'>
-            <h5>{item.user}</h5>
-            <p>{item.comment}</p>
-            <hr align="center" width="100%" size="2" color="#ff0000" />
-        </div>
-      
-      ))}
+                            <ul>
+                                {comments.map(item => (
+                                    <li>
+                                        <h5>{item.user}</h5>
+                                        <p>{item.comment}</p>
+                                        <hr align="center" width="100%" size="2" color="#ff0000" />
+                                    </li>
+                                ))}
+                            </ul>
                         </div>}
                     </div>
                 </div>
