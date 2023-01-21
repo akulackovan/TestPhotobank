@@ -78,11 +78,11 @@ export const getPostComments = async (req, res) => {
             }))
 
             var end = []
-            let i = 0
-            while (i < total.length)
+            let i = total.length - 1
+            while (i >= 0)
             {
                 end = [...end, {user: total[i].username, comment: out[i].comment}]
-                i++
+                i--
             }
 
             return res.status(200).json({
@@ -99,19 +99,13 @@ export const getPostComments = async (req, res) => {
 export const getLike = async (req, res) => {
     try {
         const {idUser, idPost} = req.query
-        let user = User.aggregate([
-            { $match: {
-                $: [
-                    { 'name': { '$regex': req.query, '$options': 'i' } }, 
-                    { 'description': { '$regex': req.query, '$options': 'i' } }
-                ]
-            } }])
-        const found = user.likes
-        if (found) {
-            var like = true
+        let user = await User.findOne({_id: idUser, likes: idPost})
+        
+        if (!user) {
+            var like = false
         }
         else {
-            like = false
+            like = true
         }
         res.status(200).json({
             like,
@@ -130,6 +124,47 @@ export const addView = async (req, res) => {
         await Post.updateOne({_id: req.query.id}, {views: post.views + 1})  
         res.status(200).json({
             message: 'Успешно',
+        })
+    } catch (error) {
+        console.log(error)
+        res.status(400).json({ message: 'Ошибка при получении статуса лайка' })
+    }
+}
+
+export const setLike = async (req, res) => {
+    try {
+        const {idUser, idPost} = req.query
+        let user = await User.findOne({_id: idUser, likes: idPost})
+        var like = false
+        if (!user) {
+            await User.updateOne({_id: idUser},{ $push: {likes: idPost}})
+            let post = await Post.findOne({_id: idPost})
+            await Post.updateOne({_id: idPost},{ likes: 1 + post.likes})
+            like = true
+        }
+        else {
+            await User.updateOne({_id: idUser},{ $pull: {likes: idPost}})
+            let post = await Post.findOne({_id: idPost})
+            await Post.updateOne({_id: idPost},{ likes:post.likes - 1})
+        }
+        res.status(200).json({
+            like,
+            message: 'Лайк изменен',
+        })
+    } catch (error) {
+        console.log(error)
+        res.status(400).json({ message: 'Ошибка при получении статуса лайка' })
+    }
+}
+
+export const updateLike = async (req, res) => {
+    try {
+        const {idPost} = req.query
+        let post = await Post.findOne({_id: idPost})
+           
+        res.status(200).json({
+            likes: post.likes,
+            message: 'Лайк изменен',
         })
     } catch (error) {
         console.log(error)

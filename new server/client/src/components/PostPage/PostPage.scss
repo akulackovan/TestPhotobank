@@ -3,11 +3,13 @@
     width: 80%;
     margin-left: auto;
     margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
     border: none;
     border-radius: 30px;
 
     .back {
-        height: 800px;
+        height: 850px;
         margin-top: 3%;
         display: flex;
         flex-direction: row;
@@ -19,6 +21,10 @@
     flex-direction: column;
     align-items: center;
 
+}
+
+.one{
+    margin-left: 2%;
 }
 
 .headPost {
@@ -62,5 +68,26 @@
     display: flex;
     flex-direction: row;
 }
-.comments ul{height:600px; width:90%;}
+.comments ul{height:700px; width:90%;
+
+    margin-left: auto;
+    margin-right: auto;}
 .comments ul{overflow:hidden; overflow-y:scroll;}
+.stats{
+   text-align: left;
+   margin-top: -20;
+}
+.text{
+    
+    text-align: left;
+    word-wrap: break-word;
+}
+
+.back2 {
+    box-shadow: #323235 0 10px 20px -10px;
+    border: none;
+    border-radius: 30px;
+    padding: 1% 3% 1% 3%;
+    word-wrap: break-word;
+    
+}
