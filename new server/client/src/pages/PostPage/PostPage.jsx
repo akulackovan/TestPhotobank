@@ -4,15 +4,8 @@ import PostPageComponet from '../../components/PostPage/PostPageComponent';
 
 
 export default class PostPage extends Component {
-    /*constructor(){
-        
-    }
-*/
 
     render() {
-        
-    
-        
         return (
         <div className='postPage'>
                 <PostPageComponet id={this.props.match.params.id}/>

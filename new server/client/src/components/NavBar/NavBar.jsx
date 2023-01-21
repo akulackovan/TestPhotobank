@@ -1,9 +1,23 @@
-import React, { useContext } from 'react'
-import { AuthContext } from '../../context/AuthContext'
-import { Link } from 'react-router-dom'
+import React, { useState } from 'react'
+import { Redirect } from 'react-router-dom'
 import './NavBar.scss'
 
 const NavBar = () => {
+    const [form, setForm] = useState("")
+
+    const handleKeyPress = (event) => {
+        if(event.key === 'Enter'){
+            console.log("1212")
+            var str = '/search/' + form
+            return(<Redirect to={str}/>)
+        }
+      }
+
+      const changeForm = (event) => {
+        setForm(event.target.value)
+        console.log(form)
+    }
+
     return (
         <nav>
             <div className="nav-wrapper navbar">
@@ -14,14 +28,16 @@ const NavBar = () => {
                     <li><a href='/profile' className="listHeader">Профиль</a></li>
                     <li><a href='/settings' className="listHeader">Настройки</a></li>
                 </ul>
-                <form className="search" action="/search" method="get" >
+                <div className="search">
                     <input
                         className="input"
                         type="text"
                         placeholder="ПОИСК"
                         name="user"
+                        onKeyPress={handleKeyPress}
+                        onChange={changeForm}                        
                     />
-                </form>
+                </div>
             </div>
         </nav>
     )

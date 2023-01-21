@@ -28,6 +28,22 @@ const AuthPage = () => {
 
     const authHandler = async () =>
     {
+        if (!form.username.match(/^[A-Za-z0-9]+$/)) {
+            setErrorMessage("Имя пользователя должно содержать только цифры и латинские буквы");
+            return;
+        }
+        if (!(form.username.length < 128)) {
+            setErrorMessage("Имя пользователя должно быть меньше 128 символов");
+            return;
+        }
+        if (!form.password.match(/^[A-Za-z0-9]+$/)) {
+            setErrorMessage("Пароль должен содержать только цифры и латинские буквы");
+            return;
+        }
+        if (!(form.password.length < 128)) {
+            setErrorMessage("Пароль должен быть меньше 128 символов");
+            return;
+        }
         try {
             await axios.post('/auth/login', {...form}, {
                 headers:
@@ -64,7 +80,7 @@ const AuthPage = () => {
 
     return (
         <div className='auth'>
-            <div className='center back'>
+            <div className='back' style={{height: '450px'}}>
                 <h3 className="head">ФОТОБАНК</h3>
                 <input
                     className="input"

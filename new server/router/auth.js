@@ -1,5 +1,5 @@
 import {Router} from "express"
-import {getMe, login, register, subscibe} from '../controllers/auth.js'
+import {getMe, login, register, subscibe, search} from '../controllers/auth.js'
 import {checkAuth} from "../utils/checkAuth.js";
 
 const router = new Router()
@@ -10,5 +10,5 @@ router.post('/login', login)
 
 router.get('/profile', getMe)
 router.post('/subscribe', subscibe)
-
+router.post('/search', search)
 export default router

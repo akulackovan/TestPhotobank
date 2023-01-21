@@ -118,8 +118,6 @@ const SettingsPage = () => {
                         base64: '',
                         type: ''
                     })
-
-
                 })
         }
         catch (error) {

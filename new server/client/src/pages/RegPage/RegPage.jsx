@@ -26,18 +26,22 @@ const RegPage = () => {
     const registerHandler = async () => {
         if (!form.username.match(/^[A-Za-z0-9]+$/)) {
             setErrorMessage("Имя пользователя должно содержать только цифры и латинские буквы");
+            setTimeout(() => setErrorMessage(""), 2000)
             return;
         }
         if (!(form.username.length < 128)) {
             setErrorMessage("Имя пользователя должно быть меньше 128 символов");
+            setTimeout(() => setErrorMessage(""), 2000)
             return;
         }
         if (!form.password.match(/^[A-Za-z0-9]+$/)) {
             setErrorMessage("Пароль должен содержать только цифры и латинские буквы");
+            setTimeout(() => setErrorMessage(""), 2000)
             return;
         }
         if (!(form.password.length < 128)) {
             setErrorMessage("Пароль должен быть меньше 128 символов");
+            setTimeout(() => setErrorMessage(""), 2000)
             return;
         }
         try {

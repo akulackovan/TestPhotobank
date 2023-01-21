@@ -66,17 +66,29 @@ export const getMyPost = async (req, res) => {
 export const getPostComments = async (req, res) => {
     try {
         const post = await Post.findById(req.query.id)
-        let list = await Promise.all(
+        const list = await Promise.all(
             post.comments.map((comment) => {
-                comment = Comment.findById(comment)
-                return comment
+            return Comment.findById(comment)
             }),
-        )
-    
-        res.status(200).json({
-            list,
+            )
+            const out = list.map((r) => ({author: r.author, comment: r.comment}))
+            const total = await Promise.all(
+            out.map(({author, comment}) => {
+            return User.findById(author)
+            }))
+
+            var end = []
+            let i = 0
+            while (i < total.length)
+            {
+                end = [...end, {user: total[i].username, comment: out[i].comment}]
+                i++
+            }
+
+            return res.status(200).json({
+            total: end,
             message: 'Комментарии получены',
-        })
+            }) 
     } catch (error) {
         console.log(error)
         res.status(400).json({ message: 'Ошибка при получении комментариев к посту' })
@@ -87,15 +99,22 @@ export const getPostComments = async (req, res) => {
 export const getLike = async (req, res) => {
     try {
         const {idUser, idPost} = req.query
-        const user = User.find({ likes: idPost })
-        if (user) {
+        let user = User.aggregate([
+            { $match: {
+                $: [
+                    { 'name': { '$regex': req.query, '$options': 'i' } }, 
+                    { 'description': { '$regex': req.query, '$options': 'i' } }
+                ]
+            } }])
+        const found = user.likes
+        if (found) {
             var like = true
         }
         else {
             like = false
         }
         res.status(200).json({
-            user,
+            like,
             message: 'Лайк получен',
         })
     } catch (error) {

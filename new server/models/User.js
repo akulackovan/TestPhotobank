@@ -17,12 +17,6 @@ const UserSchema = new mongoose.Schema(
         city: { type: mongoose.Schema.Types.ObjectId, ref: 'City'  },
         image: { type: String },
         typeImg: {type: String},
-        posts: [
-            {
-                type: mongoose.Schema.Types.ObjectId,
-                ref: 'Post',
-            },
-        ],
         likes: [
             {
                 type: mongoose.Schema.Types.ObjectId,

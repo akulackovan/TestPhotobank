@@ -11,6 +11,7 @@ import RegPage from "./pages/RegPage/RegPage";
 import SettingsPage from "./pages/SettingsPage/SettingPage";
 import SubscribePage from "./pages/SubscribePage/PopularPage";
 import PostPage from "./pages/PostPage/PostPage"
+import SearchPage from "./pages/SearchPage/SearchPage"
 export const useRoutes = (isLogin) =>
 {
     if (isLogin)
@@ -25,6 +26,7 @@ export const useRoutes = (isLogin) =>
                             <Route exact path='/post/' component={AddPostPage} />
                             <Route exact path='/subsc' component={SubscribePage} />
                             <Route exact path='/post/:id' component={PostPage} />
+                            <Route exact path='/search/:id' component={SearchPage} />
                             <Route exact path='/test' component={Test} />
                         </Switch>
             </div>
