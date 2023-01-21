@@ -15,6 +15,10 @@
         flex-direction: row;
         padding: 1%;
     }
+    .textarea{
+        width: 300px;
+        height: 100px;
+    }
 }
 
 .first {
@@ -40,13 +44,16 @@
     flex-direction: row;
 }
 
+.h2{
+    color: var(--button-background-color);
+}
+
 
 .second {
-    width: 400px;
+    width: 600px;
 }
 
 .comment {
-
     display: flex;
     flex-direction: row;
 }
@@ -68,7 +75,7 @@
     display: flex;
     flex-direction: row;
 }
-.comments ul{height:700px; width:90%;
+.comments ul{height:600px; width:90%;
 
     margin-left: auto;
     margin-right: auto;}
@@ -91,3 +98,17 @@
     word-wrap: break-word;
     
 }
+
+.dislike
+{
+    background-color: aliceblue;
+    color: #323235;
+}
+
+.like, .dislike{
+    writing-mode: vertical-lr;
+    text-orientation:upright;
+    width: 160px;
+    height: 60px;
+}
+

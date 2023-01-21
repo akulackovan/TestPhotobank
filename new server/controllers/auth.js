@@ -177,7 +177,7 @@ export const subscibe = async (req, res) => {
 
 export const search = async (req, res) => {
     try {
-        const {name} = req.body
+        const {name} = req.query
         const search = await User.find({"username": {$regex: `${name}`, $options: 'ix'}})
         if (!search) {
             return res.status(200).json({

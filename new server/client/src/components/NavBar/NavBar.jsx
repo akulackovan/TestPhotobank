@@ -4,18 +4,22 @@ import './NavBar.scss'
 
 const NavBar = () => {
     const [form, setForm] = useState("")
+    const [str, setStr] = useState("")
 
     const handleKeyPress = (event) => {
         if(event.key === 'Enter'){
-            console.log("1212")
-            var str = '/search/' + form
-            return(<Redirect to={str}/>)
+            setStr('/search/' + form)
         }
       }
 
       const changeForm = (event) => {
         setForm(event.target.value)
         console.log(form)
+    }
+
+    if (str)
+    {
+        return(<Redirect to={str}/>)
     }
 
     return (

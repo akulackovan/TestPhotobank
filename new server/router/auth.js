@@ -10,5 +10,5 @@ router.post('/login', login)
 
 router.get('/profile', getMe)
 router.post('/subscribe', subscibe)
-router.post('/search', search)
+router.get('/search', search)
 export default router

@@ -53,10 +53,13 @@ const PostPageComponent = ({ id, idUser }) => {
         })
             .then(response => {
                 console.log(response.data)
+                if (response.data.total.length == 0) {
+                    setComments(null)
+                    return
+                }
                 setComments(response.data.total)
             }).catch(error => {
                 setErrorMessage(error.response.data.message)
-
                 setTimeout(() => setErrorMessage(""), 2000)
             })
     }
@@ -110,7 +113,6 @@ const PostPageComponent = ({ id, idUser }) => {
         }
     }, [view])
 
-
     const changeForm = (event) => {
         if (!(comment.length <= 128)) {
             setErrorMessage("Имя пользователя должно быть меньше 128 символов");
@@ -134,6 +136,18 @@ const PostPageComponent = ({ id, idUser }) => {
                 .then(response => {
                     setLike(response.data.like)
                 })
+
+                await axios({
+                    method: 'get',
+                    url: '/post/updateLike',
+                    params: {
+                        'idPost': id
+                    }
+                })
+                    .then(response => {
+                        setPost({...post, likes: response.data.likes})
+                        console.log(response)
+                    })
         }
         catch (error) {
             console.log(error)
@@ -160,6 +174,7 @@ const PostPageComponent = ({ id, idUser }) => {
                 .then(response => {
                     document.getElementById("inputs").reset()
                     getComments("")
+                    setComment(null)
                 })
         }
         catch (error) {
@@ -171,7 +186,7 @@ const PostPageComponent = ({ id, idUser }) => {
 
     return (
         <div className='allPost'>
-            {error && <h6>{error}</h6>}
+            {error && <h6>Ошибка: {error}</h6>}
             {post &&
                 <div className='back'>
                     <div className='one'>
@@ -200,8 +215,10 @@ const PostPageComponent = ({ id, idUser }) => {
                         </div>
                     </div>
                     <div className='second'>
-                        <div className='comment'>
-                            {!like && <button onClick={changeLike}>ЛАЙК</button>}
+                    <div className='comment'>
+                    {!like && <button className='button like' onClick={changeLike} >ЛАЙК</button>}
+                            {like && <button className='button dislike' onClick={changeLike}>ОТМЕНИТЬ ЛАЙК</button>}
+                        
                             <form id='inputs'>
                                 <textarea
                                     className="textarea"
@@ -215,9 +232,10 @@ const PostPageComponent = ({ id, idUser }) => {
                             <div onClick={commentHandler}>
                                 <button className='button'>Опубликовать</button>
                             </div>
+                            {comments== 0 && <h3>Комментариев нет</h3>}
                         </div>
-
-                        {comments && <div className='comments'>
+                        
+                        {comments  && <div className='comments'>
                             <ul>
                                 {comments.map(item => (
                                     <li>
