@@ -25,6 +25,7 @@ export const AnotherPage = ({id}) => {
     console.log("HERE" + userId + " " + id)
 
 
+
     const subscribe = async () => {
         try {
 
@@ -76,6 +77,12 @@ export const AnotherPage = ({id}) => {
                 }
             )
     }, []);
+
+
+    if (userId == id) {
+        return (<Redirect to="/profile"/>)
+    }
+
 
 
     return (
