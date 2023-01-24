@@ -2,7 +2,6 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom"
 import CityCombobox from "./components/CityCombobox/CityCombobox";
 import NavBar from "./components/NavBar/NavBar";
-import Test from "./components/test/test";
 import AddPostPage from "./pages/AddPostPage/AddPostPage";
 import AuthPage from "./pages/AuthPage/AuthPage";
 import PopularPage from './pages/PopularPage/PopularPage'
@@ -29,7 +28,6 @@ export const useRoutes = (isLogin) =>
                             <Route exact path='/post/:id' component={PostPage} />
                             <Route exact path='/profile/:id' component={AnotherUserPage} />
                             <Route exact path='/search/:id' component={SearchPage} />
-                            <Route exact path='/test' component={Test} />
                         </Switch>
             </div>
         )
