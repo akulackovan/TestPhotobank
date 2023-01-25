@@ -22,6 +22,7 @@ const NavBar = () => {
 
     return (
         <div className='nav-container'>
+            <div className='center'>
             <div className="nav">
                 
                 <div className='logo-text'>ФОТОБАНК
@@ -30,6 +31,7 @@ const NavBar = () => {
 
                 {/* Список ссылок по требованиям к navbar */}
                 <div className='nav-elements'>
+                    <div className='center'>
                     <ul className="list">
                         <li><a href='/popular'>Популярное</a></li>
                         <li><a href='/subsc'>Подписки</a></li>
@@ -47,7 +49,8 @@ const NavBar = () => {
                             />
                         </li>
                     </ul>
-
+                    </div>
+                </div>
                 </div>
             </div>
         </div>
