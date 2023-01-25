@@ -46,7 +46,7 @@ export const settings = async (req, res) => {
             }
         }
         let isCity = null
-        if (city != "") {
+        if (city != "" || city==null) {
             isCity = await City.findOne({_id: city})
             console.log("isSi " + isCity)
             if (city != '' && !isCity) {
