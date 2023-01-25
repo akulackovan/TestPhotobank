@@ -6,7 +6,7 @@ import jwt from 'jsonwebtoken'
 
 export const settings = async (req, res) => {
     try {
-        const {userId, username, password, newpass, checkpass, text, city, base64, type} = req.body
+        const {userId, username, password, newpass, checkpass, text, city, base64} = req.body
         console.log(city + " " + userId)
         const user = await User.findOne({_id: userId})
         console.log(user)

@@ -1,39 +1,59 @@
-.navbar
+.nav-container
 {
    background-color: var(--nav-bar-background-color);
    color: #f3f2ef;
-   padding-left: 1%;
-   height: 100%;
    
-  transition: background-color 500ms linear;
-   .photobank{ 
-    font-size: 250%;
-    font-weight: 1000;
-   }
-   .list
-   {
-    padding-left: 10%;
-    .listHeader{
-        font-size: 150%;
-        font-weight: 900;
-        }
-   }
-   
-
-    .search{
-        padding-left: 65%;
-        font-size: 20px;
-        height: 70%;
-
-            .input{
-                width: 30%;
-                padding-left: 2%;
-                background-color: rgba(252, 252, 252, 0.2);
-                font-weight: 900;
-                color: #48523d;
-                border: none;
-                border-radius: 10px;
-            }
-        }
-
 }
+
+.nav{
+    max-width: 1100px;
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+
+
+
+.nav-elements ul {
+    display: flex;
+    justify-content: space-between;
+    list-style-type: none;
+    background-color: #f3f2ef;
+    margin: auto;
+  }
+  
+
+
+  .logo-text{
+    color: var(--button-text-color);
+    font-size: 36px;
+    font-weight: 600;
+    
+    background-color: #f3f2ef;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .nav-elements ul li {
+    margin: auto;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--button-text-color);
+    text-decoration: none;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-right: 10px;
+  }
+
+  .nav-elements ul a {
+    color: var(--button-text-color);
+  }
+
+
+  
+  
+

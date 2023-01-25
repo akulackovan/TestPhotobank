@@ -7,43 +7,50 @@ const NavBar = () => {
     const [str, setStr] = useState("")
 
     const handleKeyPress = (event) => {
-        if(event.key === 'Enter'){
+        if (event.key === 'Enter') {
             setStr('/search/' + form)
         }
-      }
-
-      const changeForm = (event) => {
-        setForm(event.target.value)
-        console.log(form)
     }
 
-    if (str)
-    {
-        return(<Redirect to={str}/>)
+    const changeForm = (event) => {
+        setForm(event.target.value)
+    }
+
+    if (str) {
+        return (<Redirect to={str} />)
     }
 
     return (
-        <nav>
-            <div className="nav-wrapper navbar">
-                <a href='/popular' className="left photobank">ФОТОБАНК</a>
-                <ul className="list">
-                    <li><a href='/popular' className="listHeader">Популярное</a></li>
-                    <li><a href='/subsc' className="listHeader">Подписки</a></li>
-                    <li><a href='/profile' className="listHeader">Профиль</a></li>
-                    <li><a href='/settings' className="listHeader">Настройки</a></li>
-                </ul>
-                <div className="search">
-                    <input
-                        className="input"
-                        type="text"
-                        placeholder="ПОИСК"
-                        name="user"
-                        onKeyPress={handleKeyPress}
-                        onChange={changeForm}                        
-                    />
+        <div className='nav-container'>
+            <div className="nav">
+                
+                <div className='logo-text'>ФОТОБАНК
+                </div>
+
+
+                {/* Список ссылок по требованиям к navbar */}
+                <div className='nav-elements'>
+                    <ul className="list">
+                        <li><a href='/popular'>Популярное</a></li>
+                        <li><a href='/subsc'>Подписки</a></li>
+                        <li><a href='/profile'>Профиль</a></li>
+                        <li><a href='/settings'>Настройки</a></li>
+                        <li>
+                            <input
+                                className="input"
+                                type="text"
+                                placeholder="ПОИСК"
+                                name="user"
+                                onKeyPress={handleKeyPress}
+                                onChange={changeForm}
+                                width='10'
+                            />
+                        </li>
+                    </ul>
+
                 </div>
             </div>
-        </nav>
+        </div>
     )
 }
 
