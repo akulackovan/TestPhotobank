@@ -35,16 +35,11 @@ const Search = ({id}) => {
             setErrorMessage(error.response.data.message)
         }
     }, []);
-    if (error) {
-        return (<div>
-            <h1>${error}</h1>
-        </div>)
-    }
 
 
     return (
         <div className='searchUser'>
-            {error && <h3>{error}</h3>}
+            {error && <h3 align="center">{error}</h3>}
             {search && <div>
                 <h2>Результаты поиска:</h2>
                 <hr align="center" width="80%" size="2" color=""/>

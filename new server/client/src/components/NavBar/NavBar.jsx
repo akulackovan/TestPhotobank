@@ -21,45 +21,32 @@ const NavBar = () => {
   }
 
   return (
-    <div className="nav-container">
-      <div className="center">
-        <div className="nav">
-          <div className="logo-text">ФОТОБАНК</div>
-
-          {/* Список ссылок по требованиям к navbar */}
-          <div className="nav-elements">
-            <div className="center">
-              <ul className="list">
-                <li>
-                  <a href="/popular">Популярное</a>
-                </li>
-                <li>
-                  <a href="/subsc">Подписки</a>
-                </li>
-                <li>
-                  <a href="/profile">Профиль</a>
-                </li>
-                <li>
-                  <a href="/settings">Настройки</a>
-                </li>
-                <li>
-                  <input
-                    className="input"
-                    type="text"
+    <nav className="nav">
+      <a className="site-title">ФОТОБАНК</a>
+      <ul>
+        <li>
+          <a href="/popular">Популярное</a>
+        </li>
+        <li>
+          <a href="/subsc">Подписки</a>
+        </li>
+        <li>
+          <a href="/profile">Профиль</a>
+        </li>
+        <li>
+          <a href="/settings">Настройки</a>
+        </li>
+        <li>
+          <input className="input"
+          type="text"
                     placeholder="ПОИСК"
                     name="user"
                     onKeyPress={handleKeyPress}
-                    onChange={changeForm}
-                    width="10"
-                  />
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+                    onChange={changeForm} />
+        </li>
+      </ul>
+    </nav>
+  )
 };
 
 export default NavBar;
