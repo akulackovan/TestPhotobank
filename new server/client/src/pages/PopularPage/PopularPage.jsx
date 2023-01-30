@@ -3,20 +3,15 @@ import axios from "axios";
 import './PopularPage.scss'
 import {Link} from "react-router-dom";
 import {AuthContext} from "../../context/AuthContext";
+import Loader from '../../components/Loader/Loader';
 
 const PopularPage = () => {
     const { userId } = useContext(AuthContext)
     const [post, setPosts] = useState([])
     const [errorMessage, setErrorMessage] = React.useState("")
-    const [postId, setPostId] = useState(null)
     const [isToday, setToday] = useState(true)
-    const imageClick = (id) => {
-        console.log(id);
-        setPostId(id)
-
-    }
-
-
+    const [loader, setLoader] = useState(true)
+    
     useEffect(() => {
         try {
             axios({
@@ -34,7 +29,7 @@ const PopularPage = () => {
                         console.log(response.data.posts)
                         setPosts(response.data.posts)
                         setToday(response.data.isToday)
-                        // createPhoto(response.data.posts)
+                        setLoader(false)
                     }
                 )
                 .catch(error => {
@@ -63,6 +58,12 @@ const PopularPage = () => {
         )
     }
 
+    if (loader){
+        return (
+            <Loader />
+        )
+    }
+
 
     return (
         <div className="wrapper1">
@@ -77,11 +78,10 @@ const PopularPage = () => {
                                     <img style={{width: 400, height: 300}}
                                          href={'/post/' + option._id}
                                          src={option.image}
-                                         onClick={() => imageClick(option)}/>
+                                         />
                                 </li>
                             </Link>
                         ))}
-
                     </ul>
                 </div>
                 <div>

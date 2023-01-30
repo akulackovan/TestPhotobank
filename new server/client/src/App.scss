@@ -3,11 +3,6 @@ html {
   //transition: background-color 1000ms linear;
 }
 
-html {
-  background-color: var(--background-color);
-  //transition: background-color 1000ms linear;
-}
-
 * {
   margin: 0;
   psdding: 0;
@@ -18,98 +13,90 @@ html {
   height: 100vh;
   width: 100vw;
   background-color: var(--back-1);
-  background-image: linear-gradient(-2deg, var(--back-4) 15%, transparent 15%), linear-gradient(4deg, var(--back-3) 45%, transparent 45%), linear-gradient(-7deg,var(--back-2) 70%, transparent 70%);
-  }
+  background-image: linear-gradient(-2deg, var(--back-4) 15%, transparent 15%),
+    linear-gradient(4deg, var(--back-3) 45%, transparent 45%),
+    linear-gradient(-7deg, var(--back-2) 70%, transparent 70%);
+}
 
-
-.button{
-    color: var(--button-text-color);
-    background-color: var(--button-background-color);
-    //transition: color 500ms linear, background-color 500ms linear;
-    border-radius: 999px;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: 700;
-    line-height: 24px;
-    opacity: 1;
-    outline: 0 solid transparent;
-    padding: 8px 18px;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    width: fit-content;
-    word-break: break-word;
-    border: 0;
+.button {
+  color: var(--button-text-color);
+  background-color: var(--button-background-color);
+  //transition: color 500ms linear, background-color 500ms linear;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  opacity: 1;
+  outline: 0 solid transparent;
+  padding: 8px 18px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: fit-content;
+  word-break: break-word;
+  border: 0;
 }
 
 .head {
-    color: var(--main-front);
-    font-weight: bold;
-    font-size: 400%;
+  color: var(--main-front);
+  font-weight: bold;
+  font-size: 400%;
 }
-
 
 .city {
-    margin-top: 2%;
-    width: 80%;
-    padding-left: 2%;
-    font-weight: 900;
-    box-sizing: border-box;
-  
-  }
-  
-  .error {
-    background: rgba(255, 255, 255, 0);
-    color: var(--main-front);
-    margin-top: 2%;
-  }
-  
-  .back {
-    background-color: var(--background-color);
-    box-shadow: #323235 0 10px 20px -10px;
-  
-  
-    text-align: center;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%);
-    border: none;
-    border-radius: 30px;
-  
-  }
-  
-  .container {
-    text-align: center;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%);
-    border: none;
-    border-radius: 30px;
-  }
-
-
-  .link {
-    margin-top: 2%;
-    background: rgba(255, 255, 255, 0);
-    color: var(--main-front);
-    font-weight: bold;
-    font-size: 150%;
-  
-  }
-
-  .input {
-    background-color: var(--input-background) !important;
-    color: var(--font-color) !important;
-    border: none !important;
-    border-radius: 10px !important;
-    
-    
+  margin-top: 2%;
+  width: 80%;
+  padding-left: 2%;
+  font-weight: 900;
+  box-sizing: border-box;
 }
 
+.error {
+  background: rgba(255, 255, 255, 0);
+  color: var(--main-front);
+  margin-top: 2%;
+}
+
+.back {
+  background-color: var(--background-color);
+  box-shadow: #323235 0 10px 20px -10px;
+
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  border: none;
+  border-radius: 30px;
+}
+
+.container {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  border: none;
+  border-radius: 30px;
+}
+
+.link {
+  margin-top: 2%;
+  background: rgba(255, 255, 255, 0);
+  color: var(--main-front);
+  font-weight: bold;
+  font-size: 150%;
+}
+
+.input {
+  background-color: var(--input-background) !important;
+  color: var(--font-color) !important;
+  border: none !important;
+  border-radius: 10px !important;
+}
 
 .dropdown-container {
   text-align: left;
@@ -117,7 +104,7 @@ html {
   border: none !important;
   border-radius: 5px !important;
   cursor: pointer;
-  
+
   background-color: var(--input-background);
 }
 
@@ -127,24 +114,22 @@ html {
   align-items: center;
   justify-content: space-between;
   user-select: none;
-  
+
   border: none !important;
   border-radius: 5px !important;
-  
-  
+
   background-color: var(--input-background);
 }
 
-.dropdown-menu{
-  
+.dropdown-menu {
   border: none !important;
   border-radius: 5px !important;
-  position:absolute;
+  position: absolute;
   transform: translateY(4px);
   width: 100%;
   overflow: auto;
   max-height: 150px;
-  
+
   background-color: var(--input-background);
 }
 
@@ -154,10 +139,9 @@ html {
   background-color: var(--input-background);
 }
 
-.dropdown-item:hover{
+.dropdown-item:hover {
   background-color: var(--icon-color);
 }
-
 
 .search-box input {
   width: 100%;
@@ -166,7 +150,7 @@ html {
   height: 5px !important;
 }
 
-.textarea{
+.textarea {
   resize: none;
   background-color: var(--input-background);
   font-size: 17px;
@@ -176,14 +160,16 @@ html {
 }
 
 .loader {
-  border: 10px solid var(--font-color);
-  border-top: 10px solid var(--button-background-color);
+  border: 20px solid var(--font-color);
+  border-top: 20px solid var(--button-background-color);
   border-radius: 50%;
-  width: 80px;
-  height: 80px;
+  width: 100px;
+  height: 100px;
   animation: spin 1s linear infinite;
-  align-items: center;
-
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -25px 0 0 -25px;
 }
 
 @keyframes spin {
@@ -193,10 +179,9 @@ html {
   100% {
     transform: rotate(360deg);
   }
-} 
+}
 
-
-.errorField{
+.errorField {
   color: red;
   font-size: small;
 }

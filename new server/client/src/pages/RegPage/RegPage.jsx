@@ -52,7 +52,7 @@ const RegPage = () => {
     if (!form.username) {
       setErrorMessage({ username: "Заполнены не все поля" });
     }
-    if (errorMessage) {
+    if (errorMessage.city || errorMessage.password || errorMessage.username) {
       setTimeout(
         () =>
           setErrorMessage({
@@ -79,8 +79,8 @@ const RegPage = () => {
         .then((response) => {
           console.log(response);
           setErrorMessage(
-            response.data.message +
-              "    Вы будете перенаправлены на страницу авторизации через 5 секунд"
+            {error: response.data.message +
+              "    Вы будете перенаправлены на страницу авторизации через 5 секунд"}
           );
           setTimeout(() => setRedirect(true), 5000);
         });

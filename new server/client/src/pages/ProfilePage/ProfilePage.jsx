@@ -4,14 +4,15 @@ import { AuthContext } from '../../context/AuthContext'
 import { Redirect, Link } from "react-router-dom"
 import PostTable from '../../components/PostsTable/PostsTable'
 import './ProfilePage.scss'
+import Loader from '../../components/Loader/Loader'
 
 const ProfilePage = () => {
     const { userId } = useContext(AuthContext)
     const [username, setUsername] = useState('');
     const [text, setText] = useState('');
-    const [post, setPost] = useState('');
     const [userProfileImage, setUserProfileImage] = useState({});
     const [subscriptions, setSubscriptions] = useState(0)
+    const [loader, setLoader] = useState(true)
 
     useEffect(() => {
         axios({
@@ -32,12 +33,16 @@ const ProfilePage = () => {
                 setText(response.data.user.text)
                 setSubscriptions(response.data.subscibe.length)
                 console.log(response.data.subscibe)
-                if (response.data.user.posts == "") {
-                    setPost('Нет постов')
-                }
+                setLoader(false)
             }
             )
     }, []);
+
+    if (loader){
+        return (
+            <Loader />
+        )
+    }
 
 
 
