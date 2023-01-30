@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Component, useContext } from 'react'
 import axios from 'axios'
-import { positions } from 'react-alert'
+import Loader from '../Loader/Loader'
 import { Redirect, Link } from 'react-router-dom'
 import { AuthContext } from '../../context/AuthContext'
 import './PostPage.scss'
@@ -191,7 +191,7 @@ const PostPageComponent = ({ id }) => {
 
     if (loading) {
         return (
-            <ReactLoading type='spinningBubbles' height={'20%'} width={'20%'} />
+            <Loader />
         )
     }
 
@@ -259,7 +259,7 @@ const PostPageComponent = ({ id }) => {
                             </div>
                             {comments == 0 && <h3>Комментариев нет</h3>}
                         </div>
-                        {loadingComm && <ReactLoading type='spinningBubbles' height={'20%'} width={'20%'} />}
+                        {loadingComm && <Loader />}
                         {comments && <div className='comments'>
                             <ul>
                                 {comments.map(item => (

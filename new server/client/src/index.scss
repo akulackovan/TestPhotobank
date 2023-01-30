@@ -16,8 +16,13 @@
     --input-front:#323235;
     --input-background: #423944;
 
-    --background-color: #292929;
+    --background-color: #292929f5;
     --icon-color: #ba8fc2;
+
+    --back-1: rgb(97, 77, 96);
+    --back-2: #7e4d88;
+    --back-3: #53134b;
+    --back-4: #2c0233;
   }
   
   html[data-theme='light'] {
@@ -30,8 +35,13 @@
     --input-front:#323235;
     --input-background: #eceeeb;
   
-    --background-color: #ffffff;
+    --background-color: #ffffffad;
     --icon-color: #4e005c;
+
+    --back-1: #d3d2cdff;
+    --back-2: #c4d3d3ff;
+    --back-3: #a2c1c3ff;
+    --back-4: #6d9ea3ff;
   }
 
 

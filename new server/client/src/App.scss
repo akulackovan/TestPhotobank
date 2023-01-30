@@ -3,9 +3,24 @@ html {
   //transition: background-color 1000ms linear;
 }
 
-*{
+html {
+  background-color: var(--background-color);
+  //transition: background-color 1000ms linear;
+}
+
+* {
+  margin: 0;
+  psdding: 0;
   color: var(--font-color);
 }
+
+.background {
+  height: 100vh;
+  width: 100vw;
+  background-color: var(--back-1);
+  background-image: linear-gradient(-2deg, var(--back-4) 15%, transparent 15%), linear-gradient(4deg, var(--back-3) 45%, transparent 45%), linear-gradient(-7deg,var(--back-2) 70%, transparent 70%);
+  }
+
 
 .button{
     color: var(--button-text-color);
@@ -50,7 +65,7 @@ html {
   }
   
   .back {
-    background-color: rgba(236, 236, 236, 0.20);
+    background-color: var(--background-color);
     box-shadow: #323235 0 10px 20px -10px;
   
   
@@ -158,4 +173,30 @@ html {
   padding: 2% 2% 2% 2%;
   border: var(--input-background);
   border-radius: 10px;
+}
+
+.loader {
+  border: 10px solid var(--font-color);
+  border-top: 10px solid var(--button-background-color);
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  animation: spin 1s linear infinite;
+  align-items: center;
+
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+} 
+
+
+.errorField{
+  color: red;
+  font-size: small;
 }
