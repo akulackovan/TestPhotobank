@@ -1,3 +1,3 @@
-const Loader = () => <div className="loader"></div>;
+const Loader = () => <div className="loader" />;
 
 export default Loader;

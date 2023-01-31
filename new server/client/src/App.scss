@@ -140,14 +140,14 @@ html {
 }
 
 .dropdown-item:hover {
-  background-color: var(--icon-color);
+  background-color: var(--button-background-color);
 }
 
-.search-box input {
+.search-box {
   width: 100%;
   border: 1px solid #ccc;
   border-radius: 5px;
-  height: 5px !important;
+  height: 40px !important;
 }
 
 .textarea {
