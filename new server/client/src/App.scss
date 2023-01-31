@@ -185,3 +185,21 @@ html {
   color: red;
   font-size: small;
 }
+
+.errorMessage {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  width: 50%;
+  height: 20%;
+  border-radius: 10px;
+  font-size: 20px;
+  background-color: var(--back-1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  fill: var(--font-color);
+  font-weight: 700;
+}
