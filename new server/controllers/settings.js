@@ -72,7 +72,7 @@ export const settings = async (req, res) => {
             await User.updateOne({_id: userId}, {city: idCity})
         }
         if (base64 != '') {
-            await User.updateOne({_id: userId}, {image: base64, typeImg: type})
+            await User.updateOne({_id: userId}, {image: base64 })
         }
 
         res.status(201).json({
