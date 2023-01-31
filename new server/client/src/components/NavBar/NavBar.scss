@@ -1,15 +1,9 @@
-.nav{
-
-
-    display: flex;
-    justify-content: space-between;
-    margin: auto;
-    background-color: var(--button-background-color);
-
-
-    padding: 0 4%;
-
-    
+.nav {
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+  background-color: var(--button-background-color);
+  min-width: 800px;
 }
 
 .nav ul {
@@ -19,7 +13,7 @@
   display: flex;
 }
 
-.site-title{
+.site-title {
   color: inherit;
   font-size: 32px;
   font-weight: 800;
@@ -32,4 +26,3 @@
 .input {
   width: 100px;
 }
-

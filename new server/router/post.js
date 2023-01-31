@@ -24,8 +24,8 @@ router.get('/popular', getPopular)
 
 router.get('/subscription', getSubscriptionPosts)
 
-router.post('/addView', addView)
-router.post('/setLike', setLike)
+router.put('/addView', addView)
+router.put('/setLike', setLike)
 router.get('/updateLike', updateLike)
 
 export default router

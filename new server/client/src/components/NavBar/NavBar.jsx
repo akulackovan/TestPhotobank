@@ -37,16 +37,18 @@ const NavBar = () => {
           <a href="/settings">Настройки</a>
         </li>
         <li>
-          <input className="input"
-          type="text"
-                    placeholder="ПОИСК"
-                    name="user"
-                    onKeyPress={handleKeyPress}
-                    onChange={changeForm} />
+          <input
+            className="input"
+            type="text"
+            placeholder="ПОИСК"
+            name="user"
+            onKeyPress={handleKeyPress}
+            onChange={changeForm}
+          />
         </li>
       </ul>
     </nav>
-  )
+  );
 };
 
 export default NavBar;

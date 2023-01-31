@@ -78,9 +78,7 @@ const Cropper = ({ x = 480, y = 480, size = 7, setData }) => {
         return;
       }
       /** Если все хорошо, то устанавливаем изображение */
-      console.log(e.target.files[0].name);
       const split = e.target.files[0].name.split(".");
-      console.log(split[split.length - 1]);
       setInfo({
         y: img.height,
         x: img.width,
@@ -92,7 +90,6 @@ const Cropper = ({ x = 480, y = 480, size = 7, setData }) => {
     };
   };
 
-  console.log(info);
   const cropImageNow = () => {
     const canvas = document.createElement("canvas");
     canvas.width = crop.width;
