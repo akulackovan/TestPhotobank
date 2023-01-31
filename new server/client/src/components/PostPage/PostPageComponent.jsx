@@ -1,10 +1,9 @@
 import React, { useState, useEffect, Component, useContext } from 'react'
 import axios from 'axios'
 import Loader from '../Loader/Loader'
-import { Redirect, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { AuthContext } from '../../context/AuthContext'
 import './PostPage.scss'
-import ReactLoading from 'react-loading';
 
 const PostPageComponent = ({ id }) => {
 
@@ -98,7 +97,7 @@ const PostPageComponent = ({ id }) => {
     useEffect(() => {
         if (!view) {
             axios({
-                method: 'post',
+                method: 'put',
                 url: '/post/addView',
                 headers: {
                     "content-type": "application/json"
@@ -130,7 +129,7 @@ const PostPageComponent = ({ id }) => {
     const changeLike = async () => {
         try {
             await axios({
-                method: 'post',
+                method: 'put',
                 url: '/post/setLike',
                 params: {
                     'idPost': id,
