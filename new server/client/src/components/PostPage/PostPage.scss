@@ -1,10 +1,9 @@
 .allPost {
-  max-width: 1300px;
+  margin: auto;
 
   .post {
+    width: 1360px;
     text-align: center;
-    height: 850px;
-    margin-top: 3%;
     display: flex;
     flex-direction: row;
     padding: 1%;
@@ -12,7 +11,7 @@
     margin-right: auto;
   }
   .textarea {
-    width: 300px;
+    width: 400px;
     height: 50px;
   }
 
@@ -21,7 +20,7 @@
   }
 
   .second {
-    width: 400px;
+    width: 500px;
     margin-left: 10px;
   }
 
@@ -42,11 +41,9 @@
   align-items: center;
 }
 
-.one {
-}
+
 
 .headPost {
-  margin-top: 3%;
   display: flex;
   flex-direction: row;
   padding: 2%;
