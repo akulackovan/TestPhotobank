@@ -1,78 +1,51 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Montserrat', sans-serif;
-  }
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+}
 
-  html[data-theme='dark'] {
-    --button-text-color: #eceeeb;
-    --button-background-color: #4e005c;
+//Для темной темы
+html[data-theme="dark"] {
+  --button-text-color: #eceeeb;
+  --button-background-color: #4e005c;
 
-    --nav-bar-background-color: #4e005c;
+  --nav-bar-background-color: #4e005c;
 
-    --font-color: #eceeeb;
+  --font-color: #eceeeb;
 
-    --input-front:#323235;
-    --input-background: #423944;
+  --input-front: #323235;
+  --input-background: #423944;
 
-    --background-color: #292929f5;
-    --icon-color: #ba8fc2;
+  --background-color: #292929f5;
+  --icon-color: #ba8fc2;
 
-    --back-1: rgb(97, 77, 96);
-    --back-2: #7e4d88;
-    --back-3: #53134b;
-    --back-4: #2c0233;
-  }
-  
-  html[data-theme='light'] {
-    --button-text-color: #eceeeb;
-    --button-background-color: #6d9ea3ff;
+  --main-front: #ba8fc2;
 
-    --nav-bar-background-color: #6d9ea3ff;
-    --font-color: #323235;
-    
-    --input-front:#323235;
-    --input-background: #eceeeb;
-  
-    --background-color: #ffffffad;
-    --icon-color: #4e005c;
+  --back-1: rgb(97, 77, 96);
+  --back-2: #7e4d88;
+  --back-3: #53134b;
+  --back-4: #2c0233;
+}
 
-    --back-1: #d3d2cdff;
-    --back-2: #c4d3d3ff;
-    --back-3: #a2c1c3ff;
-    --back-4: #6d9ea3ff;
-  }
+//Для светлой темы
+html[data-theme="light"] {
+  --button-text-color: #eceeeb;
+  --button-background-color: #6d9ea3ff;
 
+  --nav-bar-background-color: #6d9ea3ff;
+  --font-color: #323235;
 
-  @media (max-width: 600px) {
-    .menu-icon {
-      display: block;
-      cursor: pointer;
-    }
-  
-    .nav-elements {
-      position: absolute;
-      right: 0;
-      top: 60px;
-      background-color: #fef7e5;
-      width: 0px;
-      height: calc(100vh - 60px);
-      transition: all 0.3s ease-in;
-      overflow: hidden;
-    }
-  
-    .nav-elements.active {
-      width: 270px;
-    }
-  
-    .nav-elements ul {
-      display: flex;
-      flex-direction: column;
-    }
-  
-    .nav-elements ul li {
-      margin-right: unset;
-      margin-top: 22px;
-    }
-  }
+  --input-front: #323235;
+  --input-background: #fcfcfc;
+
+  --background-color: #ffffffad;
+  --icon-color: #4e005c;
+
+  --main-front: #6d9ea3ff;
+
+  --back-1: #d3d2cdff;
+  --back-2: #c4d3d3ff;
+  --back-3: #a2c1c3ff;
+  --back-4: #6d9ea3ff;
+}

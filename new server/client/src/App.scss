@@ -1,14 +1,15 @@
+//Назначаем цвет фона
 html {
   background-color: var(--background-color);
-  //transition: background-color 1000ms linear;
 }
 
 * {
   margin: 0;
-  psdding: 0;
+  padding: 0;
   color: var(--font-color);
 }
 
+//Фон для регистрации и входа
 .background {
   height: 100vh;
   width: 100vw;
@@ -18,50 +19,42 @@ html {
     linear-gradient(-7deg, var(--back-2) 70%, transparent 70%);
 }
 
+//Полоса прокрутки
+*::-webkit-scrollbar {
+  width: 10px;               /* ширина всей полосы прокрутки */
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--back-2);        /* цвет зоны отслеживания */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--button-background-color);    /* цвет бегунка */
+  border-radius: 20px;       /* округлось бегунка */  
+}
+
+//Simple кнопка
 .button {
   color: var(--button-text-color);
   background-color: var(--button-background-color);
-  //transition: color 500ms linear, background-color 500ms linear;
-  border-radius: 999px;
+  border-radius: 30px;
+  border: 0;
   cursor: pointer;
   font-size: 16px;
   font-weight: 700;
-  line-height: 24px;
-  opacity: 1;
-  outline: 0 solid transparent;
-  padding: 8px 18px;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  width: fit-content;
-  word-break: break-word;
-  border: 0;
 }
 
+//Назначаем стиль для заголовков
 .head {
   color: var(--main-front);
   font-weight: bold;
   font-size: 400%;
 }
 
-.city {
-  margin-top: 2%;
-  width: 80%;
-  padding-left: 2%;
-  font-weight: 900;
-  box-sizing: border-box;
-}
-
-.error {
-  background: rgba(255, 255, 255, 0);
-  color: var(--main-front);
-  margin-top: 2%;
-}
-
+//
 .back {
   background-color: var(--background-color);
   box-shadow: #323235 0 10px 20px -10px;
-
   text-align: center;
   position: absolute;
   top: 50%;
@@ -83,14 +76,7 @@ html {
   border-radius: 30px;
 }
 
-.link {
-  margin-top: 2%;
-  background: rgba(255, 255, 255, 0);
-  color: var(--main-front);
-  font-weight: bold;
-  font-size: 150%;
-}
-
+//Окна ввода
 .input {
   background-color: var(--input-background) !important;
   color: var(--font-color) !important;
@@ -98,58 +84,7 @@ html {
   border-radius: 10px !important;
 }
 
-.dropdown-container {
-  text-align: left;
-  position: relative;
-  border: none !important;
-  border-radius: 5px !important;
-  cursor: pointer;
-
-  background-color: var(--input-background);
-}
-
-.dropdown-input {
-  padding: 5px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  user-select: none;
-
-  border: none !important;
-  border-radius: 5px !important;
-
-  background-color: var(--input-background);
-}
-
-.dropdown-menu {
-  border: none !important;
-  border-radius: 5px !important;
-  position: absolute;
-  transform: translateY(4px);
-  width: 100%;
-  overflow: auto;
-  max-height: 150px;
-
-  background-color: var(--input-background);
-}
-
-.dropdown-item {
-  padding: 5px;
-  cursor: pointer;
-  background-color: var(--input-background);
-}
-
-.dropdown-item:hover {
-  background-color: var(--button-background-color);
-}
-
-.search-box {
-  width: 100%;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  height: 40px !important;
-}
-
+//Окна ввода - textarea
 .textarea {
   resize: none;
   background-color: var(--input-background);
@@ -159,6 +94,7 @@ html {
   border-radius: 10px;
 }
 
+//Колесо загрузки
 .loader {
   border: 20px solid var(--font-color);
   border-top: 20px solid var(--button-background-color);
@@ -172,6 +108,7 @@ html {
   margin: -25px 0 0 -25px;
 }
 
+//Анимация колеса
 @keyframes spin {
   0% {
     transform: rotate(0deg);
@@ -181,11 +118,7 @@ html {
   }
 }
 
-.errorField {
-  color: red;
-  font-size: small;
-}
-
+//Сообщение о ошибке
 .errorMessage {
   position: fixed;
   top: 50%;
@@ -203,3 +136,4 @@ html {
   fill: var(--font-color);
   font-weight: 700;
 }
+
