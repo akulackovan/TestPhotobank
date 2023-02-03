@@ -2,6 +2,7 @@ import React, { useState, useEffect, Component, useContext } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import Loader from "../Loader/Loader";
+import './Search.scss'
 
 const Search = ({ id }) => {
   const [loader, setLoader] = useState(true);
@@ -42,15 +43,15 @@ const Search = ({ id }) => {
     <div className="searchUser">
       {error && <h3 align="center">{error}</h3>}
       {search && (
-        <div>
-          <h2>Результаты поиска:</h2>
-          <hr align="center" width="80%" size="2" color="" />
+        <div className="container">
+          <h2 className="head">По запросу "{id}" найдено:</h2>
+          <hr className="hr" />
           <div className="search">
             <ul>
               {search.map((item) => (
-                <li className="element">
+                <li className="element container">
                   <Link to={`/profile/${item._id}`}>
-                    <h4>{item.username}</h4>
+                    <h5>{item.username}</h5>
                   </Link>
                 </li>
               ))}
