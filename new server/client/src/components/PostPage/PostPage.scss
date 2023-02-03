@@ -1,27 +1,54 @@
 .allPost {
   margin: auto;
+  margin-top: 20px;
+
+  .head {
+    font-size: 24px;
+    margin: 0%;
+  }
+
+  .one {
+    .container {
+      width: 777px;
+      margin-left: 0;
+      border-radius: 5px;
+    }
+    .under {
+      font-weight: 700;
+    }
+    .city {
+      margin-left: auto;
+      margin-right: 0;
+    }
+.text{
+  background-color: #000000;
+}
+.stat ul li
+{
+    display: inline-block;
+    margin-right: 100px;
+    .num{
+      margin-top: -40px;
+      margin-left: 80px;
+    }
+}
+  }
 
   .post {
-    width: 1360px;
-    text-align: center;
+    width: 1300px;
     display: flex;
     flex-direction: row;
-    padding: 1%;
     margin-left: auto;
     margin-right: auto;
   }
   .textarea {
-    width: 400px;
+    width: 300px;
     height: 50px;
   }
 
-  .button {
-    width: 50px;
-  }
-
   .second {
-    width: 500px;
-    margin-left: 10px;
+    width: 550px;
+    padding: 1%;
   }
 
   .send {
@@ -29,29 +56,11 @@
     width: 50px;
   }
 
-  .text {
-    background-color: #000000;
+  .discription {
     text-align: left;
     word-wrap: break-word;
+    padding: 1%;
   }
-}
-
-.first {
-  flex-direction: column;
-  align-items: center;
-}
-
-
-
-.headPost {
-  display: flex;
-  flex-direction: row;
-  padding: 2%;
-}
-
-.stat {
-  display: flex;
-  flex-direction: row;
 }
 
 .h2 {
@@ -63,46 +72,30 @@
   flex-direction: row;
 }
 
-.comments {
-  text-align: left;
-  word-wrap: break-word;
-}
-
-.user {
-  margin-right: 80%;
-}
-
-.data {
-  margin-right: 80%;
-}
-
 .under {
   display: flex;
   flex-direction: row;
 }
-.comments ul {
-  height: 450px;
-  width: 90%;
 
-  margin-left: auto;
-  margin-right: auto;
-}
+
+
 .comments ul {
+  height: 550px;
   overflow: hidden;
   overflow-y: scroll;
-}
-.stats {
-  text-align: left;
-  margin-top: -20;
+  
+  
+  .container{
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+    text-align: left;
+    word-wrap: break-word;
+  }
 }
 
-.back2 {
-  box-shadow: #323235 0 10px 20px -10px;
-  border: none;
-  border-radius: 30px;
-  padding: 1% 3% 1% 3%;
-  word-wrap: break-word;
-}
+
 
 .like {
   fill: #ed6866;
@@ -113,14 +106,13 @@
   fill: var(--font-color);
 }
 
-.like,
-.dislike,
-.send {
+.icon {
   margin-left: 1%;
-  writing-mode: vertical-lr;
-  text-orientation: upright;
   border: none;
   width: 50px;
   height: 50px;
+  fill: var(--font-color);
   background-color: rgba($color: #000000, $alpha: 0);
+  display: flex;
+  flex-direction: row;
 }

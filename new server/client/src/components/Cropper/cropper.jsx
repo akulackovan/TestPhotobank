@@ -58,8 +58,8 @@ const Cropper = ({ x = 480, y = 480, size = 7, setData }) => {
       }
       /** Проверка на ширину и длину изображения */
       if (
-        (!(img.height > y && img.width > x) && x == y) ||
-        (!(img.height > 590 && img.width > 738) && x != y)
+        (!(img.height >= y && img.width >= x) && x == y) ||
+        (!(img.height >= 590 && img.width >= 738) && x != y)
       ) {
         setErrorMessage(
           "Выбранное изображение не соответвует характеристикам\nЗагружаемое фото пользователя должно иметь разрешение от " +

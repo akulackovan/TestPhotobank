@@ -69,8 +69,7 @@ const PostPageComponent = ({ id }) => {
       });
   };
 
-  //Получаем данные о посте
-  useEffect(() => {
+  const getPost = () => {
     axios({
       method: "get",
       url: "/post/post/id",
@@ -85,8 +84,6 @@ const PostPageComponent = ({ id }) => {
         console.log(response.data.isPost);
         setPost(response.data.isPost);
         getLike();
-
-        //!!БАГ - иногда 2 раза срабатывает
         axios({
           method: "put",
           url: "/post/addView",
@@ -112,15 +109,15 @@ const PostPageComponent = ({ id }) => {
         setErrorMessage(error.response.data.message);
         setTimeout(() => setErrorMessage(""), 2000);
       });
+  }
+
+  //Получаем данные о посте
+  useEffect(() => {
+    getPost()
   }, []);
 
   //
   const changeForm = (event) => {
-    if (!(comment.length <= 128)) {
-      setErrorMessage("Комментарий должен быть меньше 128 символов");
-      setTimeout(() => setErrorMessage(""), 2000);
-      return;
-    }
     setComment(event.target.value);
     console.log(comment);
   };
@@ -156,6 +153,16 @@ const PostPageComponent = ({ id }) => {
   };
 
   const commentHandler = async () => {
+    if (!(comment.length <= 128)) {
+      setErrorMessage("Комментарий должен быть меньше 128 символов");
+      setTimeout(() => setErrorMessage(""), 2000);
+      return;
+    }
+    if ((comment.length == 0)) {
+      setErrorMessage("Комментарий не должен быть пустым");
+      setTimeout(() => setErrorMessage(""), 2000);
+      return;
+    }
     setLoadingComm(true);
     try {
       await axios({
@@ -174,6 +181,7 @@ const PostPageComponent = ({ id }) => {
         getComments("");
         setComment("");
       });
+      getPost()
     } catch (error) {
       console.log(error);
       setErrorMessage(error.response.data.message);
@@ -191,41 +199,72 @@ const PostPageComponent = ({ id }) => {
       {post && (
         <div className="post">
           <div className="one">
-            <div>
-              <div className="user">
+            <div className="container">
+              <div>
                 <Link to={`/profile/${post.author._id}`}>
-                  <h4>{post.author.username}</h4>
+                  <h4 className="head">{post.author.username}</h4>
                 </Link>
               </div>
               <div className="under">
-                <div className="data">
+                <div className="date">
                   {post.timestamps[8]}
-                  {post.timestamps[9]}\{post.timestamps[5]}
-                  {post.timestamps[6]}\{post.timestamps[2]}
-                  {post.timestamps[3]}&emsp;г.{post.city.city}
+                  {post.timestamps[9]}.{post.timestamps[5]}
+                  {post.timestamps[6]}.20{post.timestamps[2]}
+                  {post.timestamps[3]}
                 </div>
+                <div className="city">г.{post.city.city}</div>
               </div>
             </div>
             <img
               className="img"
-              style={{ width: "830px", height: "603px" }}
+              style={{ width: "777px", height: "564px" }}
               src={`${post.image}`}
             />
             <div className="stat">
-              <div>
-                Просмотры: {post.views} &emsp;&emsp;&emsp;Лайки: {post.likes}
-                &emsp;&emsp;&emsp; Комментарии: {post.comments.length}
-              </div>
+              <ul>
+                <li className="icon li">
+                  <svg width="50px" height="50px" viewBox="0 0 16 16">
+                    <path d="M8 5.5A2.59 2.59 0 0 0 5.33 8 2.59 2.59 0 0 0 8 10.5 2.59 2.59 0 0 0 10.67 8 2.59 2.59 0 0 0 8 5.5zm0 3.75A1.35 1.35 0 0 1 6.58 8 1.35 1.35 0 0 1 8 6.75 1.35 1.35 0 0 1 9.42 8 1.35 1.35 0 0 1 8 9.25z" />
+                    <path d="M8 2.5A8.11 8.11 0 0 0 0 8a8.11 8.11 0 0 0 8 5.5A8.11 8.11 0 0 0 16 8a8.11 8.11 0 0 0-8-5.5zm5.4 7.5A6.91 6.91 0 0 1 8 12.25 6.91 6.91 0 0 1 2.6 10a7.2 7.2 0 0 1-1.27-2A7.2 7.2 0 0 1 2.6 6 6.91 6.91 0 0 1 8 3.75 6.91 6.91 0 0 1 13.4 6a7.2 7.2 0 0 1 1.27 2 7.2 7.2 0 0 1-1.27 2z" />
+                  </svg>
+
+                  <div className="num">{post.views}</div>
+                </li>
+                <li className="icon li">
+                  <svg width="50px" height="50px" viewBox="0 0 32 32">
+                    <path
+                      d="M21.886 5.115c3.521 0 6.376 2.855 6.376 6.376 0 1.809-0.754 3.439-1.964 4.6l-10.297 10.349-10.484-10.536c-1.1-1.146-1.778-2.699-1.778-4.413 0-3.522 2.855-6.376 6.376-6.376 2.652 0 4.925 1.62 5.886 3.924 0.961-2.304 3.234-3.924 5.886-3.924zM21.886 4.049c-2.345 0-4.499 1.089-5.886 2.884-1.386-1.795-3.54-2.884-5.886-2.884-4.104 0-7.442 3.339-7.442 7.442 0 1.928 0.737 3.758 2.075 5.152l11.253 11.309 11.053-11.108c1.46-1.402 2.275-3.308 2.275-5.352 0-4.104-3.339-7.442-7.442-7.442v0z"
+                      fill="#000000"
+                    ></path>
+                  </svg>
+                  <div className="num">{post.likes}</div>
+                </li>
+                <li className="icon li">
+                  <svg width="50px" height="50px" viewBox="0 0 24 24">
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M3 10.4C3 8.15979 3 7.03969 3.43597 6.18404C3.81947 5.43139 4.43139 4.81947 5.18404 4.43597C6.03969 4 7.15979 4 9.4 4H14.6C16.8402 4 17.9603 4 18.816 4.43597C19.5686 4.81947 20.1805 5.43139 20.564 6.18404C21 7.03969 21 8.15979 21 10.4V11.6C21 13.8402 21 14.9603 20.564 15.816C20.1805 16.5686 19.5686 17.1805 18.816 17.564C17.9603 18 16.8402 18 14.6 18H7.41421C7.149 18 6.89464 18.1054 6.70711 18.2929L4.70711 20.2929C4.07714 20.9229 3 20.4767 3 19.5858V18V13V10.4ZM9 8C8.44772 8 8 8.44772 8 9C8 9.55228 8.44772 10 9 10H15C15.5523 10 16 9.55228 16 9C16 8.44772 15.5523 8 15 8H9ZM9 12C8.44772 12 8 12.4477 8 13C8 13.5523 8.44772 14 9 14H12C12.5523 14 13 13.5523 13 13C13 12.4477 12.5523 12 12 12H9Z"
+                      fill="#222222"
+                    />
+                  </svg>
+
+                  <div className="num">{post.comments.length}</div>
+                </li>
+              </ul>
             </div>
-            <div className="text">
-              <h5>Описание</h5>
-              <div>{post.text}</div>
+            <div className="container">
+              <div className="discription">{post.text}</div>
             </div>
           </div>
           <div className="second">
             <div className="comment">
               {!like && (
-                <button className="like" onClick={changeLike}>
+                <button
+                  className="like icon"
+                  title="Поставить лайк"
+                  onClick={changeLike}
+                >
                   <svg
                     width="50px"
                     height="50px"
@@ -240,7 +279,11 @@ const PostPageComponent = ({ id }) => {
                 </button>
               )}
               {like && (
-                <button className="dislike" onClick={changeLike}>
+                <button
+                  className="dislike icon"
+                  title="Отменить лайк"
+                  onClick={changeLike}
+                >
                   <svg
                     width="50px"
                     height="50px"
@@ -248,7 +291,7 @@ const PostPageComponent = ({ id }) => {
                     fill="none"
                   >
                     <path
-                      className="dislike"
+                      className="dislike icon"
                       d="M16.44 3.10156C14.63 3.10156 13.01 3.98156 12 5.33156C10.99 3.98156 9.37 3.10156 7.56 3.10156C4.49 3.10156 2 5.60156 2 8.69156C2 9.88156 2.19 10.9816 2.52 12.0016C4.1 17.0016 8.97 19.9916 11.38 20.8116C11.72 20.9316 12.28 20.9316 12.62 20.8116C15.03 19.9916 19.9 17.0016 21.48 12.0016C21.81 10.9816 22 9.88156 22 8.69156C22 5.60156 19.51 3.10156 16.44 3.10156Z"
                     />
                   </svg>
@@ -266,38 +309,38 @@ const PostPageComponent = ({ id }) => {
                 />
               </form>
               <div onClick={commentHandler}>
-                <button className="send">
-                  <svg
-                    className="svg"
-                    width="50px"
-                    height="50px"
-                    viewBox="0 0 24 24"
-                    fill="red"
-                  >
-                    <path
-                      className="send"
-                      d="M18.0693 8.50867L9.50929 4.22867C3.75929 1.34867 1.39929 3.70867 4.27929 9.45867L5.14929 11.1987C5.39929 11.7087 5.39929 12.2987 5.14929 12.8087L4.27929 14.5387C1.39929 20.2887 3.74929 22.6487 9.50929 19.7687L18.0693 15.4887C21.9093 13.5687 21.9093 10.4287 18.0693 8.50867ZM14.8393 12.7487H9.43929C9.02929 12.7487 8.68929 12.4087 8.68929 11.9987C8.68929 11.5887 9.02929 11.2487 9.43929 11.2487H14.8393C15.2493 11.2487 15.5893 11.5887 15.5893 11.9987C15.5893 12.4087 15.2493 12.7487 14.8393 12.7487Z"
-                      fill="#292D32"
-                    />
-                  </svg>
+                <button className="button" title="Отправить комментарий"
+                style={{
+                  width: '150px',
+                  height: '50px'}}>
+                  ОТПРАВИТЬ
                 </button>
               </div>
-              {comments == 0 && <h3>Комментариев нет</h3>}
             </div>
-            {loadingComm && <Loader />}
-            {comments && (
-              <div className="comments">
-                <ul>
-                  {comments.map((item) => (
-                    <li>
-                      <h5>{item.user}</h5>
-                      <p>{item.comment}</p>
-                      <hr align="center" width="100%" size="2" color="" />
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
+            <div className="listComments">
+              <hr className="hr" />
+              <div className="head">Комментарии</div>
+              {loadingComm && <Loader />}
+              {!loadingComm && !comments && (
+                <div>
+                  <div>Комментариев нет</div>
+                </div>
+              )}
+              {comments && (
+                <div className="comments">
+                  <ul>
+                    {comments.map((item) => (
+                      <div>
+                        <li className="container">
+                          <h5>{item.user}</h5>
+                          <p>{item.comment}</p>
+                        </li>
+                      </div>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       )}
