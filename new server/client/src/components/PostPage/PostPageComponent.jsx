@@ -13,7 +13,9 @@ const PostPageComponent = ({ id }) => {
   const [loadingComm, setLoadingComm] = useState(true);
   const [error, setErrorMessage] = useState("");
   const [comment, setComment] = useState("");
-  const [comments, setComments] = useState(null);
+  const [comments, setComments] = useState({
+    length: 0
+  });
   const { userId } = useContext(AuthContext);
   const [like, setLike] = useState();
   console.log(userId);
@@ -56,7 +58,7 @@ const PostPageComponent = ({ id }) => {
       .then((response) => {
         console.log(response.data);
         if (response.data.total.length == 0) {
-          setComments(null);
+          setComments({length: 0});
           setLoadingComm(false);
           return;
         }
@@ -84,24 +86,6 @@ const PostPageComponent = ({ id }) => {
         console.log(response.data.isPost);
         setPost(response.data.isPost);
         getLike();
-        axios({
-          method: "put",
-          url: "/post/addView",
-          headers: {
-            "content-type": "application/json",
-          },
-          params: {
-            id: id,
-          },
-        })
-          .then((response) => {
-            console.log(response.data);
-          })
-          .catch((error) => {
-            setErrorMessage(error.response.data.message);
-            setTimeout(() => setErrorMessage(""), 2000);
-          });
-
         setLoading(false);
         getComments();
       })
@@ -111,8 +95,25 @@ const PostPageComponent = ({ id }) => {
       });
   }
 
-  //Получаем данные о посте
+  //Добавить просмотр + данные о посте
   useEffect(() => {
+    axios({
+      method: "put",
+      url: "/post/addView",
+      headers: {
+        "content-type": "application/json",
+      },
+      params: {
+        id: id,
+      },
+    })
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        setErrorMessage(error.response.data.message);
+        setTimeout(() => setErrorMessage(""), 2000);
+      });
     getPost()
   }, []);
 
@@ -249,7 +250,7 @@ const PostPageComponent = ({ id }) => {
                     />
                   </svg>
 
-                  <div className="num">{post.comments.length}</div>
+                  <div className="num">{comments.length}</div>
                 </li>
               </ul>
             </div>
@@ -320,13 +321,13 @@ const PostPageComponent = ({ id }) => {
             <div className="listComments">
               <hr className="hr" />
               <div className="head">Комментарии</div>
-              {loadingComm && <Loader />}
-              {!loadingComm && !comments && (
+              {loadingComm && <div className="head">Загрузка комментариев...</div>}
+              {!loadingComm && comments.length == 0 && (
                 <div>
                   <div>Комментариев нет</div>
                 </div>
               )}
-              {comments && (
+              {!loadingComm && comments.length != 0 && (
                 <div className="comments">
                   <ul>
                     {comments.map((item) => (

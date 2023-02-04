@@ -1,27 +1,36 @@
 import React, { useState, useContext, useEffect, Component } from "react";
 import axios from "axios";
 import { AuthContext } from "../../context/AuthContext";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import PostTable from "../../components/PostsTable/PostsTable";
-import "./AnotherPage.scss";
 import Loader from "../Loader/Loader";
-import ProfilePage from "../../pages/ProfilePage/ProfilePage";
+import './AnotherPage.scss'
 
 export const AnotherPage = ({ id }) => {
   const { userId } = useContext(AuthContext);
-  const [username, setUsername] = useState("");
-  const [text, setText] = useState("");
-  const [city, setCity] = useState("");
-  const [userProfileImage, setUserProfileImage] = useState({});
-  const [subscriptions, setSubscriptions] = useState(0);
-  const [isSubscription, setSubscription] = useState(false);
+  //Данные пользователя
+  const [user, setUser] = useState({
+    username: null,
+    text: null,
+    userProfileImage: null,
+    subscriptions: null,
+    city: null,
+  });
+  //Есть ли подписка
+  const [isSubscription, setSubscriptions] = useState(false);
+  //Колесо загрузки
   const [loader, setLoader] = useState(true);
+  //Для подписки
   const [form, setForm] = useState({
     userId: userId,
     subscribe: id,
     isSubs: isSubscription,
   });
 
+  console.log(id);
+  console.log(userId);
+
+  //** Подписка */ */
   const subscribe = async () => {
     try {
       await axios
@@ -37,9 +46,9 @@ export const AnotherPage = ({ id }) => {
         .then((response) => {
           setForm({ ...form, isSubs: response.data.isSubs });
           if (form.isSubs) {
-            setSubscriptions(subscriptions + 1);
+            setForm({ ...user, subscriptions: user.subscriptions + 1 });
           } else {
-            setSubscriptions(subscriptions - 1);
+            setForm({ ...user, subscriptions: user.subscriptions - 1 });
           }
         });
     } catch (error) {
@@ -47,35 +56,58 @@ export const AnotherPage = ({ id }) => {
     }
   };
 
+  //Получение профиля
   useEffect(() => {
-    axios({
-      method: "get",
-      url: "/auth/user",
-      headers: {
-        "x-auth-token": localStorage.getItem("auth-token"),
-        "content-type": "application/json",
-      },
-      params: {
-        userId: id,
-        myId: userId,
-      },
-    }).then((response) => {
-      console.log("HEEEE" + response.data.user.image);
-      setUserProfileImage(response.data.user.image);
-      setUsername(response.data.user.username);
-      setText(response.data.user.text);
-      setCity(response.data.city);
-      setSubscriptions(response.data.subscibe.length);
-      setForm({ ...form, isSubs: !response.data.isSubscribe });
-      setSubscription(response.data.isSubscribe);
-      console.log(response.data.subscibe);
-      setLoader(false);
-    });
+    if (userId != id) {
+      axios({
+        method: "get",
+        url: "/auth/user",
+        headers: {
+          "x-auth-token": localStorage.getItem("auth-token"),
+          "content-type": "application/json",
+        },
+        params: {
+          userId: id,
+          myId: userId,
+        },
+      }).then((response) => {
+        console.log("HEEEE" + response.data.user.image);
+        setUser({
+          username: response.data.user.username,
+          text: response.data.user.text,
+          subscriptions: response.data.subscibe.length,
+          userProfileImage: response.data.user.image,
+          city: response.data.city,
+        });
+        setForm({ ...form, isSubs: !response.data.isSubscribe });
+        setSubscriptions(response.data.isSubscribe);
+        console.log(response.data.subscibe);
+        setLoader(false);
+      });
+    } else {
+      /** Получение пользователя */
+      axios({
+        method: "get",
+        url: "/auth/profile",
+        headers: {
+          "x-auth-token": localStorage.getItem("auth-token"),
+          "content-type": "application/json",
+        },
+        params: {
+          userId: userId,
+        },
+      }).then((response) => {
+        console.log("Profile: " + response.data.user);
+        setUser({
+          username: response.data.user.username,
+          text: response.data.user.text,
+          subscriptions: response.data.subscibe.length,
+          userProfileImage: response.data.user.image,
+        });
+        setLoader(false);
+      });
+    }
   }, []);
-
-  if (userId == id) {
-    return <ProfilePage />;
-  }
 
   if (loader) {
     return <Loader />;
@@ -85,48 +117,70 @@ export const AnotherPage = ({ id }) => {
     <div className="profile">
       <div className="header">
         <div className="first">
-          <img className="img" src={userProfileImage} />
+          <img className="img" src={user.userProfileImage} />
         </div>
-        <div className="second">
+        <div className="second container">
           <div className="header">
-            <div className="user">{`${username}  ${city}`}</div>
+            <div className="user">{user.username}</div>
+            {id != userId && <div className="city head">г.{user.city}</div>}
           </div>
           <div className="text">
-            <div className="back2">
-              <div className="h2">Описание:</div>
-              {text == "" && <div> Нет описания</div>}
-              {text != "" && <div> {text} </div>}
+            <div className="container">
+              <div className="head">Описание:</div>
+              {user.text == "" && <div> Нет описания</div>}
+              {user.text != "" && <div> {user.text} </div>}
             </div>
-            <div className="back2">
-              <div className="h2">Количество подписчиков: {subscriptions}</div>
-            </div>
-            <div>
-              {!isSubscription && (
-                <button
-                  className="button like"
-                  onClick={() => {
-                    setSubscription(!isSubscription);
-                    subscribe();
-                  }}
-                >
-                  Подписаться
-                </button>
-              )}
-              {isSubscription && (
-                <button
-                  className="button dislike"
-                  onClick={() => {
-                    setSubscription(!isSubscription);
-                    subscribe();
-                  }}
-                >
-                  Отписаться
-                </button>
-              )}
-            </div>
+            {id != userId && (
+              <div className="AnotherPage">
+                <div className="container">
+                  <div className="head">
+                    Количество подписчиков: {user.subscriptions}
+                  </div>
+                </div>
+                <div>
+                  {!isSubscription && (
+                    <button
+                      className="button like"
+                      onClick={() => {
+                        setSubscriptions(!isSubscription);
+                        subscribe();
+                      }}
+                    >
+                      Подписаться
+                    </button>
+                  )}
+                  {isSubscription && (
+                    <button
+                      className="button dislike"
+                      onClick={() => {
+                        setSubscriptions(!isSubscription);
+                        subscribe();
+                      }}
+                    >
+                      Отписаться
+                    </button>
+                  )}
+                </div>
+              </div>
+            )}
+            {id == userId && (
+              <div>
+                <div className="back2">
+                  <div className="head">
+                    Количество подписчиков: {user.subscriptions}
+                  </div>
+                </div>
+                <div>
+                  <Link to="post">
+                    <button className="button">Добавить фото</button>
+                  </Link>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
+      <hr className="hr"/>
       <div>
         <PostTable id={id} />
       </div>

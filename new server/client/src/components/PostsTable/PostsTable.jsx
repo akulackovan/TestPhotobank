@@ -40,7 +40,7 @@ const PostTable = ({ id }) => {
   }, []);
 
   if (loading) {
-    return <Loader />;
+    return <div className="head">Загрузка постов...</div>;
   }
 
   if (errorMessage != "") {
@@ -61,7 +61,7 @@ const PostTable = ({ id }) => {
                 <Link to={`/post/${option._id}`}>
                   <li>
                     <img
-                      style={{ width: 351, height: 262 }}
+                      style={{ width: 300, height: 223 }}
                       href={"/post/" + option._id}
                       src={option.image}
                     />
