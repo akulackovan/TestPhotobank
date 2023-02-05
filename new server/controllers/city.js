@@ -1,6 +1,4 @@
 import City from '../models/City.js'
-import fs from 'fs'
-
 
 export const getCity = async (req, res) => {
     try {
@@ -10,7 +8,6 @@ export const getCity = async (req, res) => {
                 message: 'Города нет',
             })
         }
-
         res.json({
             isCity,
             message: 'Город найден',
@@ -21,7 +18,6 @@ export const getCity = async (req, res) => {
         })
     }
 }
-
 
 export const getAllCity = async (req, res) => {
     try {
@@ -36,34 +32,3 @@ export const getAllCity = async (req, res) => {
         })
     }
 }
-
-/*
-Так добавляли города
-export const addCityFromFile = async (req, res) => {
-    try {
-        var array = fs.readFileSync("D:\\GitHub\\Another\\new server\\controllers\\city.txt").toString().split("\n");
-        for (const i of array) {
-            
-                
-            console.log(i);
-            const isCity = await City.findOne({city: i})
-            if (!isCity) {
-                
-            console.log(i);
-                const newCity = new City({
-                city: i
-            })
-            await newCity.save()
-                }
-
-            
-        }
-        res.json({
-            message: 'Город добавлен.',
-        })
-    } catch (error) {
-        res.json({ message: 'Ошибка при создании города.' })
-        console.log(error)
-    }
-}
-*/

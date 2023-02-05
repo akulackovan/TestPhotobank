@@ -6,19 +6,11 @@ import CityCombobox from '../../components/CityCombobox/CityCombobox'
 import Cropper from "../../components/Cropper/cropper";
 import {AuthContext} from "../../context/AuthContext";
 
-// function encodeImageFileAsURL(element) {
-//     var file = element.files[0];
-//     var reader = new FileReader();
-//     reader.readAsDataURL(file);
-//     return reader.result
-// }
-
 
 
 const AddPostPage = () => {
     const [errorMessage, setErrorMessage] = React.useState("")
     const [redirect, setRedirect] = React.useState(false)
-    const [formKey, setFormKey] = useState(0)
     const { userId } = useContext(AuthContext)
     const [form, setForm] = useState(
         {
@@ -76,11 +68,12 @@ const AddPostPage = () => {
     return (
         <div>
             <div className='addPost'>
-                <div className='center back'>
-                    <Cropper size = {16} y={360} x={480} setData={(value) => setForm({...form, photo: value})}></Cropper>
+                <div className='container'>
+                    
+                    <Cropper size = {16} y={383} x={480} setData={(value) => setForm({...form, photo: value})}></Cropper>
                     <br/>
                     <div style={{width: '80%', margin: 'auto', textAlign: 'left'}}>
-                        <CityCombobox name='city' onChange={(value) => setForm({ ...form, city: value })} key={formKey} />
+                        <CityCombobox name='city' onChange={(value) => setForm({ ...form, city: value })}  />
                     </div>
                     <div className='description'>
                         <input

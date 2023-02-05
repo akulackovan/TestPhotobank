@@ -1,6 +1,5 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom"
-import CityCombobox from "./components/CityCombobox/CityCombobox";
 import NavBar from "./components/NavBar/NavBar";
 import AddPostPage from "./pages/AddPostPage/AddPostPage";
 import AuthPage from "./pages/AuthPage/AuthPage";
@@ -12,10 +11,16 @@ import SubscribePage from "./pages/SubscribePage/SubscribePage";
 import PostPage from "./pages/PostPage/PostPage"
 import SearchPage from "./pages/SearchPage/SearchPage"
 import AnotherUserPage from "./pages/AnotherUserPage/AnotherUserPage";
+
+
 export const useRoutes = (isLogin) =>
 {
+    let reditect = "";
+    console.log(isLogin)
+
     if (isLogin)
     {
+        reditect ='/popular'
         return (
             <div className="app">
                     <NavBar />
@@ -28,14 +33,21 @@ export const useRoutes = (isLogin) =>
                             <Route exact path='/post/:id' component={PostPage} />
                             <Route exact path='/profile/:id' component={AnotherUserPage} />
                             <Route exact path='/search/:id' component={SearchPage} />
+                            <Redirect to={reditect} />
                         </Switch>
             </div>
         )
     }
-    return (
-        <Switch>
-            <Route exact path='/reg' component={RegPage} />
-            <Route exact path='/auth' component={AuthPage} />
-        </Switch>
-    )
+    else {
+        reditect='/auth'
+        return (
+            <div className="app-1">
+            <Switch>
+                <Route exact path='/reg' component={RegPage} />
+                <Route exact path='/auth' component={AuthPage} />
+                
+            </Switch>
+            </div>
+        )
+    }
 }

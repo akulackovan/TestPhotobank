@@ -13,13 +13,8 @@ const Cropper = ({ x = 480, y = 480, size = 7, setData }) => {
     type: null,
   });
   const [src, setSrc] = useState(null);
-  const [crop, setCrop] = useState({
-    unit: "px",
-    width: x,
-    height: y,
-    x: 0,
-    y: 0,
-  });
+  const [crop, setCrop] = useState()
+
   const [image, setImage] = useState(null);
   const [output, setOutput] = useState(null);
   const [error, setErrorMessage] = useState(null);
@@ -88,6 +83,24 @@ const Cropper = ({ x = 480, y = 480, size = 7, setData }) => {
       setSrc(temp);
       document.getElementById("label-cropper").remove();
     };
+    if (y == x){
+      setCrop({
+        unit: "px",
+        width: x,
+        height: y,
+        x: 0,
+        y: 0,
+      });
+    }
+    else {
+      setCrop({
+        unit: "px",
+        width: 480,
+        height: 360,
+        x: 0,
+        y: 0,
+      });
+    }
   };
 
   const cropImageNow = () => {

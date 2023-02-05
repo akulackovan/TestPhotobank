@@ -1,9 +1,9 @@
 import React, {useContext, useEffect, useState} from 'react'
 import axios from "axios";
-import './PopularPage.scss'
 import {Link} from "react-router-dom";
 import {AuthContext} from "../../context/AuthContext";
 import Loader from '../../components/Loader/Loader';
+import PostTable from '../../components/PostsTable/PostsTable';
 
 const PopularPage = () => {
     const { userId } = useContext(AuthContext)
@@ -34,13 +34,17 @@ const PopularPage = () => {
                 )
                 .catch(error => {
                     setErrorMessage(error.response.data.message)
+                    setLoader(false)
                 })
 
         } catch (error) {
             console.log(error)
             setErrorMessage(error.response.data.message)
+            setLoader(false)
         }
     }, [])
+
+
 
     if (errorMessage !== "") {
         return (
@@ -64,29 +68,11 @@ const PopularPage = () => {
         )
     }
 
-
     return (
         <div className="wrapper1">
-
             {post && <div className='gal1'>
                 {!isToday && <h3>Фотографий за день нет</h3>}
-                <div className="gallery1">
-                    <ul className="center">
-                        {post.map((option) => (
-                            <Link to={`/post/${option._id}`}>
-                                <li>
-                                    <img style={{width: 400, height: 300}}
-                                         href={'/post/' + option._id}
-                                         src={option.image}
-                                         />
-                                </li>
-                            </Link>
-                        ))}
-                    </ul>
-                </div>
-                <div>
-                    <h2 className='h2'>Фотографии закончились</h2>
-                </div>
+                <PostTable post={post}/>
             </div>}
         </div>
 

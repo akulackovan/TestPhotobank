@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import { useHistory } from 'react-router';
 import { Redirect } from "react-router-dom";
 import axios from "axios";
 import "./AuthPage.scss";
@@ -15,6 +16,7 @@ const AuthPage = () => {
   const [userId, setUserID] = React.useState("");
   const [authRed, setAuthRed] = React.useState(false);
 
+  
   const changeForm = (event) => {
     setForm({ ...form, [event.target.name]: event.target.value });
     console.log(form);

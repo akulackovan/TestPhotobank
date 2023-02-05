@@ -5,6 +5,7 @@ import { Redirect, Link } from "react-router-dom";
 import PostTable from "../../components/PostsTable/PostsTable";
 import Loader from "../Loader/Loader";
 import './AnotherPage.scss'
+import PostUser from "../PostUser/PostUser"
 
 export const AnotherPage = ({ id }) => {
   const { userId } = useContext(AuthContext);
@@ -26,6 +27,7 @@ export const AnotherPage = ({ id }) => {
     subscribe: id,
     isSubs: isSubscription,
   });
+
 
   console.log(id);
   console.log(userId);
@@ -182,7 +184,7 @@ export const AnotherPage = ({ id }) => {
       </div>
       <hr className="hr"/>
       <div>
-        <PostTable id={id} />
+        <PostUser id={id} />
       </div>
     </div>
   );
