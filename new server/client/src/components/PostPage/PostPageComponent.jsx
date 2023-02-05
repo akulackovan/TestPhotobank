@@ -9,13 +9,14 @@ import ErrorMessage from "../ErrorMessage/ErrorMessage";
 const PostPageComponent = ({ id }) => {
   const [post, setPost] = useState("");
   const [loading, setLoading] = useState(true);
-
+  
   const [loadingComm, setLoadingComm] = useState(true);
   const [error, setErrorMessage] = useState("");
   const [comment, setComment] = useState("");
   const [comments, setComments] = useState({
     length: 0
   });
+  const [view, setView] = useState()
   const { userId } = useContext(AuthContext);
   const [like, setLike] = useState();
   console.log(userId);
@@ -34,6 +35,7 @@ const PostPageComponent = ({ id }) => {
       },
     })
       .then((response) => {
+        
         setLike(response.data.like);
         console.log(like);
       })
@@ -85,6 +87,7 @@ const PostPageComponent = ({ id }) => {
       .then((response) => {
         console.log(response.data.isPost);
         setPost(response.data.isPost);
+        setView(response.data.isPost.views)
         getLike();
         setLoading(false);
         getComments();
@@ -109,12 +112,14 @@ const PostPageComponent = ({ id }) => {
     })
       .then((response) => {
         console.log(response.data);
+        getPost()
       })
       .catch((error) => {
         setErrorMessage(error.response.data.message);
         setTimeout(() => setErrorMessage(""), 2000);
+        setLoading(false);
       });
-    getPost()
+    
   }, []);
 
   //
@@ -229,7 +234,7 @@ const PostPageComponent = ({ id }) => {
                     <path d="M8 2.5A8.11 8.11 0 0 0 0 8a8.11 8.11 0 0 0 8 5.5A8.11 8.11 0 0 0 16 8a8.11 8.11 0 0 0-8-5.5zm5.4 7.5A6.91 6.91 0 0 1 8 12.25 6.91 6.91 0 0 1 2.6 10a7.2 7.2 0 0 1-1.27-2A7.2 7.2 0 0 1 2.6 6 6.91 6.91 0 0 1 8 3.75 6.91 6.91 0 0 1 13.4 6a7.2 7.2 0 0 1 1.27 2 7.2 7.2 0 0 1-1.27 2z" />
                   </svg>
 
-                  <div className="num">{post.views}</div>
+                  <div className="num">{view}</div>
                 </li>
                 <li className="icon li">
                   <svg width="50px" height="50px" viewBox="0 0 32 32">
