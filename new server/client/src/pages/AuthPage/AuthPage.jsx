@@ -4,6 +4,7 @@ import { Redirect } from "react-router-dom";
 import axios from "axios";
 import "./AuthPage.scss";
 import { AuthContext } from "../../context/AuthContext";
+import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 
 const AuthPage = () => {
   const [form, setForm] = useState({
@@ -101,10 +102,11 @@ const AuthPage = () => {
           <button className="button" onClick={handleOnClick}>
             РЕГИСТРАЦИЯ
           </button>
-          {errorMessage && <div className="error"> {errorMessage} </div>}
+          {errorMessage && <ErrorMessage msg={errorMessage} /> }
           {redirect && <Redirect to="/reg" />}
         </div>
       </div>
+      
     </div>
   );
 };
