@@ -50,6 +50,7 @@ const SubscribePage = () => {
         return (
             <div className="head">
                 <h1>{errorMessage}</h1>
+                <hr className='hr center' style={{margin: '0 auto 50px auto'}}/>
             </div>
         )
     }
@@ -58,14 +59,16 @@ const SubscribePage = () => {
         return (
             <div className="head">
                 <h1>Нет постов</h1>
+                <hr className='hr center' style={{margin: '0 auto 50px auto'}}/>
             </div>
         )
     }
 
     return (
         <div>
-            {errorMessage && <head>errorMessage</head>}
+            {errorMessage && <div className="head">errorMessage</div>}
             <PostTable post={post}/>
+            <hr className='hr center' style={{margin: '0 auto 50px auto'}}/>
         </div>
     )
 }

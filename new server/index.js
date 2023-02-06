@@ -32,13 +32,7 @@ app.use('/auth', authRoute)
 app.use('/settings', settingRoute)
 app.use('/post', postRoute)
 app.use('/city', cityRoute)
-/*app.use('/post', postRoute)
-app.post('/upload', upload.single('image'), (req, res) => {
-    res.json(        {
-            url: '/uploads/${req.file.originalname}',
-        }
-    )
-})*/
+
 
 async function init() {
     try {

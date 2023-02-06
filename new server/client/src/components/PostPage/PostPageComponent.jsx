@@ -35,7 +35,6 @@ const PostPageComponent = ({ id }) => {
       },
     })
       .then((response) => {
-        
         setLike(response.data.like);
         console.log(like);
       })
@@ -207,7 +206,7 @@ const PostPageComponent = ({ id }) => {
           <div className="one">
             <div className="container">
               <div>
-                <Link to={`/profile/${post.author._id}`}>
+                <Link to={`/profile/${post.author._id}`} title={`Автор: ${post.author.username}`}>
                   <h4 className="head">{post.author.username}</h4>
                 </Link>
               </div>
@@ -223,13 +222,12 @@ const PostPageComponent = ({ id }) => {
             </div>
             <img
               className="img"
-              style={{ width: "777px", height: "564px" }}
               src={`${post.image}`}
             />
             <div className="stat">
               <ul>
                 <li className="icon li">
-                  <svg width="50px" height="50px" viewBox="0 0 16 16">
+                  <svg  viewBox="0 0 16 16">
                     <path d="M8 5.5A2.59 2.59 0 0 0 5.33 8 2.59 2.59 0 0 0 8 10.5 2.59 2.59 0 0 0 10.67 8 2.59 2.59 0 0 0 8 5.5zm0 3.75A1.35 1.35 0 0 1 6.58 8 1.35 1.35 0 0 1 8 6.75 1.35 1.35 0 0 1 9.42 8 1.35 1.35 0 0 1 8 9.25z" />
                     <path d="M8 2.5A8.11 8.11 0 0 0 0 8a8.11 8.11 0 0 0 8 5.5A8.11 8.11 0 0 0 16 8a8.11 8.11 0 0 0-8-5.5zm5.4 7.5A6.91 6.91 0 0 1 8 12.25 6.91 6.91 0 0 1 2.6 10a7.2 7.2 0 0 1-1.27-2A7.2 7.2 0 0 1 2.6 6 6.91 6.91 0 0 1 8 3.75 6.91 6.91 0 0 1 13.4 6a7.2 7.2 0 0 1 1.27 2 7.2 7.2 0 0 1-1.27 2z" />
                   </svg>
@@ -237,7 +235,7 @@ const PostPageComponent = ({ id }) => {
                   <div className="num">{view}</div>
                 </li>
                 <li className="icon li">
-                  <svg width="50px" height="50px" viewBox="0 0 32 32">
+                  <svg viewBox="0 0 32 32">
                     <path
                       d="M21.886 5.115c3.521 0 6.376 2.855 6.376 6.376 0 1.809-0.754 3.439-1.964 4.6l-10.297 10.349-10.484-10.536c-1.1-1.146-1.778-2.699-1.778-4.413 0-3.522 2.855-6.376 6.376-6.376 2.652 0 4.925 1.62 5.886 3.924 0.961-2.304 3.234-3.924 5.886-3.924zM21.886 4.049c-2.345 0-4.499 1.089-5.886 2.884-1.386-1.795-3.54-2.884-5.886-2.884-4.104 0-7.442 3.339-7.442 7.442 0 1.928 0.737 3.758 2.075 5.152l11.253 11.309 11.053-11.108c1.46-1.402 2.275-3.308 2.275-5.352 0-4.104-3.339-7.442-7.442-7.442v0z"
                       fill="#000000"
@@ -246,7 +244,7 @@ const PostPageComponent = ({ id }) => {
                   <div className="num">{post.likes}</div>
                 </li>
                 <li className="icon li">
-                  <svg width="50px" height="50px" viewBox="0 0 24 24">
+                  <svg  viewBox="0 0 24 24">
                     <path
                       fill-rule="evenodd"
                       clip-rule="evenodd"
@@ -316,9 +314,7 @@ const PostPageComponent = ({ id }) => {
               </form>
               <div onClick={commentHandler}>
                 <button className="button" title="Отправить комментарий"
-                style={{
-                  width: '150px',
-                  height: '50px'}}>
+                >
                   ОТПРАВИТЬ
                 </button>
               </div>
@@ -341,6 +337,7 @@ const PostPageComponent = ({ id }) => {
                           <h5>{item.user}</h5>
                           <p>{item.comment}</p>
                         </li>
+                        <hr className="hr"/>
                       </div>
                     ))}
                   </ul>

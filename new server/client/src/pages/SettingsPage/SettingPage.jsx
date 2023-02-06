@@ -70,6 +70,12 @@ const SettingsPage = () => {
         setTimeout(() => setErrorMessage(""), 2000);
       return;
     }
+    if (!form.checkpass && form.newpass )
+    {
+        setErrorMessage( "Подтверждение пароля не введено");
+        setTimeout(() => setErrorMessage(""), 2000);
+        return;
+    }
     if (form.newpass != "" && !form.newpass.match(/^[A-Za-z0-9]+$/)) {
         setErrorMessage( "Пароль должен содержать только цифры и латинские буквы");
         setTimeout(() => setErrorMessage(""), 2000);

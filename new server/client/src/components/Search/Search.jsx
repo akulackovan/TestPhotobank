@@ -50,7 +50,7 @@ const Search = ({ id }) => {
             <ul>
               {search.map((item) => (
                 <li className="element container">
-                  <Link to={`/profile/${item._id}`}>
+                  <Link to={`/profile/${item._id}`} title={`Открыть профиль: ${item.username}`}>
                     <h5>{item.username}</h5>
                   </Link>
                 </li>

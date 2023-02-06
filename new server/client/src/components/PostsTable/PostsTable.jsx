@@ -14,7 +14,7 @@ const PostTable = ({ post }) => {
             <ul>
               {post.map((option) => (
                 <li class="gallery">
-                <Link to={`/post/${option._id}`}>
+                <Link to={`/post/${option._id}`} title="Открыть пост">
                     <img
                       style={{ width: 300, height: 223 }}
                       href={"/post/" + option._id}

@@ -156,6 +156,7 @@ const Cropper = ({ x = 480, y = 480, size = 7, setData }) => {
             onChange={(e) => {
               selectImage(e);
             }}
+            
           />
           <label
             id="label-cropper"
@@ -169,6 +170,7 @@ const Cropper = ({ x = 480, y = 480, size = 7, setData }) => {
                 alt="Добавить изображение"
                 width="300px"
                 height="300px"
+                title="Выбрать изображение"
               />
             </div>
           </label>
@@ -195,7 +197,7 @@ const Cropper = ({ x = 480, y = 480, size = 7, setData }) => {
             )}
           </div>
           {output && (
-            <div>
+            <div className="end">
               <img src={output} />
               <button className="button " onClick={ChangeCrop}>
                 Изменить область

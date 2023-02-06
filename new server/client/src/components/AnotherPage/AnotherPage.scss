@@ -16,6 +16,9 @@
     .second{
         width: 50vw;
         max-width: 700px;
+        .container{
+            width: 100%;
+        }
     }
     .head{
         font-size: 16px;
@@ -26,12 +29,20 @@
 
     }
     .button {
-        width: 90%;
-        margin-left: auto;
-        margin-right: auto;
+        width: 100%;
     }
     .container{
         margin-bottom: 2%;
+        padding: 6px;
+    }
+    .AnotherPage{
+        display: flex;
+        .button{
+            min-width: 60px;
+        }
+        .container{
+            max-width: 78%;
+        }
     }
 }
 

@@ -4,8 +4,8 @@ import { AuthContext } from "../../context/AuthContext";
 import { Redirect, Link } from "react-router-dom";
 import PostTable from "../../components/PostsTable/PostsTable";
 import Loader from "../Loader/Loader";
-import './AnotherPage.scss'
-import PostUser from "../PostUser/PostUser"
+import "./AnotherPage.scss";
+import PostUser from "../PostUser/PostUser";
 
 export const AnotherPage = ({ id }) => {
   const { userId } = useContext(AuthContext);
@@ -27,7 +27,6 @@ export const AnotherPage = ({ id }) => {
     subscribe: id,
     isSubs: isSubscription,
   });
-
 
   console.log(id);
   console.log(userId);
@@ -147,6 +146,7 @@ export const AnotherPage = ({ id }) => {
                         setSubscriptions(!isSubscription);
                         subscribe();
                       }}
+                      title="Подписаться"
                     >
                       Подписаться
                     </button>
@@ -158,6 +158,7 @@ export const AnotherPage = ({ id }) => {
                         setSubscriptions(!isSubscription);
                         subscribe();
                       }}
+                      title="Отписаться"
                     >
                       Отписаться
                     </button>
@@ -182,10 +183,11 @@ export const AnotherPage = ({ id }) => {
           </div>
         </div>
       </div>
-      <hr className="hr"/>
+      <hr className="hr" />
       <div>
         <PostUser id={id} />
       </div>
+      <hr className="hr center" style={{ margin: "0 auto 50px auto" }} />
     </div>
   );
 };

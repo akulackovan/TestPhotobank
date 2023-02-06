@@ -3,7 +3,36 @@
   justify-content: space-between;
   margin: auto;
   background-color: var(--button-background-color);
-  min-width: 800px;
+  
+}
+.parent{
+  overflow: auto;
+  //Полоса прокрутки
+  margin-left: auto;
+  margin-right: auto;
+
+}
+.parent::-webkit-scrollbar {
+  background-color: aliceblue;
+  width: 5px;               /* ширина всей полосы прокрутки */
+  height: 5px;
+}
+
+.parent::-webkit-scrollbar-track {
+  background: var(--back-2);        /* цвет зоны отслеживания */
+}
+
+.parent::-webkit-scrollbar-thumb {
+  background-color: var(--button-background-color);    /* цвет бегунка */
+  border-radius: 30px;       /* округлось бегунка */  
+}
+
+
+
+.child{
+  display: flex;
+  margin: auto;
+  min-width: 850px;
 }
 
 .nav ul {
@@ -21,8 +50,9 @@
 
 .nav li a {
   font-size: 20px;
+  .input {
+    width: 150px;
+  }
 }
 
-.input {
-  width: 100px;
-}
+

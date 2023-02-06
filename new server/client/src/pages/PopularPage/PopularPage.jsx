@@ -71,9 +71,10 @@ const PopularPage = () => {
     return (
         <div className="wrapper1">
             {post && <div className='gal1'>
-                {!isToday && <h3>Фотографий за день нет</h3>}
+                {!isToday && <div className='head center'>Фотографий за день нет</div>}
                 <PostTable post={post}/>
             </div>}
+            <hr className='hr center' style={{margin: '0 auto 50px auto'}}/>
         </div>
 
 

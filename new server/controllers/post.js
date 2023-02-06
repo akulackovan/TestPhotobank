@@ -15,6 +15,9 @@ export const getPostById = async (req, res) => {
             })
         }
 
+        const likes = await User.find({likes: id})
+        isPost.likes = likes.length
+
         const autor = await User.findOne({ _id: isPost.author })
         isPost.author = autor
 
@@ -27,6 +30,7 @@ export const getPostById = async (req, res) => {
             message: 'Пост получен',
         })
     } catch (error) {
+        console.log(error)
         return res.status(400).json({
             message: 'Ошибка при получении поста'
         })
@@ -160,11 +164,10 @@ export const setLike = async (req, res) => {
 export const updateLike = async (req, res) => {
     try {
         const {idPost} = req.query
-        let post = await Post.findOne({_id: idPost})
-           
+        const likes = await User.find({likes: idPost})
         res.status(200).json({
-            likes: post.likes,
-            message: 'Лайк изменен',
+            likes: likes.length,
+            message: 'Лайк получен',
         })
     } catch (error) {
         console.log(error)
