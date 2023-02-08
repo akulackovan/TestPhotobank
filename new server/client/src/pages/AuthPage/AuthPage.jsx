@@ -30,7 +30,7 @@ const AuthPage = () => {
       setTimeout(() => setErrorMessage(""), 5000);
       return;
     }
-    if (!form.username.match(/^[A-Za-z0-9]+$/)) {
+    if (!form.username.match(/^[A-Za-zА-Яа-я]+$/)) {
       setErrorMessage(
         "Имя пользователя должно содержать только символы русского и английского алфавита"
       );
@@ -42,7 +42,7 @@ const AuthPage = () => {
       setTimeout(() => setErrorMessage(""), 5000);
       return;
     }
-    if (!form.password.match(/^[A-Za-z0-9]+$/)) {
+    if (!form.password.match(/^[A-Za-zА-Яа-я]+$/)) {
       setErrorMessage(
         "Имя пользователя должно содержать только символы русского и английского алфавита"
       );

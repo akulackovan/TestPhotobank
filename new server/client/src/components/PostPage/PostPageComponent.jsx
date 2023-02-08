@@ -120,12 +120,13 @@ const PostPageComponent = ({ id }) => {
       });
   }, []);
 
-  //
+
   const changeForm = (event) => {
     setComment(event.target.value);
     console.log(comment);
   };
 
+  
   const changeLike = async () => {
     try {
       await axios({
@@ -137,18 +138,16 @@ const PostPageComponent = ({ id }) => {
         },
       }).then((response) => {
         setLike(response.data.like);
+        if (response.data.like)
+        {
+          setPost({...post, likes: post.likes + 1})
+        }
+        else{
+          setPost({...post, likes: post.likes - 1})
+        }
       });
 
-      await axios({
-        method: "get",
-        url: "/post/updateLike",
-        params: {
-          idPost: id,
-        },
-      }).then((response) => {
-        setPost({ ...post, likes: response.data.likes });
-        console.log(response);
-      });
+      
     } catch (error) {
       console.log(error);
       setErrorMessage(error.response.data.message);

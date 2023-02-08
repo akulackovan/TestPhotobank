@@ -93,7 +93,6 @@ const Cropper = ({ x = 480, y = 480, size = 7, setData, isOut }) => {
       console.log(info);
       setSrc(temp);
       document.getElementById("label-cropper").remove();
-      isOut(true)
       /** Если это фото для аватарки */
       if (y == x) {
         setCrop({
@@ -107,6 +106,7 @@ const Cropper = ({ x = 480, y = 480, size = 7, setData, isOut }) => {
         console.log(img.width / img.height);
         /** Если фото 4/3 */
         if (img.width / img.height == 4 / 3) {
+          console.log("4/3")
           setIs43(true);
         }
         setCrop({
@@ -118,6 +118,7 @@ const Cropper = ({ x = 480, y = 480, size = 7, setData, isOut }) => {
         });
       }
     };
+    isOut(true)
   };
 
   /** Обрезка изображения */
@@ -136,7 +137,7 @@ const Cropper = ({ x = 480, y = 480, size = 7, setData, isOut }) => {
         console.log("Coeff " + coefficient);
         ctx.drawImage(
           image,
-          crop.x,
+          -crop.x,
           -crop.y,
           info.y / coefficient,
           info.y / (info.x / x)
@@ -157,9 +158,10 @@ const Cropper = ({ x = 480, y = 480, size = 7, setData, isOut }) => {
     setOutput(base64Image);
     setImage(src);
     setSrc(null);
-    isOut(false)
     setData(base64Image);
     console.log(base64Image);
+    
+    isOut(false)
   };
 
   const ChangeCrop = () => {
@@ -258,9 +260,6 @@ const Cropper = ({ x = 480, y = 480, size = 7, setData, isOut }) => {
                     crop={crop}
                     onChange={setCrop}
                     locked="true"
-                    zoomable={false}
-                    keepSelection={true}
-                    disabled={true}
                   >
                     <img src={src} id="source" width={400} height={300} />
                   </ReactCrop>

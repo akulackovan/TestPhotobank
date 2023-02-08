@@ -3,7 +3,7 @@ const router = new Router()
 import {getPopular} from "../controllers/getPopularPosts.js";
 import {createPost} from "../controllers/postController.js";
 import {getSubscriptionPosts} from "../controllers/getSubscriptionPosts.js";
-import {getPostById, getMyPost, getPostComments, getLike, addView, setLike, updateLike} from '../controllers/post.js'
+import {getPostById, getMyPost, getPostComments, getLike, addView, setLike } from '../controllers/post.js'
 import {createComment} from '../controllers/comments.js'
 
 router.post('/post', createPost) //создание поста
@@ -26,6 +26,5 @@ router.get('/subscription', getSubscriptionPosts)
 
 router.put('/addView', addView)
 router.put('/setLike', setLike)
-router.get('/updateLike', updateLike)
 
 export default router

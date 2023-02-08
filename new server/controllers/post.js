@@ -161,16 +161,3 @@ export const setLike = async (req, res) => {
     }
 }
 
-export const updateLike = async (req, res) => {
-    try {
-        const {idPost} = req.query
-        const likes = await User.find({likes: idPost})
-        res.status(200).json({
-            likes: likes.length,
-            message: 'Лайк получен',
-        })
-    } catch (error) {
-        console.log(error)
-        res.status(400).json({ message: 'Ошибка при получении статуса лайка' })
-    }
-}
