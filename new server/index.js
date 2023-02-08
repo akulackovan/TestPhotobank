@@ -21,7 +21,6 @@ const storage = multer.diskStorage({
     },
 })
 
-const upload = multer({storage})
 
 app.use(cors());
 app.use(express.json({limit: '50mb' }));
@@ -32,13 +31,7 @@ app.use('/auth', authRoute)
 app.use('/settings', settingRoute)
 app.use('/post', postRoute)
 app.use('/city', cityRoute)
-/*app.use('/post', postRoute)
-app.post('/upload', upload.single('image'), (req, res) => {
-    res.json(        {
-            url: '/uploads/${req.file.originalname}',
-        }
-    )
-})*/
+
 
 async function init() {
     try {

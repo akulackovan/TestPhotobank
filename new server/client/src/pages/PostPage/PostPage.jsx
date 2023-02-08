@@ -1,14 +1,12 @@
-import React, { useState, useEffect, Component } from 'react'
-import axios from 'axios'
-import PostPageComponet from '../../components/PostPage/PostPageComponent';
-
+import React, { useState, useEffect, Component } from "react";
+import PostPageComponet from "../../components/PostPage/PostPageComponent";
 
 export default class PostPage extends Component {
-
-    render() {
-        return (
-        <div className='postPage'>
-                <PostPageComponet id={this.props.match.params.id}/>
-        </div>
-    )}
+  render() {
+    return (
+      <div className="postPage">
+        <PostPageComponet id={this.props.match.params.id} />
+      </div>
+    );
+  }
 }

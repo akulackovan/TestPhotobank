@@ -6,7 +6,7 @@ import jwt from 'jsonwebtoken'
 
 export const settings = async (req, res) => {
     try {
-        const {userId, username, password, newpass, checkpass, text, city, base64, type} = req.body
+        const {userId, username, password, newpass, checkpass, text, city, base64} = req.body
         console.log(city + " " + userId)
         const user = await User.findOne({_id: userId})
         console.log(user)
@@ -46,7 +46,7 @@ export const settings = async (req, res) => {
             }
         }
         let isCity = null
-        if (city != "") {
+        if (city != "" || city==null) {
             isCity = await City.findOne({_id: city})
             console.log("isSi " + isCity)
             if (city != '' && !isCity) {
@@ -72,7 +72,7 @@ export const settings = async (req, res) => {
             await User.updateOne({_id: userId}, {city: idCity})
         }
         if (base64 != '') {
-            await User.updateOne({_id: userId}, {image: base64, typeImg: type})
+            await User.updateOne({_id: userId}, {image: base64 })
         }
 
         res.status(201).json({
