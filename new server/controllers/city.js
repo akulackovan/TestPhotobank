@@ -1,5 +1,6 @@
 import City from '../models/City.js'
 
+/** Получение города по id */
 export const getCity = async (req, res) => {
     try {
         const isCity = await City.findOne({ _id: req.query.cityId })
@@ -19,6 +20,7 @@ export const getCity = async (req, res) => {
     }
 }
 
+/** Получение всех городов */
 export const getAllCity = async (req, res) => {
     try {
         const city = await City.find()

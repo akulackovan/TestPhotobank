@@ -5,6 +5,7 @@ import "./AddPostPage.scss";
 import CityCombobox from "../../components/CityCombobox/CityCombobox";
 import Cropper from "../../components/Cropper/cropper";
 import { AuthContext } from "../../context/AuthContext";
+import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 
 const AddPostPage = () => {
   const [errorMessage, setErrorMessage] = React.useState("");
@@ -27,14 +28,17 @@ const AddPostPage = () => {
     console.log(form.city);
     if (form.photo == "") {
       setErrorMessage("Необходимо добавить фото");
+      setTimeout(() => setErrorMessage(""), 5000);
       return;
     }
     if (form.city == "") {
       setErrorMessage("Необходимо выбрать город");
+      setTimeout(() => setErrorMessage(""), 5000);
       return;
     }
     if (form.description.length > 512) {
       setErrorMessage("Описание поста должно содержать от 0 до 512 символов");
+      setTimeout(() => setErrorMessage(""), 5000);
       return;
     }
     try {
@@ -59,6 +63,7 @@ const AddPostPage = () => {
     } catch (error) {
       console.log(error);
       setErrorMessage(error.response.data.message);
+      setTimeout(() => setErrorMessage(""), 5000);
     }
   };
 
@@ -96,7 +101,7 @@ const AddPostPage = () => {
           <button className="button" onClick={addPostHandler}>
             ЗАГРУЗИТЬ ФОТО
           </button>
-          {errorMessage && <div className="error"> {errorMessage} </div>}
+          {errorMessage && <ErrorMessage msg={errorMessage} />}
         </div>
       </div>
     </div>

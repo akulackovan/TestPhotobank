@@ -9,7 +9,6 @@ import { useTheme } from "../../hooks/use.theme";
 import Cropper from "../../components/Cropper/cropper";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 
-
 const SettingsPage = () => {
   const { logout } = useContext(AuthContext);
   const { userId } = useContext(AuthContext);
@@ -21,9 +20,10 @@ const SettingsPage = () => {
     checkpass: "",
     text: "",
     city: "",
-    base64: ""
+    base64: "",
   });
-
+  const [isOut, setOut] = useState(false)
+ 
   const [errorMessage, setErrorMessage] = React.useState("");
   const [log, setLog] = React.useState(false);
 
@@ -48,53 +48,60 @@ const SettingsPage = () => {
   };
 
   const settingsHandler = async () => {
-    if (form.username != "" && !form.username.match(/^[A-Za-z0-9]+$/)) {
-        setErrorMessage( "Имя пользователя должно содержать только цифры и латинские буквы")
-        setTimeout(() => setErrorMessage(""), 2000);
-        return;
+    if (form.username != "" && !form.username.match(/^[A-Za-zА-Яа-я]+$/)) {
+      setErrorMessage(
+        "Имя пользователя должно содержать только символы русского и английского алфавита"
+      );
+      setTimeout(() => setErrorMessage(""), 2000);
+      return;
     }
     if (!(form.username.length <= 128)) {
-        setErrorMessage(  "Имя пользователя должно быть меньше 128 символов");
-        setTimeout(() => setErrorMessage(""), 2000);
-        return;
-    }
-    if (form.newpass && !form.password)
-    {
-        setErrorMessage("Не введен старый пароль");
-        setTimeout(() => setErrorMessage(""), 2000);
+      setErrorMessage("Имя пользователя должно быть меньше 128 символов");
+      setTimeout(() => setErrorMessage(""), 2000);
       return;
     }
-    if (form.password && !form.newpass)
-    {
-        setErrorMessage( "Не введен новый пароль");
-        setTimeout(() => setErrorMessage(""), 2000);
+    if (form.newpass && !form.password) {
+      setErrorMessage("Не введен старый пароль");
+      setTimeout(() => setErrorMessage(""), 2000);
       return;
     }
-    if (!form.checkpass && form.newpass )
-    {
-        setErrorMessage( "Подтверждение пароля не введено");
-        setTimeout(() => setErrorMessage(""), 2000);
-        return;
+    if (form.password && !form.newpass) {
+      setErrorMessage("Не введен новый пароль");
+      setTimeout(() => setErrorMessage(""), 2000);
+      return;
     }
-    if (form.newpass != "" && !form.newpass.match(/^[A-Za-z0-9]+$/)) {
-        setErrorMessage( "Пароль должен содержать только цифры и латинские буквы");
-        setTimeout(() => setErrorMessage(""), 2000);
-        return;
+    if (!form.checkpass && form.newpass) {
+      setErrorMessage("Подтверждение пароля не введено");
+      setTimeout(() => setErrorMessage(""), 2000);
+      return;
     }
+    if (form.newpass != "" && !form.newpass.match(/^[A-Za-zА-Яа-я]+$/)) {
+      setErrorMessage(
+        "Пароль должен содержать только символы русского и английского алфавита"
+      );
+      setTimeout(() => setErrorMessage(""), 2000);
+      return;
+    }
+    
     if (!(form.newpass.length <= 128)) {
-        setErrorMessage( "Пароль должен быть меньше 128 символов");
-        setTimeout(() => setErrorMessage(""), 2000);
-        return;
+      setErrorMessage("Пароль должен быть меньше 128 символов");
+      setTimeout(() => setErrorMessage(""), 2000);
+      return;
+    }
+    if (isOut) {
+      setErrorMessage("Изображение не обрезано");
+      setTimeout(() => setErrorMessage(""), 2000);
+      return;
     }
     if (!(form.checkpass == form.newpass)) {
-        setErrorMessage( "Пароли не совпадают");
-        setTimeout(() => setErrorMessage(""), 2000);
-        return;
+      setErrorMessage("Пароли не совпадают");
+      setTimeout(() => setErrorMessage(""), 2000);
+      return;
     }
     if (!(form.text.length < 512)) {
-        setErrorMessage( "Описание должно быть меньше 512 символов");
-        setTimeout(() => setErrorMessage(""), 2000);
-        return;
+      setErrorMessage("Описание должно быть меньше 512 символов");
+      setTimeout(() => setErrorMessage(""), 2000);
+      return;
     }
     if (form.onSelect) {
       setErrorMessage("Фото не обрезано");
@@ -127,7 +134,7 @@ const SettingsPage = () => {
             checkpass: "",
             text: "",
             city: "",
-            base64: ""
+            base64: "",
           });
         });
     } catch (error) {
@@ -157,21 +164,21 @@ const SettingsPage = () => {
               />
               <input
                 className="input"
-                type="text"
                 placeholder="Cтарый пароль"
                 name="password"
+                type="password"
                 onChange={changeForm}
               />
               <input
                 className="input"
-                type="text"
+                type="password"
                 placeholder="Новый пароль"
                 name="newpass"
                 onChange={changeForm}
               />
               <input
                 className="input"
-                type="text"
+                type="password"
                 placeholder="Подтверждение нового пароля"
                 name="checkpass"
                 onChange={changeForm}
@@ -217,6 +224,7 @@ const SettingsPage = () => {
           <Cropper
             setData={(value) => setForm({ ...form, base64: value })}
             key={formKey}
+            isOut={(value) => setOut(value)}
           />
         </div>
         <div className="buttons">
@@ -227,7 +235,7 @@ const SettingsPage = () => {
             ВЫЙТИ ИЗ АККАУНТА
           </button>
         </div>
-        {errorMessage && <ErrorMessage msg={errorMessage} /> }
+        {errorMessage && <ErrorMessage msg={errorMessage} />}
       </div>
     </div>
   );

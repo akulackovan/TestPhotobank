@@ -2,29 +2,30 @@ import Comment from '../models/Comment.js'
 import Post from '../models/Post.js'
 import User from '../models/User.js'
 
+/** Создание комментария */
 export const createComment = async (req, res) => {
     try {
+        /** Получение параметров и их проверка*/
         const { postId, userId, comment } = req.query
-
+        
         const isUser = await User.findOne({ _id: userId })
         if (!isUser) {
             return res.status(418).json({ message: 'Неверный пользователь' })
         }
 
+        /** Дополнительная проверка на пустой комментарий */
         if (!comment)
             return res.status(418).json({ message: 'Комментарий не может быть пустым' })
 
+        /** Создание нового комментария */
         const newComment = new Comment({ author: isUser, comment })
         await newComment.save()
 
-        try {
-            await Post.findByIdAndUpdate(postId, {
-                $push: { comments: newComment._id },
-            })
-        } catch (error) {
-            console.log(error)
-        }
-
+        /** Добавление комментария к посту */
+        await Post.findByIdAndUpdate(postId, {
+            $push: { comments: newComment._id },
+        })
+        
         res.status(201).json({
             newComment,
             message: 'Успешно созданный комментарий',

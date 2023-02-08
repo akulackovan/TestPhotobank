@@ -21,35 +21,31 @@ export const AnotherPage = ({ id }) => {
   const [isSubscription, setSubscriptions] = useState(false);
   //Колесо загрузки
   const [loader, setLoader] = useState(true);
-  //Для подписки
-  const [form, setForm] = useState({
-    userId: userId,
-    subscribe: id,
-    isSubs: isSubscription,
-  });
 
   console.log(id);
   console.log(userId);
 
-  //** Подписка */ */
+  //** Подписка */
   const subscribe = async () => {
     try {
       await axios
-        .post(
-          "/auth/subscribe",
-          { ...form },
-          {
-            headers: {
-              "Context-Type": "application/json",
-            },
-          }
-        )
+        .post("/auth/subscribe", {
+          params: {
+            userId: userId,
+            subscribe: id,
+          },
+          headers: {
+            "Context-Type": "application/json",
+          },
+        })
         .then((response) => {
-          setForm({ ...form, isSubs: response.data.isSubs });
-          if (form.isSubs) {
-            setForm({ ...user, subscriptions: user.subscriptions + 1 });
+          console.log("GO");
+
+          if (response.data.isSubs) {
+            console.log("Update");
+            setUser({ ...user, subscriptions: user.subscriptions + 1 });
           } else {
-            setForm({ ...user, subscriptions: user.subscriptions - 1 });
+            setUser({ ...user, subscriptions: user.subscriptions - 1 });
           }
         });
     } catch (error) {
@@ -80,7 +76,6 @@ export const AnotherPage = ({ id }) => {
           userProfileImage: response.data.user.image,
           city: response.data.city,
         });
-        setForm({ ...form, isSubs: !response.data.isSubscribe });
         setSubscriptions(response.data.isSubscribe);
         console.log(response.data.subscibe);
         setLoader(false);
@@ -154,6 +149,7 @@ export const AnotherPage = ({ id }) => {
                   {isSubscription && (
                     <button
                       className="button dislike"
+                      style={{ backgroundColor: "#BEBEBE" }}
                       onClick={() => {
                         setSubscriptions(!isSubscription);
                         subscribe();

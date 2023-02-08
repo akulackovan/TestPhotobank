@@ -20,7 +20,7 @@ export const useRoutes = (isLogin) =>
 
     if (isLogin)
     {
-        reditect ='/popular'
+        reditect = "/popular"
         return (
             <div className="app">
                     <NavBar />
@@ -33,21 +33,24 @@ export const useRoutes = (isLogin) =>
                             <Route exact path='/post/:id' component={PostPage} />
                             <Route exact path='/profile/:id' component={AnotherUserPage} />
                             <Route exact path='/search/:id' component={SearchPage} />
-                            <Redirect to={reditect} />
+                            <Redirect to='/popular' />
                         </Switch>
             </div>
         )
     }
-    else {
-        reditect='/auth'
+
+    if (!isLogin) {
         return (
             <div className="app-1">
             <Switch>
                 <Route exact path='/reg' component={RegPage} />
                 <Route exact path='/auth' component={AuthPage} />
-                
+               
             </Switch>
             </div>
-        )
+        );
+        
     }
+
+    
 }

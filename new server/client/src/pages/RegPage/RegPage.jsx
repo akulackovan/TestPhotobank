@@ -5,73 +5,78 @@ import { Link, Redirect } from "react-router-dom";
 import CityCombobox from "../../components/CityCombobox/CityCombobox";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 
-
 const RegPage = () => {
-
-  const [form, setForm] = useState(
-      {
-          username: '',
-          password: '',
-          city: ''
-      }
-  )
-  const [errorMessage, setErrorMessage] = React.useState("")
-  const [redirect, setRedirect] = React.useState(false)
-
+  const [form, setForm] = useState({
+    username: "",
+    password: "",
+    city: "",
+  });
+  const [errorMessage, setErrorMessage] = React.useState("");
+  const [redirect, setRedirect] = React.useState(false);
 
   const changeForm = (event) => {
-      setForm({ ...form, [event.target.name]: event.target.value })
-      console.log(form)
-  }
+    setForm({ ...form, [event.target.name]: event.target.value });
+    console.log(form);
+  };
 
- 
   const registerHandler = async () => {
-      if (!form.username.match(/^[A-Za-z0-9]+$/)) {
-          setErrorMessage("Имя пользователя должно содержать только цифры и латинские буквы");
-          setTimeout(() => setErrorMessage(""), 2000)
-          return;
-      }
-      if (!(form.username.length < 128)) {
-          setErrorMessage("Имя пользователя должно быть меньше 128 символов");
-          setTimeout(() => setErrorMessage(""), 2000)
-          return;
-      }
-      if (!form.password.match(/^[A-Za-z0-9]+$/)) {
-          setErrorMessage("Пароль должен содержать только цифры и латинские буквы");
-          setTimeout(() => setErrorMessage(""), 2000)
-          return;
-      }
-      if (!(form.password.length < 128)) {
-          setErrorMessage("Пароль должен быть меньше 128 символов");
-          setTimeout(() => setErrorMessage(""), 2000)
-          return;
-      }
-      try {
-          await axios.post('/auth/reg', { ...form }, {
-              headers:
-              {
-                  'Context-Type': 'application/json'
-              }
-          })
-              .then(response => {
-                  console.log(response)
-                  setErrorMessage(response.data.message + "    Вы будете перенаправлены на страницу авторизации через 5 секунд")
-                  setTimeout(() => setRedirect(true), 5000)
-              })
-      }
-      catch (error) {
-          console.log(error)
-          setErrorMessage(error.response.data.message)
-      }
-  }
-
+    if (!(form.username && form.password && form.city)) {
+      setErrorMessage("Заполнены не все поля");
+      setTimeout(() => setErrorMessage(""), 5000);
+      return;
+    }
+    if (!form.username.match(/^[A-Za-zА-Яа-я]+$/)) {
+      setErrorMessage(
+        "Имя пользователя должно содержать только символы русского и английского алфавита"
+      );
+      setTimeout(() => setErrorMessage(""), 2000);
+      return;
+    }
+    if (!(form.username.length < 128)) {
+      setErrorMessage("Имя пользователя должно быть меньше 128 символов");
+      setTimeout(() => setErrorMessage(""), 2000);
+      return;
+    }
+    if (!form.password.match(/^[A-Za-zА-Яа-я]+$/)) {
+      setErrorMessage(
+        "Пароль должен содержать только символы русского и английского алфавита"
+      );
+      setTimeout(() => setErrorMessage(""), 2000);
+      return;
+    }
+    if (!(form.password.length < 128)) {
+      setErrorMessage("Пароль должен быть меньше 128 символов");
+      setTimeout(() => setErrorMessage(""), 2000);
+      return;
+    }
+    try {
+      await axios
+        .post(
+          "/auth/reg",
+          { ...form },
+          {
+            headers: {
+              "Context-Type": "application/json",
+            },
+          }
+        )
+        .then((response) => {
+          console.log(response);
+          setErrorMessage(
+            response.data.message +
+              "    Вы будете перенаправлены на страницу авторизации через 5 секунд"
+          );
+          setTimeout(() => setRedirect(true), 5000);
+        });
+    } catch (error) {
+      console.log(error);
+      setErrorMessage(error.response.data.message);
+    }
+  };
 
   if (redirect) {
-      return (
-          <Redirect to='/auth' />
-      )
+    return <Redirect to="/auth" />;
   }
-
 
   return (
     <div className="background">
@@ -87,7 +92,7 @@ const RegPage = () => {
           />
           <input
             className="input"
-            type="text"
+            type="password"
             placeholder="Пароль"
             name="password"
             onChange={changeForm}
@@ -103,13 +108,14 @@ const RegPage = () => {
             ЗАРЕГИСТРИРОВАТЬСЯ
           </button>
           <a className="link">
-            <Link to="/auth">ОБРАТНО</Link>
+            <Link to="/auth" className="link">
+              ОБРАТНО
+            </Link>
           </a>
         </div>
-       
       </div>
-      
-      {errorMessage && <ErrorMessage msg={errorMessage} /> }
+
+      {errorMessage && <ErrorMessage msg={errorMessage} />}
     </div>
   );
 };

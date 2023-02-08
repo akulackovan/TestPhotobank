@@ -10,8 +10,9 @@ function App() {
   const {login, logout, token, userId, isReady} = useAuth()
   const isLogin = !!token
   const routes = useRoutes(isLogin)
-
   const { theme, setTheme } = useTheme()
+
+
   return (
     <AuthContext.Provider value= {{login, logout, token, userId, isReady, isLogin}}>
       <div className="app">

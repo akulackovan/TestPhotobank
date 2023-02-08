@@ -1,5 +1,8 @@
 const ErrorMessage = ({ msg }) => (
-  <div className="errorMessage">
+  <div
+    className="errorMessage"
+    style={{ height: "300px", width: "400px", zIndex: 999999 }}
+  >
     <svg
       width="40.000000pt"
       height="40.000000pt"

@@ -21,58 +21,54 @@ html {
 
 //Полоса прокрутки
 *::-webkit-scrollbar {
-  width: 10px;               /* ширина всей полосы прокрутки */
+  width: 10px; /* ширина всей полосы прокрутки */
 }
 
 *::-webkit-scrollbar-track {
-  background: var(--back-2);        /* цвет зоны отслеживания */
+  background: var(--back-2); /* цвет зоны отслеживания */
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: var(--button-background-color);    /* цвет бегунка */
-  border-radius: 20px;       /* округлось бегунка */  
+  background-color: var(--button-background-color); /* цвет бегунка */
+  border-radius: 20px; /* округлось бегунка */
 }
 
 //Simple кнопка
 .button {
   color: var(--button-text-color);
-    background-color: var(--button-background-color);
-    border-radius: 999px;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: 700;
-    line-height: 24px;
-    opacity: 1;
-    outline: 0 solid transparent;
-    padding: 8px 18px;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    width: fit-content;
-    word-break: break-word;
-    border: 0;
-
+  background-color: var(--button-background-color);
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  opacity: 1;
+  outline: 0 solid transparent;
+  padding: 8px 18px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: fit-content;
+  word-break: break-word;
+  border: 0;
 }
-
-
 
 //Назначаем стиль для заголовков
 .head {
   color: var(--main-front);
   font-weight: bold;
-  font-size: 400%;
+  font-size: 150%;
 }
 
-.hr{
-  border: none; 
-  background-color: var(--button-background-color); 
-  color: var(--button-background-color); 
+.hr {
+  border: none;
+  background-color: var(--button-background-color);
+  color: var(--button-background-color);
   height: 7px;
   width: 98%;
   border-radius: 30px;
   margin-left: auto;
   margin-right: auto;
-  
 }
 
 //
@@ -158,4 +154,3 @@ html {
   fill: var(--font-color);
   font-weight: 700;
 }
-

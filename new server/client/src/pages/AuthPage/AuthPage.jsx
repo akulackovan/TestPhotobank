@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
-import { useHistory } from 'react-router';
+import { useHistory } from "react-router";
 import { Redirect } from "react-router-dom";
-import axios from "axios";
+import axios, { formToJSON } from "axios";
 import "./AuthPage.scss";
 import { AuthContext } from "../../context/AuthContext";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
@@ -17,7 +17,6 @@ const AuthPage = () => {
   const [userId, setUserID] = React.useState("");
   const [authRed, setAuthRed] = React.useState(false);
 
-  
   const changeForm = (event) => {
     setForm({ ...form, [event.target.name]: event.target.value });
     console.log(form);
@@ -26,22 +25,33 @@ const AuthPage = () => {
   const { login } = useContext(AuthContext);
 
   const authHandler = async () => {
+    if (!(form.username && form.password)) {
+      setErrorMessage("Заполнены не все поля");
+      setTimeout(() => setErrorMessage(""), 5000);
+      return;
+    }
     if (!form.username.match(/^[A-Za-z0-9]+$/)) {
       setErrorMessage(
-        "Имя пользователя должно содержать только цифры и латинские буквы"
+        "Имя пользователя должно содержать только символы русского и английского алфавита"
       );
+      setTimeout(() => setErrorMessage(""), 5000);
       return;
     }
     if (!(form.username.length < 128)) {
       setErrorMessage("Имя пользователя должно быть меньше 128 символов");
+      setTimeout(() => setErrorMessage(""), 5000);
       return;
     }
     if (!form.password.match(/^[A-Za-z0-9]+$/)) {
-      setErrorMessage("Пароль должен содержать только цифры и латинские буквы");
+      setErrorMessage(
+        "Имя пользователя должно содержать только символы русского и английского алфавита"
+      );
+      setTimeout(() => setErrorMessage(""), 5000);
       return;
     }
     if (!(form.password.length < 128)) {
       setErrorMessage("Пароль должен быть меньше 128 символов");
+      setTimeout(() => setErrorMessage(""), 5000);
       return;
     }
     try {
@@ -64,6 +74,7 @@ const AuthPage = () => {
     } catch (error) {
       console.log(error);
       setErrorMessage(error.response.data.message);
+      setTimeout(() => setErrorMessage(""), 5000);
     }
   };
 
@@ -94,6 +105,7 @@ const AuthPage = () => {
             type="text"
             placeholder="Пароль"
             name="password"
+            type="password"
             onChange={changeForm}
           />
           <button className="button" onClick={authHandler}>
@@ -102,11 +114,10 @@ const AuthPage = () => {
           <button className="button" onClick={handleOnClick}>
             РЕГИСТРАЦИЯ
           </button>
-          {errorMessage && <ErrorMessage msg={errorMessage} /> }
+          {errorMessage && <ErrorMessage msg={errorMessage} />}
           {redirect && <Redirect to="/reg" />}
         </div>
       </div>
-      
     </div>
   );
 };

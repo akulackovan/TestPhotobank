@@ -9,14 +9,14 @@ import ErrorMessage from "../ErrorMessage/ErrorMessage";
 const PostPageComponent = ({ id }) => {
   const [post, setPost] = useState("");
   const [loading, setLoading] = useState(true);
-  
+
   const [loadingComm, setLoadingComm] = useState(true);
   const [error, setErrorMessage] = useState("");
   const [comment, setComment] = useState("");
   const [comments, setComments] = useState({
-    length: 0
+    length: 0,
   });
-  const [view, setView] = useState()
+  const [view, setView] = useState();
   const { userId } = useContext(AuthContext);
   const [like, setLike] = useState();
   console.log(userId);
@@ -59,7 +59,7 @@ const PostPageComponent = ({ id }) => {
       .then((response) => {
         console.log(response.data);
         if (response.data.total.length == 0) {
-          setComments({length: 0});
+          setComments({ length: 0 });
           setLoadingComm(false);
           return;
         }
@@ -86,7 +86,7 @@ const PostPageComponent = ({ id }) => {
       .then((response) => {
         console.log(response.data.isPost);
         setPost(response.data.isPost);
-        setView(response.data.isPost.views)
+        setView(response.data.isPost.views);
         getLike();
         setLoading(false);
         getComments();
@@ -95,7 +95,7 @@ const PostPageComponent = ({ id }) => {
         setErrorMessage(error.response.data.message);
         setTimeout(() => setErrorMessage(""), 2000);
       });
-  }
+  };
 
   //Добавить просмотр + данные о посте
   useEffect(() => {
@@ -111,14 +111,13 @@ const PostPageComponent = ({ id }) => {
     })
       .then((response) => {
         console.log(response.data);
-        getPost()
+        getPost();
       })
       .catch((error) => {
         setErrorMessage(error.response.data.message);
         setTimeout(() => setErrorMessage(""), 2000);
         setLoading(false);
       });
-    
   }, []);
 
   //
@@ -163,7 +162,7 @@ const PostPageComponent = ({ id }) => {
       setTimeout(() => setErrorMessage(""), 2000);
       return;
     }
-    if ((comment.length == 0)) {
+    if (comment.length == 0) {
       setErrorMessage("Комментарий не должен быть пустым");
       setTimeout(() => setErrorMessage(""), 2000);
       return;
@@ -186,7 +185,7 @@ const PostPageComponent = ({ id }) => {
         getComments("");
         setComment("");
       });
-      getPost()
+      getPost();
     } catch (error) {
       console.log(error);
       setErrorMessage(error.response.data.message);
@@ -206,7 +205,10 @@ const PostPageComponent = ({ id }) => {
           <div className="one">
             <div className="container">
               <div>
-                <Link to={`/profile/${post.author._id}`} title={`Автор: ${post.author.username}`}>
+                <Link
+                  to={`/profile/${post.author._id}`}
+                  title={`Автор: ${post.author.username}`}
+                >
                   <h4 className="head">{post.author.username}</h4>
                 </Link>
               </div>
@@ -220,14 +222,11 @@ const PostPageComponent = ({ id }) => {
                 <div className="city">г.{post.city.city}</div>
               </div>
             </div>
-            <img
-              className="img"
-              src={`${post.image}`}
-            />
+            <img className="img" src={`${post.image}`} />
             <div className="stat">
               <ul>
                 <li className="icon li">
-                  <svg  viewBox="0 0 16 16">
+                  <svg viewBox="0 0 16 16">
                     <path d="M8 5.5A2.59 2.59 0 0 0 5.33 8 2.59 2.59 0 0 0 8 10.5 2.59 2.59 0 0 0 10.67 8 2.59 2.59 0 0 0 8 5.5zm0 3.75A1.35 1.35 0 0 1 6.58 8 1.35 1.35 0 0 1 8 6.75 1.35 1.35 0 0 1 9.42 8 1.35 1.35 0 0 1 8 9.25z" />
                     <path d="M8 2.5A8.11 8.11 0 0 0 0 8a8.11 8.11 0 0 0 8 5.5A8.11 8.11 0 0 0 16 8a8.11 8.11 0 0 0-8-5.5zm5.4 7.5A6.91 6.91 0 0 1 8 12.25 6.91 6.91 0 0 1 2.6 10a7.2 7.2 0 0 1-1.27-2A7.2 7.2 0 0 1 2.6 6 6.91 6.91 0 0 1 8 3.75 6.91 6.91 0 0 1 13.4 6a7.2 7.2 0 0 1 1.27 2 7.2 7.2 0 0 1-1.27 2z" />
                   </svg>
@@ -244,7 +243,7 @@ const PostPageComponent = ({ id }) => {
                   <div className="num">{post.likes}</div>
                 </li>
                 <li className="icon li">
-                  <svg  viewBox="0 0 24 24">
+                  <svg viewBox="0 0 24 24">
                     <path
                       fill-rule="evenodd"
                       clip-rule="evenodd"
@@ -313,8 +312,7 @@ const PostPageComponent = ({ id }) => {
                 />
               </form>
               <div onClick={commentHandler}>
-                <button className="button" title="Отправить комментарий"
-                >
+                <button className="button" title="Отправить комментарий">
                   ОТПРАВИТЬ
                 </button>
               </div>
@@ -322,7 +320,9 @@ const PostPageComponent = ({ id }) => {
             <div className="listComments">
               <hr className="hr" />
               <div className="head">Комментарии</div>
-              {loadingComm && <div className="head">Загрузка комментариев...</div>}
+              {loadingComm && (
+                <div className="head">Загрузка комментариев...</div>
+              )}
               {!loadingComm && comments.length == 0 && (
                 <div>
                   <div>Комментариев нет</div>
@@ -337,7 +337,7 @@ const PostPageComponent = ({ id }) => {
                           <h5>{item.user}</h5>
                           <p>{item.comment}</p>
                         </li>
-                        <hr className="hr"/>
+                        <hr className="hr" />
                       </div>
                     ))}
                   </ul>

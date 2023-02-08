@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
-import './CityCombobox.scss'
+import "./CityCombobox.scss";
 
 const CityCombobox = ({ onChange }) => {
   const [showMenu, setShowMenu] = useState(false);
@@ -70,8 +70,12 @@ const CityCombobox = ({ onChange }) => {
   };
 
   return (
-    <div className="dropdown-container" >
-      <div className="dropdown-input" onClick={handleInputClick} title="Выбрать город">
+    <div className="dropdown-container">
+      <div
+        className="dropdown-input"
+        onClick={handleInputClick}
+        title="Выбрать город"
+      >
         <div className="dropdown-selected-value">{getDisplay()}</div>
         <div className="dropdown-tools">
           <div className="dropdown-tool">

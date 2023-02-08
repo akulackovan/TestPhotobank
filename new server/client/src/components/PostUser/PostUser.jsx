@@ -49,9 +49,7 @@ const PostUser = ({ id }) => {
     );
   }
 
-  return (
-    <PostTable post={post}/>
-  );
+  return <PostTable post={post} />;
 };
 
 export default PostUser;

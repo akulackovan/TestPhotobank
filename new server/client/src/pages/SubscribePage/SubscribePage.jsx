@@ -49,7 +49,7 @@ const SubscribePage = () => {
     if (errorMessage !== "") {
         return (
             <div className="head">
-                <h1>{errorMessage}</h1>
+                <h1 className='center head'>{errorMessage}</h1>
                 <hr className='hr center' style={{margin: '0 auto 50px auto'}}/>
             </div>
         )
@@ -58,14 +58,14 @@ const SubscribePage = () => {
     if (post === []) {
         return (
             <div className="head">
-                <h1>Нет постов</h1>
+                <h1 className='center head'>Нет постов</h1>
                 <hr className='hr center' style={{margin: '0 auto 50px auto'}}/>
             </div>
         )
     }
 
     return (
-        <div>
+        <div style={{width: '80%', marginLeft: 'auto', marginRight: 'auto'}}>
             {errorMessage && <div className="head">errorMessage</div>}
             <PostTable post={post}/>
             <hr className='hr center' style={{margin: '0 auto 50px auto'}}/>

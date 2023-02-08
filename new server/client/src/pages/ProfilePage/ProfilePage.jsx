@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
-import "./ProfilePage.scss";
 import { AnotherPage } from "../../components/AnotherPage/AnotherPage";
 
 const ProfilePage = () => {
