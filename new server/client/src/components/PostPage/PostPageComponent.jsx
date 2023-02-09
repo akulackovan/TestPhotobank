@@ -1,8 +1,8 @@
-import React, { useState, useEffect, Component, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import Loader from "../Loader/Loader";
 import { Link } from "react-router-dom";
-import { AuthContext } from "../../context/AuthContext";
+import  AuthContext  from "../../context/AuthContext";
 import "./PostPage.scss";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 

@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { AuthContext } from "../../context/AuthContext";
+import  AuthContext  from "../../context/AuthContext";
 import { AnotherPage } from "../../components/AnotherPage/AnotherPage";
 
 const ProfilePage = () => {

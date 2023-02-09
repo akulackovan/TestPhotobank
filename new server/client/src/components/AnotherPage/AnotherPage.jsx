@@ -1,8 +1,7 @@
 import React, { useState, useContext, useEffect, Component } from "react";
 import axios from "axios";
-import { AuthContext } from "../../context/AuthContext";
-import { Redirect, Link } from "react-router-dom";
-import PostTable from "../../components/PostsTable/PostsTable";
+import  AuthContext  from "../../context/AuthContext";
+import { Link } from "react-router-dom";
 import Loader from "../Loader/Loader";
 import "./AnotherPage.scss";
 import PostUser from "../PostUser/PostUser";

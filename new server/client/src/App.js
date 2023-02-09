@@ -2,7 +2,7 @@ import React from "react"
 import { BrowserRouter as Router } from "react-router-dom"
 import "./App.scss";
 import {useRoutes} from './routes'
-import {AuthContext} from './context/AuthContext'
+import AuthContext from './context/AuthContext'
 import {useAuth} from './hooks/auth.hook'
 import {useTheme} from './hooks/use.theme'
 

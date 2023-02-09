@@ -1,8 +1,8 @@
 import React, { useState, useContext } from "react";
 import { Redirect } from "react-router-dom";
-import axios, { formToJSON } from "axios";
+import axios from "axios";
 import "./AuthPage.scss";
-import { AuthContext } from "../../context/AuthContext";
+import  AuthContext  from "../../context/AuthContext";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 
 const AuthPage = () => {
@@ -29,7 +29,7 @@ const AuthPage = () => {
       setTimeout(() => setErrorMessage(""), 5000);
       return;
     }
-    if (!form.username.match(/^[A-Za-zА-Яа-я]+$/)) {
+    if (!form.username.match(/^[A-Za-zА-Яа-яЁё]+$/)) {
       setErrorMessage(
         "Имя пользователя должно содержать только символы русского и английского алфавита"
       );
@@ -41,7 +41,7 @@ const AuthPage = () => {
       setTimeout(() => setErrorMessage(""), 5000);
       return;
     }
-    if (!form.password.match(/^[A-Za-zА-Яа-я]+$/)) {
+    if (!form.password.match(/^[A-Za-zА-Яа-яЁё]+$/)) {
       setErrorMessage(
         "Имя пользователя должно содержать только символы русского и английского алфавита"
       );
@@ -97,6 +97,7 @@ const AuthPage = () => {
             type="text"
             placeholder="Логин"
             name="username"
+            data-testid="username"
             onChange={changeForm}
           />
           <input
@@ -106,13 +107,13 @@ const AuthPage = () => {
             type="password"
             onChange={changeForm}
           />
-          <button className="button" onClick={authHandler}>
+          <button className="button" onClick={authHandler} data-testid="login-button">
             ВОЙТИ
           </button>
           <button className="button" onClick={handleOnClick}>
             РЕГИСТРАЦИЯ
           </button>
-          {errorMessage && <ErrorMessage msg={errorMessage} />}
+          {errorMessage && <ErrorMessage data-testid="error" msg={errorMessage} />}
           {redirect && <Redirect to="/reg" />}
         </div>
       </div>

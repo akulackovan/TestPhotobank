@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Component } from "react";
+import React, { Component } from "react";
 import PostPageComponet from "../../components/PostPage/PostPageComponent";
 
 export default class PostPage extends Component {
