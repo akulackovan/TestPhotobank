@@ -8,7 +8,7 @@ import {createComment} from '../controllers/comments.js'
 
 router.post('/post', createPost) //создание поста
 
-router.get('/', getPopular) //получение всех постов
+router.get('/', getPopular) //получение популярных
 
 router.get('/getMe', getMyPost)
 

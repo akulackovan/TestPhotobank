@@ -65,7 +65,7 @@ export const register = async (req, res) => {
         })
     } catch (error) {
         console.log(error)
-        res.status(400).json({message: 'Ошибка при создании пользователя.'})
+        res.status(400).json({message: 'Ошибка при авторизации'})
     }
 }
 
@@ -77,7 +77,7 @@ export const login = async (req, res) => {
         const user = await User.findOne({username})
         if (!user) {
             return res.status(404).json({
-                message: 'Такого пользователя не существует.',
+                message: 'Такого пользователя не существует',
             })
         }
         
@@ -85,7 +85,7 @@ export const login = async (req, res) => {
         const isPasswordCorrect = await bcrypt.compare(password, user.password)
         if (!isPasswordCorrect) {
             return res.status(401).json({
-                message: 'Неверный пароль.',
+                message: 'Неверный пароль',
             })
         }
 
@@ -146,12 +146,12 @@ export const getAnother = async (req, res) => {
             subscibe,
             city:city.city,
             isSubscribe,
-            message: 'Профиль успешен =)',
+            message: 'Профиль успешен',
         })
 
     } catch (error) {
         console.log(error)
-        res.status(401).json({message: 'Нет'})
+        res.status(401).json({message: 'Нет доступа'})
     }
 }
 
@@ -173,7 +173,7 @@ export const getMe = async (req, res) => {
         res.json({
             user,
             subscibe,
-            message: 'Профиль успешен =)',
+            message: 'Профиль успешен',
         })
     } catch (error) {
         console.log(error)

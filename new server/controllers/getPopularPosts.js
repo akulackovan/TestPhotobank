@@ -49,13 +49,13 @@ import Post from "../models/Post.js";
     return res.status(200).json({
       posts,
       isToday,
-      message: "Пост получен",
+      message: "Популярное",
     });
   } catch (error) {
     console.log(error);
     res
       .status(400)
-      .json({ message: "Ошибка при получении популярных постов." });
+      .json({ message: "Ошибка при получении популярных" });
   }
 };*/
 
@@ -135,13 +135,13 @@ export const getPopular = async (req, res) => {
 
     return res.status(200).json({
         popular,
-        message: "Пост получен",
+        message: "Популярное",
       });
   } catch (error) {
     console.log(error);
     res
       .status(400)
-      .json({ message: "Ошибка при получении популярных постов." });
+      .json({ message: "Ошибка при получении популярных" });
   }
 };
 

@@ -48,7 +48,7 @@ export const getSubscriptionPosts = async (req, res) => {
         })
     } catch (error) {
         console.log(error)
-        return res.status(400).json({message: 'Ошибка при получении постов.'});
+        return res.status(400).json({message: 'Ошибка при получении подписных постов'});
     }
 };
 

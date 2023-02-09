@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1675956025513" clover="3.2.0">
-  <project timestamp="1675956025513" name="All files">
+<coverage generated="1675975747452" clover="3.2.0">
+  <project timestamp="1675975747452" name="All files">
     <metrics statements="52" coveredstatements="40" conditionals="18" coveredconditionals="15" methods="12" coveredmethods="4" elements="82" coveredelements="59" complexity="0" loc="52" ncloc="52" packages="3" files="3" classes="3"/>
     <package name="components.ErrorMessage">
       <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
@@ -22,17 +22,17 @@
       <file name="AuthPage.jsx" path="D:\GitHub\Another\new server\client\src\pages\AuthPage\AuthPage.jsx">
         <metrics statements="49" coveredstatements="37" conditionals="18" coveredconditionals="15" methods="11" coveredmethods="3"/>
         <line num="8" count="1" type="stmt"/>
-        <line num="9" count="40" type="stmt"/>
-        <line num="13" count="40" type="stmt"/>
-        <line num="14" count="40" type="stmt"/>
-        <line num="15" count="40" type="stmt"/>
-        <line num="16" count="40" type="stmt"/>
-        <line num="17" count="40" type="stmt"/>
-        <line num="19" count="40" type="stmt"/>
-        <line num="20" count="17" type="stmt"/>
-        <line num="21" count="17" type="stmt"/>
-        <line num="24" count="40" type="stmt"/>
-        <line num="26" count="40" type="stmt"/>
+        <line num="9" count="43" type="stmt"/>
+        <line num="13" count="43" type="stmt"/>
+        <line num="14" count="43" type="stmt"/>
+        <line num="15" count="43" type="stmt"/>
+        <line num="16" count="43" type="stmt"/>
+        <line num="17" count="43" type="stmt"/>
+        <line num="19" count="43" type="stmt"/>
+        <line num="20" count="19" type="stmt"/>
+        <line num="21" count="19" type="stmt"/>
+        <line num="24" count="43" type="stmt"/>
+        <line num="26" count="43" type="stmt"/>
         <line num="27" count="9" type="cond" truecount="4" falsecount="0"/>
         <line num="28" count="3" type="stmt"/>
         <line num="29" count="3" type="stmt"/>
@@ -62,14 +62,14 @@
         <line num="74" count="0" type="stmt"/>
         <line num="75" count="0" type="stmt"/>
         <line num="76" count="0" type="stmt"/>
-        <line num="80" count="40" type="stmt"/>
+        <line num="80" count="43" type="stmt"/>
         <line num="81" count="0" type="stmt"/>
-        <line num="83" count="40" type="stmt"/>
-        <line num="84" count="40" type="stmt"/>
-        <line num="85" count="40" type="cond" truecount="1" falsecount="1"/>
+        <line num="83" count="43" type="stmt"/>
+        <line num="84" count="43" type="stmt"/>
+        <line num="85" count="43" type="cond" truecount="1" falsecount="1"/>
         <line num="86" count="0" type="stmt"/>
         <line num="87" count="0" type="stmt"/>
-        <line num="90" count="40" type="stmt"/>
+        <line num="90" count="43" type="stmt"/>
       </file>
     </package>
   </project>

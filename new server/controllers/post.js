@@ -2,8 +2,6 @@ import Post from '../models/Post.js'
 import User from '../models/User.js'
 import City from '../models/City.js'
 import Comment from '../models/Comment.js'
-import bcrypt from 'bcryptjs'
-import jwt from 'jsonwebtoken'
 
 export const getPostById = async (req, res) => {
     try {
@@ -55,7 +53,7 @@ export const getMyPost = async (req, res) => {
 
         return res.json({
             isPost,
-            message: 'Посты получены',
+            message: 'Посты пользователя получены',
         })
 
 
