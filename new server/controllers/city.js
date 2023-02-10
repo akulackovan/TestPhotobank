@@ -5,7 +5,7 @@ export const getCity = async (req, res) => {
     try {
         const isCity = await City.findOne({ _id: req.query.cityId })
         if (!isCity) {
-            return res.json({
+            return res.status(400).json({
                 message: 'Города нет',
             })
         }

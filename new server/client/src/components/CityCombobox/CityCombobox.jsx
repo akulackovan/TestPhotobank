@@ -10,16 +10,14 @@ const CityCombobox = ({ onChange }) => {
   const [options, setOptions] = useState([]);
 
   useEffect(() => {
-    try {
-      axios({
-        method: "get",
-        url: "/city/getallcity",
-      }).then((response) => {
+      axios.get(
+        "/city/getallcity"
+      ).then(function (response) {
         setOptions(response.data.city);
-      });
-    } catch (error) {
+      })
+      .catch(function (error) {
       console.log(error);
-    }
+    })
   }, []);
 
   const searchRef = useRef();
@@ -75,6 +73,7 @@ const CityCombobox = ({ onChange }) => {
         className="dropdown-input"
         onClick={handleInputClick}
         title="Выбрать город"
+        data-testid='button'
       >
         <div className="dropdown-selected-value">{getDisplay()}</div>
         <div className="dropdown-tools">
@@ -88,12 +87,13 @@ const CityCombobox = ({ onChange }) => {
       {showMenu && (
         <div className="dropdown-menu">
           <div className="search-box">
-            <input onChange={onSearch} value={searchValue} ref={searchRef} />
+            <input onChange={onSearch} value={searchValue} ref={searchRef} data-testid='city-input'/>
           </div>
           {getOptions().map((option) => (
             <div
               className={"dropdown-item"}
               onClick={() => onItemClick(option)}
+              data-testid='city-dropdownelement'
             >
               {option.city}
             </div>

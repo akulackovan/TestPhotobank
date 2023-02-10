@@ -93,7 +93,7 @@ describe("AuthPage Error Message", () => {
     screen.debug();
   });
 
-  it("Check have error message with username empty field", async () => {
+  it("Check have error message with username empty field and password have wrong symbols", async () => {
     const { login, logout, token, userId, isReady, isLogin } = jest.fn();
     render(
       <AuthContext.Provider
@@ -109,6 +109,51 @@ describe("AuthPage Error Message", () => {
     const password = screen.getByPlaceholderText("Пароль");
     fireEvent.change(password, { target: { value: "123" } });
     expect(password.value === "123").toBe(true);
+    const loginButton = screen.getByTestId("login-button");
+    fireEvent.click(loginButton);
+    const error = screen.getByText("Заполнены не все поля");
+    expect(error).toBeInTheDocument();
+    screen.debug();
+  });
+
+
+  it("Check have error message with username empty field and password have more then 128 symbols", async () => {
+    const { login, logout, token, userId, isReady, isLogin } = jest.fn();
+    render(
+      <AuthContext.Provider
+        value={{ login, logout, token, userId, isReady, isLogin }}
+      >
+        <AuthPage />
+      </AuthContext.Provider>
+    );
+    screen.debug();
+    expect(screen.queryByTestId("error")).toBeNull();
+    const username = screen.getByPlaceholderText("Логин");
+    expect(username.value === "").toBe(true);
+    const password = screen.getByPlaceholderText("Пароль");
+    fireEvent.change(password, { target: { value: "ЙЙЙЙЙЙQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" } });
+    const loginButton = screen.getByTestId("login-button");
+    fireEvent.click(loginButton);
+    const error = screen.getByText("Заполнены не все поля");
+    expect(error).toBeInTheDocument();
+    screen.debug();
+  });
+
+  it("Check have error message with username empty field and password is correct", async () => {
+    const { login, logout, token, userId, isReady, isLogin } = jest.fn();
+    render(
+      <AuthContext.Provider
+        value={{ login, logout, token, userId, isReady, isLogin }}
+      >
+        <AuthPage />
+      </AuthContext.Provider>
+    );
+    screen.debug();
+    expect(screen.queryByTestId("error")).toBeNull();
+    const username = screen.getByPlaceholderText("Логин");
+    expect(username.value === "").toBe(true);
+    const password = screen.getByPlaceholderText("Пароль");
+    fireEvent.change(password, { target: { value: "тест" } });
     const loginButton = screen.getByTestId("login-button");
     fireEvent.click(loginButton);
     const error = screen.getByText("Заполнены не все поля");

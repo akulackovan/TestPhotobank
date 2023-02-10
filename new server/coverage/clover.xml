@@ -1,42 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1676026380919" clover="3.2.0">
-  <project timestamp="1676026380919" name="All files">
-    <metrics statements="52" coveredstatements="40" conditionals="18" coveredconditionals="15" methods="13" coveredmethods="4" elements="83" coveredelements="59" complexity="0" loc="52" ncloc="52" packages="3" files="3" classes="3"/>
-    <package name="components.ErrorMessage">
+<coverage generated="1676062340164" clover="3.2.0">
+  <project timestamp="1676062340164" name="All files">
+    <metrics statements="108" coveredstatements="78" conditionals="30" coveredconditionals="20" methods="31" coveredmethods="12" elements="169" coveredelements="110" complexity="0" loc="108" ncloc="108" packages="7" files="7" classes="7"/>
+    <package name="client.src.components.CityCombobox">
+      <metrics statements="40" coveredstatements="24" conditionals="10" coveredconditionals="4" methods="16" coveredmethods="6"/>
+      <file name="CityCombobox.jsx" path="D:\GitHub\Another\new server\client\src\components\CityCombobox\CityCombobox.jsx">
+        <metrics statements="40" coveredstatements="24" conditionals="10" coveredconditionals="4" methods="16" coveredmethods="6"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="23" count="1" type="stmt"/>
+        <line num="24" count="1" type="stmt"/>
+        <line num="25" count="1" type="stmt"/>
+        <line num="26" count="1" type="cond" truecount="2" falsecount="2"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="32" count="1" type="stmt"/>
+        <line num="33" count="1" type="stmt"/>
+        <line num="34" count="1" type="stmt"/>
+        <line num="35" count="1" type="stmt"/>
+        <line num="36" count="1" type="stmt"/>
+        <line num="39" count="1" type="stmt"/>
+        <line num="40" count="0" type="stmt"/>
+        <line num="41" count="0" type="stmt"/>
+        <line num="44" count="1" type="stmt"/>
+        <line num="45" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="46" count="0" type="stmt"/>
+        <line num="48" count="1" type="stmt"/>
+        <line num="51" count="1" type="stmt"/>
+        <line num="52" count="0" type="stmt"/>
+        <line num="53" count="0" type="stmt"/>
+        <line num="56" count="1" type="stmt"/>
+        <line num="57" count="0" type="stmt"/>
+        <line num="58" count="0" type="stmt"/>
+        <line num="60" count="1" type="stmt"/>
+        <line num="61" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="62" count="0" type="stmt"/>
+        <line num="64" count="0" type="stmt"/>
+        <line num="66" count="0" type="stmt"/>
+        <line num="70" count="1" type="stmt"/>
+        <line num="93" count="0" type="stmt"/>
+        <line num="95" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="client.src.components.ErrorMessage">
       <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
       <file name="ErrorMessage.jsx" path="D:\GitHub\Another\new server\client\src\components\ErrorMessage\ErrorMessage.jsx">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="4" count="1" type="stmt"/>
-        <line num="5" count="9" type="stmt"/>
+        <line num="5" count="11" type="stmt"/>
       </file>
     </package>
-    <package name="context">
+    <package name="client.src.context">
       <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="AuthContext.js" path="D:\GitHub\Another\new server\client\src\context\AuthContext.js">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="3" count="1" type="stmt"/>
       </file>
     </package>
-    <package name="pages.AuthPage">
+    <package name="client.src.pages.AuthPage">
       <metrics statements="49" coveredstatements="37" conditionals="18" coveredconditionals="15" methods="12" coveredmethods="3"/>
       <file name="AuthPage.jsx" path="D:\GitHub\Another\new server\client\src\pages\AuthPage\AuthPage.jsx">
         <metrics statements="49" coveredstatements="37" conditionals="18" coveredconditionals="15" methods="12" coveredmethods="3"/>
         <line num="8" count="1" type="stmt"/>
-        <line num="9" count="40" type="stmt"/>
-        <line num="13" count="40" type="stmt"/>
-        <line num="14" count="40" type="stmt"/>
-        <line num="15" count="40" type="stmt"/>
-        <line num="16" count="40" type="stmt"/>
-        <line num="17" count="40" type="stmt"/>
-        <line num="19" count="40" type="stmt"/>
-        <line num="20" count="17" type="stmt"/>
-        <line num="21" count="17" type="stmt"/>
-        <line num="24" count="40" type="stmt"/>
-        <line num="26" count="40" type="stmt"/>
-        <line num="27" count="9" type="cond" truecount="4" falsecount="0"/>
-        <line num="28" count="3" type="stmt"/>
-        <line num="29" count="3" type="stmt"/>
-        <line num="30" count="3" type="stmt"/>
+        <line num="9" count="46" type="stmt"/>
+        <line num="13" count="46" type="stmt"/>
+        <line num="14" count="46" type="stmt"/>
+        <line num="15" count="46" type="stmt"/>
+        <line num="16" count="46" type="stmt"/>
+        <line num="17" count="46" type="stmt"/>
+        <line num="19" count="46" type="stmt"/>
+        <line num="20" count="19" type="stmt"/>
+        <line num="21" count="19" type="stmt"/>
+        <line num="24" count="46" type="stmt"/>
+        <line num="26" count="46" type="stmt"/>
+        <line num="27" count="11" type="cond" truecount="4" falsecount="0"/>
+        <line num="28" count="5" type="stmt"/>
+        <line num="29" count="5" type="stmt"/>
+        <line num="30" count="5" type="stmt"/>
         <line num="32" count="6" type="cond" truecount="2" falsecount="0"/>
         <line num="33" count="2" type="stmt"/>
         <line num="36" count="2" type="stmt"/>
@@ -62,14 +108,48 @@
         <line num="74" count="0" type="stmt"/>
         <line num="75" count="0" type="stmt"/>
         <line num="76" count="0" type="stmt"/>
-        <line num="80" count="40" type="stmt"/>
+        <line num="80" count="46" type="stmt"/>
         <line num="81" count="0" type="stmt"/>
-        <line num="83" count="40" type="stmt"/>
-        <line num="84" count="40" type="stmt"/>
-        <line num="85" count="40" type="cond" truecount="1" falsecount="1"/>
+        <line num="83" count="46" type="stmt"/>
+        <line num="84" count="46" type="stmt"/>
+        <line num="85" count="46" type="cond" truecount="1" falsecount="1"/>
         <line num="86" count="0" type="stmt"/>
         <line num="87" count="0" type="stmt"/>
-        <line num="90" count="40" type="stmt"/>
+        <line num="90" count="46" type="stmt"/>
+      </file>
+    </package>
+    <package name="controllers">
+      <metrics statements="12" coveredstatements="10" conditionals="2" coveredconditionals="1" methods="2" coveredmethods="2"/>
+      <file name="city.js" path="D:\GitHub\Another\new server\controllers\city.js">
+        <metrics statements="12" coveredstatements="10" conditionals="2" coveredconditionals="1" methods="2" coveredmethods="2"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="2" type="stmt"/>
+        <line num="6" count="2" type="stmt"/>
+        <line num="7" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="17" count="1" type="stmt"/>
+        <line num="24" count="1" type="stmt"/>
+        <line num="25" count="1" type="stmt"/>
+        <line num="26" count="1" type="stmt"/>
+        <line num="27" count="1" type="stmt"/>
+        <line num="32" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="models">
+      <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="City.js" path="D:\GitHub\Another\new server\models\City.js">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="3" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="router">
+      <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="city.js" path="D:\GitHub\Another\new server\router\city.js">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
       </file>
     </package>
   </project>

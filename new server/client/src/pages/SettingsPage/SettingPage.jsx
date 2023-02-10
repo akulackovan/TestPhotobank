@@ -9,7 +9,6 @@ import Cropper from "../../components/Cropper/cropper";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import { Gapped, Radio, RadioGroup } from "@skbkontur/react-ui";
 
-
 const SettingsPage = () => {
   const { logout } = useContext(AuthContext);
   const { userId } = useContext(AuthContext);
@@ -204,12 +203,13 @@ const SettingsPage = () => {
 
         <div className="theme">
         <RadioGroup name="number-complex" defaultValue={now}>
-            <Gapped horizontal gap={0}>
+            <Gapped horizontal gap={0} >
               <b>Тема: </b>
               <Radio
                 className="radio"
                 value="light"
                 onChange={changeTheme}
+                style={{color: 'black'}}
               />{" "}
               <b>Светлая</b>
               <Radio

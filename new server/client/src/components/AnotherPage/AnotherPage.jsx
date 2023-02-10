@@ -164,7 +164,7 @@ export const AnotherPage = ({ id }) => {
             {id == userId && (
               <div>
                 <div className="back2">
-                  <div className="head">
+                  <div className="head container">
                     Количество подписчиков: {user.subscriptions}
                   </div>
                 </div>
