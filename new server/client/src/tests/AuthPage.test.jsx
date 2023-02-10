@@ -1,25 +1,17 @@
-import { cleanup, render, screen, fireEvent } from "@testing-library/react";
+import {
+  cleanup,
+  render,
+  screen,
+  fireEvent,
+  waitFor,
+} from "@testing-library/react";
 import AuthPage from "../pages/AuthPage/AuthPage";
 import React from "react";
 import "@testing-library/jest-dom";
 import axios from "axios";
+import mockAxios from "jest-mock-axios";
 
 import { AuthContext } from "../context/AuthContext";
-
-/*test("Shoud be login", () => {
-    const login = jest.fn()
-    const {getByText} = render(
-      <AuthContext.Provider
-        value={{ login }}    >
-        <AuthPage />
-      </AuthContext.Provider>
-    );
-    const submitButton = getByText('ВОЙТИ');
-    fireEvent.click(submitButton);
-  expect(login).toHaveBeenCalledTimes(1)
-  });*/
-
-jest.mock("axios");
 
 describe("AuthPage component", () => {
   it("Checking the filling of AuthPage components", () => {
@@ -337,13 +329,65 @@ describe("AuthPage Fields check behavior", () => {
   });
 });
 
+/**
+ * TO-DO:
+ *
+ * Проверить axios
+ *
+ *
+ *
+ */
+
 /*describe("AuthPage check login", () => {
-  let response;
-  beforeEach(() => {
-    response = {};
+  afterEach(() => {
+    // уборка, оставшегося после предыдущего теста
+    mockAxios.reset();
   });
 
-  it("Try login with user which not in database", () => {
+  it("UppercaseProxy should get data from the server and convert it to UPPERCASE", async () => {
+    let catchFn = jest.fn(),
+      thenFn = jest.fn();
+
+    const { login, logout, token, userId, isReady, isLogin } = jest.fn();
+    render(
+      <AuthContext.Provider
+        value={{ login, logout, token, userId, isReady, isLogin }}
+      >
+        <AuthPage />
+      </AuthContext.Provider>
+    );
+    screen.debug();
+    const password = screen.getByPlaceholderText("Пароль");
+    fireEvent.change(password, {
+      target: { value: "ZIОЛюlcИziIKUIEvвyИUЕоTfлQVьгИрmhWэOдДф" },
+    });
+    const username = screen.getByPlaceholderText("Логин");
+    fireEvent.change(username, {
+      target: { value: "ZIОЛюlcИziIKUIEvвyИUЕоTfлQVьгИрmhWэOдДф" },
+    });
+    const loginButton = screen.getByTestId("login-button");
+    expect(axios.post).toHaveBeenCalledTimes(0);
+    fireEvent.click(loginButton);
+    await waitFor(() => {
+      /*const error = screen.getByText(
+        "Такого пользователя не существует"
+      );
+      expect(error).toBeInTheDocument();
+    expect(axios.post).toHaveBeenCalledTimes(1);
+    },{timeout: 4000})
+    screen.debug();
+  });
+
+  /*let response;
+
+  beforeEach(() => {
+    response = {
+      data: [],
+      status: 400
+    }
+});
+  
+  it("Axios' get has been called with the correct URL", async () => {
     const { login, logout, token, userId, isReady, isLogin } = jest.fn();
     render(
       <AuthContext.Provider
@@ -357,9 +401,19 @@ describe("AuthPage Fields check behavior", () => {
     fireEvent.change(password, { target: { value: "ZIОЛюlcИziIKUIEvвyИUЕоTfлQVьгИрmhWэOдДф" } });
     const username = screen.getByPlaceholderText("Логин");
     fireEvent.change(username, { target: { value: "ZIОЛюlcИziIKUIEvвyИUЕоTfлQVьгИрmhWэOдДф" } });
-    
-    
+    const loginButton = screen.getByTestId("login-button");
+    fireEvent.click(loginButton);
+    let response = {
+      data: { 
+        message
+: 
+"Такого пользователя не существует"
+      },
+      status: 404
+    };
+    axios.post.mockResolvedValue(response)
+    expect(response.data.message).toBeInTheDocument();
+
     screen.debug();
   });
-});
-*/
+});*/

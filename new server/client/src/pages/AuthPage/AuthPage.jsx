@@ -53,7 +53,6 @@ const AuthPage = () => {
       setTimeout(() => setErrorMessage(""), 5000);
       return;
     }
-    try {
       await axios
         .post(
           "/auth/login",
@@ -64,17 +63,18 @@ const AuthPage = () => {
             },
           }
         )
-        .then((response) => {
+        .then(function (response) {
           setAuthRed(true);
           console.log(authRed);
           setToken(response.data.token);
           setUserID(response.data.user._id);
-        });
-    } catch (error) {
+        })
+        .catch(function (error) {
       console.log(error);
-      setErrorMessage(error.response.data.message);
+      let temp = error;
+      setErrorMessage(temp.response.data.message);
       setTimeout(() => setErrorMessage(""), 5000);
-    }
+    })
   };
 
   const handleOnClick = async () => {
