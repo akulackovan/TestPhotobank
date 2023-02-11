@@ -1,68 +1,69 @@
-import React, {useState, useEffect, Component, useContext} from 'react'
-import axios from 'axios'
-import {Link} from 'react-router-dom'
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { Link } from "react-router-dom";
+import Loader from "../Loader/Loader";
+import "./Search.scss";
 
-const Search = ({id}) => {
+const Search = ({ id }) => {
+  const [loader, setLoader] = useState(true);
+  const [error, setErrorMessage] = useState(null);
+  const [search, setSearchValue] = useState(null);
 
-    const [error, setErrorMessage] = useState(null)
-    const [search, setSearchValue] = useState(null)
-
-
-    useEffect(() => {
-        try {
-            axios({
-                method: 'get',
-                url: '/auth/search',
-                headers: {
-                    "content-type": "application/json"
-                },
-                params: {
-                    'name': id
-                }
-            })
-                .then(require => {
-                        console.log(require.data.user)
-                        if (require.data.user.length == 0) {
-                            console.log("Ybxtuj")
-                            setErrorMessage("Ничего не найдено")
-                            return
-                        }
-                        setSearchValue(require.data.user)
-                    }
-                )
-        } catch (error) {
-            console.log(error)
-            setErrorMessage(error.response.data.message)
+  useEffect(() => {
+    try {
+      axios({
+        method: "get",
+        url: "/auth/search",
+        headers: {
+          "content-type": "application/json",
+        },
+        params: {
+          name: id,
+        },
+      }).then((require) => {
+        setLoader(false);
+        console.log(require.data.user);
+        if (require.data.user.length == 0) {
+          setErrorMessage("Ничего не найдено");
+          return;
         }
-    }, []);
-    if (error) {
-        return (<div>
-            <h1>${error}</h1>
-        </div>)
+        setSearchValue(require.data.user);
+      });
+    } catch (error) {
+      console.log(error);
+      setErrorMessage(error.response.data.message);
     }
+  }, []);
+  if (loader) {
+    return <Loader />;
+  }
 
-
-    return (
-        <div className='searchUser'>
-            {error && <h3>{error}</h3>}
-            {search && <div>
-                <h2>Результаты поиска:</h2>
-                <hr align="center" width="80%" size="2" color=""/>
-                <div className='search'>
-                    <ul>
-                        {search.map(item => (
-                            <li className='element'>
-                                <Link to={`/profile/${item._id}`}>
-                                    <h4>{item.username}</h4>
-                                </Link>
-
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-            </div>}
+  return (
+    <div className="searchUser container">
+      <h2 className="head">По запросу "{id}" найдено:</h2>
+      {search && (
+        <div className="container">
+          <hr className="hr" />
+          <div className="search">
+            <ul>
+              {search.map((item) => (
+                <li className="element container">
+                  <Link
+                    to={`/profile/${item._id}`}
+                    title={`Открыть профиль: ${item.username}`}
+                  >
+                    <h5>{item.username}</h5>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
-    )
-}
+      )}
 
-export default Search
+      {error && <h3 align="center">{error}</h3>}
+    </div>
+  );
+};
+
+export default Search;

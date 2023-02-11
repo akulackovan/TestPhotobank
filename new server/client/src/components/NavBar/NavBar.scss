@@ -1,39 +1,52 @@
-.navbar
-{
-   background-color: var(--nav-bar-background-color);
-   color: #f3f2ef;
-   padding-left: 1%;
-   height: 100%;
-   
-  transition: background-color 500ms linear;
-   .photobank{ 
-    font-size: 250%;
-    font-weight: 1000;
-   }
-   .list
-   {
-    padding-left: 10%;
-    .listHeader{
-        font-size: 150%;
-        font-weight: 900;
-        }
-   }
-   
+.nav {
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+  background-color: var(--button-background-color);
+}
+.parent {
+  overflow: auto;
+  //Полоса прокрутки
+  margin-left: auto;
+  margin-right: auto;
+}
+.parent::-webkit-scrollbar {
+  background-color: aliceblue;
+  width: 5px; /* ширина всей полосы прокрутки */
+  height: 5px;
+}
 
-    .search{
-        padding-left: 65%;
-        font-size: 20px;
-        height: 70%;
+.parent::-webkit-scrollbar-track {
+  background: var(--back-2); /* цвет зоны отслеживания */
+}
 
-            .input{
-                width: 30%;
-                padding-left: 2%;
-                background-color: rgba(252, 252, 252, 0.2);
-                font-weight: 900;
-                color: #48523d;
-                border: none;
-                border-radius: 10px;
-            }
-        }
+.parent::-webkit-scrollbar-thumb {
+  background-color: var(--button-background-color); /* цвет бегунка */
+  border-radius: 30px; /* округлось бегунка */
+}
 
+.child {
+  display: flex;
+  margin: auto;
+  min-width: 850px;
+}
+
+.nav ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: flex;
+}
+
+.site-title {
+  color: inherit;
+  font-size: 32px;
+  font-weight: 800;
+}
+
+.nav li a {
+  font-size: 20px;
+  .input {
+    width: 150px;
+  }
 }

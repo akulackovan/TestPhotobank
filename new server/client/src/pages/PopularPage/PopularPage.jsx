@@ -1,97 +1,173 @@
-import React, {useContext, useEffect, useState} from 'react'
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
-import './PopularPage.scss'
-import {Link} from "react-router-dom";
-import {AuthContext} from "../../context/AuthContext";
+import  AuthContext  from "../../context/AuthContext";
+import Loader from "../../components/Loader/Loader";
+import PostTable from "../../components/PostsTable/PostsTable";
 
-const PopularPage = () => {
-    const { userId } = useContext(AuthContext)
-    const [post, setPosts] = useState([])
-    const [errorMessage, setErrorMessage] = React.useState("")
-    const [postId, setPostId] = useState(null)
-    const [isToday, setToday] = useState(true)
-    const imageClick = (id) => {
-        console.log(id);
-        setPostId(id)
+//Изначальный пост, как поняли по требованиям
+/*const PopularPage = () => {
+  const { userId } = useContext(AuthContext);
+  const [post, setPosts] = useState([]);
+  const [errorMessage, setErrorMessage] = React.useState("");
+  const [isToday, setToday] = useState(true);
+  const [loader, setLoader] = useState(true);
 
+  useEffect(() => {
+    try {
+      axios({
+        method: "get",
+        url: "/post/popular",
+        headers: {
+          "x-auth-token": localStorage.getItem("auth-token"),
+          "content-type": "application/json",
+        },
+        params: {
+          id: userId,
+        },
+      })
+        .then((response) => {
+          console.log(response.data.posts);
+          setPosts(response.data.posts);
+          setToday(response.data.isToday);
+          setLoader(false);
+        })
+        .catch((error) => {
+          setErrorMessage(error.response.data.message);
+          setLoader(false);
+        });
+    } catch (error) {
+      console.log(error);
+      setErrorMessage(error.response.data.message);
+      setLoader(false);
     }
+  }, []);
 
-
-    useEffect(() => {
-        try {
-            axios({
-                method: 'get',
-                url: '/post/popular',
-                headers: {
-                    "x-auth-token": localStorage.getItem('auth-token'),
-                    "content-type": "application/json"
-                },
-                params: {
-                    id: userId
-                }
-            })
-                .then(response => {
-                        console.log(response.data.posts)
-                        setPosts(response.data.posts)
-                        setToday(response.data.isToday)
-                        // createPhoto(response.data.posts)
-                    }
-                )
-                .catch(error => {
-                    setErrorMessage(error.response.data.message)
-                })
-
-        } catch (error) {
-            console.log(error)
-            setErrorMessage(error.response.data.message)
-        }
-    }, [])
-
-    if (errorMessage !== "") {
-        return (
-            <div className="wrapper1">
-                <h1>{errorMessage}</h1>
-            </div>
-        )
-    }
-
-    if (post === []) {
-        return (
-            <div className="wrapper1">
-                <h1>Нет постов</h1>
-            </div>
-        )
-    }
-
-
+  if (errorMessage !== "") {
     return (
-        <div className="wrapper1">
+      <div className="wrapper1">
+        <h1>{errorMessage}</h1>
+      </div>
+    );
+  }
 
-            {post && <div className='gal1'>
-                {!isToday && <h3>Фотографий за день нет</h3>}
-                <div className="gallery1">
-                    <ul className="center">
-                        {post.map((option) => (
-                            <Link to={`/post/${option._id}`}>
-                                <li>
-                                    <img style={{width: 400, height: 300}}
-                                         href={'/post/' + option._id}
-                                         src={option.image}
-                                         onClick={() => imageClick(option)}/>
-                                </li>
-                            </Link>
-                        ))}
+  if (post === []) {
+    return (
+      <div className="wrapper1">
+        <h1>Нет постов</h1>
+      </div>
+    );
+  }
 
-                    </ul>
-                </div>
-                <div>
-                    <h2 className='h2'>Фотографии закончились</h2>
-                </div>
-            </div>}
+  if (loader) {
+    return <Loader />;
+  }
+
+  return (
+    <div className="wrapper1">
+      {post && (
+        <div className="gal1">
+          {!isToday && (
+            <div className="head center">Фотографий за день нет</div>
+          )}
+          <PostTable post={post} />
         </div>
+      )}
+      <hr className="hr center" style={{ margin: "0 auto 50px auto" }} />
+    </div>
+  );
+};
 
+export default PopularPage;*/
 
-    )
-}
+//Как предполагалось
+const PopularPage = () => {
+  const { userId } = useContext(AuthContext);
+  const [post, setPosts] = useState([]);
+  const [errorMessage, setErrorMessage] = React.useState("");
+  const [isToday, setToday] = useState(true);
+  const [loader, setLoader] = useState(true);
 
-export default PopularPage
+  useEffect(() => {
+    try {
+      axios({
+        method: "get",
+        url: "/post/popular",
+        headers: {
+          "x-auth-token": localStorage.getItem("auth-token"),
+          "content-type": "application/json",
+        },
+        params: {
+          id: userId,
+        },
+      })
+        .then((response) => {
+          console.log(response.data);
+          setPosts(response.data.popular);
+          setLoader(false);
+        })
+        .catch((error) => {
+          setErrorMessage(error.response.data.message);
+          setLoader(false);
+        });
+    } catch (error) {
+      console.log(error);
+      setErrorMessage(error.response.data.message);
+      setLoader(false);
+    }
+  }, []);
+
+  if (errorMessage !== "") {
+    return (
+      <div className="wrapper1">
+        <h1 className="center head">{errorMessage}</h1>
+        <hr className="hr center" style={{ margin: "0 auto 50px auto" }} />
+      </div>
+    );
+  }
+
+  if (post === []) {
+    return (
+      <div className="wrapper1">
+        <h1>Нет постов</h1>
+        <hr className="hr center" style={{ margin: "0 auto 50px auto" }} />
+      </div>
+    );
+  }
+
+  if (loader) {
+    return <Loader />;
+  }
+
+  return (
+    <div
+      className="wrapper1"
+      style={{ width: "80%", marginLeft: "auto", marginRight: "auto" }}
+    >
+      {post && (
+        <div className="gal1">
+          {post && (
+            <div>
+              {post.map((option) => (
+                <div>
+                  <div className="head center">{option.date}</div>
+                  {option.posts === "Фотографий за день нет" ? (
+                    <div className="head center" style={{ fontSize: "3vw" }}>
+                      Фотографий за день нет
+                    </div>
+                  ) : (
+                    <PostTable end={false} post={option.posts} />
+                  )}
+                  <hr className="hr" style={{ width: "50%" }} />
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+      <div className="head center">Фотографии закончились</div>
+      <hr className="hr center" style={{ margin: "0 auto 50px auto" }} />
+    </div>
+  );
+};
+
+export default PopularPage;

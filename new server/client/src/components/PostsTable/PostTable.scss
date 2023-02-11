@@ -1,29 +1,14 @@
-.gal{
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    margin-bottom: 5%;
-    text-align: center;
+.gallery {
+  display: block;
+  display: inline-block;
+  margin: 5px;
+  width: 300px;
 }
 
-div.gallery {
-	
-	text-align: center;
-	display: block;
-	margin-top: 30px;
-    margin-left: auto;
-    margin-right: auto;
+.gal {
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
 }
-
-
-div.gallery ul li {
-	position: relative;
-	float: left;
-    width: 351px;
-	height: 262px;
-	margin: 5px;
-	padding: 5px;
-	z-index: 0;
-}
-

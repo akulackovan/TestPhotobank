@@ -1,23 +1,22 @@
-.auth
-{
-    
-    .back
-    {
-        width: 400px;
-        height: 400px;
-        .input {
-            margin-top: 2%;
-            width: 80%;
-            padding-left: 2%;
-        }
-    }    
+.auth {
+  .head {
+    font-size: 400%;
+  }
+  .back {
+    width: 400px;
+    height: 500px;
+    .input {
+      margin-top: 2%;
+      width: 80%;
+      padding-left: 2%;
+    }
+  }
 }
 
 .auth button {
-    margin-top: 5%;
-    width: 90%;
-    height: 10%;
-    font-size: 25px;
-    font-weight: 700;
+  margin-top: 5%;
+  width: 90%;
+  height: 10%;
+  font-size: 25px;
+  font-weight: 700;
 }
-
