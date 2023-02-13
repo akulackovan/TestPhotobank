@@ -11,10 +11,13 @@ import "@testing-library/jest-dom";
 import axios from "axios";
 import mockAxios from "jest-mock-axios";
 
+
 import { AuthContext } from "../context/AuthContext";
 
 describe("AuthPage component", () => {
   it("Checking the filling of AuthPage components", () => {
+    //Используем Mock-функцию
+    //Игнорируем детали реализации
     const { login, logout, token, userId, isReady, isLogin } = jest.fn();
     render(
       <AuthContext.Provider

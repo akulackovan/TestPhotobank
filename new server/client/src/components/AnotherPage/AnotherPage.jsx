@@ -6,6 +6,7 @@ import Loader from "../Loader/Loader";
 import "./AnotherPage.scss";
 import PostUser from "../PostUser/PostUser";
 
+
 export const AnotherPage = ({ id }) => {
   const { userId } = useContext(AuthContext);
   //Данные пользователя

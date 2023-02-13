@@ -26,7 +26,7 @@ const NavBar = () => {
         <div className="child">
           <a className="site-title">ФОТОБАНК</a>
           <ul>
-            <li>
+            <li data-testid="popular">
               <a href="/popular" title="Популярное">
                 Популярное
               </a>

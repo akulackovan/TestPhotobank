@@ -11,7 +11,7 @@ import dotenv from 'dotenv'
 import cors from 'cors'
 
 const app = express();
-const PORT = process.env.PORT || 8008
+const PORT = process.env.PORT || 8001
 
 app.use(cors());
 app.use(express.json())
@@ -38,7 +38,6 @@ describe("GET /city/getAllCity", () => {
 
   it("Should return all city", async () => {
     const res = await request(app).get('/city/getallcity')
-    //expect(res.statusCode).toEqual(200);
     expect(res.statusCode).toEqual(200)
     expect(res.body.city.length).toBeGreaterThan(1000);
     expect(res.body.message).toBe("Города получены")
@@ -55,7 +54,6 @@ describe("GET /city/getcity", () => {
     await mongoose.connect(
       `mongodb+srv://admin:admin@test.qidx0uu.mongodb.net/?retryWrites=true&w=majority`
     );
-    
   dotenv.config()
   })
 
