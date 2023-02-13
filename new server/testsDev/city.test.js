@@ -72,9 +72,16 @@ describe("GET /city/getcity", () => {
     expect(res.body.isCity.city).not.toBeNull()
   });
 
-  it("Should return city with uncorrect id", async () => {
+  it("Should return error with random string", async () => {
     const res = await request(app).get(`/city/getcity?cityId=63b9`)
     expect(res.statusCode).toEqual(400)
     expect(res.body.message).toBe("Ошибка при получении города")
+  });
+
+
+  it("Should return error with unknown city", async () => {
+    const res = await request(app).get(`/city/getcity?cityId=66b9473e70bfa1abe160400f`)
+    expect(res.statusCode).toEqual(400)
+    expect(res.body.message).toBe("Города нет")
   });
 })

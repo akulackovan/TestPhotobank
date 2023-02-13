@@ -117,7 +117,7 @@ describe("POST /settings/ ", () => {
         const userId = "63b94e63401cafbbf0be0a8d";
         const res = await request(app)
           .post("/settings")
-          .send({ userId: userId, username: "тест" , password: "" ,
+          .send({ userId: userId, username: "акула" , password: "" ,
           newpass: "" ,
           checkpass: "" ,
           text: "" ,
@@ -429,4 +429,63 @@ describe("POST /settings/ ", () => {
       });
 
 
+
+      //2
+
+
+      it("Should return 201 when all empty", async () => {
+        const userId = "63b94e63401cafbbf0be0a8d";
+        const res = await request(app)
+          .post("/settings")
+          .send({ userId: userId, username: "" , password: "" ,
+          newpass: "" ,
+          checkpass: "" ,
+          text: "",
+          city: city,
+          base64: ""});
+        expect(res.statusCode).toEqual(201);
+        expect(res.body.message).toBe("Настройки изменены");
+      });
+
+      it("Should return 201 and change user when login is empty", async () => {
+        const userId = "63b94e63401cafbbf0be0a8d";
+        const res = await request(app)
+          .post("/settings")
+          .send({ userId: userId, username: "" , password: "тест" ,
+          newpass: "тест" ,
+          checkpass: "тест" ,
+          text: "Это тест",
+          city: city,
+          base64: photo});
+        expect(res.statusCode).toEqual(201);
+        expect(res.body.message).toBe("Настройки изменены");
+      });
+
+      it("Should return 201 and change user when text and photo is empty", async () => {
+        const userId = "63b94e63401cafbbf0be0a8d";
+        const res = await request(app)
+          .post("/settings")
+          .send({ userId: userId, username: "тест6" , password: "тест" ,
+          newpass: "тест" ,
+          checkpass: "тест" ,
+          text: "",
+          city: city,
+          base64: ""});
+        expect(res.statusCode).toEqual(201);
+        expect(res.body.message).toBe("Настройки изменены");
+      });
+
+      it("Should return 201 and change user when password and city is empty", async () => {
+        const userId = "63b94e63401cafbbf0be0a8d";
+        const res = await request(app)
+          .post("/settings")
+          .send({ userId: userId, username: "тест" , password: "" ,
+          newpass: "" ,
+          checkpass: "" ,
+          text: "",
+          city: "",
+          base64: photo});
+        expect(res.statusCode).toEqual(201);
+        expect(res.body.message).toBe("Настройки изменены");
+      });
   });
