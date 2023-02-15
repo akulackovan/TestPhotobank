@@ -19,30 +19,10 @@ const PostPageComponent = ({ id }) => {
   const [view, setView] = useState();
   const { userId } = useContext(AuthContext);
   const [like, setLike] = useState();
+  const [countLike, setCountLike] = useState();
   console.log(userId);
 
-  //Получаем лайк от пользователя
-  const getLike = () => {
-    axios({
-      method: "get",
-      url: "/post/getLike",
-      headers: {
-        "content-type": "application/json",
-      },
-      params: {
-        idUser: userId,
-        idPost: id,
-      },
-    })
-      .then((response) => {
-        setLike(response.data.like);
-        console.log(like);
-      })
-      .catch((error) => {
-        setErrorMessage(error.response.data.message);
-        setTimeout(() => setErrorMessage(""), 2000);
-      });
-  };
+
 
   //Получаем комментарии к посту
   const getComments = () => {
@@ -64,6 +44,7 @@ const PostPageComponent = ({ id }) => {
           return;
         }
         setComments(response.data.total);
+        
         setLoadingComm(false);
       })
       .catch((error) => {
@@ -87,7 +68,35 @@ const PostPageComponent = ({ id }) => {
         console.log(response.data.isPost);
         setPost(response.data.isPost);
         setView(response.data.isPost.views);
-        getLike();
+        axios({
+          method: "get",
+          url: "/post/getLike",
+          headers: {
+            "content-type": "application/json",
+          },
+          params: {
+            idUser: userId,
+            idPost: id,
+          },
+        })
+          .then((responseLike) => {
+            setLike(responseLike.data.like);
+            console.log("Like2"+ like);
+            console.log(response.data.isPost.likes)
+            if (responseLike.data.like)
+            {
+              setCountLike(response.data.isPost.likes)
+            }
+            else {
+              setCountLike(response.data.isPost.likes + 1)
+            }
+          })
+          .catch((error) => {
+            setErrorMessage(error.response.data.message);
+            setTimeout(() => setErrorMessage(""), 2000);
+          });
+
+        console.log(countLike)
         setLoading(false);
         getComments();
       })
@@ -95,6 +104,7 @@ const PostPageComponent = ({ id }) => {
         setErrorMessage(error.response.data.message);
         setTimeout(() => setErrorMessage(""), 2000);
       });
+      console.log("Like" + like)
   };
 
   //Добавить просмотр + данные о посте
@@ -127,9 +137,14 @@ const PostPageComponent = ({ id }) => {
   };
 
   
-  const changeLike = async () => {
+  const changeLike =  () => {
+    const postLikes = post.likes
     try {
-      await axios({
+      const buttons = document.getElementsByTagName("button");
+      for (const button of buttons) {
+        button.disabled = true;
+      }
+       axios({
         method: "put",
         url: "/post/setLike",
         params: {
@@ -138,21 +153,21 @@ const PostPageComponent = ({ id }) => {
         },
       }).then((response) => {
         setLike(response.data.like);
+        console.log(countLike)
         if (response.data.like)
         {
-          setPost({...post, likes: post.likes + 1})
+          setPost({...post, likes: countLike})
         }
         else{
-          setPost({...post, likes: post.likes - 1})
+          setPost({...post, likes: countLike - 1})
         }
       });
-
-      
     } catch (error) {
       console.log(error);
       setErrorMessage(error.response.data.message);
       setTimeout(() => setErrorMessage(""), 2000);
     }
+
   };
 
   const commentHandler = async () => {
@@ -266,6 +281,7 @@ const PostPageComponent = ({ id }) => {
                   className="like icon"
                   title="Поставить лайк"
                   onClick={changeLike}
+                  id = "like"
                 >
                   <svg
                     width="50px"
@@ -285,6 +301,7 @@ const PostPageComponent = ({ id }) => {
                   className="dislike icon"
                   title="Отменить лайк"
                   onClick={changeLike}
+                  id = "unlike"
                 >
                   <svg
                     width="50px"
