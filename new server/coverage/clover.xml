@@ -1,51 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1676491050619" clover="3.2.0">
-  <project timestamp="1676491050619" name="All files">
-    <metrics statements="159" coveredstatements="130" conditionals="74" coveredconditionals="65" methods="32" coveredmethods="13" elements="265" coveredelements="208" complexity="0" loc="159" ncloc="159" packages="7" files="10" classes="10"/>
+<coverage generated="1676580410476" clover="3.2.0">
+  <project timestamp="1676580410476" name="All files">
+    <metrics statements="160" coveredstatements="146" conditionals="74" coveredconditionals="71" methods="32" coveredmethods="22" elements="266" coveredelements="239" complexity="0" loc="160" ncloc="160" packages="7" files="10" classes="10"/>
     <package name="client.src.components.CityCombobox">
-      <metrics statements="40" coveredstatements="24" conditionals="10" coveredconditionals="4" methods="16" coveredmethods="6"/>
+      <metrics statements="41" coveredstatements="40" conditionals="10" coveredconditionals="10" methods="16" coveredmethods="15"/>
       <file name="CityCombobox.jsx" path="D:\GitHub\Another\new server\client\src\components\CityCombobox\CityCombobox.jsx">
-        <metrics statements="40" coveredstatements="24" conditionals="10" coveredconditionals="4" methods="16" coveredmethods="6"/>
+        <metrics statements="41" coveredstatements="40" conditionals="10" coveredconditionals="10" methods="16" coveredmethods="15"/>
         <line num="5" count="1" type="stmt"/>
-        <line num="6" count="1" type="stmt"/>
-        <line num="7" count="1" type="stmt"/>
-        <line num="8" count="1" type="stmt"/>
-        <line num="10" count="1" type="stmt"/>
-        <line num="12" count="1" type="stmt"/>
-        <line num="13" count="1" type="stmt"/>
-        <line num="16" count="0" type="stmt"/>
-        <line num="19" count="0" type="stmt"/>
-        <line num="23" count="1" type="stmt"/>
-        <line num="24" count="1" type="stmt"/>
-        <line num="25" count="1" type="stmt"/>
-        <line num="26" count="1" type="cond" truecount="2" falsecount="2"/>
-        <line num="27" count="0" type="stmt"/>
-        <line num="32" count="1" type="stmt"/>
-        <line num="33" count="1" type="stmt"/>
-        <line num="34" count="1" type="stmt"/>
-        <line num="35" count="1" type="stmt"/>
-        <line num="36" count="1" type="stmt"/>
-        <line num="39" count="1" type="stmt"/>
-        <line num="40" count="0" type="stmt"/>
-        <line num="41" count="0" type="stmt"/>
-        <line num="44" count="1" type="stmt"/>
-        <line num="45" count="1" type="cond" truecount="1" falsecount="1"/>
-        <line num="46" count="0" type="stmt"/>
-        <line num="48" count="1" type="stmt"/>
-        <line num="51" count="1" type="stmt"/>
-        <line num="52" count="0" type="stmt"/>
-        <line num="53" count="0" type="stmt"/>
-        <line num="56" count="1" type="stmt"/>
-        <line num="57" count="0" type="stmt"/>
-        <line num="58" count="0" type="stmt"/>
-        <line num="60" count="1" type="stmt"/>
-        <line num="61" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="62" count="0" type="stmt"/>
-        <line num="64" count="0" type="stmt"/>
-        <line num="66" count="0" type="stmt"/>
-        <line num="70" count="1" type="stmt"/>
-        <line num="93" count="0" type="stmt"/>
-        <line num="95" count="0" type="stmt"/>
+        <line num="6" count="31" type="stmt"/>
+        <line num="7" count="31" type="stmt"/>
+        <line num="8" count="31" type="stmt"/>
+        <line num="10" count="31" type="stmt"/>
+        <line num="12" count="31" type="stmt"/>
+        <line num="13" count="7" type="stmt"/>
+        <line num="14" count="7" type="stmt"/>
+        <line num="17" count="7" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="24" count="31" type="stmt"/>
+        <line num="25" count="31" type="stmt"/>
+        <line num="26" count="16" type="stmt"/>
+        <line num="27" count="16" type="cond" truecount="4" falsecount="0"/>
+        <line num="28" count="8" type="stmt"/>
+        <line num="33" count="31" type="stmt"/>
+        <line num="34" count="30" type="stmt"/>
+        <line num="35" count="30" type="stmt"/>
+        <line num="36" count="30" type="stmt"/>
+        <line num="37" count="30" type="stmt"/>
+        <line num="40" count="31" type="stmt"/>
+        <line num="41" count="8" type="stmt"/>
+        <line num="42" count="8" type="stmt"/>
+        <line num="45" count="31" type="stmt"/>
+        <line num="46" count="31" type="cond" truecount="2" falsecount="0"/>
+        <line num="47" count="4" type="stmt"/>
+        <line num="49" count="27" type="stmt"/>
+        <line num="52" count="31" type="stmt"/>
+        <line num="53" count="1" type="stmt"/>
+        <line num="54" count="1" type="stmt"/>
+        <line num="57" count="31" type="stmt"/>
+        <line num="58" count="6" type="stmt"/>
+        <line num="59" count="6" type="stmt"/>
+        <line num="61" count="31" type="stmt"/>
+        <line num="62" count="22" type="cond" truecount="2" falsecount="0"/>
+        <line num="63" count="16" type="stmt"/>
+        <line num="65" count="6" type="stmt"/>
+        <line num="67" count="18" type="stmt"/>
+        <line num="71" count="31" type="stmt"/>
+        <line num="94" count="32" type="stmt"/>
+        <line num="96" count="1" type="stmt"/>
       </file>
     </package>
     <package name="client.src.components.ErrorMessage">
