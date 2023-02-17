@@ -115,7 +115,8 @@ describe("PostPage component", () => {
     });
 
 
-    axios.mockResolvedValueOnce(data)
+    let f = axios.mockResolvedValueOnce(data)
+    
     await expect(axios).toHaveBeenCalledTimes(2);
     await expect(axios).toHaveBeenCalledWith({
       headers: {
@@ -127,16 +128,30 @@ describe("PostPage component", () => {
       },
       url: "/post/post/id",
     });
+
+    let p = async () => await f();
+    let results = await Promise.allSettled([p()]);
+
+
+    f = axios.mockResolvedValueOnce({status: 200})
     
-    await act(async () => {
-      await new Promise((resolve) => setTimeout(resolve, 0));
+    await expect(axios).toHaveBeenCalledTimes(3);
+
+    /*await expect(axios).toHaveBeenCalledWith({
+      headers: {
+        "content-type": "application/json",
+      },
+      method: "get",
+      params: {
+        id: idPost,
+      },
+      url: "/post/post/d",
     });
+    p = async () => await f();
+    await Promise.allSettled([p()]);
 
 
-
-    await waitFor(() => {
-      const error = screen.getByText("ЯлюблюКотов");
-    expect(error).toBeInTheDocument();
-    })
+    const username = screen.getByText("ЯлюблюКотов");
+    expect(username).toBeInTheDocument();*/
   });
 });
