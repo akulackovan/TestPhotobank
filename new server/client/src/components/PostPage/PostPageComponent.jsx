@@ -22,6 +22,31 @@ const PostPageComponent = ({ id }) => {
   const [countLike, setCountLike] = useState();
   console.log(userId);
 
+//Добавить просмотр + данные о посте
+useEffect(() => {
+  axios({
+    method: "put",
+    url: "/post/addView",
+    headers: {
+      "content-type": "application/json",
+    },
+    params: {
+      id: id,
+    },
+  })
+    .then(function (response){
+      console.log(response)
+      getPost();
+    })
+    .catch( function (error) {
+      console.log(error)
+      setErrorMessage(error.response.data.message);
+      setTimeout(() => setErrorMessage(""), 2000);
+      setLoading(false);
+    });
+}, []);
+
+
 
 
   //Получаем комментарии к посту
@@ -36,7 +61,7 @@ const PostPageComponent = ({ id }) => {
         id: id,
       },
     })
-      .then((response) => {
+      .then( function (response) {
         console.log(response.data);
         if (response.data.total.length == 0) {
           setComments({ length: 0 });
@@ -47,7 +72,7 @@ const PostPageComponent = ({ id }) => {
         
         setLoadingComm(false);
       })
-      .catch((error) => {
+      .catch(function (error) {
         setErrorMessage(error.response.data.message);
         setTimeout(() => setErrorMessage(""), 2000);
       });
@@ -62,9 +87,10 @@ const PostPageComponent = ({ id }) => {
       },
       params: {
         id: id,
+        user: userId
       },
     })
-      .then((response) => {
+      .then(function (response) {
         console.log(response.data.isPost);
         setPost(response.data.isPost);
         setView(response.data.isPost.views);
@@ -79,7 +105,7 @@ const PostPageComponent = ({ id }) => {
             idPost: id,
           },
         })
-          .then((responseLike) => {
+          .then(function (responseLike) {
             setLike(responseLike.data.like);
             console.log("Like2"+ like);
             console.log(response.data.isPost.likes)
@@ -91,7 +117,7 @@ const PostPageComponent = ({ id }) => {
               setCountLike(response.data.isPost.likes + 1)
             }
           })
-          .catch((error) => {
+          .catch(function (error) {
             setErrorMessage(error.response.data.message);
             setTimeout(() => setErrorMessage(""), 2000);
           });
@@ -100,37 +126,14 @@ const PostPageComponent = ({ id }) => {
         setLoading(false);
         getComments();
       })
-      .catch((error) => {
+      .catch(function (error) {
         setErrorMessage(error.response.data.message);
         setTimeout(() => setErrorMessage(""), 2000);
       });
       console.log("Like" + like)
   };
 
-  //Добавить просмотр + данные о посте
-  useEffect(() => {
-    axios({
-      method: "put",
-      url: "/post/addView",
-      headers: {
-        "content-type": "application/json",
-      },
-      params: {
-        id: id,
-      },
-    })
-      .then((response) => {
-        console.log(response.data);
-        getPost();
-      })
-      .catch((error) => {
-        setErrorMessage(error.response.data.message);
-        setTimeout(() => setErrorMessage(""), 2000);
-        setLoading(false);
-      });
-  }, []);
-
-
+  
   const changeForm = (event) => {
     setComment(event.target.value);
     console.log(comment);
@@ -138,7 +141,6 @@ const PostPageComponent = ({ id }) => {
 
   
   const changeLike =  () => {
-    const postLikes = post.likes
     try {
       const buttons = document.getElementsByTagName("button");
       for (const button of buttons) {
@@ -151,7 +153,7 @@ const PostPageComponent = ({ id }) => {
           idPost: id,
           idUser: userId,
         },
-      }).then((response) => {
+      }).then(function (response) {
         setLike(response.data.like);
         console.log(countLike)
         if (response.data.like)
@@ -194,12 +196,12 @@ const PostPageComponent = ({ id }) => {
           userId: userId,
           comment: comment,
         },
-      }).then((response) => {
+      }).then(function (response) {
         document.getElementById("inputs").reset();
         getComments("");
         setComment("");
       });
-      getPost();
+      getComments();
     } catch (error) {
       console.log(error);
       setErrorMessage(error.response.data.message);
