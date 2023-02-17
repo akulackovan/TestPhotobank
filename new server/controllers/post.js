@@ -18,7 +18,7 @@ export const getPostById = async (req, res) => {
 
         const autor = await User.findOne({ _id: isPost.author })
         autor.password = ""
-        isPost.author =  autor.username
+        isPost.author =  autor
         console.log(isPost)
         const city = await City.findOne({ _id: isPost.city })
         isPost.city = city
