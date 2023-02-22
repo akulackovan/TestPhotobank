@@ -95,7 +95,7 @@ describe("GET /city/getcity", () => {
     await mongoose.connection.close();
     const res = await request(app).get(`/city/getcity?cityId=66b9473e70bfa1abe160400f`)
     expect(res.statusCode).toEqual(400)
-    expect(res.body.message).toBe("Ошибка при получении городов")
+    expect(res.body.message).toBe("Ошибка при получении города")
   });
 
 

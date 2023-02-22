@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1677098042673" clover="3.2.0">
-  <project timestamp="1677098042673" name="All files">
-    <metrics statements="253" coveredstatements="179" conditionals="104" coveredconditionals="77" methods="60" coveredmethods="30" elements="417" coveredelements="286" complexity="0" loc="253" ncloc="253" packages="10" files="13" classes="13"/>
+<coverage generated="1677098757935" clover="3.2.0">
+  <project timestamp="1677098757935" name="All files">
+    <metrics statements="253" coveredstatements="180" conditionals="104" coveredconditionals="77" methods="60" coveredmethods="30" elements="417" coveredelements="287" complexity="0" loc="253" ncloc="253" packages="10" files="13" classes="13"/>
     <package name="client.src.components.CityCombobox">
       <metrics statements="41" coveredstatements="40" conditionals="10" coveredconditionals="10" methods="16" coveredmethods="15"/>
       <file name="CityCombobox.jsx" path="D:\GitHub\Another\new server\client\src\components\CityCombobox\CityCombobox.jsx">
@@ -231,21 +231,21 @@
       </file>
     </package>
     <package name="controllers">
-      <metrics statements="60" coveredstatements="59" conditionals="46" coveredconditionals="46" methods="3" coveredmethods="3"/>
+      <metrics statements="60" coveredstatements="60" conditionals="46" coveredconditionals="46" methods="3" coveredmethods="3"/>
       <file name="city.js" path="D:\GitHub\Another\new server\controllers\city.js">
-        <metrics statements="12" coveredstatements="11" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
+        <metrics statements="12" coveredstatements="12" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
         <line num="4" count="1" type="stmt"/>
-        <line num="5" count="3" type="stmt"/>
-        <line num="6" count="3" type="stmt"/>
+        <line num="5" count="4" type="stmt"/>
+        <line num="6" count="4" type="stmt"/>
         <line num="7" count="2" type="cond" truecount="2" falsecount="0"/>
         <line num="8" count="1" type="stmt"/>
         <line num="12" count="1" type="stmt"/>
-        <line num="17" count="1" type="stmt"/>
+        <line num="17" count="2" type="stmt"/>
         <line num="24" count="1" type="stmt"/>
-        <line num="25" count="1" type="stmt"/>
-        <line num="26" count="1" type="stmt"/>
+        <line num="25" count="2" type="stmt"/>
+        <line num="26" count="2" type="stmt"/>
         <line num="27" count="1" type="stmt"/>
-        <line num="32" count="0" type="stmt"/>
+        <line num="32" count="1" type="stmt"/>
       </file>
       <file name="settings.js" path="D:\GitHub\Another\new server\controllers\settings.js">
         <metrics statements="48" coveredstatements="48" conditionals="44" coveredconditionals="44" methods="1" coveredmethods="1"/>
