@@ -26,6 +26,13 @@ export const useAuth = () => {
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem("userData"));
     if (data && data.token) {
+      const decodedJwt = atob(data.token.split(".")[1])
+      const expiration = new Date(decodedJwt.exp);
+      const now = new Date();
+      console.log("Token " + decodedJwt)
+      if (expiration.getTime() - now.getTime() < 1000*20) {
+        console.log("JWT has expired or will expire soon");
+      }
       login(data.token, data.userId);
     }
   }, [login]);

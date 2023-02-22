@@ -7,8 +7,9 @@ import {useAuth} from './hooks/auth.hook'
 import {useTheme} from './hooks/use.theme'
 
 function App() {
+
   const {login, logout, token, userId} = useAuth()
-  const isLogin = !!token
+  const isLogin  = !!token
   const routes = useRoutes(isLogin)
   const { theme, setTheme } = useTheme()
 

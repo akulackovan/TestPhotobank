@@ -16,7 +16,6 @@ const PostPageComponent = ({ id }) => {
   const [comments, setComments] = useState({
     length: 0,
   });
-  const [view, setView] = useState();
   const { userId } = useContext(AuthContext);
   const [like, setLike] = useState();
   const [countLike, setCountLike] = useState();
@@ -41,7 +40,11 @@ useEffect(() => {
     .catch( function (error) {
       console.log(error)
       setErrorMessage(error.response.data.message);
-      setTimeout(() => setErrorMessage(""), 2000);
+      if (error.response.data.message != "Поста не существует")
+      {
+        setTimeout(() => setErrorMessage(""), 2000);
+      }
+      
       setLoading(false);
     });
 }, []);
@@ -93,7 +96,7 @@ useEffect(() => {
       .then(function (response) {
         console.log(response.data.isPost);
         setPost(response.data.isPost);
-        setView(response.data.isPost.views);
+        setLoading(false);
         axios({
           method: "get",
           url: "/post/getLike",
@@ -120,10 +123,9 @@ useEffect(() => {
           .catch(function (error) {
             setErrorMessage(error.response.data.message);
             setTimeout(() => setErrorMessage(""), 2000);
+            return
           });
-
         console.log(countLike)
-        setLoading(false);
         getComments();
       })
       .catch(function (error) {
@@ -247,7 +249,7 @@ useEffect(() => {
                     <path d="M8 2.5A8.11 8.11 0 0 0 0 8a8.11 8.11 0 0 0 8 5.5A8.11 8.11 0 0 0 16 8a8.11 8.11 0 0 0-8-5.5zm5.4 7.5A6.91 6.91 0 0 1 8 12.25 6.91 6.91 0 0 1 2.6 10a7.2 7.2 0 0 1-1.27-2A7.2 7.2 0 0 1 2.6 6 6.91 6.91 0 0 1 8 3.75 6.91 6.91 0 0 1 13.4 6a7.2 7.2 0 0 1 1.27 2 7.2 7.2 0 0 1-1.27 2z" />
                   </svg>
 
-                  <div className="num">{view}</div>
+                  <div className="num">{post.views}</div>
                 </li>
                 <li className="icon li">
                   <svg viewBox="0 0 32 32">

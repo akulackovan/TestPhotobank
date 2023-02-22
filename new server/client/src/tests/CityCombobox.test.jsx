@@ -55,7 +55,6 @@ describe("CityCombobox component", () => {
     //На заглушке 3 города
     expect(cities).toHaveLength(3);
   });
-
 });
 
 

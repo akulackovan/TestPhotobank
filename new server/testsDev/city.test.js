@@ -4,7 +4,6 @@
 
 import mongoose from "mongoose";
 import express from "express";
-import city from '../controllers/city'
 import request from 'supertest';
 import router from '../router/city.js';
 import dotenv from 'dotenv'

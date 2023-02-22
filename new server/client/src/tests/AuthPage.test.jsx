@@ -14,6 +14,8 @@ import mockAxios from "jest-mock-axios";
 
 import { AuthContext } from "../context/AuthContext";
 
+
+
 describe("AuthPage component", () => {
   it("Checking the filling of AuthPage components", () => {
     //Используем Mock-функцию
@@ -35,6 +37,9 @@ describe("AuthPage component", () => {
     const regButton = screen.getByText("РЕГИСТРАЦИЯ");
     expect(regButton).toBeInTheDocument();
   });
+
+
+
 });
 
 describe("AuthPage Error Message", () => {
@@ -385,6 +390,10 @@ describe("AuthPage Fields check behavior", () => {
  *
  *
  */
+
+
+
+
 
 /*describe("AuthPage check login", () => {
   afterEach(() => {

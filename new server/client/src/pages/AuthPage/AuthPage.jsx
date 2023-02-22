@@ -114,7 +114,7 @@ const AuthPage = () => {
             РЕГИСТРАЦИЯ
           </button>
           {errorMessage && <ErrorMessage data-testid="error" msg={errorMessage} />}
-          {redirect && <Redirect to="/reg" />}
+          {redirect && <Redirect to="/reg" data-testid="reg"/>}
         </div>
       </div>
     </div>

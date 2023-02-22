@@ -10,7 +10,6 @@ const Search = ({ id }) => {
   const [search, setSearchValue] = useState(null);
 
   useEffect(() => {
-    try {
       axios({
         method: "get",
         url: "/auth/search",
@@ -28,19 +27,23 @@ const Search = ({ id }) => {
           return;
         }
         setSearchValue(require.data.user);
-      });
-    } catch (error) {
+      }).catch ((error) => {
       console.log(error);
       setErrorMessage(error.response.data.message);
-    }
+      
+      setLoader(false);
+    })
   }, []);
   if (loader) {
     return <Loader />;
   }
 
   return (
+
+
     <div className="searchUser container">
-      <h2 className="head">По запросу "{id}" найдено:</h2>
+      { id && <div>
+        <h2 className="head">По запросу "{id}" найдено:</h2>
       {search && (
         <div className="container">
           <hr className="hr" />
@@ -60,9 +63,11 @@ const Search = ({ id }) => {
           </div>
         </div>
       )}
-
+      </div>
+              }
       {error && <h3 align="center">{error}</h3>}
     </div>
+    
   );
 };
 

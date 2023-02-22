@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import Loader from "../Loader/Loader";
 import "./AnotherPage.scss";
 import PostUser from "../PostUser/PostUser";
+import ErrorMessage from "../ErrorMessage/ErrorMessage";
 
 
 export const AnotherPage = ({ id }) => {
@@ -21,6 +22,8 @@ export const AnotherPage = ({ id }) => {
   const [isSubscription, setSubscriptions] = useState(false);
   //Колесо загрузки
   const [loader, setLoader] = useState(true);
+
+  const [error, setErrorMessage] = useState()
 
   const [sub, setSub] = useState()
 
@@ -88,7 +91,10 @@ export const AnotherPage = ({ id }) => {
         }
         console.log(response.data.subscibe);
         setLoader(false);
-      });
+      }).catch((error)=>{
+        setErrorMessage(error.response.data.message)
+        setLoader(false)
+      })
     } else {
       /** Получение пользователя */
       axios({
@@ -117,6 +123,15 @@ export const AnotherPage = ({ id }) => {
   if (loader) {
     return <Loader />;
   }
+
+
+  if(error){
+    return(
+      <ErrorMessage msg={error}/>
+    )
+  }
+
+
 
   return (
     <div className="profile">
@@ -192,7 +207,11 @@ export const AnotherPage = ({ id }) => {
       <div>
         <PostUser id={id} />
       </div>
+      
       <hr className="hr center" style={{ margin: "0 auto 50px auto" }} />
+      
+      
     </div>
+    
   );
 };
