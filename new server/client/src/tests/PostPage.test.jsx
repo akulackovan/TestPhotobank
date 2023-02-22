@@ -13,12 +13,15 @@ import { AuthContext } from "../context/AuthContext";
 import axios from "axios";
 import { act } from "react-dom/test-utils";
 
+import MockAdapter  from "axios-mock-adapter";
+
 
 jest.mock("axios");
 
 
 
 const mockIdPost = "63ecbdbf6267e058bd9f7725";
+
 
 const mockdata = {
   data: {
@@ -105,11 +108,11 @@ describe("PostPage component", () => {
     //Используем Mock-функцию
     const { userId } = jest.fn();
     
-    axios.mockResolvedValue(mockdata)
-    axios.mockRejectedValue({status: 400,
+    axios.mockResolvedValueOnce({status: 200})
+    axios.mockRejectedValueOnce({status: 400,
     response: {
       data: {
-        message: "Ошибка при просмотре"
+        message: "Ошибка при добавлении просмотра"
       }
     }})
 
@@ -119,9 +122,53 @@ describe("PostPage component", () => {
       </AuthContext.Provider>
     );
 
-    const loading = screen.getByTestId("loader");
+  
+
+    let loading = screen.getByTestId("loader");
+    expect(loading).toBeInTheDocument();
+    await act(async () => {
+      await new Promise((resolve) => setTimeout(resolve, 0));
+    });
+
+    axios.mockResolvedValueOnce(mockdata)
+    axios.mockRejectedValueOnce({status: 400,
+    response: {
+      data: {
+        message: "Поста не существует"
+      }
+    }})
+
+
+    await expect(axios).toHaveBeenCalledTimes(2);
+
+    loading = screen.getByTestId("loader");
     expect(loading).toBeInTheDocument();
 
+    await new Promise(process.nextTick);
 
+
+    axios.mockResolvedValueOnce({status: 200,
+      response: {
+        data: {
+          message: "Лайк получен"
+        }
+      }})
+    axios.mockRejectedValueOnce({status: 400,
+    response: {
+      data: {
+        message: "Ошибка при получении статуса лайка"
+      }
+    }})
+
+
+    await expect(axios).toHaveBeenCalledTimes(2);
+    loading = screen.getByTestId("loader");
+    expect(loading).toBeInTheDocument();
+
+    await act(async () => {
+      await new Promise((resolve) => setTimeout(resolve, 0));
+    });
+
+    
   });
 });

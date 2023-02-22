@@ -44,6 +44,13 @@ describe("GET /city/getAllCity", () => {
     expect(res.body.city[0].city).not.toBeNull()
   });
 
+  it("Should return error with close mongoose", async () => {
+    await mongoose.connection.close();
+    const res = await request(app).get(`/city/getallcity`)
+    expect(res.statusCode).toEqual(400)
+    expect(res.body.message).toBe("Ошибка при получении городов")
+  });
+
 });
 
 
@@ -83,4 +90,13 @@ describe("GET /city/getcity", () => {
     expect(res.statusCode).toEqual(400)
     expect(res.body.message).toBe("Города нет")
   });
+
+  it("Should return error with unknown city", async () => {
+    await mongoose.connection.close();
+    const res = await request(app).get(`/city/getcity?cityId=66b9473e70bfa1abe160400f`)
+    expect(res.statusCode).toEqual(400)
+    expect(res.body.message).toBe("Ошибка при получении городов")
+  });
+
+
 })
