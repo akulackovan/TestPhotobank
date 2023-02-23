@@ -40,7 +40,7 @@ const postDataMock = {
     },
   },
   status: 200,
-}
+};
 
 describe("PostPage component start render", () => {
   it("Shoud print error message from add view", async () => {
@@ -64,7 +64,6 @@ describe("PostPage component start render", () => {
       await new Promise((resolve) => setTimeout(resolve, 0));
     });
 
-    
     await expect(axios).toHaveBeenCalledTimes(1);
     const error = screen.getByText("Ошибка при добавлении просмотра");
     expect(error).toBeInTheDocument();
@@ -93,7 +92,7 @@ describe("PostPage component start render", () => {
         status: 400,
       },
     });
-    
+
     loading = screen.getByTestId("loader");
     expect(loading).toBeInTheDocument();
     await act(async () => {
@@ -114,10 +113,10 @@ describe("PostPage component start render", () => {
         "content-type": "application/json",
       },
       method: "get",
-      params:  {
-             id: "63c8416ddd700fb050db2515",
-             user: undefined,
-           },
+      params: {
+        id: "63c8416ddd700fb050db2515",
+        user: undefined,
+      },
       url: "/post/post/id",
     });
     await expect(axios).toHaveBeenCalledTimes(2);
@@ -160,7 +159,7 @@ describe("PostPage component start render", () => {
     await act(async () => {
       await new Promise((resolve) => setTimeout(resolve, 0));
     });
-    
+
     error = screen.getByText("Ошибка при получении статуса лайка");
     expect(error).toBeInTheDocument();
     await expect(axios).toHaveBeenCalledWith({
@@ -178,10 +177,10 @@ describe("PostPage component start render", () => {
         "content-type": "application/json",
       },
       method: "get",
-      params:  {
-             id: "63c8416ddd700fb050db2515",
-             user: undefined,
-           },
+      params: {
+        id: "63c8416ddd700fb050db2515",
+        user: undefined,
+      },
       url: "/post/post/id",
     });
     await expect(axios).toHaveBeenCalledWith({
@@ -196,10 +195,9 @@ describe("PostPage component start render", () => {
       },
     });
     await expect(axios.get).not.toHaveBeenCalledWith();
-
   });
 
-  it("Shoud print error message from get post comments", async () => {
+  it("Shoud print error message from get post comment", async () => {
     const { userId } = jest.fn();
 
     axios.mockResolvedValueOnce({
@@ -219,34 +217,37 @@ describe("PostPage component start render", () => {
     expect(loading).toBeInTheDocument();
     //2
     axios.mockResolvedValueOnce(postDataMock);
-    axios.mockRejectedValueOnce({
-      response: {
-        data: { message: "Ошибка при получении поста" },
-        status: 400,
-      },
-    });
     let error = screen.queryByText("Ошибка при получении поста");
     expect(error).not.toBeInTheDocument();
     loading = screen.getByTestId("loader");
     expect(loading).toBeInTheDocument();
     //3
     axios.mockResolvedValueOnce({
-      response: {
-        data: { like: true },
-        status: 200,
-      },
+      data: { like: false, message: "Успешно" },
+      status: 200,
     });
+    loading = screen.getByTestId("loader");
+    expect(loading).toBeInTheDocument();
 
+    //4
     axios.mockRejectedValueOnce({
       response: {
-        data: { message: "Ошибка при получении" },
+        data: { message: "Ошибка при получении комментариев" },
         status: 400,
       },
     });
-    
+    loading = screen.getByTestId("loader");
+    expect(loading).toBeInTheDocument();
     await act(async () => {
       await new Promise((resolve) => setTimeout(resolve, 0));
     });
+
+    //const statusLike = screen.getByTestId("like")
+    //expect(statusLike.title).toBe("Поставить лайк")
+
+    loading = screen.getByText("Ошибка при получении комментариев");
+    expect(loading).toBeInTheDocument();
+
     await expect(axios).toHaveBeenCalledWith({
       headers: {
         "content-type": "application/json",
@@ -262,10 +263,10 @@ describe("PostPage component start render", () => {
         "content-type": "application/json",
       },
       method: "get",
-      params:  {
-             id: "63c8416ddd700fb050db2515",
-             user: undefined,
-           },
+      params: {
+        id: "63c8416ddd700fb050db2515",
+        user: undefined,
+      },
       url: "/post/post/id",
     });
     await expect(axios).toHaveBeenCalledWith({
@@ -279,117 +280,6 @@ describe("PostPage component start render", () => {
         idPost: "63c8416ddd700fb050db2515",
       },
     });
-    await expect(axios).not.toHaveBeenCalledWith({
-      method: "get",
-      url: "/post/comments",
-      headers: {
-        "content-type": "application/json",
-      },
-      params: {
-        idPost: "63c8416ddd700fb050db2515",
-      },
-    });
-    error = screen.getByText("Ошибка при получении");
-    expect(error).toBeInTheDocument();
+    await expect(axios.get).not.toHaveBeenCalledWith();
   });
-
-
-
-
-  /*it("Shoud print error message from get comments", async () => {
-    const { userId } = jest.fn();
-
-    axios.mockResolvedValueOnce({
-      data: { message: "Успешно" },
-      status: 200,
-    });
-
-    render(
-      <AuthContext.Provider value={{ userId }}>
-        <PostPage match={{ params: { id: "63c8416ddd700fb050db2515" } }} />
-      </AuthContext.Provider>
-    );
-    //1
-    const postPage = screen.getByTestId("postPage");
-    expect(postPage).toBeInTheDocument();
-    let loading = screen.getByTestId("loader");
-    expect(loading).toBeInTheDocument();
-    //2
-    axios.mockResolvedValueOnce(postDataMock);
-    axios.mockRejectedValueOnce({
-      response: {
-        data: { message: "Ошибка при получении поста" },
-        status: 400,
-      },
-    });
-    loading = screen.getByTestId("loader");
-    expect(loading).toBeInTheDocument();
-    //3
-    axios.mockResolvedValueOnce({
-        data: { like: true},
-        status: 200,
-    });
-    axios.mockRejectedValueOnce({
-      response: {
-        data: { message: "Ошибка при получении лайка" },
-        status: 400,
-      },
-    });
-
-    //4
-    loading = screen.getByText("Загрузка комментариев");
-    expect(loading).toBeInTheDocument();
-    
-
-    axios.mockRejectedValue({
-      response: {
-        data: { message: "Ошибка при получении комментариев к посту" },
-        status: 400,
-      },
-    });
-    await act(async () => {
-      await new Promise((resolve) => setTimeout(resolve, 0));
-    });
-
-
-    await expect(axios).toHaveBeenCalledWith({
-      headers: {
-        "content-type": "application/json",
-      },
-      method: "put",
-      params: {
-        id: "63c8416ddd700fb050db2515",
-      },
-      url: "/post/addView",
-    });
-    await expect(axios).toHaveBeenCalledWith({
-      headers: {
-        "content-type": "application/json",
-      },
-      method: "get",
-      params:  {
-             id: "63c8416ddd700fb050db2515",
-             user: undefined,
-           },
-      url: "/post/post/id",
-    });
-    await expect(axios).toHaveBeenCalledWith({
-      method: "get",
-      url: "/post/comments",
-      headers: {
-        "content-type": "application/json",
-      },
-      params: {
-        id: "63c8416ddd700fb050db2515",
-      },
-    });
-
-
-    const error = screen.getByText("Ошибка при получении комментариев к посту");
-    expect(error).toBeInTheDocument();
-
-
-    
-  });
-   */
 });

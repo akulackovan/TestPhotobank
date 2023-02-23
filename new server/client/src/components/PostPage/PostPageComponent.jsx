@@ -23,44 +23,41 @@ const PostPageComponent = ({ id }) => {
   console.log(userId);
 
   //Добавить просмотр + данные о посте
-  useEffect( () => {
-      axios({
-        method: "put",
-        url: "/post/addView",
-        headers: {
-          "content-type": "application/json",
-        },
-        params: {
-          id: id,
-        },
-      })
-        .then((response) => {
-          console.log(response);
-          getPost()
-        })
-        .catch((error) => {
-          console.log(error);
-          setPostError(error.response.data.message);
-          setLoading(false);
-        });
-    },
-    []
-  );
-
-  //Получаем комментарии к посту
-  const getComments = () => {
-    axios.get(
-      "/post/comments",
-      {
+  useEffect(() => {
+    axios({
+      method: "put",
+      url: "/post/addView",
       headers: {
         "content-type": "application/json",
       },
       params: {
         id: id,
       },
-    }
-    )
-      .then((response) =>{
+    })
+      .then((response) => {
+        console.log(response);
+        getPost();
+      })
+      .catch((error) => {
+        console.log(error);
+        setPostError(error.response.data.message);
+        setLoading(false);
+      });
+  }, []);
+
+  //Получаем комментарии к посту
+  const getComments = () => {
+    axios( {
+      method: "get",
+      url: "/post/comments", 
+      headers: {
+        "content-type": "application/json",
+      },
+      params: {
+        id: id
+      },
+    })
+      .then((response) => {
         console.log(response.data);
         if (response.data.total.length == 0) {
           setComments({ length: 0 });
@@ -71,9 +68,9 @@ const PostPageComponent = ({ id }) => {
         setLoadingComm(false);
       })
       .catch((error) => {
+        setLoadingComm(false);
         setErrorMessage(error.response.data.message);
         setTimeout(() => setErrorMessage(""), 2000);
-        setLoadingComm(false);
       });
   };
 
@@ -110,19 +107,19 @@ const PostPageComponent = ({ id }) => {
             } else {
               setCountLike(response.data.isPost.likes + 1);
             }
-            setLoading(false);
             getComments();
+            setLoading(false);
           })
           .catch((error) => {
-            setPostError(error.response.data.message);
             setLoading(false);
+            setPostError(error.response.data.message);
+            
             return;
           });
-        
       })
       .catch((error) => {
-        setPostError(error.response.data.message);
         setLoading(false);
+        setPostError(error.response.data.message);
       });
     console.log("Like" + like);
   };
@@ -274,6 +271,7 @@ const PostPageComponent = ({ id }) => {
             <div className="comment">
               {!like && (
                 <button
+                data-testid="like"
                   className="like icon"
                   title="Поставить лайк"
                   onClick={changeLike}
@@ -294,6 +292,7 @@ const PostPageComponent = ({ id }) => {
               )}
               {like && (
                 <button
+                data-testid="like"
                   className="dislike icon"
                   title="Отменить лайк"
                   onClick={changeLike}
