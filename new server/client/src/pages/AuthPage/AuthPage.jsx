@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
 import "./AuthPage.scss";
-import  AuthContext  from "../../context/AuthContext";
+import AuthContext from "../../context/AuthContext";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 
 const AuthPage = () => {
@@ -53,28 +53,27 @@ const AuthPage = () => {
       setTimeout(() => setErrorMessage(""), 5000);
       return;
     }
-      await axios
-        .post(
-          "/auth/login",
-          { ...form },
-          {
-            headers: {
-              "Context-Type": "application/json",
-            },
-          }
-        )
-        .then(function (response) {
-          setAuthRed(true);
-          console.log(authRed);
-          setToken(response.data.token);
-          setUserID(response.data.user._id);
-        })
-        .catch(function (error) {
-      console.log(error);
-      let temp = error;
-      setErrorMessage(temp.response.data.message);
-      setTimeout(() => setErrorMessage(""), 5000);
-    })
+    await axios
+      .post(
+        "/auth/login",
+        { ...form },
+        {
+          headers: {
+            "Context-Type": "application/json",
+          },
+        }
+      )
+      .then(function (response) {
+        setAuthRed(true);
+        console.log(authRed);
+        setToken(response.data.token);
+        setUserID(response.data.user._id);
+      })
+      .catch(function (error) {
+        console.log(error);
+        setErrorMessage(error.response.data.message);
+        setTimeout(() => setErrorMessage(""), 5000);
+      });
   };
 
   const handleOnClick = async () => {
@@ -107,14 +106,20 @@ const AuthPage = () => {
             type="password"
             onChange={changeForm}
           />
-          <button className="button" onClick={authHandler} data-testid="login-button">
+          <button
+            className="button"
+            onClick={authHandler}
+            data-testid="login-button"
+          >
             ВОЙТИ
           </button>
           <button className="button" onClick={handleOnClick}>
             РЕГИСТРАЦИЯ
           </button>
-          {errorMessage && <ErrorMessage data-testid="error" msg={errorMessage} />}
-          {redirect && <Redirect to="/reg" data-testid="reg"/>}
+          {errorMessage && (
+            <ErrorMessage data-testid="error" msg={errorMessage} />
+          )}
+          {redirect && <Redirect to="/reg" data-testid="reg" />}
         </div>
       </div>
     </div>

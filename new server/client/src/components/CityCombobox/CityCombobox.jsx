@@ -16,9 +16,6 @@ const CityCombobox = ({ onChange }) => {
       ).then(function (response) {
         setOptions(response.data.city);
       })
-      .catch(function (error) {
-      console.log(error);
-    })
   }, []);
 
   const searchRef = useRef();

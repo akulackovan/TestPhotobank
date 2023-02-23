@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
 import Loader from "../Loader/Loader";
 import "./Search.scss";
 
@@ -22,15 +21,10 @@ const Search = ({ id }) => {
       }).then((require) => {
         setLoader(false);
         console.log(require.data.user);
-        if (require.data.user.length == 0) {
-          setErrorMessage("Ничего не найдено");
-          return;
-        }
         setSearchValue(require.data.user);
       }).catch ((error) => {
       console.log(error);
       setErrorMessage(error.response.data.message);
-      
       setLoader(false);
     })
   }, []);
@@ -50,13 +44,13 @@ const Search = ({ id }) => {
           <div className="search">
             <ul>
               {search.map((item) => (
-                <li className="element container">
-                  <Link
-                    to={`/profile/${item._id}`}
+                <li className="element container" data-testid="searchUser">
+                  <a
+                    href={`/profile/${item.id}`}
                     title={`Открыть профиль: ${item.username}`}
                   >
                     <h5>{item.username}</h5>
-                  </Link>
+                  </a>
                 </li>
               ))}
             </ul>

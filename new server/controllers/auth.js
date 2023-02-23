@@ -243,17 +243,23 @@ export const search = async (req, res) => {
         }
 
         /** Поиск */
-        const search = await User.find({"username": {$regex: `${name}`, $options: 'ix'}})
-        if (!search) {
-            return res.status(200).json({
+        let search = await User.find({"username": {$regex: `${name}`, $options: 'ix'}})
+        if (search.length == 0) {
+            return res.status(400).json({
                 message: 'Ничего не найдено',
             })
         }
+        search = await Promise.all(
+            search.map((user) => {
+              return {id: user.id, username: user.username};
+            })
+          );
         return res.status(200).json({
             user: search,
             message: 'Профили пользователей',
         })
     } catch (error) {
+        console.log(error)
         res.status(401).json({message: 'Ошибка в поиске пользователя'})
     }
 }

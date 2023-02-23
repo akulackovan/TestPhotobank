@@ -73,7 +73,6 @@ export const AnotherPage = ({ id }) => {
           myId: userId,
         },
       }).then((response) => {
-        console.log("HEEEE" + response.data.user.image);
         setUser({
           username: response.data.user.username,
           text: response.data.user.text,

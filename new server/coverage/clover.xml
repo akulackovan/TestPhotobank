@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1677098757935" clover="3.2.0">
-  <project timestamp="1677098757935" name="All files">
-    <metrics statements="253" coveredstatements="180" conditionals="104" coveredconditionals="77" methods="60" coveredmethods="30" elements="417" coveredelements="287" complexity="0" loc="253" ncloc="253" packages="10" files="13" classes="13"/>
+<coverage generated="1677158896431" clover="3.2.0">
+  <project timestamp="1677158896431" name="All files">
+    <metrics statements="268" coveredstatements="201" conditionals="112" coveredconditionals="86" methods="65" coveredmethods="37" elements="445" coveredelements="324" complexity="0" loc="268" ncloc="268" packages="12" files="15" classes="15"/>
     <package name="client.src.components.CityCombobox">
-      <metrics statements="41" coveredstatements="40" conditionals="10" coveredconditionals="10" methods="16" coveredmethods="15"/>
+      <metrics statements="40" coveredstatements="40" conditionals="10" coveredconditionals="10" methods="15" coveredmethods="15"/>
       <file name="CityCombobox.jsx" path="D:\GitHub\Another\new server\client\src\components\CityCombobox\CityCombobox.jsx">
-        <metrics statements="41" coveredstatements="40" conditionals="10" coveredconditionals="10" methods="16" coveredmethods="15"/>
+        <metrics statements="40" coveredstatements="40" conditionals="10" coveredconditionals="10" methods="15" coveredmethods="15"/>
         <line num="5" count="1" type="stmt"/>
         <line num="6" count="31" type="stmt"/>
         <line num="7" count="31" type="stmt"/>
@@ -15,38 +15,37 @@
         <line num="13" count="7" type="stmt"/>
         <line num="14" count="7" type="stmt"/>
         <line num="17" count="7" type="stmt"/>
-        <line num="20" count="0" type="stmt"/>
-        <line num="24" count="31" type="stmt"/>
-        <line num="25" count="31" type="stmt"/>
-        <line num="26" count="16" type="stmt"/>
-        <line num="27" count="16" type="cond" truecount="4" falsecount="0"/>
-        <line num="28" count="8" type="stmt"/>
-        <line num="33" count="31" type="stmt"/>
+        <line num="21" count="31" type="stmt"/>
+        <line num="22" count="31" type="stmt"/>
+        <line num="23" count="16" type="stmt"/>
+        <line num="24" count="16" type="cond" truecount="4" falsecount="0"/>
+        <line num="25" count="8" type="stmt"/>
+        <line num="30" count="31" type="stmt"/>
+        <line num="31" count="30" type="stmt"/>
+        <line num="32" count="30" type="stmt"/>
+        <line num="33" count="30" type="stmt"/>
         <line num="34" count="30" type="stmt"/>
-        <line num="35" count="30" type="stmt"/>
-        <line num="36" count="30" type="stmt"/>
-        <line num="37" count="30" type="stmt"/>
-        <line num="40" count="31" type="stmt"/>
-        <line num="41" count="8" type="stmt"/>
-        <line num="42" count="8" type="stmt"/>
-        <line num="45" count="31" type="stmt"/>
-        <line num="46" count="31" type="cond" truecount="2" falsecount="0"/>
-        <line num="47" count="4" type="stmt"/>
-        <line num="49" count="27" type="stmt"/>
-        <line num="52" count="31" type="stmt"/>
-        <line num="53" count="1" type="stmt"/>
-        <line num="54" count="1" type="stmt"/>
-        <line num="57" count="31" type="stmt"/>
-        <line num="58" count="6" type="stmt"/>
-        <line num="59" count="6" type="stmt"/>
-        <line num="61" count="31" type="stmt"/>
-        <line num="62" count="22" type="cond" truecount="2" falsecount="0"/>
-        <line num="63" count="16" type="stmt"/>
-        <line num="65" count="6" type="stmt"/>
-        <line num="67" count="18" type="stmt"/>
-        <line num="71" count="31" type="stmt"/>
-        <line num="94" count="32" type="stmt"/>
-        <line num="96" count="1" type="stmt"/>
+        <line num="37" count="31" type="stmt"/>
+        <line num="38" count="8" type="stmt"/>
+        <line num="39" count="8" type="stmt"/>
+        <line num="42" count="31" type="stmt"/>
+        <line num="43" count="31" type="cond" truecount="2" falsecount="0"/>
+        <line num="44" count="4" type="stmt"/>
+        <line num="46" count="27" type="stmt"/>
+        <line num="49" count="31" type="stmt"/>
+        <line num="50" count="1" type="stmt"/>
+        <line num="51" count="1" type="stmt"/>
+        <line num="54" count="31" type="stmt"/>
+        <line num="55" count="6" type="stmt"/>
+        <line num="56" count="6" type="stmt"/>
+        <line num="58" count="31" type="stmt"/>
+        <line num="59" count="22" type="cond" truecount="2" falsecount="0"/>
+        <line num="60" count="16" type="stmt"/>
+        <line num="62" count="6" type="stmt"/>
+        <line num="64" count="18" type="stmt"/>
+        <line num="68" count="31" type="stmt"/>
+        <line num="91" count="32" type="stmt"/>
+        <line num="93" count="1" type="stmt"/>
       </file>
     </package>
     <package name="client.src.components.ErrorMessage">
@@ -54,14 +53,14 @@
       <file name="ErrorMessage.jsx" path="D:\GitHub\Another\new server\client\src\components\ErrorMessage\ErrorMessage.jsx">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="4" count="2" type="stmt"/>
-        <line num="5" count="12" type="stmt"/>
+        <line num="5" count="13" type="stmt"/>
       </file>
     </package>
     <package name="client.src.components.Loader">
       <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
       <file name="Loader.jsx" path="D:\GitHub\Another\new server\client\src\components\Loader\Loader.jsx">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="2" count="4" type="stmt"/>
+        <line num="2" count="7" type="stmt"/>
       </file>
     </package>
     <package name="client.src.components.PostPage">
@@ -161,6 +160,28 @@
         <line num="355" count="0" type="stmt"/>
       </file>
     </package>
+    <package name="client.src.components.Search">
+      <metrics statements="16" coveredstatements="16" conditionals="8" coveredconditionals="8" methods="5" coveredmethods="5"/>
+      <file name="Search.jsx" path="D:\GitHub\Another\new server\client\src\components\Search\Search.jsx">
+        <metrics statements="16" coveredstatements="16" conditionals="8" coveredconditionals="8" methods="5" coveredmethods="5"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="6" type="stmt"/>
+        <line num="8" count="6" type="stmt"/>
+        <line num="9" count="6" type="stmt"/>
+        <line num="11" count="6" type="stmt"/>
+        <line num="12" count="3" type="stmt"/>
+        <line num="22" count="1" type="stmt"/>
+        <line num="23" count="1" type="stmt"/>
+        <line num="24" count="1" type="stmt"/>
+        <line num="26" count="2" type="stmt"/>
+        <line num="27" count="2" type="stmt"/>
+        <line num="28" count="2" type="stmt"/>
+        <line num="31" count="6" type="cond" truecount="2" falsecount="0"/>
+        <line num="32" count="3" type="stmt"/>
+        <line num="35" count="3" type="stmt"/>
+        <line num="47" count="2" type="stmt"/>
+      </file>
+    </package>
     <package name="client.src.context">
       <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="AuthContext.js" path="D:\GitHub\Another\new server\client\src\context\AuthContext.js">
@@ -169,58 +190,57 @@
       </file>
     </package>
     <package name="client.src.pages.AuthPage">
-      <metrics statements="49" coveredstatements="37" conditionals="18" coveredconditionals="15" methods="12" coveredmethods="3"/>
+      <metrics statements="48" coveredstatements="41" conditionals="18" coveredconditionals="16" methods="12" coveredmethods="4"/>
       <file name="AuthPage.jsx" path="D:\GitHub\Another\new server\client\src\pages\AuthPage\AuthPage.jsx">
-        <metrics statements="49" coveredstatements="37" conditionals="18" coveredconditionals="15" methods="12" coveredmethods="3"/>
+        <metrics statements="48" coveredstatements="41" conditionals="18" coveredconditionals="16" methods="12" coveredmethods="4"/>
         <line num="8" count="1" type="stmt"/>
-        <line num="9" count="46" type="stmt"/>
-        <line num="13" count="46" type="stmt"/>
-        <line num="14" count="46" type="stmt"/>
-        <line num="15" count="46" type="stmt"/>
-        <line num="16" count="46" type="stmt"/>
-        <line num="17" count="46" type="stmt"/>
-        <line num="19" count="46" type="stmt"/>
-        <line num="20" count="19" type="stmt"/>
-        <line num="21" count="19" type="stmt"/>
-        <line num="24" count="46" type="stmt"/>
-        <line num="26" count="46" type="stmt"/>
-        <line num="27" count="11" type="cond" truecount="4" falsecount="0"/>
+        <line num="9" count="44" type="stmt"/>
+        <line num="13" count="44" type="stmt"/>
+        <line num="14" count="44" type="stmt"/>
+        <line num="15" count="44" type="stmt"/>
+        <line num="16" count="44" type="stmt"/>
+        <line num="17" count="44" type="stmt"/>
+        <line num="19" count="44" type="stmt"/>
+        <line num="20" count="18" type="stmt"/>
+        <line num="21" count="18" type="stmt"/>
+        <line num="24" count="44" type="stmt"/>
+        <line num="26" count="44" type="stmt"/>
+        <line num="27" count="12" type="cond" truecount="4" falsecount="0"/>
         <line num="28" count="5" type="stmt"/>
         <line num="29" count="5" type="stmt"/>
         <line num="30" count="5" type="stmt"/>
-        <line num="32" count="6" type="cond" truecount="2" falsecount="0"/>
+        <line num="32" count="7" type="cond" truecount="2" falsecount="0"/>
         <line num="33" count="2" type="stmt"/>
         <line num="36" count="2" type="stmt"/>
         <line num="37" count="2" type="stmt"/>
-        <line num="39" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="39" count="5" type="cond" truecount="2" falsecount="0"/>
         <line num="40" count="2" type="stmt"/>
         <line num="41" count="2" type="stmt"/>
         <line num="42" count="2" type="stmt"/>
-        <line num="44" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="44" count="3" type="cond" truecount="2" falsecount="0"/>
         <line num="45" count="1" type="stmt"/>
         <line num="48" count="1" type="stmt"/>
         <line num="49" count="1" type="stmt"/>
-        <line num="51" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="51" count="2" type="cond" truecount="2" falsecount="0"/>
         <line num="52" count="1" type="stmt"/>
         <line num="53" count="1" type="stmt"/>
         <line num="54" count="1" type="stmt"/>
-        <line num="56" count="0" type="stmt"/>
+        <line num="56" count="1" type="stmt"/>
         <line num="67" count="0" type="stmt"/>
         <line num="68" count="0" type="stmt"/>
         <line num="69" count="0" type="stmt"/>
         <line num="70" count="0" type="stmt"/>
-        <line num="73" count="0" type="stmt"/>
-        <line num="74" count="0" type="stmt"/>
-        <line num="75" count="0" type="stmt"/>
-        <line num="76" count="0" type="stmt"/>
-        <line num="80" count="46" type="stmt"/>
-        <line num="81" count="0" type="stmt"/>
-        <line num="83" count="46" type="stmt"/>
-        <line num="84" count="46" type="stmt"/>
-        <line num="85" count="46" type="cond" truecount="1" falsecount="1"/>
+        <line num="73" count="1" type="stmt"/>
+        <line num="74" count="1" type="stmt"/>
+        <line num="75" count="1" type="stmt"/>
+        <line num="79" count="44" type="stmt"/>
+        <line num="80" count="0" type="stmt"/>
+        <line num="82" count="44" type="stmt"/>
+        <line num="83" count="44" type="stmt"/>
+        <line num="84" count="44" type="cond" truecount="1" falsecount="1"/>
+        <line num="85" count="0" type="stmt"/>
         <line num="86" count="0" type="stmt"/>
-        <line num="87" count="0" type="stmt"/>
-        <line num="90" count="46" type="stmt"/>
+        <line num="89" count="44" type="stmt"/>
       </file>
     </package>
     <package name="client.src.pages.PostPage">
@@ -228,6 +248,13 @@
       <file name="PostPage.jsx" path="D:\GitHub\Another\new server\client\src\pages\PostPage\PostPage.jsx">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="6" count="2" type="stmt"/>
+      </file>
+    </package>
+    <package name="client.src.pages.SearchPage">
+      <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <file name="SearchPage.jsx" path="D:\GitHub\Another\new server\client\src\pages\SearchPage\SearchPage.jsx">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="6" count="3" type="stmt"/>
       </file>
     </package>
     <package name="controllers">
