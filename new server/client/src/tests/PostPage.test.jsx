@@ -146,12 +146,6 @@ describe("PostPage component start render", () => {
     expect(loading).toBeInTheDocument();
     //2
     axios.mockResolvedValueOnce(postDataMock);
-    axios.mockRejectedValueOnce({
-      response: {
-        data: { message: "Ошибка при получении поста" },
-        status: 400,
-      },
-    });
     let error = screen.queryByText("Ошибка при получении поста");
     expect(error).not.toBeInTheDocument();
     loading = screen.getByTestId("loader");
@@ -163,6 +157,93 @@ describe("PostPage component start render", () => {
         status: 400,
       },
     });
+    await act(async () => {
+      await new Promise((resolve) => setTimeout(resolve, 0));
+    });
+    
+    error = screen.getByText("Ошибка при получении статуса лайка");
+    expect(error).toBeInTheDocument();
+    await expect(axios).toHaveBeenCalledWith({
+      headers: {
+        "content-type": "application/json",
+      },
+      method: "put",
+      params: {
+        id: "63c8416ddd700fb050db2515",
+      },
+      url: "/post/addView",
+    });
+    await expect(axios).toHaveBeenCalledWith({
+      headers: {
+        "content-type": "application/json",
+      },
+      method: "get",
+      params:  {
+             id: "63c8416ddd700fb050db2515",
+             user: undefined,
+           },
+      url: "/post/post/id",
+    });
+    await expect(axios).toHaveBeenCalledWith({
+      method: "get",
+      url: "/post/getLike",
+      headers: {
+        "content-type": "application/json",
+      },
+      params: {
+        idUser: undefined,
+        idPost: "63c8416ddd700fb050db2515",
+      },
+    });
+    await expect(axios.get).not.toHaveBeenCalledWith();
+
+  });
+
+  it("Shoud print error message from get post comments", async () => {
+    const { userId } = jest.fn();
+
+    axios.mockResolvedValueOnce({
+      data: { message: "Успешно" },
+      status: 200,
+    });
+
+    render(
+      <AuthContext.Provider value={{ userId }}>
+        <PostPage match={{ params: { id: "63c8416ddd700fb050db2515" } }} />
+      </AuthContext.Provider>
+    );
+    //1
+    const postPage = screen.getByTestId("postPage");
+    expect(postPage).toBeInTheDocument();
+    let loading = screen.getByTestId("loader");
+    expect(loading).toBeInTheDocument();
+    //2
+    axios.mockResolvedValueOnce(postDataMock);
+    axios.mockRejectedValueOnce({
+      response: {
+        data: { message: "Ошибка при получении поста" },
+        status: 400,
+      },
+    });
+    let error = screen.queryByText("Ошибка при получении поста");
+    expect(error).not.toBeInTheDocument();
+    loading = screen.getByTestId("loader");
+    expect(loading).toBeInTheDocument();
+    //3
+    axios.mockResolvedValueOnce({
+      response: {
+        data: { like: true },
+        status: 200,
+      },
+    });
+
+    axios.mockRejectedValueOnce({
+      response: {
+        data: { message: "Ошибка при получении" },
+        status: 400,
+      },
+    });
+    
     await act(async () => {
       await new Promise((resolve) => setTimeout(resolve, 0));
     });
@@ -208,9 +289,10 @@ describe("PostPage component start render", () => {
         idPost: "63c8416ddd700fb050db2515",
       },
     });
-    error = screen.getByText("Ошибка при получении статуса лайка");
+    error = screen.getByText("Ошибка при получении");
     expect(error).toBeInTheDocument();
   });
+
 
 
 

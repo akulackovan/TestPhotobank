@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1677177901905" clover="3.2.0">
-  <project timestamp="1677177901905" name="All files">
+<coverage generated="1677178096954" clover="3.2.0">
+  <project timestamp="1677178096954" name="All files">
     <metrics statements="270" coveredstatements="216" conditionals="112" coveredconditionals="97" methods="64" coveredmethods="41" elements="446" coveredelements="354" complexity="0" loc="270" ncloc="270" packages="12" files="15" classes="15"/>
     <package name="client.src.components.CityCombobox">
       <metrics statements="40" coveredstatements="40" conditionals="10" coveredconditionals="10" methods="15" coveredmethods="15"/>

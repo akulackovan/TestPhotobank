@@ -49,16 +49,17 @@ const PostPageComponent = ({ id }) => {
 
   //Получаем комментарии к посту
   const getComments = () => {
-    axios({
-      method: "get",
-      url: "/post/comments",
+    axios.get(
+      "/post/comments",
+      {
       headers: {
         "content-type": "application/json",
       },
       params: {
         id: id,
       },
-    })
+    }
+    )
       .then((response) =>{
         console.log(response.data);
         if (response.data.total.length == 0) {
@@ -110,18 +111,17 @@ const PostPageComponent = ({ id }) => {
               setCountLike(response.data.isPost.likes + 1);
             }
             setLoading(false);
+            getComments();
           })
           .catch((error) => {
-            setErrorMessage(error.response.data.message);
-            setTimeout(() => setErrorMessage(""), 2000);
+            setPostError(error.response.data.message);
             setLoading(false);
             return;
           });
-        getComments();
+        
       })
       .catch((error) => {
-        setErrorMessage(error.response.data.message);
-        setTimeout(() => setErrorMessage(""), 2000);
+        setPostError(error.response.data.message);
         setLoading(false);
       });
     console.log("Like" + like);
