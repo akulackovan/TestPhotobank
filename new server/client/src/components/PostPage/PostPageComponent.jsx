@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import Loader from "../Loader/Loader";
 import { Link } from "react-router-dom";
-import  AuthContext  from "../../context/AuthContext";
+import AuthContext from "../../context/AuthContext";
 import "./PostPage.scss";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 
@@ -12,6 +12,7 @@ const PostPageComponent = ({ id }) => {
 
   const [loadingComm, setLoadingComm] = useState(true);
   const [error, setErrorMessage] = useState("");
+  const [postError, setPostError] = useState("");
   const [comment, setComment] = useState("");
   const [comments, setComments] = useState({
     length: 0,
@@ -21,36 +22,30 @@ const PostPageComponent = ({ id }) => {
   const [countLike, setCountLike] = useState();
   console.log(userId);
 
-//Добавить просмотр + данные о посте
-useEffect(() => {
-  axios({
-    method: "put",
-    url: "/post/addView",
-    headers: {
-      "content-type": "application/json",
+  //Добавить просмотр + данные о посте
+  useEffect( () => {
+      axios({
+        method: "put",
+        url: "/post/addView",
+        headers: {
+          "content-type": "application/json",
+        },
+        params: {
+          id: id,
+        },
+      })
+        .then((response) => {
+          console.log(response);
+          getPost()
+        })
+        .catch((error) => {
+          console.log(error);
+          setPostError(error.response.data.message);
+          setLoading(false);
+        });
     },
-    params: {
-      id: id,
-    },
-  })
-    .then(function (response){
-      console.log(response)
-      getPost();
-    })
-    .catch( function (error) {
-      console.log(error)
-      setErrorMessage(error.response.data.message);
-      if (error.response.data.message != "Поста не существует")
-      {
-        setTimeout(() => setErrorMessage(""), 2000);
-      }
-      
-      setLoading(false);
-    });
-}, []);
-
-
-
+    []
+  );
 
   //Получаем комментарии к посту
   const getComments = () => {
@@ -64,7 +59,7 @@ useEffect(() => {
         id: id,
       },
     })
-      .then( function (response) {
+      .then((response) =>{
         console.log(response.data);
         if (response.data.total.length == 0) {
           setComments({ length: 0 });
@@ -72,12 +67,12 @@ useEffect(() => {
           return;
         }
         setComments(response.data.total);
-        
         setLoadingComm(false);
       })
-      .catch(function (error) {
+      .catch((error) => {
         setErrorMessage(error.response.data.message);
         setTimeout(() => setErrorMessage(""), 2000);
+        setLoadingComm(false);
       });
   };
 
@@ -90,13 +85,12 @@ useEffect(() => {
       },
       params: {
         id: id,
-        user: userId
+        user: userId,
       },
     })
-      .then(function (response) {
+      .then((response) => {
         console.log(response.data.isPost);
         setPost(response.data.isPost);
-        setLoading(false);
         axios({
           method: "get",
           url: "/post/getLike",
@@ -108,47 +102,43 @@ useEffect(() => {
             idPost: id,
           },
         })
-          .then(function (responseLike) {
+          .then((responseLike) => {
             setLike(responseLike.data.like);
-            console.log("Like2"+ like);
-            console.log(response.data.isPost.likes)
-            if (responseLike.data.like)
-            {
-              setCountLike(response.data.isPost.likes)
+            if (responseLike.data.like) {
+              setCountLike(response.data.isPost.likes);
+            } else {
+              setCountLike(response.data.isPost.likes + 1);
             }
-            else {
-              setCountLike(response.data.isPost.likes + 1)
-            }
+            setLoading(false);
           })
-          .catch(function (error) {
+          .catch((error) => {
             setErrorMessage(error.response.data.message);
             setTimeout(() => setErrorMessage(""), 2000);
-            return
+            setLoading(false);
+            return;
           });
-        console.log(countLike)
         getComments();
       })
-      .catch(function (error) {
+      .catch((error) => {
         setErrorMessage(error.response.data.message);
         setTimeout(() => setErrorMessage(""), 2000);
+        setLoading(false);
       });
-      console.log("Like" + like)
+    console.log("Like" + like);
   };
 
-  
   const changeForm = (event) => {
     setComment(event.target.value);
     console.log(comment);
   };
 
-  
-  const changeLike =  () => {
+  const changeLike = () => {
     try {
       const buttons = document.getElementsByTagName("button");
       for (const button of buttons) {
         button.disabled = true;
       }
-       axios({
+      axios({
         method: "put",
         url: "/post/setLike",
         params: {
@@ -157,21 +147,19 @@ useEffect(() => {
         },
       }).then(function (response) {
         setLike(response.data.like);
-        console.log(countLike)
-        if (response.data.like)
-        {
-          setPost({...post, likes: countLike})
-        }
-        else{
-          setPost({...post, likes: countLike - 1})
+        console.log(countLike);
+        if (response.data.like) {
+          setPost({ ...post, likes: countLike });
+        } else {
+          setPost({ ...post, likes: countLike - 1 });
         }
       });
     } catch (error) {
       console.log(error);
       setErrorMessage(error.response.data.message);
       setTimeout(() => setErrorMessage(""), 2000);
+      setLoading(false);
     }
-
   };
 
   const commentHandler = async () => {
@@ -215,6 +203,10 @@ useEffect(() => {
     return <Loader />;
   }
 
+  if (postError) {
+    return <ErrorMessage msg={postError} />;
+  }
+
   return (
     <div className="allPost">
       {error && <ErrorMessage msg={error} />}
@@ -223,12 +215,12 @@ useEffect(() => {
           <div className="one">
             <div className="container">
               <div>
-                <Link
-                  to={`/profile/${post.author._id}`}
+                <a
+                  href={`/profile/${post.author._id}`}
                   title={`Автор: ${post.author.username}`}
                 >
                   <h4 className="head">{post.author.username}</h4>
-                </Link>
+                </a>
               </div>
               <div className="under">
                 <div className="date">
@@ -285,7 +277,7 @@ useEffect(() => {
                   className="like icon"
                   title="Поставить лайк"
                   onClick={changeLike}
-                  id = "like"
+                  id="like"
                 >
                   <svg
                     width="50px"
@@ -305,7 +297,7 @@ useEffect(() => {
                   className="dislike icon"
                   title="Отменить лайк"
                   onClick={changeLike}
-                  id = "unlike"
+                  id="unlike"
                 >
                   <svg
                     width="50px"
