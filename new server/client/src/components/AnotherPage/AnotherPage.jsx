@@ -45,7 +45,7 @@ export const AnotherPage = ({ id }) => {
         })
         .then((response) => {
           console.log("GO");
-
+          //ЗДЕСЬ тест
           if (response.data.isSubs) {
             console.log("Update");
             setUser({ ...user, subscriptions: sub});
@@ -106,7 +106,7 @@ export const AnotherPage = ({ id }) => {
         params: {
           userId: userId,
         },
-      }).then((response) => {
+      }).then((response) => { //ЗДЕСЬ Тест
         console.log("Profile: " + response.data.user);
         setUser({
           username: response.data.user.username,

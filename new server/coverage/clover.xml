@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1677242141177" clover="3.2.0">
-  <project timestamp="1677242141177" name="All files">
-    <metrics statements="711" coveredstatements="546" conditionals="279" coveredconditionals="210" methods="118" coveredmethods="94" elements="1108" coveredelements="850" complexity="0" loc="711" ncloc="711" packages="20" files="33" classes="33"/>
+<coverage generated="1677251008114" clover="3.2.0">
+  <project timestamp="1677251008114" name="All files">
+    <metrics statements="722" coveredstatements="603" conditionals="285" coveredconditionals="234" methods="120" coveredmethods="100" elements="1127" coveredelements="937" complexity="0" loc="722" ncloc="722" packages="20" files="34" classes="34"/>
     <package name="client.src.components.AnotherPage">
       <metrics statements="46" coveredstatements="38" conditionals="24" coveredconditionals="20" methods="10" coveredmethods="8"/>
       <file name="AnotherPage.jsx" path="D:\GitHub\Another\new server\client\src\components\AnotherPage\AnotherPage.jsx">
@@ -116,9 +116,9 @@
       </file>
     </package>
     <package name="client.src.components.PostPage">
-      <metrics statements="87" coveredstatements="87" conditionals="30" coveredconditionals="30" methods="25" coveredmethods="20"/>
+      <metrics statements="87" coveredstatements="87" conditionals="30" coveredconditionals="30" methods="25" coveredmethods="21"/>
       <file name="PostPageComponent.jsx" path="D:\GitHub\Another\new server\client\src\components\PostPage\PostPageComponent.jsx">
-        <metrics statements="87" coveredstatements="87" conditionals="30" coveredconditionals="30" methods="25" coveredmethods="20"/>
+        <metrics statements="87" coveredstatements="87" conditionals="30" coveredconditionals="30" methods="25" coveredmethods="21"/>
         <line num="9" count="1" type="stmt"/>
         <line num="10" count="57" type="stmt"/>
         <line num="11" count="57" type="stmt"/>
@@ -209,14 +209,14 @@
       </file>
     </package>
     <package name="client.src.components.PostUser">
-      <metrics statements="19" coveredstatements="15" conditionals="4" coveredconditionals="3" methods="4" coveredmethods="3"/>
+      <metrics statements="19" coveredstatements="13" conditionals="4" coveredconditionals="1" methods="4" coveredmethods="3"/>
       <file name="PostUser.jsx" path="D:\GitHub\Another\new server\client\src\components\PostUser\PostUser.jsx">
-        <metrics statements="19" coveredstatements="15" conditionals="4" coveredconditionals="3" methods="4" coveredmethods="3"/>
+        <metrics statements="19" coveredstatements="13" conditionals="4" coveredconditionals="1" methods="4" coveredmethods="3"/>
         <line num="5" count="1" type="stmt"/>
-        <line num="6" count="6" type="stmt"/>
-        <line num="7" count="6" type="stmt"/>
-        <line num="9" count="6" type="stmt"/>
-        <line num="11" count="6" type="stmt"/>
+        <line num="6" count="5" type="stmt"/>
+        <line num="7" count="5" type="stmt"/>
+        <line num="9" count="5" type="stmt"/>
+        <line num="11" count="5" type="stmt"/>
         <line num="12" count="3" type="stmt"/>
         <line num="13" count="3" type="stmt"/>
         <line num="24" count="2" type="stmt"/>
@@ -226,11 +226,11 @@
         <line num="31" count="0" type="stmt"/>
         <line num="33" count="0" type="stmt"/>
         <line num="36" count="1" type="stmt"/>
-        <line num="40" count="6" type="cond" truecount="2" falsecount="0"/>
+        <line num="40" count="5" type="cond" truecount="1" falsecount="1"/>
         <line num="41" count="5" type="stmt"/>
-        <line num="44" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="44" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="45" count="0" type="stmt"/>
-        <line num="52" count="1" type="stmt"/>
+        <line num="52" count="0" type="stmt"/>
       </file>
     </package>
     <package name="client.src.components.PostsTable">
@@ -238,7 +238,7 @@
       <file name="PostsTable.jsx" path="D:\GitHub\Another\new server\client\src\components\PostsTable\PostsTable.jsx">
         <metrics statements="3" coveredstatements="3" conditionals="8" coveredconditionals="7" methods="2" coveredmethods="2"/>
         <line num="5" count="4" type="cond" truecount="1" falsecount="0"/>
-        <line num="6" count="12" type="stmt"/>
+        <line num="6" count="11" type="stmt"/>
         <line num="13" count="17" type="stmt"/>
       </file>
     </package>
@@ -272,7 +272,7 @@
       </file>
     </package>
     <package name="client.src.hooks">
-      <metrics statements="16" coveredstatements="16" conditionals="4" coveredconditionals="4" methods="4" coveredmethods="4"/>
+      <metrics statements="24" coveredstatements="24" conditionals="8" coveredconditionals="7" methods="6" coveredmethods="6"/>
       <file name="auth.hook.js" path="D:\GitHub\Another\new server\client\src\hooks\auth.hook.js">
         <metrics statements="16" coveredstatements="16" conditionals="4" coveredconditionals="4" methods="4" coveredmethods="4"/>
         <line num="4" count="6" type="stmt"/>
@@ -291,6 +291,17 @@
         <line num="28" count="2" type="cond" truecount="4" falsecount="0"/>
         <line num="29" count="1" type="stmt"/>
         <line num="33" count="6" type="stmt"/>
+      </file>
+      <file name="use.theme.js" path="D:\GitHub\Another\new server\client\src\hooks\use.theme.js">
+        <metrics statements="8" coveredstatements="8" conditionals="4" coveredconditionals="3" methods="2" coveredmethods="2"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="8" count="2" type="stmt"/>
+        <line num="12" count="2" type="stmt"/>
+        <line num="13" count="2" type="stmt"/>
+        <line num="14" count="2" type="stmt"/>
+        <line num="17" count="2" type="stmt"/>
       </file>
     </package>
     <package name="client.src.pages.AnotherUserPage">
@@ -437,7 +448,7 @@
       </file>
     </package>
     <package name="controllers">
-      <metrics statements="351" coveredstatements="209" conditionals="151" coveredconditionals="94" methods="26" coveredmethods="18"/>
+      <metrics statements="354" coveredstatements="260" conditionals="153" coveredconditionals="117" methods="26" coveredmethods="21"/>
       <file name="auth.js" path="D:\GitHub\Another\new server\controllers\auth.js">
         <metrics statements="98" coveredstatements="21" conditionals="33" coveredconditionals="8" methods="7" coveredmethods="2"/>
         <line num="8" count="2" type="stmt"/>
@@ -555,20 +566,23 @@
         <line num="32" count="1" type="stmt"/>
       </file>
       <file name="comments.js" path="D:\GitHub\Another\new server\controllers\comments.js">
-        <metrics statements="13" coveredstatements="1" conditionals="4" coveredconditionals="0" methods="1" coveredmethods="0"/>
-        <line num="6" count="2" type="stmt"/>
-        <line num="7" count="0" type="stmt"/>
-        <line num="9" count="0" type="stmt"/>
-        <line num="11" count="0" type="stmt"/>
-        <line num="12" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="13" count="0" type="stmt"/>
-        <line num="17" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="18" count="0" type="stmt"/>
-        <line num="21" count="0" type="stmt"/>
-        <line num="22" count="0" type="stmt"/>
-        <line num="25" count="0" type="stmt"/>
-        <line num="29" count="0" type="stmt"/>
-        <line num="34" count="0" type="stmt"/>
+        <metrics statements="16" coveredstatements="15" conditionals="6" coveredconditionals="6" methods="1" coveredmethods="1"/>
+        <line num="6" count="3" type="stmt"/>
+        <line num="7" count="5" type="stmt"/>
+        <line num="9" count="5" type="stmt"/>
+        <line num="11" count="5" type="stmt"/>
+        <line num="12" count="5" type="cond" truecount="2" falsecount="0"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="16" count="4" type="stmt"/>
+        <line num="17" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="18" count="1" type="stmt"/>
+        <line num="22" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="23" count="2" type="stmt"/>
+        <line num="26" count="1" type="stmt"/>
+        <line num="27" count="1" type="stmt"/>
+        <line num="30" count="1" type="stmt"/>
+        <line num="34" count="1" type="stmt"/>
+        <line num="39" count="0" type="stmt"/>
       </file>
       <file name="getPopularPosts.js" path="D:\GitHub\Another\new server\controllers\getPopularPosts.js">
         <metrics statements="41" coveredstatements="34" conditionals="24" coveredconditionals="19" methods="2" coveredmethods="2"/>
@@ -615,38 +629,38 @@
         <line num="156" count="0" type="stmt"/>
       </file>
       <file name="getSubscriptionPosts.js" path="D:\GitHub\Another\new server\controllers\getSubscriptionPosts.js">
-        <metrics statements="28" coveredstatements="1" conditionals="16" coveredconditionals="0" methods="2" coveredmethods="0"/>
-        <line num="5" count="2" type="stmt"/>
-        <line num="6" count="0" type="stmt"/>
-        <line num="8" count="0" type="stmt"/>
-        <line num="9" count="0" type="stmt"/>
-        <line num="10" count="0" type="stmt"/>
-        <line num="11" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="12" count="0" type="stmt"/>
-        <line num="18" count="0" type="stmt"/>
-        <line num="19" count="0" type="stmt"/>
-        <line num="20" count="0" type="cond" truecount="0" falsecount="4"/>
-        <line num="21" count="0" type="stmt"/>
-        <line num="25" count="0" type="stmt"/>
-        <line num="26" count="0" type="stmt"/>
-        <line num="27" count="0" type="stmt"/>
-        <line num="28" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="29" count="0" type="stmt"/>
-        <line num="31" count="0" type="cond" truecount="0" falsecount="2"/>
+        <metrics statements="28" coveredstatements="27" conditionals="16" coveredconditionals="14" methods="2" coveredmethods="2"/>
+        <line num="5" count="3" type="stmt"/>
+        <line num="6" count="5" type="stmt"/>
+        <line num="8" count="5" type="stmt"/>
+        <line num="9" count="5" type="stmt"/>
+        <line num="10" count="5" type="stmt"/>
+        <line num="11" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="18" count="3" type="stmt"/>
+        <line num="19" count="3" type="stmt"/>
+        <line num="20" count="3" type="cond" truecount="4" falsecount="0"/>
+        <line num="21" count="1" type="stmt"/>
+        <line num="25" count="2" type="stmt"/>
+        <line num="26" count="2" type="stmt"/>
+        <line num="27" count="4" type="stmt"/>
+        <line num="28" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="29" count="2" type="stmt"/>
+        <line num="31" count="2" type="cond" truecount="1" falsecount="1"/>
         <line num="32" count="0" type="stmt"/>
-        <line num="34" count="0" type="stmt"/>
-        <line num="35" count="0" type="stmt"/>
-        <line num="38" count="0" type="cond" truecount="0" falsecount="4"/>
-        <line num="39" count="0" type="stmt"/>
-        <line num="42" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="43" count="0" type="stmt"/>
-        <line num="45" count="0" type="stmt"/>
-        <line num="50" count="0" type="stmt"/>
-        <line num="51" count="0" type="stmt"/>
-        <line num="56" count="0" type="stmt"/>
+        <line num="34" count="2" type="stmt"/>
+        <line num="35" count="2" type="stmt"/>
+        <line num="38" count="2" type="cond" truecount="4" falsecount="0"/>
+        <line num="39" count="1" type="stmt"/>
+        <line num="42" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="43" count="1" type="stmt"/>
+        <line num="45" count="1" type="stmt"/>
+        <line num="50" count="1" type="stmt"/>
+        <line num="51" count="1" type="stmt"/>
+        <line num="56" count="1" type="stmt"/>
       </file>
       <file name="post.js" path="D:\GitHub\Another\new server\controllers\post.js">
-        <metrics statements="90" coveredstatements="71" conditionals="22" coveredconditionals="15" methods="9" coveredmethods="9"/>
+        <metrics statements="90" coveredstatements="82" conditionals="22" coveredconditionals="18" methods="9" coveredmethods="9"/>
         <line num="6" count="2" type="stmt"/>
         <line num="7" count="4" type="stmt"/>
         <line num="8" count="4" type="stmt"/>
@@ -665,16 +679,16 @@
         <line num="32" count="1" type="stmt"/>
         <line num="33" count="1" type="stmt"/>
         <line num="39" count="2" type="stmt"/>
-        <line num="40" count="2" type="stmt"/>
-        <line num="41" count="2" type="stmt"/>
-        <line num="42" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="40" count="4" type="stmt"/>
+        <line num="41" count="4" type="stmt"/>
+        <line num="42" count="4" type="cond" truecount="2" falsecount="0"/>
         <line num="43" count="1" type="stmt"/>
-        <line num="48" count="1" type="stmt"/>
-        <line num="49" count="1" type="cond" truecount="3" falsecount="1"/>
-        <line num="50" count="0" type="stmt"/>
+        <line num="48" count="3" type="stmt"/>
+        <line num="49" count="2" type="cond" truecount="4" falsecount="0"/>
+        <line num="50" count="1" type="stmt"/>
         <line num="55" count="1" type="stmt"/>
-        <line num="60" count="0" type="stmt"/>
-        <line num="61" count="0" type="stmt"/>
+        <line num="60" count="1" type="stmt"/>
+        <line num="61" count="1" type="stmt"/>
         <line num="67" count="2" type="stmt"/>
         <line num="68" count="3" type="stmt"/>
         <line num="69" count="3" type="stmt"/>
@@ -719,24 +733,24 @@
         <line num="154" count="1" type="stmt"/>
         <line num="155" count="1" type="stmt"/>
         <line num="159" count="2" type="stmt"/>
-        <line num="160" count="1" type="stmt"/>
-        <line num="161" count="1" type="stmt"/>
-        <line num="162" count="1" type="stmt"/>
-        <line num="163" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="160" count="6" type="stmt"/>
+        <line num="161" count="6" type="stmt"/>
+        <line num="162" count="6" type="stmt"/>
+        <line num="163" count="5" type="cond" truecount="2" falsecount="0"/>
         <line num="164" count="1" type="stmt"/>
-        <line num="168" count="0" type="stmt"/>
-        <line num="169" count="0" type="stmt"/>
-        <line num="170" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="168" count="4" type="stmt"/>
+        <line num="169" count="3" type="stmt"/>
+        <line num="170" count="3" type="cond" truecount="1" falsecount="1"/>
         <line num="171" count="0" type="stmt"/>
         <line num="172" count="0" type="stmt"/>
         <line num="173" count="0" type="stmt"/>
         <line num="174" count="0" type="stmt"/>
-        <line num="176" count="0" type="stmt"/>
-        <line num="177" count="0" type="stmt"/>
-        <line num="178" count="0" type="stmt"/>
+        <line num="176" count="3" type="stmt"/>
+        <line num="177" count="2" type="stmt"/>
+        <line num="178" count="2" type="stmt"/>
         <line num="180" count="0" type="stmt"/>
-        <line num="185" count="0" type="stmt"/>
-        <line num="186" count="0" type="stmt"/>
+        <line num="185" count="5" type="stmt"/>
+        <line num="186" count="5" type="stmt"/>
       </file>
       <file name="postController.js" path="D:\GitHub\Another\new server\controllers\postController.js">
         <metrics statements="21" coveredstatements="21" conditionals="6" coveredconditionals="6" methods="2" coveredmethods="2"/>
@@ -822,15 +836,15 @@
       </file>
       <file name="Comment.js" path="D:\GitHub\Another\new server\models\Comment.js">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="3" count="2" type="stmt"/>
+        <line num="3" count="3" type="stmt"/>
       </file>
       <file name="Post.js" path="D:\GitHub\Another\new server\models\Post.js">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="3" count="3" type="stmt"/>
+        <line num="3" count="5" type="stmt"/>
       </file>
       <file name="User.js" path="D:\GitHub\Another\new server\models\User.js">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="3" count="3" type="stmt"/>
+        <line num="3" count="5" type="stmt"/>
       </file>
     </package>
     <package name="router">
