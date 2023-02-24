@@ -3,9 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="dc9ed6bc-6050-4eb9-8ac1-0bf8007c7ff7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/new server/client/src/components/AnotherPage/AnotherPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/new server/client/src/components/AnotherPage/AnotherPage.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/new server/client/src/pages/AddPostPAge/AddPostPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/new server/client/src/pages/AddPostPAge/AddPostPage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/new server/client/src/tests/AnotherPage.test.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/new server/client/src/tests/AnotherPage.test.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new server/controllers/post.js" beforeDir="false" afterPath="$PROJECT_DIR$/new server/controllers/post.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new server/testsDev/post.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/new server/testsDev/post.test.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,12 +30,12 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="nodejs.jest.jest_package" value="$PROJECT_DIR$/new server/client/node_modules/react-scripts" />
+    <property name="nodejs.jest.jest_package" value="$PROJECT_DIR$/new server/node_modules/jest" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
-  <component name="RunManager" selected="Jest.SubscribePage.test.jsx">
+  <component name="RunManager" selected="Jest.getPostById">
     <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -48,36 +48,6 @@
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
-    </configuration>
-    <configuration name="AnotherUserPage.test.jsx" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
-      <node-interpreter value="project" />
-      <node-options value="" />
-      <jest-package value="$PROJECT_DIR$/new server/client/node_modules/react-scripts" />
-      <working-dir value="$PROJECT_DIR$/new server/client" />
-      <envs />
-      <scope-kind value="TEST_FILE" />
-      <test-file value="$PROJECT_DIR$/new server/client/src/tests/AnotherUserPage.test.jsx" />
-      <method v="2" />
-    </configuration>
-    <configuration name="PopularPage.test.jsx" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
-      <node-interpreter value="project" />
-      <node-options value="" />
-      <jest-package value="$PROJECT_DIR$/new server/client/node_modules/react-scripts" />
-      <working-dir value="$PROJECT_DIR$/new server/client" />
-      <envs />
-      <scope-kind value="TEST_FILE" />
-      <test-file value="$PROJECT_DIR$/new server/client/src/tests/PopularPage.test.jsx" />
-      <method v="2" />
-    </configuration>
-    <configuration name="PostsTable.test.jsx" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
-      <node-interpreter value="project" />
-      <node-options value="" />
-      <jest-package value="$PROJECT_DIR$/new server/client/node_modules/react-scripts" />
-      <working-dir value="$PROJECT_DIR$/new server/client" />
-      <envs />
-      <scope-kind value="TEST_FILE" />
-      <test-file value="$PROJECT_DIR$/new server/client/src/tests/PostsTable.test.jsx" />
-      <method v="2" />
     </configuration>
     <configuration name="ProfilePage.test.jsx" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
@@ -99,13 +69,49 @@
       <test-file value="$PROJECT_DIR$/new server/client/src/tests/SubscribePage.test.jsx" />
       <method v="2" />
     </configuration>
+    <configuration name="getPostById" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/new server/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$/new server" />
+      <envs />
+      <scope-kind value="SUITE" />
+      <test-file value="$PROJECT_DIR$/new server/testsDev/post.test.js" />
+      <test-names>
+        <test-name value="getPostById" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="post.test.js" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/new server/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$/new server" />
+      <envs />
+      <scope-kind value="TEST_FILE" />
+      <test-file value="$PROJECT_DIR$/new server/testsDev/post.test.js" />
+      <method v="2" />
+    </configuration>
+    <configuration name="setLike" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/new server/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$/new server" />
+      <envs />
+      <scope-kind value="SUITE" />
+      <test-file value="$PROJECT_DIR$/new server/testsDev/post.test.js" />
+      <test-names>
+        <test-name value="setLike" />
+      </test-names>
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Jest.getPostById" />
+        <item itemvalue="Jest.setLike" />
+        <item itemvalue="Jest.post.test.js" />
         <item itemvalue="Jest.SubscribePage.test.jsx" />
         <item itemvalue="Jest.ProfilePage.test.jsx" />
-        <item itemvalue="Jest.PostsTable.test.jsx" />
-        <item itemvalue="Jest.PopularPage.test.jsx" />
-        <item itemvalue="Jest.AnotherUserPage.test.jsx" />
       </list>
     </recent_temporary>
   </component>
@@ -121,7 +127,7 @@
       <workItem from="1677092937300" duration="1738000" />
       <workItem from="1677097265590" duration="385000" />
       <workItem from="1677142353341" duration="48534000" />
-      <workItem from="1677219628884" duration="5564000" />
+      <workItem from="1677219628884" duration="6833000" />
     </task>
     <task id="LOCAL-00001" summary="add some tests">
       <created>1677224010088</created>
@@ -130,7 +136,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677224010088</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="add some fixing tests">
+      <created>1677225534378</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1677225534379</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -162,7 +175,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add some tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="add some tests" />
+    <MESSAGE value="add some fixing tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="add some fixing tests" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/AnotherTRKPO$AnotherUserPage.info" NAME="AnotherUserPage Coverage Results" MODIFIED="1677167632943" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="JestJavaScriptTestRunnerCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

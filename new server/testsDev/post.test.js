@@ -3,9 +3,11 @@ import authRoute from '../router/auth.js'
 import settingRoute from '../router/settings.js'
 import cityRoute from '../router/city.js'
 import postRoute from '../router/post.js'
-import {addView, getLike, setLike} from '../controllers/post.js'
+import {addView, getLike, getPostById, setLike} from '../controllers/post.js'
 import Post from '../models/Post.js';
 import User from '../models/User.js';
+import City from '../models/City.js';
+
 const mongoose = require('mongoose');
 const request = require('supertest');
 const httpMocks = require('node-mocks-http');
@@ -181,18 +183,6 @@ describe('getLike', () => {
 });
 
 describe('setLike', () => {
-    // beforeAll(async () => {
-    //     jest.setTimeout(50000)
-    //     await mongoose.connect(
-    //         'mongodb+srv://admin:admin@test.qidx0uu.mongodb.net/?retryWrites=true&w=majority',
-    //         {useNewUrlParser: true, useUnifiedTopology: true},
-    //     );
-    //     dotenv.config()
-    // });
-
-    afterAll(async () => {
-        await mongoose.connection.close();
-    });
 
     it('should return a 400 status code if the post does not exist', async () => {
         let mockReq;
@@ -216,74 +206,166 @@ describe('setLike', () => {
         expect(mockRes.status).toHaveBeenCalledWith(400);
         expect(mockRes.json).toHaveBeenCalledWith({message: 'Поста не существует'});
     });
+});
 
-    // it('should add a like if the user has not already liked the post', async () => {
-    //     const user = new User({
-    //         name: 'Test User',
-    //         likes: [],
-    //     });
-    //     await user.save();
-    //
-    //     const post = new Post({
-    //         title: 'Test Post',
-    //         likes: 0,
-    //     });
-    //     await post.save();
-    //
-    //     const req = {
-    //         query: {
-    //             idUser: user._id,
-    //             idPost: post._id,
-    //         },
-    //     };
-    //     const res = {
-    //         status: jest.fn(() => res),
-    //         json: jest.fn(),
-    //     };
-    //     await setLike(req, res);
-    //     expect(res.status).toHaveBeenCalledWith(200);
-    //     expect(res.json).toHaveBeenCalledWith({ like: true, message: 'Лайк изменен' });
-    //
-    //     const updatedUser = await User.findById(user._id);
-    //     expect(updatedUser.likes).toContain(post._id);
-    //
-    //     const updatedPost = await Post.findById(post._id);
-    //     expect(updatedPost.likes).toBe(1);
-    // });
+const mockPostId = 'mock_post_id'
+const mockPost = {
+    _id: mockPostId,
+    title: 'Mock Post',
+    content: 'This is a mock post',
+    author: 'mock_author_id',
+    city: 'mock_city_id',
+    likes: ['mock_user_id_1', 'mock_user_id_2'],
+    createdAt: new Date(),
+    updatedAt: new Date(),
+}
+const mockAuthor = {
+    _id: 'mock_author_id',
+    username: 'mock_author_username',
+    password: 'mock_author_password',
+    text: 'This is a mock author',
+    city: 'mock_city_id',
+    image: 'mock_author_image',
+    typeImg: 'mock_author_type',
+    likes: [],
+    subscriptions: [],
+    createdAt: new Date(),
+    updatedAt: new Date(),
+}
+const mockCity = {
+    _id: 'mock_city_id',
+    city: 'Mockow',
+}
+const mockUser1 = {
+    _id: 'mock_user_id_1',
+    username: 'mock_user_username_1',
+    password: 'mock_user_password_1',
+    text: 'This is a mock user 1',
+    city: 'mock_city_id',
+    image: 'mock_user_image_1',
+    typeImg: 'mock_user_type_1',
+    likes: [],
+    subscriptions: [],
+    createdAt: new Date(),
+    updatedAt: new Date(),
+}
+const mockUser2 = {
+    _id: 'mock_user_id_2',
+    username: 'mock_user_username_2',
+    password: 'mock_user_password_2',
+    text: 'This is a mock user 2',
+    city: 'mock_city_id',
+    image: 'mock_user_image_2',
+    typeImg: 'mock_user_type_2',
+    likes: [],
+    subscriptions: [],
+    createdAt: new Date(),
+    updatedAt: new Date(),
+}
 
-    // it('should remove a like if the user has already liked the post', async () => {
-    //     const user = new User({
-    //         name: 'Test User',
-    //         likes: [],
-    //     });
-    //     await user.save();
-    //
-    //     const post = new Post({
-    //         title: 'Test Post',
-    //         likes: 1,
-    //     });
-    //     await post.save();
-    //
-    //     await User.updateOne({ _id: user._id }, { $push: { likes: post._id } });
-    //
-    //     const req = {
-    //         query: {
-    //             idUser: user._id,
-    //             idPost: post._id,
-    //         },
-    //     };
-    //     const res = {
-    //         status: jest.fn(() => res),
-    //         json: jest.fn(),
-    //     };
-    //     await setLike(req, res);
-    //     expect(res.status).toHaveBeenCalledWith(200);
-    //     expect(res.json).toHaveBeenCalledWith({ like: false, message: 'Лайк изменен' });
-    //
-    //     const updatedUser = await User.findById(user._id);
-    //     expect(updatedUser.likes).not.toContain(post._id);
-    //
-    //     const updatedPost = await Post.findById(post._id);
-    //     expect(updatedPost.likes).toBe(0);
-    // });
+jest.mock('../models/Post')
+jest.mock('../models/User')
+jest.mock('../models/City')
+
+describe('getPostById', () => {
+    beforeEach(() => {
+        jest.clearAllMocks()
+    })
+
+    it('should return a post with author, city, and likes', async () => {
+        Post.findOne.mockResolvedValueOnce(mockPost)
+        User.find.mockResolvedValueOnce([mockUser1, mockUser2])
+        User.findOne.mockResolvedValueOnce(mockAuthor)
+        City.findOne.mockResolvedValueOnce(mockCity)
+        const req = {query: {id: mockPostId}}
+        const res = {json: jest.fn()}
+        await getPostById(req, res)
+
+        expect(Post.findOne).toHaveBeenCalledWith({_id: mockPostId})
+        expect(User.find).toHaveBeenCalledWith({likes: mockPostId})
+        expect(User.findOne).toHaveBeenCalledWith({_id: mockAuthor._id})
+        expect(City.findOne).toHaveBeenCalledWith({_id: mockCity._id})
+        expect(res.json).toHaveBeenCalledWith({
+            isPost: {
+                ...mockPost,
+                likes: 2,
+                author: {
+                    ...mockAuthor,
+                    password: ''
+                },
+                city: mockCity
+            },
+            message: 'Пост получен'
+        });
+
+    });
+
+    it('should return a 400 error if post does not exist', async () => {
+        // Mock Post.findOne() to return null
+        Post.findOne.mockResolvedValueOnce(null)
+
+        // Call the getPostById function with the mock request and response objects
+        const req = { query: { id: 'nonexistent_post_id' } }
+        const res = { status: jest.fn().mockReturnThis(), json: jest.fn() }
+        await getPostById(req, res)
+
+        // Expect Post.findOne() to be called with the mock post ID
+        expect(Post.findOne).toHaveBeenCalledWith({ _id: 'nonexistent_post_id' })
+
+        // Expect the response to have a 400 status and a message indicating the post does not exist
+        expect(res.status).toHaveBeenCalledWith(400)
+        expect(res.json).toHaveBeenCalledWith({ message: 'Поста не существует' })
+    });
+
+    it('should return a 400 error if an error occurs while querying the database', async () => {
+        // Mock Post.findOne() to throw an error
+        Post.findOne.mockImplementationOnce(() => { throw new Error('test error') })
+
+        // Call the getPostById function with the mock request and response objects
+        const req = { query: { id: mockPostId } }
+        const res = { status: jest.fn().mockReturnThis(), json: jest.fn() }
+        await getPostById(req, res)
+
+        // Expect Post.findOne() to be called with the mock post ID
+        expect(Post.findOne).toHaveBeenCalledWith({ _id: mockPostId })
+
+        // Expect the response to have a 400 status and a message indicating an error occurred
+        expect(res.status).toHaveBeenCalledWith(400)
+        expect(res.json).toHaveBeenCalledWith({ message: 'Ошибка при получении поста' })
+    });
+
+    it('should return a post with author, city, and no likes', async () => {
+        // Mock Post.findOne() to return the mock post with no likes
+        const mockPostNoLikes = { ...mockPost, likes: [] }
+        Post.findOne.mockResolvedValueOnce(mockPostNoLikes)
+
+        // Mock User.find() to return an empty array
+        User.find.mockResolvedValueOnce([])
+
+        // Mock User.findOne() to return the mock author
+        User.findOne.mockResolvedValueOnce(mockAuthor)
+
+        // Mock City.findOne() to return the mock city
+        City.findOne.mockResolvedValueOnce(mockCity)
+
+        // Call the getPostById function with the mock request and response objects
+        const req = { query: { id: mockPostId } }
+        const res = { json: jest.fn() }
+        await getPostById(req, res)
+
+        // Expect Post.findOne() to be called with the mock post ID
+        expect(Post.findOne).toHaveBeenCalledWith({ _id: mockPostId })
+
+        // Expect the response to have a post object with the mock post data and no likes
+        expect(res.json).toHaveBeenCalledWith({
+            isPost: {
+                ...mockPostNoLikes,
+                author: { ...mockAuthor, password: '' },
+                city: mockCity,
+                likes: 0,
+            },
+            message: 'Пост получен',
+        })
+    });
+
 });
