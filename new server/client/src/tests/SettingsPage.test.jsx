@@ -13,6 +13,7 @@ import axios from "axios";
 
 import {AuthContext} from "../context/AuthContext";
 import SettingsPage from "../pages/SettingsPage/SettingPage";
+import userEvent from "@testing-library/user-event";
 
 
 jest.mock("axios");
@@ -208,6 +209,39 @@ describe("SettingsPage Message", () => {
 
     expect(msg).toBeInTheDocument()
     screen.debug();
+  })
+
+  it("Checking the empty upload", async () => {
+    global.URL.createObjectURL = jest.fn();
+    const file = new File(["(⌐□_□)"], "chucknorris.png", { type: "image/png" })
+    const photoInput = screen.queryByTestId("input");
+    await act(async () => {
+      await waitFor(() => {
+        userEvent.upload(photoInput, file);
+      });
+    });
+    let image = screen.queryByTestId("input");
+    // check if the file is there
+    expect(image.files[0].name).toBe("chucknorris.png");
+    expect(image.files.length).toBe(1);
+
+    const saveButton = screen.getByText("СОХРАНИТЬ");
+    axios.post.mockRejectedValueOnce({
+      response: {
+        data: {
+          message: "Настройки изменены",
+        },
+      },
+      status: 201,
+    });
+    fireEvent.click(saveButton)
+
+    await act(async () => {
+      await new Promise((resolve) => setTimeout(resolve, 0));
+    });
+    const msg = screen.queryByText("Настройки изменены");
+
+    expect(msg).toBeInTheDocument()
   })
 })
 
