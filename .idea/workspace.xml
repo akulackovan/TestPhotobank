@@ -26,22 +26,70 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d7845c77-1760-40f2-a5de-a0d003cdf23a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/new server/client/src/components/CityCombobox/CityCombobox.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/new server/client/src/components/CityCombobox/CityCombobox.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/new server/client/src/pages/AddPostPAge/AddPostPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/new server/client/src/pages/AddPostPAge/AddPostPage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/new server/client/src/pages/SettingsPage/SettingPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/new server/client/src/pages/SettingsPage/SettingPage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/new server/client/src/pages/SettingsPage/SettingsPage.scss" beforeDir="false" afterPath="$PROJECT_DIR$/new server/client/src/pages/SettingsPage/SettingsPage.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/new server/testsDev/getSubscriptionPosts.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new server/client/src/pages/AddPostPage/AddPostPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/new server/client/src/pages/AddPostPage/AddPostPage.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/new server/coverage/clover.xml" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/clover.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/new server/coverage/coverage-final.json" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/coverage-final.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/components/ErrorMessage/ErrorMessage.jsx.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/components/ErrorMessage/ErrorMessage.jsx.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/components/ErrorMessage/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/components/ErrorMessage/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/context/AuthContext.js.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/context/AuthContext.js.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/context/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/context/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/base.css" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/base.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/block-navigation.js" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/block-navigation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/client/src/components/AnotherPage/AnotherPage.jsx.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/client/src/components/AnotherPage/AnotherPage.jsx.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/client/src/components/AnotherPage/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/client/src/components/AnotherPage/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/client/src/components/CityCombobox/CityCombobox.jsx.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/client/src/components/CityCombobox/CityCombobox.jsx.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/client/src/components/CityCombobox/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/client/src/components/CityCombobox/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/client/src/components/ErrorMessage/ErrorMessage.jsx.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/client/src/components/ErrorMessage/ErrorMessage.jsx.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/client/src/components/ErrorMessage/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/client/src/components/ErrorMessage/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/client/src/components/Loader/Loader.jsx.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/client/src/components/Loader/Loader.jsx.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/client/src/components/Loader/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/client/src/components/Loader/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/client/src/components/PostPage/PostPageComponent.jsx.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/client/src/components/PostPage/PostPageComponent.jsx.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/client/src/components/PostPage/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/client/src/components/PostPage/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/client/src/components/PostUser/PostUser.jsx.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/client/src/components/PostUser/PostUser.jsx.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/client/src/components/PostUser/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/client/src/components/PostUser/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/client/src/components/PostsTable/PostsTable.jsx.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/client/src/components/PostsTable/PostsTable.jsx.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/client/src/components/PostsTable/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/client/src/components/PostsTable/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/client/src/components/Search/Search.jsx.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/client/src/components/Search/Search.jsx.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/client/src/components/Search/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/client/src/components/Search/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/client/src/context/AuthContext.js.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/client/src/context/AuthContext.js.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/client/src/context/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/client/src/context/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/client/src/pages/AnotherUserPage/AnotherUserPage.jsx.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/client/src/pages/AnotherUserPage/AnotherUserPage.jsx.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/client/src/pages/AnotherUserPage/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/client/src/pages/AnotherUserPage/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/client/src/pages/AuthPage/AuthPage.jsx.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/client/src/pages/AuthPage/AuthPage.jsx.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/client/src/pages/AuthPage/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/client/src/pages/AuthPage/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/client/src/pages/PopularPage/PopularPage.jsx.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/client/src/pages/PopularPage/PopularPage.jsx.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/client/src/pages/PopularPage/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/client/src/pages/PopularPage/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/client/src/pages/PostPage/PostPage.jsx.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/client/src/pages/PostPage/PostPage.jsx.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/client/src/pages/PostPage/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/client/src/pages/PostPage/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/client/src/pages/ProfilePage/ProfilePage.jsx.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/client/src/pages/ProfilePage/ProfilePage.jsx.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/client/src/pages/ProfilePage/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/client/src/pages/ProfilePage/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/client/src/pages/SearchPage/SearchPage.jsx.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/client/src/pages/SearchPage/SearchPage.jsx.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/client/src/pages/SearchPage/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/client/src/pages/SearchPage/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/client/src/pages/SubscribePage/SubscribePage.jsx.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/client/src/pages/SubscribePage/SubscribePage.jsx.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/client/src/pages/SubscribePage/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/client/src/pages/SubscribePage/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/controllers/auth.js.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/controllers/auth.js.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/controllers/city.js.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/controllers/city.js.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/controllers/comments.js.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/controllers/comments.js.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/controllers/getPopularPosts.js.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/controllers/getPopularPosts.js.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/controllers/getSubscriptionPosts.js.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/controllers/getSubscriptionPosts.js.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/controllers/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/controllers/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/controllers/post.js.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/controllers/post.js.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/controllers/postController.js.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/controllers/postController.js.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/controllers/settings.js.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/controllers/settings.js.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/pages/AuthPage/AuthPage.jsx.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/pages/AuthPage/AuthPage.jsx.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/pages/AuthPage/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/pages/AuthPage/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/models/City.js.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/models/City.js.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/models/Comment.js.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/models/Comment.js.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/models/Post.js.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/models/Post.js.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/models/User.js.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/models/User.js.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/models/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/models/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/prettify.css" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/prettify.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/prettify.js" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/prettify.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/router/auth.js.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/router/auth.js.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/router/city.js.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/router/city.js.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/router/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/router/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/router/post.js.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/router/post.js.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/router/settings.js.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/router/settings.js.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/sorter.js" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/sorter.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/new server/coverage/lcov.info" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/new server/utils/checkAuth.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/new server/utils/getCity.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new server/testsDev/post.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/new server/testsDev/post.test.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,7 +97,20 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="akulackovan-tests" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -66,7 +127,94 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="exceleditor.install" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/new server" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/new server/testsDev" />
+    <property name="nodejs.jest.jest_package" value="$PROJECT_DIR$/new server/node_modules/jest" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\kubi1\AnotherTRKPO\new server\testsDev" />
+    </key>
+  </component>
+  <component name="RunManager" selected="npm.test">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="getMyPost" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/new server/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$/new server" />
+      <envs />
+      <scope-kind value="SUITE" />
+      <test-file value="$PROJECT_DIR$/new server/testsDev/post.test.js" />
+      <test-names>
+        <test-name value="getMyPost" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="getSubscriptionPosts" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/new server/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$/new server" />
+      <envs />
+      <scope-kind value="SUITE" />
+      <test-file value="$PROJECT_DIR$/new server/testsDev/getSubscriptionPosts.test.js" />
+      <test-names>
+        <test-name value="getSubscriptionPosts" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="post.test.js" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/new server/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$/new server" />
+      <envs />
+      <scope-kind value="TEST_FILE" />
+      <test-file value="$PROJECT_DIR$/new server/testsDev/post.test.js" />
+      <method v="2" />
+    </configuration>
+    <configuration name="setLike" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/new server/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$/new server" />
+      <envs />
+      <scope-kind value="SUITE" />
+      <test-file value="$PROJECT_DIR$/new server/testsDev/post.test.js" />
+      <test-names>
+        <test-name value="setLike" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="test" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/new server/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="test" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.test" />
+        <item itemvalue="Jest.post.test.js" />
+        <item itemvalue="Jest.setLike" />
+        <item itemvalue="Jest.getMyPost" />
+        <item itemvalue="Jest.getSubscriptionPosts" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -90,7 +238,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="akulackovan-tests" />
+                        <option value="tkachenko-add" />
                       </list>
                     </value>
                   </entry>
@@ -103,18 +251,7 @@
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
-  <component name="WindowStateProjectService">
-    <state x="0" y="183" width="847" height="691" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1676049924798">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="0" y="183" width="847" height="691" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1676049924798" />
-    <state x="92" y="92" width="1736" height="866" key="DiffContextDialog" timestamp="1675949588766">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="92" y="92" width="1736" height="866" key="DiffContextDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1675949588766" />
-    <state x="260" y="283" key="FileChooserDialogImpl" timestamp="1676049939001">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="260" y="283" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1676049939001" />
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/AnotherTRKPO$AnotherUserPage.info" NAME="AnotherUserPage Coverage Results" MODIFIED="1677167632943" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="JestJavaScriptTestRunnerCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

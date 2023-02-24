@@ -26,10 +26,11 @@ app.use('/settings', settingRoute);
 app.use('/post', postRoute);
 app.use('/city', cityRoute);
 
+
 describe('addView', () => {
+    const postId = '1234';
 
     it('should increment post views count', async () => {
-        const postId = '1234';
         const post = new Post({_id: postId, views: 0});
         const req = httpMocks.createRequest({
             method: 'PUT',
@@ -68,7 +69,6 @@ describe('addView', () => {
     });
 
     it('should return an error if there is an error updating post', async () => {
-        const postId = '1234';
         const post = new Post({_id: postId, views: 0});
 
         const req = httpMocks.createRequest({
@@ -172,17 +172,18 @@ describe('getLike', () => {
 });
 
 describe('setLike', () => {
+    beforeEach(() => {
+        jest.clearAllMocks();
+    });
 
     it('should return a 400 status code if the post does not exist', async () => {
-        let mockReq;
-        let mockRes;
-        mockReq = {
+        const mockReq = {
             query: {
                 idUser: '123',
                 idPost: '456',
             },
         };
-        mockRes = {
+        const mockRes = {
             status: jest.fn().mockReturnThis(),
             json: jest.fn(),
         };
@@ -194,6 +195,147 @@ describe('setLike', () => {
         expect(Post.findById).toHaveBeenCalledWith(mockReq.query.idPost);
         expect(mockRes.status).toHaveBeenCalledWith(400);
         expect(mockRes.json).toHaveBeenCalledWith({message: 'Поста не существует'});
+    });
+
+    it('should to like to a post if the user has not liked the post before', async () => {
+        const mockReq = {
+            query: {
+                idUser: '123',
+                idPost: '456',
+            },
+        };
+        const mockRes = {
+            status: jest.fn().mockReturnThis(),
+            json: jest.fn(),
+        };
+        const mockPost = {
+            _id: '456',
+            author: 'user123',
+            likes: 0,
+        };
+        const mockUser = {
+            _id: '123',
+            likes: [],
+        };
+        jest.spyOn(Post, 'findById').mockResolvedValue(mockPost);
+        jest.spyOn(User, 'findOne').mockResolvedValue(mockUser);
+        jest.spyOn(User, 'updateOne').mockResolvedValue();
+        jest.spyOn(Post, 'updateOne').mockResolvedValue();
+
+        await setLike(mockReq, mockRes);
+
+        expect(Post.findById).toHaveBeenCalledWith(mockReq.query.idPost);
+        expect(User.findOne).toHaveBeenCalledWith({_id: mockReq.query.idUser, likes: mockReq.query.idPost});
+        expect(User.updateOne).toHaveBeenCalledWith({_id: mockReq.query.idUser}, {$pull: {likes: mockReq.query.idPost}});
+    });
+
+    it('should update a like from a post if the user has already liked the post', async () => {
+        const mockReq = {
+            query: {
+                idUser: '123',
+                idPost: '456',
+            },
+        };
+        const mockRes = {
+            status: jest.fn().mockReturnThis(),
+            json: jest.fn(),
+        };
+        const mockPost = {
+            _id: '456',
+            author: 'user123',
+            likes: 1,
+        };
+        const mockUser = {
+            _id: '123',
+            likes: ['456'],
+        };
+        jest.spyOn(Post, 'findById').mockResolvedValue(mockPost);
+        jest.spyOn(User, 'findOne').mockResolvedValue(mockUser);
+        jest.spyOn(User, 'updateOne').mockResolvedValue();
+        jest.spyOn(Post, 'updateOne').mockResolvedValue();
+
+        await setLike(mockReq, mockRes);
+
+        expect(Post.findById).toHaveBeenCalledWith(mockReq.query.idPost);
+        expect(User.findOne).toHaveBeenCalledWith({_id: mockReq.query.idUser, likes: mockReq.query.idPost});
+        expect(User.updateOne).toHaveBeenCalledWith({_id: mockReq.query.idUser}, {$pull: {likes: mockReq.query.idPost
+            }});
+    });
+
+    it('should return a bad status code and an error message if an error occurs while finding the post', async () => {
+        const mockReq = {
+            query: {
+                idUser: '123',
+                idPost: '456',
+            },
+        };
+        const mockRes = {
+            status: jest.fn().mockReturnThis(),
+            json: jest.fn(),
+        };
+        jest.spyOn(Post, 'findById').mockRejectedValue(new Error('Test error'));
+        await setLike(mockReq, mockRes);
+
+        expect(Post.findById).toHaveBeenCalledWith(mockReq.query.idPost);
+        expect(mockRes.status).toHaveBeenCalledWith(400);
+    });
+
+    it('should return a bad status code and an error message if an error occurs while finding the user', async () => {
+        const mockReq = {
+            query: {
+                idUser: '123',
+                idPost: '456',
+            },
+        };
+        const mockRes = {
+            status: jest.fn().mockReturnThis(),
+            json: jest.fn(),
+        };
+        const mockPost = {
+            _id: '456',
+            author: 'user123',
+            likes: 0,
+        };
+        jest.spyOn(Post, 'findById').mockResolvedValue(mockPost);
+        jest.spyOn(User, 'findOne').mockRejectedValue(new Error('Test error'));
+        await setLike(mockReq, mockRes);
+
+        expect(Post.findById).toHaveBeenCalledWith(mockReq.query.idPost);
+        expect(User.findOne).toHaveBeenCalledWith({_id: mockReq.query.idUser, likes: mockReq.query.idPost});
+        expect(mockRes.status).toHaveBeenCalledWith(400);
+    });
+
+    it('should return a bad status code and an error message if an error occurs while updating the user', async () => {
+        const mockReq = {
+            query: {
+                idUser: '123',
+                idPost: '456',
+            },
+        };
+        const mockRes = {
+            status: jest.fn().mockReturnThis(),
+            json: jest.fn(),
+        };
+        const mockPost = {
+            _id: '456',
+            author: 'user123',
+            likes: 0,
+        };
+        const mockUser = {
+            _id: '123',
+            likes: [],
+        };
+        jest.spyOn(Post, 'findById').mockResolvedValue(mockPost);
+        jest.spyOn(User, 'findOne').mockResolvedValue(mockUser);
+        jest.spyOn(User, 'updateOne').mockRejectedValue(new Error('Test error'));
+        await setLike(mockReq, mockRes);
+
+        expect(Post.findById).toHaveBeenCalledWith(mockReq.query.idPost);
+        expect(User.findOne).toHaveBeenCalledWith({_id: mockReq.query.idUser, likes: mockReq.query.idPost});
+        expect(User.updateOne).toHaveBeenCalledWith({_id: mockReq.query.idUser}, {$pull: {likes: mockReq.query.idPost}});
+        // expect(mockRes.status).toHaveBeenCalledWith(500);
+        expect(mockRes.json).toHaveBeenCalledWith({message: 'Ошибка при получении статуса лайка'});
+
     });
 });
 
@@ -341,6 +483,48 @@ describe('getMyPost', () => {
             message: 'Пользователя не существует',
         })
     });
+
+    it('returns "Фото нет" message when there are no posts for the given user', async () => {
+        const mockUser = { id: 'user123' };
+        const mockPost = [];
+
+        User.findOne.mockResolvedValueOnce(mockUser);
+        Post.find.mockResolvedValueOnce(mockPost);
+
+        const res = {
+            status: jest.fn().mockReturnThis(),
+            json: jest.fn()
+        };
+
+        await getMyPost({ query: { id: 'user123' } }, res);
+
+        expect(User.findOne).toHaveBeenCalledWith({ id: 'user123' });
+        expect(Post.find).toHaveBeenCalledWith({ author: 'user123' });
+
+        expect(res.status).toHaveBeenCalledWith(400);
+        expect(res.json).toHaveBeenCalledWith({ message: 'Фото нет' });
+    });
+
+    it('returns "Ошибка при получении постов пользователя" message when there is an error fetching posts for the given user', async () => {
+        const mockUser = { id: 'user123' };
+        const errorMessage = 'Database error';
+
+        User.findOne.mockResolvedValueOnce(mockUser);
+        Post.find.mockRejectedValueOnce(new Error(errorMessage));
+
+        const res = {
+            status: jest.fn().mockReturnThis(),
+            json: jest.fn()
+        };
+
+        await getMyPost({ query: { id: 'user123' } }, res);
+
+        expect(User.findOne).toHaveBeenCalledWith({ id: 'user123' });
+        expect(Post.find).toHaveBeenCalledWith({ author: 'user123' });
+
+        expect(res.status).toHaveBeenCalledWith(400);
+        expect(res.json).toHaveBeenCalledWith({ message: 'Ошибка при получении постов пользователя' });
+    });
 });
 
 describe('getPostById', () => {
@@ -447,11 +631,6 @@ describe('getPostById', () => {
     });
 
 });
-
-jest.mock('../models/Post')
-jest.mock('../models/User')
-jest.mock('../models/City')
-jest.mock('../models/Comment')
 
 describe('getPostComments', () => {
     beforeEach(() => {
