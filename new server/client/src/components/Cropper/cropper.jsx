@@ -230,6 +230,7 @@ const Cropper = ({ x = 480, y = 480, size = 7, setData}) => {
           onChange={(e) => {
             selectImage(e);
           }}
+          data-testid="input"
         />
         <label
           id="label-cropper"
