@@ -10,14 +10,12 @@ const CityCombobox = ({ onChange }) => {
   const [options, setOptions] = useState([]);
 
   useEffect(() => {
+    console.log("City")
       axios.get(
         "/city/getallcity"
       ).then(function (response) {
         setOptions(response.data.city);
       })
-      .catch(function (error) {
-      console.log(error);
-    })
   }, []);
 
   const searchRef = useRef();
@@ -75,7 +73,7 @@ const CityCombobox = ({ onChange }) => {
         title="Выбрать город"
         data-testid='button'
       >
-        <div className="dropdown-selected-value">{getDisplay()}</div>
+        <div className="dropdown-selected-value" data-testid='display'>{getDisplay()}</div>
         <div className="dropdown-tools">
           <div className="dropdown-tool">
             <svg className="icon" height="20" width="20" viewBox="0 0 20 20">

@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import Loader from "../Loader/Loader";
 import "./AnotherPage.scss";
 import PostUser from "../PostUser/PostUser";
+import ErrorMessage from "../ErrorMessage/ErrorMessage";
+
 
 export const AnotherPage = ({ id }) => {
   const { userId } = useContext(AuthContext);
@@ -20,6 +22,10 @@ export const AnotherPage = ({ id }) => {
   const [isSubscription, setSubscriptions] = useState(false);
   //Колесо загрузки
   const [loader, setLoader] = useState(true);
+
+  const [error, setErrorMessage] = useState()
+
+  const [sub, setSub] = useState()
 
   console.log(id);
   console.log(userId);
@@ -39,12 +45,12 @@ export const AnotherPage = ({ id }) => {
         })
         .then((response) => {
           console.log("GO");
-
+          //ЗДЕСЬ тест
           if (response.data.isSubs) {
             console.log("Update");
-            setUser({ ...user, subscriptions: user.subscriptions + 1 });
+            setUser({ ...user, subscriptions: sub});
           } else {
-            setUser({ ...user, subscriptions: user.subscriptions - 1 });
+            setUser({ ...user, subscriptions: sub - 1});
           }
         });
     } catch (error) {
@@ -67,7 +73,6 @@ export const AnotherPage = ({ id }) => {
           myId: userId,
         },
       }).then((response) => {
-        console.log("HEEEE" + response.data.user.image);
         setUser({
           username: response.data.user.username,
           text: response.data.user.text,
@@ -76,9 +81,19 @@ export const AnotherPage = ({ id }) => {
           city: response.data.city,
         });
         setSubscriptions(response.data.isSubscribe);
+        console.log("Sub" + response.data.isSubscribe)
+        if (response.data.isSubscribe) {
+          setSub(response.data.subscibe.length + 1)
+        }
+        else {
+          setSub(response.data.subscibe.length)
+        }
         console.log(response.data.subscibe);
         setLoader(false);
-      });
+      }).catch((error)=>{
+        setErrorMessage(error.response.data.message)
+        setLoader(false)
+      })
     } else {
       /** Получение пользователя */
       axios({
@@ -91,7 +106,7 @@ export const AnotherPage = ({ id }) => {
         params: {
           userId: userId,
         },
-      }).then((response) => {
+      }).then((response) => { //ЗДЕСЬ Тест
         console.log("Profile: " + response.data.user);
         setUser({
           username: response.data.user.username,
@@ -100,6 +115,9 @@ export const AnotherPage = ({ id }) => {
           userProfileImage: response.data.user.image,
         });
         setLoader(false);
+      }).catch((error)=>{
+        console.log(error)
+        setErrorMessage(error.response.data.message)
       });
     }
   }, []);
@@ -107,6 +125,15 @@ export const AnotherPage = ({ id }) => {
   if (loader) {
     return <Loader />;
   }
+
+
+  if(error){
+    return(
+      <ErrorMessage msg={error}/>
+    )
+  }
+
+
 
   return (
     <div className="profile">
@@ -116,7 +143,7 @@ export const AnotherPage = ({ id }) => {
         </div>
         <div className="second container">
           <div className="header">
-            <div className="user">{user.username}</div>
+            <div className="user" data-testid="post-user">{user.username}</div>
             {id != userId && <div className="city head">г.{user.city}</div>}
           </div>
           <div className="text">
@@ -133,7 +160,7 @@ export const AnotherPage = ({ id }) => {
                   </div>
                 </div>
                 <div>
-                  {!isSubscription && (
+                  {isSubscription && (
                     <button
                       className="button like"
                       onClick={() => {
@@ -145,7 +172,7 @@ export const AnotherPage = ({ id }) => {
                       Подписаться
                     </button>
                   )}
-                  {isSubscription && (
+                  {!isSubscription && (
                     <button
                       className="button dislike"
                       style={{ backgroundColor: "#BEBEBE" }}
@@ -182,7 +209,11 @@ export const AnotherPage = ({ id }) => {
       <div>
         <PostUser id={id} />
       </div>
+      
       <hr className="hr center" style={{ margin: "0 auto 50px auto" }} />
+      
+      
     </div>
+    
   );
 };

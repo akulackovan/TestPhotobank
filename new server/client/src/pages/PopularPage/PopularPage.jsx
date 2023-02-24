@@ -4,91 +4,14 @@ import  AuthContext  from "../../context/AuthContext";
 import Loader from "../../components/Loader/Loader";
 import PostTable from "../../components/PostsTable/PostsTable";
 
-//Изначальный пост, как поняли по требованиям
-/*const PopularPage = () => {
-  const { userId } = useContext(AuthContext);
-  const [post, setPosts] = useState([]);
-  const [errorMessage, setErrorMessage] = React.useState("");
-  const [isToday, setToday] = useState(true);
-  const [loader, setLoader] = useState(true);
-
-  useEffect(() => {
-    try {
-      axios({
-        method: "get",
-        url: "/post/popular",
-        headers: {
-          "x-auth-token": localStorage.getItem("auth-token"),
-          "content-type": "application/json",
-        },
-        params: {
-          id: userId,
-        },
-      })
-        .then((response) => {
-          console.log(response.data.posts);
-          setPosts(response.data.posts);
-          setToday(response.data.isToday);
-          setLoader(false);
-        })
-        .catch((error) => {
-          setErrorMessage(error.response.data.message);
-          setLoader(false);
-        });
-    } catch (error) {
-      console.log(error);
-      setErrorMessage(error.response.data.message);
-      setLoader(false);
-    }
-  }, []);
-
-  if (errorMessage !== "") {
-    return (
-      <div className="wrapper1">
-        <h1>{errorMessage}</h1>
-      </div>
-    );
-  }
-
-  if (post === []) {
-    return (
-      <div className="wrapper1">
-        <h1>Нет постов</h1>
-      </div>
-    );
-  }
-
-  if (loader) {
-    return <Loader />;
-  }
-
-  return (
-    <div className="wrapper1">
-      {post && (
-        <div className="gal1">
-          {!isToday && (
-            <div className="head center">Фотографий за день нет</div>
-          )}
-          <PostTable post={post} />
-        </div>
-      )}
-      <hr className="hr center" style={{ margin: "0 auto 50px auto" }} />
-    </div>
-  );
-};
-
-export default PopularPage;*/
-
-//Как предполагалось
 const PopularPage = () => {
   const { userId } = useContext(AuthContext);
   const [post, setPosts] = useState([]);
   const [errorMessage, setErrorMessage] = React.useState("");
-  const [isToday, setToday] = useState(true);
   const [loader, setLoader] = useState(true);
 
   useEffect(() => {
-    try {
+    setLoader(true)
       axios({
         method: "get",
         url: "/post/popular",
@@ -109,12 +32,12 @@ const PopularPage = () => {
           setErrorMessage(error.response.data.message);
           setLoader(false);
         });
-    } catch (error) {
-      console.log(error);
-      setErrorMessage(error.response.data.message);
-      setLoader(false);
-    }
   }, []);
+
+
+  if (loader) {
+    return <Loader />;
+  }
 
   if (errorMessage !== "") {
     return (
@@ -125,7 +48,7 @@ const PopularPage = () => {
     );
   }
 
-  if (post === []) {
+  if (post.length === 0) {
     return (
       <div className="wrapper1">
         <h1>Нет постов</h1>
@@ -134,9 +57,6 @@ const PopularPage = () => {
     );
   }
 
-  if (loader) {
-    return <Loader />;
-  }
 
   return (
     <div

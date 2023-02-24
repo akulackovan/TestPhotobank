@@ -94,7 +94,7 @@ export const login = async (req, res) => {
                 id: user._id,
             },
             process.env.JWT_SECRET,
-            {expiresIn: '1h'},
+            {expiresIn: 1000*20},
         )
 
         res.json({
@@ -114,8 +114,18 @@ export const getAnother = async (req, res) => {
         const {myId, userId} = req.query
         console.log(myId + " " + userId)
         /** Поиск пользователей */
-        const user = await User.findOne({_id: userId})
-        const me = await User.findOne({_id: myId})
+        try{
+            var user = await User.findOne({_id: userId})
+            var me = await User.findOne({_id: myId})
+        }
+        catch (error) {
+            if (userId && myId){
+                return res.status(404).json({
+                    message: 'Такого пользователя не существует.',
+                })
+            }
+        }
+        
         if (!user) {
             return res.status(404).json({
                 message: 'Такого пользователя не существует.',
@@ -123,15 +133,11 @@ export const getAnother = async (req, res) => {
         }
 
         /** Поиск подписки */
-        let hasSubscribe = await User.find({
-            $and: [
-               { _id: myId },
-               {subscriptions: userId }
-            ]
-         } )
+        let hasSubscribe = await User.findOne({ _id: myId, subscriptions: userId})
          let isSubscribe = true
          if (hasSubscribe)
          {
+            console.log("Suby" + hasSubscribe)
             isSubscribe = false
          }
 
@@ -230,18 +236,30 @@ export const search = async (req, res) => {
     try {
         /** Получение параметра */
         const {name} = req.query
+        if (!name) {
+            return res.status(400).json({
+                message: 'Запрос для поиска пустой',
+            })
+        }
+
         /** Поиск */
-        const search = await User.find({"username": {$regex: `${name}`, $options: 'ix'}})
-        if (!search) {
-            return res.status(200).json({
+        let search = await User.find({"username": {$regex: `${name}`, $options: 'ix'}})
+        if (search.length == 0) {
+            return res.status(400).json({
                 message: 'Ничего не найдено',
             })
         }
+        search = await Promise.all(
+            search.map((user) => {
+              return {id: user.id, username: user.username};
+            })
+          );
         return res.status(200).json({
             user: search,
             message: 'Профили пользователей',
         })
     } catch (error) {
+        console.log(error)
         res.status(401).json({message: 'Ошибка в поиске пользователя'})
     }
 }

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import Loader from "../Loader/Loader";
 import { Link } from "react-router-dom";
-import  AuthContext  from "../../context/AuthContext";
+import AuthContext from "../../context/AuthContext";
 import "./PostPage.scss";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 
@@ -12,37 +12,38 @@ const PostPageComponent = ({ id }) => {
 
   const [loadingComm, setLoadingComm] = useState(true);
   const [error, setErrorMessage] = useState("");
+  const [postError, setPostError] = useState("");
   const [comment, setComment] = useState("");
   const [comments, setComments] = useState({
     length: 0,
   });
-  const [view, setView] = useState();
   const { userId } = useContext(AuthContext);
   const [like, setLike] = useState();
+  const [countLike, setCountLike] = useState();
   console.log(userId);
 
-  //Получаем лайк от пользователя
-  const getLike = () => {
+  //Добавить просмотр + данные о посте
+  useEffect(() => {
     axios({
-      method: "get",
-      url: "/post/getLike",
+      method: "put",
+      url: "/post/addView",
       headers: {
         "content-type": "application/json",
       },
       params: {
-        idUser: userId,
-        idPost: id,
+        id: id,
       },
     })
       .then((response) => {
-        setLike(response.data.like);
-        console.log(like);
+        console.log(response);
+        getPost();
       })
       .catch((error) => {
-        setErrorMessage(error.response.data.message);
-        setTimeout(() => setErrorMessage(""), 2000);
+        console.log(error);
+        setPostError(error.response.data.message);
+        setLoading(false);
       });
-  };
+  }, []);
 
   //Получаем комментарии к посту
   const getComments = () => {
@@ -67,6 +68,7 @@ const PostPageComponent = ({ id }) => {
         setLoadingComm(false);
       })
       .catch((error) => {
+        setLoadingComm(false);
         setErrorMessage(error.response.data.message);
         setTimeout(() => setErrorMessage(""), 2000);
       });
@@ -81,81 +83,79 @@ const PostPageComponent = ({ id }) => {
       },
       params: {
         id: id,
+        user: userId,
       },
     })
       .then((response) => {
         console.log(response.data.isPost);
         setPost(response.data.isPost);
-        setView(response.data.isPost.views);
-        getLike();
-        setLoading(false);
-        getComments();
+        axios({
+          method: "get",
+          url: "/post/getLike",
+          headers: {
+            "content-type": "application/json",
+          },
+          params: {
+            idUser: userId,
+            idPost: id,
+          },
+        })
+          .then((responseLike) => {
+            setLike(responseLike.data.like);
+            if (responseLike.data.like) {
+              setCountLike(response.data.isPost.likes);
+            } else {
+              setCountLike(response.data.isPost.likes + 1);
+            }
+            getComments();
+            setLoading(false);
+          })
+          .catch((error) => {
+            setLoading(false);
+            setPostError(error.response.data.message);
+
+            return;
+          });
       })
       .catch((error) => {
-        setErrorMessage(error.response.data.message);
-        setTimeout(() => setErrorMessage(""), 2000);
+        setLoading(false);
+        setPostError(error.response.data.message);
       });
+    console.log("Like" + like);
   };
-
-  //Добавить просмотр + данные о посте
-  useEffect(() => {
-    axios({
-      method: "put",
-      url: "/post/addView",
-      headers: {
-        "content-type": "application/json",
-      },
-      params: {
-        id: id,
-      },
-    })
-      .then((response) => {
-        console.log(response.data);
-        getPost();
-      })
-      .catch((error) => {
-        setErrorMessage(error.response.data.message);
-        setTimeout(() => setErrorMessage(""), 2000);
-        setLoading(false);
-      });
-  }, []);
-
 
   const changeForm = (event) => {
     setComment(event.target.value);
     console.log(comment);
   };
 
-  
-  const changeLike = async () => {
-    try {
-      await axios({
-        method: "put",
-        url: "/post/setLike",
-        params: {
-          idPost: id,
-          idUser: userId,
-        },
-      }).then((response) => {
+  const changeLike = () => {
+    axios({
+      method: "put",
+      url: "/post/setLike",
+      params: {
+        idPost: id,
+        idUser: userId,
+      },
+    })
+      .then((response) => {
         setLike(response.data.like);
-        if (response.data.like)
-        {
-          setPost({...post, likes: post.likes + 1})
+        console.log(countLike);
+        if (response.data.like) {
+          setPost({ ...post, likes: countLike });
+        } else {
+          setPost({ ...post, likes: countLike - 1 });
         }
-        else{
-          setPost({...post, likes: post.likes - 1})
-        }
+      })
+      .catch((error) => {
+        console.log(error);
+        setErrorMessage(error.response.data.message);
+        setTimeout(() => setErrorMessage(""), 2000);
+        setLoading(false);
       });
-
-      
-    } catch (error) {
-      console.log(error);
-      setErrorMessage(error.response.data.message);
-      setTimeout(() => setErrorMessage(""), 2000);
-    }
   };
 
-  const commentHandler = async () => {
+  const commentHandler = () => {
     if (!(comment.length <= 128)) {
       setErrorMessage("Комментарий должен быть меньше 128 символов");
       setTimeout(() => setErrorMessage(""), 2000);
@@ -167,33 +167,41 @@ const PostPageComponent = ({ id }) => {
       return;
     }
     setLoadingComm(true);
-    try {
-      await axios({
-        method: "post",
-        url: "/post/comments",
-        headers: {
-          "content-type": "application/json",
-        },
-        params: {
-          postId: id,
-          userId: userId,
-          comment: comment,
-        },
-      }).then((response) => {
+    axios({
+      url: "/post/comments",
+      method: "post",
+      headers: {
+        "content-type": "application/json",
+      },
+      params: {
+        postId: id,
+        userId: userId,
+        comment: comment,
+      },
+    })
+      .then((response) => {
         document.getElementById("inputs").reset();
-        getComments("");
+        setComments([
+          { user: response.data.newComment.user, comment: comment },
+          ...comments,
+        ]);
         setComment("");
+        console.log(comments);
+        setLoadingComm(false);
+      })
+      .catch((error) => {
+        console.log(error);
+        setErrorMessage(error.response.data.message);
+        setTimeout(() => setErrorMessage(""), 2000);
       });
-      getPost();
-    } catch (error) {
-      console.log(error);
-      setErrorMessage(error.response.data.message);
-      setTimeout(() => setErrorMessage(""), 2000);
-    }
   };
 
   if (loading) {
     return <Loader />;
+  }
+
+  if (postError) {
+    return <ErrorMessage msg={postError} />;
   }
 
   return (
@@ -204,24 +212,24 @@ const PostPageComponent = ({ id }) => {
           <div className="one">
             <div className="container">
               <div>
-                <Link
-                  to={`/profile/${post.author._id}`}
+                <a
+                  href={`/profile/${post.author._id}`}
                   title={`Автор: ${post.author.username}`}
                 >
-                  <h4 className="head">{post.author.username}</h4>
-                </Link>
+                  <h4 className="head" data-testid="author">{post.author.username}</h4>
+                </a>
               </div>
               <div className="under">
-                <div className="date">
+                <div className="date" data-testid="date">
                   {post.timestamps[8]}
                   {post.timestamps[9]}.{post.timestamps[5]}
                   {post.timestamps[6]}.20{post.timestamps[2]}
                   {post.timestamps[3]}
                 </div>
-                <div className="city">г.{post.city.city}</div>
+                <div className="city" data-testid="city">г.{post.city.city}</div>
               </div>
             </div>
-            <img className="img" src={`${post.image}`} />
+            <img className="img" data-testid="img" src={`${post.image}`} />
             <div className="stat">
               <ul>
                 <li className="icon li">
@@ -230,7 +238,7 @@ const PostPageComponent = ({ id }) => {
                     <path d="M8 2.5A8.11 8.11 0 0 0 0 8a8.11 8.11 0 0 0 8 5.5A8.11 8.11 0 0 0 16 8a8.11 8.11 0 0 0-8-5.5zm5.4 7.5A6.91 6.91 0 0 1 8 12.25 6.91 6.91 0 0 1 2.6 10a7.2 7.2 0 0 1-1.27-2A7.2 7.2 0 0 1 2.6 6 6.91 6.91 0 0 1 8 3.75 6.91 6.91 0 0 1 13.4 6a7.2 7.2 0 0 1 1.27 2 7.2 7.2 0 0 1-1.27 2z" />
                   </svg>
 
-                  <div className="num">{view}</div>
+                  <div className="num" data-testid="view">{post.views}</div>
                 </li>
                 <li className="icon li">
                   <svg viewBox="0 0 32 32">
@@ -239,7 +247,9 @@ const PostPageComponent = ({ id }) => {
                       fill="#000000"
                     ></path>
                   </svg>
-                  <div className="num">{post.likes}</div>
+                  <div className="num" data-testid="numlike">
+                    {post.likes}
+                  </div>
                 </li>
                 <li className="icon li">
                   <svg viewBox="0 0 24 24">
@@ -251,12 +261,12 @@ const PostPageComponent = ({ id }) => {
                     />
                   </svg>
 
-                  <div className="num">{comments.length}</div>
+                  <div className="num" data-testid="numComments">{comments.length}</div>
                 </li>
               </ul>
             </div>
             <div className="container">
-              <div className="discription">{post.text}</div>
+              <div className="discription" data-testid="text">{post.text}</div>
             </div>
           </div>
           <div className="second">
@@ -266,6 +276,8 @@ const PostPageComponent = ({ id }) => {
                   className="like icon"
                   title="Поставить лайк"
                   onClick={changeLike}
+                  id="like"
+                  data-testid="likeButton"
                 >
                   <svg
                     width="50px"
@@ -274,6 +286,7 @@ const PostPageComponent = ({ id }) => {
                     fill="none"
                   >
                     <path
+                      data-testid="like"
                       className="like"
                       d="M16.44 3.10156C14.63 3.10156 13.01 3.98156 12 5.33156C10.99 3.98156 9.37 3.10156 7.56 3.10156C4.49 3.10156 2 5.60156 2 8.69156C2 9.88156 2.19 10.9816 2.52 12.0016C4.1 17.0016 8.97 19.9916 11.38 20.8116C11.72 20.9316 12.28 20.9316 12.62 20.8116C15.03 19.9916 19.9 17.0016 21.48 12.0016C21.81 10.9816 22 9.88156 22 8.69156C22 5.60156 19.51 3.10156 16.44 3.10156Z"
                     />
@@ -285,6 +298,8 @@ const PostPageComponent = ({ id }) => {
                   className="dislike icon"
                   title="Отменить лайк"
                   onClick={changeLike}
+                  id="unlike"
+                  data-testid="likeButton"
                 >
                   <svg
                     width="50px"
@@ -293,6 +308,7 @@ const PostPageComponent = ({ id }) => {
                     fill="none"
                   >
                     <path
+                      data-testid="unlike"
                       className="dislike icon"
                       d="M16.44 3.10156C14.63 3.10156 13.01 3.98156 12 5.33156C10.99 3.98156 9.37 3.10156 7.56 3.10156C4.49 3.10156 2 5.60156 2 8.69156C2 9.88156 2.19 10.9816 2.52 12.0016C4.1 17.0016 8.97 19.9916 11.38 20.8116C11.72 20.9316 12.28 20.9316 12.62 20.8116C15.03 19.9916 19.9 17.0016 21.48 12.0016C21.81 10.9816 22 9.88156 22 8.69156C22 5.60156 19.51 3.10156 16.44 3.10156Z"
                     />
@@ -306,19 +322,19 @@ const PostPageComponent = ({ id }) => {
                   type="text"
                   placeholder="Комментарий"
                   name="text"
+                  data-testid="commentInput"
                   onChange={changeForm}
-                  maxLength="128"
                 />
               </form>
               <div onClick={commentHandler}>
-                <button className="button" title="Отправить комментарий">
+                <button className="button" data-testid="commentButton" title="Отправить комментарий">
                   ОТПРАВИТЬ
                 </button>
               </div>
             </div>
             <div className="listComments">
               <hr className="hr" />
-              <div className="head">Комментарии</div>
+              <div className="head" data-testid="comments">Комментарии</div>
               {loadingComm && (
                 <div className="head">Загрузка комментариев...</div>
               )}
@@ -332,7 +348,7 @@ const PostPageComponent = ({ id }) => {
                   <ul>
                     {comments.map((item) => (
                       <div>
-                        <li className="container">
+                        <li className="container" data-testid="comment">
                           <h5>{item.user}</h5>
                           <p>{item.comment}</p>
                         </li>

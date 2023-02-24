@@ -7,14 +7,15 @@ import {useAuth} from './hooks/auth.hook'
 import {useTheme} from './hooks/use.theme'
 
 function App() {
-  const {login, logout, token, userId, isReady} = useAuth()
-  const isLogin = !!token
+
+  const {login, logout, token, userId} = useAuth()
+  const isLogin  = !!token
   const routes = useRoutes(isLogin)
   const { theme, setTheme } = useTheme()
 
 
   return (
-    <AuthContext.Provider value= {{login, logout, token, userId, isReady, isLogin}}>
+    <AuthContext.Provider value= {{login, logout, token, userId, isLogin}}>
       <div className="app">
         <Router  forceRefresh={true}>
             { routes }

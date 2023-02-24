@@ -34,7 +34,7 @@ const SettingsPage = () => {
 
   const [formKey, setFormKey] = useState(0);
 
-  const changeOut = (event) => {
+  const changeOut = () => {
     setLog(true);
   };
 
@@ -88,7 +88,7 @@ const SettingsPage = () => {
       setTimeout(() => setErrorMessage(""), 2000);
       return;
     }
-    if (isOut) {
+    if (form.base64 == true) {
       setErrorMessage("Изображение не обрезано");
       setTimeout(() => setErrorMessage(""), 2000);
       return;
@@ -100,11 +100,6 @@ const SettingsPage = () => {
     }
     if (!(form.text.length < 512)) {
       setErrorMessage("Описание должно быть меньше 512 символов");
-      setTimeout(() => setErrorMessage(""), 2000);
-      return;
-    }
-    if (form.onSelect) {
-      setErrorMessage("Фото не обрезано");
       setTimeout(() => setErrorMessage(""), 2000);
       return;
     }
@@ -228,8 +223,7 @@ const SettingsPage = () => {
           <Cropper
             setData={(value) => setForm({ ...form, base64: value })}
             key={formKey}
-            isOut={(value) => setOut(value)}
-          />
+            />
         </div>
         <div className="buttons">
           <button className="button" onClick={settingsHandler}>

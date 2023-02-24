@@ -1,6 +1,5 @@
 import User from "../models/User.js";
 import Post from "../models/Post.js";
-import mongoose, {Schema} from 'mongoose'
 
 /** Получение популярных - изначально, как понял требования */
 /*export const getPopular = async (req, res) => {

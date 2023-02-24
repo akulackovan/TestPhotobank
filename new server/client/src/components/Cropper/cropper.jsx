@@ -6,7 +6,8 @@ import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import "react-image-crop/dist/ReactCrop.css";
 import "react-image-crop/src/ReactCrop.scss";
 
-const Cropper = ({ x = 480, y = 480, size = 7, setData, isOut }) => {
+
+const Cropper = ({ x = 480, y = 480, size = 7, setData}) => {
   const [info, setInfo] = useState({
     x: null,
     y: null,
@@ -24,6 +25,7 @@ const Cropper = ({ x = 480, y = 480, size = 7, setData, isOut }) => {
   const selectImage = (e) => {
     setErrorMessage(null);
     setOutput(null);
+    setData(false)
     setSrc(null);
     const temp = URL.createObjectURL(e.target.files[0]);
     var img = new Image();
@@ -117,8 +119,8 @@ const Cropper = ({ x = 480, y = 480, size = 7, setData, isOut }) => {
           y: 0,
         });
       }
+      setData(true)
     };
-    isOut(true)
   };
 
   /** Обрезка изображения */
@@ -160,8 +162,7 @@ const Cropper = ({ x = 480, y = 480, size = 7, setData, isOut }) => {
     setSrc(null);
     setData(base64Image);
     console.log(base64Image);
-    
-    isOut(false)
+  
   };
 
   const ChangeCrop = () => {
@@ -188,6 +189,7 @@ const Cropper = ({ x = 480, y = 480, size = 7, setData, isOut }) => {
                     src={src}
                     id="source"
                     width={x}
+                    data-testid="photo"
                     height={(info.y / info.x) * x}
                   />
                 </ReactCrop>
@@ -228,6 +230,7 @@ const Cropper = ({ x = 480, y = 480, size = 7, setData, isOut }) => {
           onChange={(e) => {
             selectImage(e);
           }}
+          data-testid="input"
         />
         <label
           id="label-cropper"

@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-} from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import NavBar from "./components/NavBar/NavBar";
 import AddPostPage from "./pages/AddPostPage/AddPostPage";
 import AuthPage from "./pages/AuthPage/AuthPage";
@@ -18,11 +13,7 @@ import SearchPage from "./pages/SearchPage/SearchPage";
 import AnotherUserPage from "./pages/AnotherUserPage/AnotherUserPage";
 
 export const useRoutes = (isLogin) => {
-  let reditect = "";
   console.log(isLogin);
-  if (isLogin) {
-    reditect = "/popular";
-  }
 
   if (isLogin) {
     return (
@@ -37,13 +28,14 @@ export const useRoutes = (isLogin) => {
           <Route exact path="/post/:id" component={PostPage} />
           <Route exact path="/profile/:id" component={AnotherUserPage} />
           <Route exact path="/search/:id" component={SearchPage} />
-          <Redirect to={reditect} />
+          <Route exact path="/search/" component={SearchPage} />
+          <Redirect to="/popular" />
         </Switch>
       </div>
     );
   }
 
-  if (!reditect) {
+  if (!isLogin) {
     return (
       <div className="app-1">
         <Switch>
