@@ -27,7 +27,7 @@ export const createComment = async (req, res) => {
         })
         
         res.status(201).json({
-            newComment,
+            newComment: {user: isUser.username, comment: comment},
             message: 'Успешно созданный комментарий',
         })
     } catch (error) {
