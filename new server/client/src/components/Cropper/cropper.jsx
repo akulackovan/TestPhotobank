@@ -5,7 +5,7 @@ import ErrorMessage from "../ErrorMessage/ErrorMessage";
 
 import "react-image-crop/dist/ReactCrop.css";
 import "react-image-crop/src/ReactCrop.scss";
-import { set } from "mongoose";
+
 
 const Cropper = ({ x = 480, y = 480, size = 7, setData}) => {
   const [info, setInfo] = useState({
@@ -189,6 +189,7 @@ const Cropper = ({ x = 480, y = 480, size = 7, setData}) => {
                     src={src}
                     id="source"
                     width={x}
+                    data-testid="photo"
                     height={(info.y / info.x) * x}
                   />
                 </ReactCrop>

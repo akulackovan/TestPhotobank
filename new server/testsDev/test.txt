@@ -1,11 +1,13 @@
 ------------------------------------|---------|----------|---------|---------|-------------------------------------------------
 File                                | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s
 ------------------------------------|---------|----------|---------|---------|-------------------------------------------------
-All files                           |   82.78 |    82.35 |    79.1 |    84.5 |                                                 
+All files                           |   76.65 |    70.93 |    74.3 |   78.41 |                                                 
  client/src/components/AnotherPage  |    82.6 |    83.33 |      80 |    82.6 |                                                 
   AnotherPage.jsx                   |    82.6 |    83.33 |      80 |    82.6 | 47-53,110-117                                   
  client/src/components/CityCombobox |     100 |      100 |     100 |     100 | 
   CityCombobox.jsx                  |     100 |      100 |     100 |     100 | 
+ client/src/components/Cropper      |   15.47 |    15.49 |      10 |   16.25 | 
+  cropper.jsx                       |   15.47 |    15.49 |      10 |   16.25 | 26-122,128-164,169-170,174,231
  client/src/components/ErrorMessage |     100 |      100 |     100 |     100 | 
   ErrorMessage.jsx                  |     100 |      100 |     100 |     100 | 
  client/src/components/Loader       |     100 |      100 |     100 |     100 | 
@@ -20,49 +22,50 @@ All files                           |   82.78 |    82.35 |    79.1 |    84.5 |
   PostsTable.jsx                    |     100 |     87.5 |     100 |     100 | 27
  client/src/components/Search       |     100 |      100 |     100 |     100 | 
   Search.jsx                        |     100 |      100 |     100 |     100 | 
- client/src/context                 |     100 |      100 |     100 |     100 | 
+ client/src/context                 |     100 |      100 |     100 |     100 |                                                 
   AuthContext.js                    |     100 |      100 |     100 |     100 | 
  client/src/hooks                   |     100 |     87.5 |     100 |     100 | 
   auth.hook.js                      |     100 |      100 |     100 |     100 | 
   use.theme.js                      |     100 |       75 |     100 |     100 | 4
  client/src/pages/AnotherUserPage   |     100 |      100 |     100 |     100 | 
-  AnotherUserPage.jsx               |     100 |      100 |     100 |     100 |
- client/src/pages/AuthPage          |   75.92 |    88.88 |   33.33 |   85.41 |
+  AnotherUserPage.jsx               |     100 |      100 |     100 |     100 | 
+ client/src/pages/AuthPage          |   75.92 |    88.88 |   33.33 |   85.41 | 
   AuthPage.jsx                      |   75.92 |    88.88 |   33.33 |   85.41 | 67-70,80,85-86
- client/src/pages/PopularPage       |     100 |    91.66 |     100 |     100 |
+ client/src/pages/PopularPage       |     100 |    91.66 |     100 |     100 | 
   PopularPage.jsx                   |     100 |    91.66 |     100 |     100 | 73
- client/src/pages/PostPage          |     100 |      100 |     100 |     100 |
-  PostPage.jsx                      |     100 |      100 |     100 |     100 |
- client/src/pages/ProfilePage       |     100 |      100 |     100 |     100 |
-  ProfilePage.jsx                   |     100 |      100 |     100 |     100 |
- client/src/pages/RegPage           |   84.44 |    94.11 |   45.45 |   97.43 |
+ client/src/pages/PostPage          |     100 |      100 |     100 |     100 | 
+  PostPage.jsx                      |     100 |      100 |     100 |     100 | 
+ client/src/pages/ProfilePage       |     100 |      100 |     100 |     100 | 
+  ProfilePage.jsx                   |     100 |      100 |     100 |     100 | 
+ client/src/pages/RegPage           |   84.44 |    94.11 |   45.45 |   97.43 | 
   RegPage.jsx                       |   84.44 |    94.11 |   45.45 |   97.43 | 78
- client/src/pages/SearchPage        |     100 |      100 |     100 |     100 |
-  SearchPage.jsx                    |     100 |      100 |     100 |     100 |
- client/src/pages/SubscribePage     |     100 |       80 |     100 |     100 |
+ client/src/pages/SearchPage        |     100 |      100 |     100 |     100 | 
+  SearchPage.jsx                    |     100 |      100 |     100 |     100 | 
+ client/src/pages/SubscribePage     |     100 |       80 |     100 |     100 | 
   SubscribePage.jsx                 |     100 |       80 |     100 |     100 | 33,69
- controllers                        |   73.66 |    76.47 |   80.76 |   73.44 |
+ controllers                        |    74.5 |    79.47 |   80.76 |   74.29 | 
   auth.js                           |   21.42 |    24.24 |   28.57 |   21.42 | 13,25-68,79,106,112-160,166-186,192-230,236-263
-  city.js                           |     100 |      100 |     100 |     100 |
+  city.js                           |   83.33 |      100 |     100 |   83.33 | 17,32
   comments.js                       |   93.75 |      100 |     100 |   93.75 | 39
-  getPopularPosts.js                |   82.92 |    79.16 |     100 |   82.92 | 76,91,141-142,153-156
+  getPopularPosts.js                |   95.12 |      100 |     100 |   95.12 | 142-143
   getSubscriptionPosts.js           |   96.66 |     87.5 |     100 |   96.42 | 32
   post.js                           |    91.2 |    81.81 |     100 |   91.11 | 113,143-144,171-174,180
-  postController.js                 |     100 |      100 |     100 |     100 |
-  settings.js                       |     100 |      100 |     100 |     100 |
- models                             |     100 |      100 |     100 |     100 |
-  City.js                           |     100 |      100 |     100 |     100 |
-  Comment.js                        |     100 |      100 |     100 |     100 |
-  Post.js                           |     100 |      100 |     100 |     100 |
-  User.js                           |     100 |      100 |     100 |     100 |
- router                             |     100 |      100 |     100 |     100 |
-  auth.js                           |     100 |      100 |     100 |     100 |
-  city.js                           |     100 |      100 |     100 |     100 |
-  post.js                           |     100 |      100 |     100 |     100 |
-  settings.js                       |     100 |      100 |     100 |     100 |
+  postController.js                 |     100 |      100 |     100 |     100 | 
+  settings.js                       |     100 |      100 |     100 |     100 | 
+ models                             |     100 |      100 |     100 |     100 | 
+  City.js                           |     100 |      100 |     100 |     100 | 
+  Comment.js                        |     100 |      100 |     100 |     100 | 
+  Post.js                           |     100 |      100 |     100 |     100 | 
+  User.js                           |     100 |      100 |     100 |     100 | 
+ router                             |     100 |      100 |     100 |     100 | 
+  auth.js                           |     100 |      100 |     100 |     100 | 
+  city.js                           |     100 |      100 |     100 |     100 | 
+  post.js                           |     100 |      100 |     100 |     100 | 
+  settings.js                       |     100 |      100 |     100 |     100 | 
 ------------------------------------|---------|----------|---------|---------|-------------------------------------------------
 
-Test Suites: 21 passed, 21 total
-Tests:       216 passed, 216 total
+Test Suites: 23 passed, 23 total
+Tests:       218 passed, 218 total
 Snapshots:   0 total
-Time:        10.273 s
+Time:        10.795 s
+Ran all test suites.
