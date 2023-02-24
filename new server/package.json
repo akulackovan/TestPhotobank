@@ -16,6 +16,7 @@
     "-": "^0.0.1",
     "@skbkontur/react-ui": "^4.10.0",
     "@syncfusion/ej2-react-dropdowns": "^20.4.43",
+    "@testing-library/react-hooks": "^8.0.1",
     "axios": "^1.2.1",
     "babel-preset-gatsby": "^3.6.0",
     "bcryptjs": "^2.4.3",
