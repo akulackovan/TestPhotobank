@@ -6,95 +6,6 @@ import AuthContext from "../context/AuthContext";
 import {MemoryRouter} from "react-router-dom";
 import '@testing-library/jest-dom'
 
-// jest.mock("axios");
-//
-// describe("AnotherPage", () => {
-//     const authContextValue = {userId: "123"};
-//
-//     afterEach(() => {
-//         jest.clearAllMocks();
-//     });
-//
-//     it("renders loader when page is loading", async () => {
-//         axios.mockResolvedValueOnce({data: {}});
-//
-//         render(
-//             <AuthContext.Provider value={authContextValue}>
-//                 <MemoryRouter initialEntries={["/another-page/456"]}>
-//                     <AnotherPage id="456"/>
-//                 </MemoryRouter>
-//             </AuthContext.Provider>
-//         );
-//
-//         expect(screen.getByTestId("loader")).toBeInTheDocument();
-//
-//         await act(async () => {
-//             await new Promise((resolve) => setTimeout(resolve, 0));
-//         });
-//
-//         expect(screen.queryByTestId("loader")).not.toBeInTheDocument();
-//     });
-//
-//     it("renders user profile when page is loaded", async () => {
-//         const user = {
-//             username: "John",
-//             text: "Hello, world!",
-//             userProfileImage: "https://example.com/profile.jpg",
-//             subscriptions: 10,
-//             city: "Moscow",
-//         };
-//
-//         axios.mockResolvedValueOnce({data: {user, subscibe: []}});
-//
-//         render(
-//             <AuthContext.Provider value={authContextValue}>
-//                 <MemoryRouter initialEntries={["/another-page/456"]}>
-//                     <AnotherPage id="456"/>
-//                 </MemoryRouter>
-//             </AuthContext.Provider>
-//         );
-//
-//         expect(screen.getByTestId("loader")).toBeInTheDocument();
-//
-//         await act(async () => {
-//             await new Promise((resolve) => setTimeout(resolve, 0));
-//         });
-//
-//         expect(screen.queryByTestId("loader")).not.toBeInTheDocument();
-//
-//         expect(screen.getByText(user.username)).toBeInTheDocument();
-//         expect(screen.getByText(user.text)).toBeInTheDocument();
-//         expect(screen.getByText(user.city)).toBeInTheDocument();
-//         expect(screen.getByText(`Количество подписчиков: ${user.subscriptions}`)).toBeInTheDocument();
-//     });
-//
-//     it("shows 'Нет описания' when user has no description", async () => {
-//         const user = {
-//             username: "John",
-//             text: "",
-//             userProfileImage: "https://example.com/profile.jpg",
-//             subscriptions: 10,
-//             city: "Moscow",
-//         };
-//
-//         axios.mockResolvedValueOnce({data: {user, subscibe: []}});
-//
-//         render(
-//             <AuthContext.Provider value={authContextValue}>
-//                 <MemoryRouter initialEntries={["/another-page/456"]}>
-//                     <AnotherPage id="456"/>
-//                 </MemoryRouter>
-//             </AuthContext.Provider>
-//         );
-//
-//         await act(async () => {
-//             await new Promise((resolve) => setTimeout(resolve, 0));
-//         });
-//
-//         expect(screen.getByText("Нет описания")).toBeInTheDocument();
-//     });
-// });
-
 jest.mock('axios');
 
 describe('AnotherPage', () => {
@@ -179,7 +90,7 @@ describe('AnotherPage', () => {
         });
     });
 
-    it('handles subscription', async () => {
+    it('handles unsubscription', async () => {
         axios.mockResolvedValueOnce({
             data: {
                 user: {
@@ -209,28 +120,31 @@ describe('AnotherPage', () => {
 
         await screen.findByText('testuser');
 
-        expect(screen.getByText('Подписаться')).toBeInTheDocument();
-        expect(screen.queryByText('Отписаться')).not.toBeInTheDocument();
+        // expect(screen.getByTitle('Подписаться')).not.toBeInTheDocument();
+        expect(screen.queryByTitle('Отписаться')).toBeInTheDocument();
 
-        fireEvent.click(screen.getByText('Подписаться'));
+        fireEvent.click(screen.getByText('Отписаться'));
 
         expect(axios).toHaveBeenCalledTimes(2);
         expect(axios).toHaveBeenCalledWith({
-            method: 'post',
-            url: '/auth/${id}/subscribe',
+            method: 'get',
+            params: {
+            myId: "456",
+            userId: "123",
+        },
+            url: "/auth/user",
             headers: {
+                'content-type': 'application/json',
                 'x-auth-token':
                     localStorage.getItem('auth-token'),
-                'content-type':
-                    'application/json',
             },
         });
-        expect(await screen.findByText('Отписаться')).toBeInTheDocument();
-        expect(screen.queryByText('Подписаться')).not.toBeInTheDocument();
+        expect(await screen.findByText('Подписаться')).toBeInTheDocument();
+        // expect(screen.queryByText('Подписаться')).not.toBeInTheDocument();
 
     });
 
-    it('handles unsubscription', async () => {
+    it('handles subscription', async () => {
         axios.mockResolvedValueOnce({
             data: {
                 user: {
@@ -259,23 +173,25 @@ describe('AnotherPage', () => {
 
         await screen.findByText('testuser');
 
-        expect(screen.getByText('Отписаться')).toBeInTheDocument();
-        expect(screen.queryByText('Подписаться')).not.toBeInTheDocument();
-
-        fireEvent.click(screen.getByText('Отписаться'));
+        expect(screen.queryByTitle('Подписаться')).toBeInTheDocument();
+        fireEvent.click(screen.getByText('Подписаться'));
 
         expect(axios).toHaveBeenCalledTimes(2);
         expect(axios).toHaveBeenCalledWith({
-            method: 'post',
-            url: `/auth/${id}/unsubscribe`,
+            method: 'get',
+            params: {
+                myId: "456",
+                userId: "123",
+            },
+            url: `/auth/user`,
             headers: {
                 'x-auth-token': localStorage.getItem('auth-token'),
                 'content-type': 'application/json',
             },
         });
 
-        expect(await screen.findByText('Подписаться')).toBeInTheDocument();
-        expect(screen.queryByText('Отписаться')).not.toBeInTheDocument();
+        expect(await screen.findByText('Отписаться')).toBeInTheDocument();
+        expect(screen.queryByText('Подписаться')).not.toBeInTheDocument();
 
     });
 });

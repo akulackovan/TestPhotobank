@@ -126,7 +126,7 @@ export const AnotherPage = ({ id }) => {
         </div>
         <div className="second container">
           <div className="header">
-            <div className="user">{user.username}</div>
+            <div className="user" data-testid="post-user">{user.username}</div>
             {id != userId && <div className="city head">г.{user.city}</div>}
           </div>
           <div className="text">

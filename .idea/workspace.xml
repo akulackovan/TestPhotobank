@@ -3,47 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="dc9ed6bc-6050-4eb9-8ac1-0bf8007c7ff7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/new server/client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/new server/client/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/new server/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/new server/client/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/new server/client/src/components/Loader/Loader.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/new server/client/src/components/Loader/Loader.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/new server/client/src/components/PostsTable/PostsTable.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/new server/client/src/components/PostsTable/PostsTable.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/new server/client/src/context/AuthContext.js" beforeDir="false" afterPath="$PROJECT_DIR$/new server/client/src/context/AuthContext.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new server/client/src/components/AnotherPage/AnotherPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/new server/client/src/components/AnotherPage/AnotherPage.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/new server/client/src/pages/AddPostPAge/AddPostPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/new server/client/src/pages/AddPostPAge/AddPostPage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/new server/client/src/pages/AnotherUserPage/AnotherUserPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/new server/client/src/pages/AnotherUserPage/AnotherUserPage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/new server/client/src/pages/PopularPage/PopularPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/new server/client/src/pages/PopularPage/PopularPage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/new server/client/src/pages/ProfilePage/ProfilePage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/new server/client/src/pages/ProfilePage/ProfilePage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/new server/client/src/pages/SubscribePage/SubscribePage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/new server/client/src/pages/SubscribePage/SubscribePage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/new server/controllers/post.js" beforeDir="false" afterPath="$PROJECT_DIR$/new server/controllers/post.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/new server/coverage/clover.xml" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/clover.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/new server/coverage/coverage-final.json" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/coverage-final.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/base.css" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/base.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/block-navigation.js" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/block-navigation.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/client/src/components/CityCombobox/CityCombobox.jsx.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/client/src/components/CityCombobox/CityCombobox.jsx.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/client/src/components/CityCombobox/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/client/src/components/CityCombobox/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/client/src/components/ErrorMessage/ErrorMessage.jsx.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/client/src/components/ErrorMessage/ErrorMessage.jsx.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/client/src/components/ErrorMessage/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/client/src/components/ErrorMessage/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/client/src/context/AuthContext.js.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/client/src/context/AuthContext.js.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/client/src/context/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/client/src/context/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/client/src/pages/AuthPage/AuthPage.jsx.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/client/src/pages/AuthPage/AuthPage.jsx.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/client/src/pages/AuthPage/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/client/src/pages/AuthPage/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/controllers/city.js.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/controllers/city.js.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/controllers/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/controllers/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/controllers/settings.js.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/controllers/settings.js.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/models/City.js.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/models/City.js.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/models/User.js.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/models/User.js.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/models/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/models/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/prettify.css" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/prettify.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/prettify.js" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/prettify.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/router/city.js.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/router/city.js.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/router/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/router/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/router/settings.js.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/router/settings.js.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/sorter.js" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/sorter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov.info" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/new server/jest.config.json" beforeDir="false" afterPath="$PROJECT_DIR$/new server/jest.config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/new server/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/new server/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/new server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/new server/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/new server/router/post.js" beforeDir="false" afterPath="$PROJECT_DIR$/new server/router/post.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new server/client/src/tests/AnotherPage.test.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/new server/client/src/tests/AnotherPage.test.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +15,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="tkachenko-tests" />
+        <entry key="$PROJECT_DIR$" value="akulackovan-tests" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -73,7 +35,7 @@
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
-  <component name="RunManager" selected="Jest.AnotherUserPage.renders AnotherPage with correct id prop">
+  <component name="RunManager" selected="Jest.SubscribePage.test.jsx">
     <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -87,80 +49,63 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AnotherUserPage--" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+    <configuration name="AnotherUserPage.test.jsx" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <node-options value="" />
       <jest-package value="$PROJECT_DIR$/new server/client/node_modules/react-scripts" />
       <working-dir value="$PROJECT_DIR$/new server/client" />
       <envs />
-      <scope-kind value="SUITE" />
+      <scope-kind value="TEST_FILE" />
       <test-file value="$PROJECT_DIR$/new server/client/src/tests/AnotherUserPage.test.jsx" />
-      <test-names>
-        <test-name value="AnotherUserPage--" />
-      </test-names>
       <method v="2" />
     </configuration>
-    <configuration name="AnotherUserPage-" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+    <configuration name="PopularPage.test.jsx" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <node-options value="" />
       <jest-package value="$PROJECT_DIR$/new server/client/node_modules/react-scripts" />
       <working-dir value="$PROJECT_DIR$/new server/client" />
       <envs />
-      <scope-kind value="SUITE" />
-      <test-file value="$PROJECT_DIR$/new server/client/src/tests/AnotherUserPage.test.jsx" />
-      <test-names>
-        <test-name value="AnotherUserPage-" />
-      </test-names>
+      <scope-kind value="TEST_FILE" />
+      <test-file value="$PROJECT_DIR$/new server/client/src/tests/PopularPage.test.jsx" />
       <method v="2" />
     </configuration>
-    <configuration name="AnotherUserPage" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+    <configuration name="PostsTable.test.jsx" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <node-options value="" />
       <jest-package value="$PROJECT_DIR$/new server/client/node_modules/react-scripts" />
       <working-dir value="$PROJECT_DIR$/new server/client" />
       <envs />
-      <scope-kind value="SUITE" />
-      <test-file value="$PROJECT_DIR$/new server/client/src/tests/AnotherUserPage.test.jsx" />
-      <test-names>
-        <test-name value="AnotherUserPage" />
-      </test-names>
+      <scope-kind value="TEST_FILE" />
+      <test-file value="$PROJECT_DIR$/new server/client/src/tests/PostsTable.test.jsx" />
       <method v="2" />
     </configuration>
-    <configuration name="AnotherUserPage.renders AnotherPage with correct id prop" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+    <configuration name="ProfilePage.test.jsx" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <node-options value="" />
       <jest-package value="$PROJECT_DIR$/new server/client/node_modules/react-scripts" />
       <working-dir value="$PROJECT_DIR$/new server/client" />
       <envs />
-      <scope-kind value="TEST" />
-      <test-file value="$PROJECT_DIR$/new server/client/src/tests/AnotherUserPage.test.jsx" />
-      <test-names>
-        <test-name value="AnotherUserPage" />
-        <test-name value="renders AnotherPage with correct id prop" />
-      </test-names>
+      <scope-kind value="TEST_FILE" />
+      <test-file value="$PROJECT_DIR$/new server/client/src/tests/ProfilePage.test.jsx" />
       <method v="2" />
     </configuration>
-    <configuration name="AnotherUserPage.renders username of the user whose id is in the URL params" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+    <configuration name="SubscribePage.test.jsx" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <node-options value="" />
       <jest-package value="$PROJECT_DIR$/new server/client/node_modules/react-scripts" />
       <working-dir value="$PROJECT_DIR$/new server/client" />
       <envs />
-      <scope-kind value="TEST" />
-      <test-file value="$PROJECT_DIR$/new server/client/src/tests/AnotherUserPage.test.jsx" />
-      <test-names>
-        <test-name value="AnotherUserPage" />
-        <test-name value="renders username of the user whose id is in the URL params" />
-      </test-names>
+      <scope-kind value="TEST_FILE" />
+      <test-file value="$PROJECT_DIR$/new server/client/src/tests/SubscribePage.test.jsx" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Jest.AnotherUserPage.renders AnotherPage with correct id prop" />
-        <item itemvalue="Jest.AnotherUserPage.renders username of the user whose id is in the URL params" />
-        <item itemvalue="Jest.AnotherUserPage--" />
-        <item itemvalue="Jest.AnotherUserPage-" />
-        <item itemvalue="Jest.AnotherUserPage" />
+        <item itemvalue="Jest.SubscribePage.test.jsx" />
+        <item itemvalue="Jest.ProfilePage.test.jsx" />
+        <item itemvalue="Jest.PostsTable.test.jsx" />
+        <item itemvalue="Jest.PopularPage.test.jsx" />
+        <item itemvalue="Jest.AnotherUserPage.test.jsx" />
       </list>
     </recent_temporary>
   </component>
@@ -176,8 +121,16 @@
       <workItem from="1677092937300" duration="1738000" />
       <workItem from="1677097265590" duration="385000" />
       <workItem from="1677142353341" duration="48534000" />
-      <workItem from="1677219628884" duration="3918000" />
+      <workItem from="1677219628884" duration="5564000" />
     </task>
+    <task id="LOCAL-00001" summary="add some tests">
+      <created>1677224010088</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1677224010088</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -194,7 +147,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/akulackovan-tests" />
+                        <option value="tkachenko-tests" />
                       </list>
                     </value>
                   </entry>
@@ -206,6 +159,10 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="add some tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="add some tests" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/AnotherTRKPO$AnotherUserPage.info" NAME="AnotherUserPage Coverage Results" MODIFIED="1677167632943" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="JestJavaScriptTestRunnerCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
