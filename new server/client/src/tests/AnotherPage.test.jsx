@@ -55,7 +55,12 @@ describe('AnotherPage', () => {
             <AuthContext.Provider value={{ userId }}>
                 <ProfilePage />
             </AuthContext.Provider>
-        );      
+        );     
+        const loading = screen.getByTestId("loader");
+        expect(loading).toBeInTheDocument();
+        await act(async () => {
+            await new Promise((resolve) => setTimeout(resolve, 0));
+          }); 
         // add data-testid="another-page" to the div element that wraps the AnotherPage component in the ProfilePage component to be able to test it with getByTestId.
         expect(screen.getByTestId("Profile")).toBeInTheDocument();
     });

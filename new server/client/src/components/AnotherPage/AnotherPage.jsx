@@ -115,6 +115,9 @@ export const AnotherPage = ({ id }) => {
           userProfileImage: response.data.user.image,
         });
         setLoader(false);
+      }).catch((error)=>{
+        console.log(error)
+        setErrorMessage(error.response.data.message)
       });
     }
   }, []);
