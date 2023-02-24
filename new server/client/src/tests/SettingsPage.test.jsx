@@ -10,6 +10,11 @@ import React from "react";
 import "@testing-library/jest-dom";
 import axios from "axios";
 
+
+import {AuthContext} from "../context/AuthContext";
+import SettingsPage from "../pages/SettingsPage/SettingPage";
+
+
 jest.mock("axios");
 
 const mockCityItem = {
@@ -23,31 +28,25 @@ const mockCityItem = {
   status: 200,
 };
 
-beforeEach(async () => {
+beforeEach(() => {
   axios.get.mockResolvedValue(mockCityItem);
-  await act(async () => {
-    await new Promise((resolve) => setTimeout(resolve, 0));
-  });
+
+  const {login, logout, token, userId, isReady, isLogin} = jest.fn();
+  render(
+    <AuthContext.Provider
+      value={{login, logout, token, userId, isReady, isLogin}}
+    >
+      <SettingsPage/>
+    </AuthContext.Provider>
+  );
 });
 afterEach(() => {
   jest.clearAllMocks();
 });
 
-import {AuthContext} from "../context/AuthContext";
-import SettingsPage from "../pages/SettingsPage/SettingPage";
-
 
 describe("SettingsPage component", () => {
   it("Checking the filling of SettingsPage components", () => {
-    const {login, logout, token, userId, isReady, isLogin} = jest.fn();
-    render(
-      <AuthContext.Provider
-        value={{login, logout, token, userId, isReady, isLogin}}
-      >
-        <SettingsPage/>
-      </AuthContext.Provider>
-    );
-
     const username = screen.getByPlaceholderText("Логин");
     expect(username).toBeInTheDocument();
     const oldPassword = screen.getByPlaceholderText("Cтарый пароль");
@@ -62,59 +61,29 @@ describe("SettingsPage component", () => {
     expect(mainField).toBeInTheDocument();
     const cityInput = screen.queryByTestId("city-input");
     expect(cityInput).toBeDefined();
-    const cities = screen.queryByTestId("city-dropdownelement");
-    expect(cities).toBeDefined();
     const city = screen.getByTestId("button");
     expect(city).toBeInTheDocument();
     const saveButton = screen.getByText("СОХРАНИТЬ");
     expect(saveButton).toBeInTheDocument();
     const exitButton = screen.getByText("ВЫЙТИ ИЗ АККАУНТА");
     expect(exitButton).toBeInTheDocument();
+    fireEvent.click(mainField);
+    const cities = screen.getAllByTestId("city-dropdownelement");
+    expect(cities).toBeDefined();
+    expect(cities).toHaveLength(3);
+    const ltheme = screen.getByTestId("light-button");
+    expect(ltheme).toBeDefined();
+    const dtheme = screen.getByTestId("dark-button");
+    expect(dtheme).toBeDefined()
   })
 })
 
 describe("SettingsPage Message", () => {
-  // it("Checking the all empty rows", async () => {
-  //   const {login, logout, token, userId, isReady, isLogin} = jest.fn();
-  //   render(
-  //     <AuthContext.Provider
-  //       value={{login, logout, token, userId, isReady, isLogin}}
-  //     >
-  //       <SettingsPage/>
-  //     </AuthContext.Provider>
-  //   );
-  //   screen.debug();
-  //   expect(screen.queryByTestId("error")).toBeNull();
-  //   const username = screen.getByPlaceholderText("Логин");
-  //   fireEvent.change(username, {target: {value: "qwe"}});
-  //   const saveButton = screen.getByText("СОХРАНИТЬ");
-  //   expect(saveButton).toBeInTheDocument()
-  //   fireEvent.click(saveButton)
-  //   const msg = screen.queryByText("Настройки изменены");
-  //
-  //   expect(msg).toBeInTheDocument()
-  //   screen.debug();
-  // })
-
-  /*it("Checking description more than 512 symbols", async () => {
-    const validDescription = "fff"
-
-    const {login, logout, token, userId, isReady, isLogin} = jest.fn();
-    render(
-      <AuthContext.Provider
-        value={{login, logout, token, userId, isReady, isLogin}}
-      >
-        <SettingsPage/>
-      </AuthContext.Provider>
-    );
+  it("Checking all empty fields", async () => {
     screen.debug();
     expect(screen.queryByTestId("error")).toBeNull();
-    const oldPassword = screen.getByPlaceholderText("Описание пользователя");
-    expect(oldPassword).toBeInTheDocument();
-    fireEvent.change(oldPassword, {target: {value: validDescription}});
     const saveButton = screen.getByText("СОХРАНИТЬ");
     expect(saveButton).toBeInTheDocument()
-    fireEvent.click(saveButton)
     axios.post.mockRejectedValueOnce({
       response: {
         data: {
@@ -123,6 +92,8 @@ describe("SettingsPage Message", () => {
       },
       status: 201,
     });
+    fireEvent.click(saveButton)
+
     await act(async () => {
       await new Promise((resolve) => setTimeout(resolve, 0));
     });
@@ -130,19 +101,118 @@ describe("SettingsPage Message", () => {
 
     expect(msg).toBeInTheDocument()
     screen.debug();
-  })*/
+  })
+
+  it("Checking changing login", async () => {
+    screen.debug();
+    expect(screen.queryByTestId("error")).toBeNull();
+    const username = screen.getByPlaceholderText("Логин");
+    fireEvent.change(username, {target: {value: "qwe"}});
+    const saveButton = screen.getByText("СОХРАНИТЬ");
+    expect(saveButton).toBeInTheDocument()
+    axios.post.mockRejectedValueOnce({
+      response: {
+        data: {
+          message: "Настройки изменены",
+        },
+      },
+      status: 201,
+    });
+    fireEvent.click(saveButton)
+
+    await act(async () => {
+      await new Promise((resolve) => setTimeout(resolve, 0));
+    });
+    const msg = screen.queryByText("Настройки изменены");
+
+    expect(msg).toBeInTheDocument()
+    screen.debug();
+  })
+
+  it("Checking changing to light theme", async () => {
+    screen.debug();
+    expect(screen.queryByTestId("error")).toBeNull();
+    const ltheme = screen.getByTestId("light-button");
+    fireEvent.click(ltheme)
+    const saveButton = screen.getByText("СОХРАНИТЬ");
+    expect(saveButton).toBeInTheDocument()
+    axios.post.mockRejectedValueOnce({
+      response: {
+        data: {
+          message: "Настройки изменены",
+        },
+      },
+      status: 201,
+    });
+    fireEvent.click(saveButton)
+
+    await act(async () => {
+      await new Promise((resolve) => setTimeout(resolve, 0));
+    });
+    const msg = screen.queryByText("Настройки изменены");
+
+    expect(msg).toBeInTheDocument()
+    screen.debug();
+  })
+
+  it("Checking changing to dark theme", async () => {
+    screen.debug();
+    expect(screen.queryByTestId("error")).toBeNull();
+    const rtheme = screen.getByTestId("dark-button");
+    fireEvent.click(rtheme)
+    const saveButton = screen.getByText("СОХРАНИТЬ");
+    expect(saveButton).toBeInTheDocument()
+    axios.post.mockRejectedValueOnce({
+      response: {
+        data: {
+          message: "Настройки изменены",
+        },
+      },
+      status: 201,
+    });
+    fireEvent.click(saveButton)
+
+    await act(async () => {
+      await new Promise((resolve) => setTimeout(resolve, 0));
+    });
+    const msg = screen.queryByText("Настройки изменены");
+
+    expect(msg).toBeInTheDocument()
+    screen.debug();
+  })
+
+  it("Checking description more than 512 symbols", async () => {
+    const validDescription = "fff"
+
+    screen.debug();
+    expect(screen.queryByTestId("error")).toBeNull();
+    const oldPassword = screen.getByPlaceholderText("Описание пользователя");
+    expect(oldPassword).toBeInTheDocument();
+    fireEvent.change(oldPassword, {target: {value: validDescription}});
+    const saveButton = screen.getByText("СОХРАНИТЬ");
+    expect(saveButton).toBeInTheDocument()
+    axios.post.mockRejectedValueOnce({
+      response: {
+        data: {
+          message: "Настройки изменены",
+        },
+      },
+      status: 201,
+    });
+    fireEvent.click(saveButton)
+
+    await act(async () => {
+      await new Promise((resolve) => setTimeout(resolve, 0));
+    });
+    const msg = screen.queryByText("Настройки изменены");
+
+    expect(msg).toBeInTheDocument()
+    screen.debug();
+  })
 })
 
 describe("SettingsPage Error Message", () => {
   it("Checking login with nums", async () => {
-    const {login, logout, token, userId, isReady, isLogin} = jest.fn();
-    render(
-      <AuthContext.Provider
-        value={{login, logout, token, userId, isReady, isLogin}}
-      >
-        <SettingsPage/>
-      </AuthContext.Provider>
-    );
     screen.debug();
     expect(screen.queryByTestId("error")).toBeNull();
     const username = screen.getByPlaceholderText("Логин");
@@ -160,14 +230,6 @@ describe("SettingsPage Error Message", () => {
   it("Checking login more than 128 symbols", async () => {
     const moreThe128 = "fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
 
-    const {login, logout, token, userId, isReady, isLogin} = jest.fn();
-    render(
-      <AuthContext.Provider
-        value={{login, logout, token, userId, isReady, isLogin}}
-      >
-        <SettingsPage/>
-      </AuthContext.Provider>
-    );
     screen.debug();
     expect(screen.queryByTestId("error")).toBeNull();
     const username = screen.getByPlaceholderText("Логин");
@@ -183,14 +245,6 @@ describe("SettingsPage Error Message", () => {
   })
 
   it("Checking without old password", async () => {
-    const {login, logout, token, userId, isReady, isLogin} = jest.fn();
-    render(
-      <AuthContext.Provider
-        value={{login, logout, token, userId, isReady, isLogin}}
-      >
-        <SettingsPage/>
-      </AuthContext.Provider>
-    );
     screen.debug();
     expect(screen.queryByTestId("error")).toBeNull();
     const newPassword = screen.getByPlaceholderText("Новый пароль");
@@ -206,14 +260,6 @@ describe("SettingsPage Error Message", () => {
   })
 
   it("Checking without new password", async () => {
-    const {login, logout, token, userId, isReady, isLogin} = jest.fn();
-    render(
-      <AuthContext.Provider
-        value={{login, logout, token, userId, isReady, isLogin}}
-      >
-        <SettingsPage/>
-      </AuthContext.Provider>
-    );
     screen.debug();
     expect(screen.queryByTestId("error")).toBeNull();
     const oldPassword = screen.getByPlaceholderText("Cтарый пароль");
@@ -229,14 +275,6 @@ describe("SettingsPage Error Message", () => {
   })
 
   it("Checking without repeat password", async () => {
-    const {login, logout, token, userId, isReady, isLogin} = jest.fn();
-    render(
-      <AuthContext.Provider
-        value={{login, logout, token, userId, isReady, isLogin}}
-      >
-        <SettingsPage/>
-      </AuthContext.Provider>
-    );
     screen.debug();
     expect(screen.queryByTestId("error")).toBeNull();
     const oldPassword = screen.getByPlaceholderText("Cтарый пароль");
@@ -255,14 +293,6 @@ describe("SettingsPage Error Message", () => {
   })
 
   it("Checking password with nums", async () => {
-    const {login, logout, token, userId, isReady, isLogin} = jest.fn();
-    render(
-      <AuthContext.Provider
-        value={{login, logout, token, userId, isReady, isLogin}}
-      >
-        <SettingsPage/>
-      </AuthContext.Provider>
-    );
     screen.debug();
     expect(screen.queryByTestId("error")).toBeNull();
     const oldPassword = screen.getByPlaceholderText("Cтарый пароль");
@@ -285,14 +315,6 @@ describe("SettingsPage Error Message", () => {
 
   it("Checking password more than 128 symbols", async () => {
     const moreThe128 = "fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
-    const {login, logout, token, userId, isReady, isLogin} = jest.fn();
-    render(
-      <AuthContext.Provider
-        value={{login, logout, token, userId, isReady, isLogin}}
-      >
-        <SettingsPage/>
-      </AuthContext.Provider>
-    );
     screen.debug();
     expect(screen.queryByTestId("error")).toBeNull();
     const oldPassword = screen.getByPlaceholderText("Cтарый пароль");
@@ -314,14 +336,6 @@ describe("SettingsPage Error Message", () => {
   })
 
   it("Checking unmatching passwords", async () => {
-    const {login, logout, token, userId, isReady, isLogin} = jest.fn();
-    render(
-      <AuthContext.Provider
-        value={{login, logout, token, userId, isReady, isLogin}}
-      >
-        <SettingsPage/>
-      </AuthContext.Provider>
-    );
     screen.debug();
     expect(screen.queryByTestId("error")).toBeNull();
     const oldPassword = screen.getByPlaceholderText("Cтарый пароль");
@@ -345,14 +359,6 @@ describe("SettingsPage Error Message", () => {
   it("Checking description more than 512 symbols", async () => {
     const moreThe512 = "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
 
-    const {login, logout, token, userId, isReady, isLogin} = jest.fn();
-    render(
-      <AuthContext.Provider
-        value={{login, logout, token, userId, isReady, isLogin}}
-      >
-        <SettingsPage/>
-      </AuthContext.Provider>
-    );
     screen.debug();
     expect(screen.queryByTestId("error")).toBeNull();
     const oldPassword = screen.getByPlaceholderText("Описание пользователя");

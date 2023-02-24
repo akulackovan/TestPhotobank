@@ -206,6 +206,7 @@ const SettingsPage = () => {
             <Gapped horizontal gap={0} >
               <b>Тема: </b>
               <Radio
+                data-testid="light-button"
                 className="radio"
                 value="light"
                 onChange={changeTheme}
@@ -213,6 +214,7 @@ const SettingsPage = () => {
               />{" "}
               <b>Светлая</b>
               <Radio
+                data-testid="dark-button"
                 className="radio"
                 value="dark"
                 onChange={changeTheme}
