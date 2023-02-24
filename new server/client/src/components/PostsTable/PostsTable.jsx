@@ -10,12 +10,13 @@ const PostTable = ({ post, end = true }) => {
           <div className="canter">
             <ul>
               {post.map((option) => (
-                <li class="gallery">
+                  <li className="gallery" key={option.id}>
                   <Link to={`/post/${option._id}`} title="Открыть пост">
                     <img
                       style={{ width: 300, height: 223 }}
                       href={"/post/" + option._id}
                       src={option.image}
+                      data-testid={`post-${option.id}`}
                     />
                   </Link>
                 </li>
@@ -23,7 +24,7 @@ const PostTable = ({ post, end = true }) => {
             </ul>
           </div>
           <div>
-            {!post && <h2 className="h2">Нет постов</h2>}
+            {!post && <h2 className="h2" data-testid="no-posts-message">Нет постов</h2>}
             {post && end && <h2 className="head">Фотографии закончились</h2>}
           </div>
         </div>

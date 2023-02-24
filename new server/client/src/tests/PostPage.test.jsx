@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import PostPageComponet from "../components/PostPage/PostPageComponent";
 import PostPage from "../pages/PostPage/PostPage";
 import "@testing-library/jest-dom";
