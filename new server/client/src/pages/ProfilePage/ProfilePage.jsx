@@ -6,7 +6,7 @@ const ProfilePage = () => {
   const { userId } = useContext(AuthContext);
 
   return (
-    <div className="anotherPage">
+    <div className="anotherPage" data-testid="another-page">
       <AnotherPage id={userId} />
     </div>
   );

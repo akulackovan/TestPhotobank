@@ -8,5 +8,5 @@
         "navigator": {}
       },
       "setupFilesAfterEnv": ["<rootDir>/jest.setup.js"],
-      "testEnvironment": "jsdom"
+      "testEnvironment": "node"
     }

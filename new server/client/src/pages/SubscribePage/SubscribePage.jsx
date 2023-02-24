@@ -55,7 +55,7 @@ const SubscribePage = () => {
         )
     }
 
-    if (post === []) {
+    if (post.length === 0) {
         return (
             <div className="head">
                 <h1 className='center head'>Нет постов</h1>

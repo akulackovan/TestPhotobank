@@ -1,30 +1,25 @@
 import {Router} from "express"
-const router = new Router()
 import {getPopular} from "../controllers/getPopularPosts.js";
 import {createPost} from "../controllers/postController.js";
 import {getSubscriptionPosts} from "../controllers/getSubscriptionPosts.js";
-import {getPostById, getMyPost, getPostComments, getLike, addView, setLike } from '../controllers/post.js'
+import {addView, getLike, getMyPost, getPostById, getPostComments, setLike} from '../controllers/post.js'
 import {createComment} from '../controllers/comments.js'
 
-router.post('/post', createPost) //создание поста
+const router = new Router()
 
-router.get('/', getPopular) //получение популярных
+router.post('/post', createPost) // готово
+router.put('/addView', addView) // готово
+router.get('/getLike', getLike) // готово
+router.put('/setLike', setLike) // готово
 
 router.get('/getMe', getMyPost)
-
 router.get('/post/id', getPostById)
-
 router.get('/comments', getPostComments)
 
-router.post('/comments', createComment)
+router.post('/comments', createComment) // не мое
+router.get('/popular', getPopular) // не мое
+router.get('/subscription', getSubscriptionPosts) // не мое
+router.get('/', getPopular) //не мое
 
-router.get('/getLike', getLike)
-
-router.get('/popular', getPopular)
-
-router.get('/subscription', getSubscriptionPosts)
-
-router.put('/addView', addView)
-router.put('/setLike', setLike)
 
 export default router
