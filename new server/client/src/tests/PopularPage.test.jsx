@@ -44,9 +44,12 @@ describe("PopularPage", () => {
                     <PopularPage />
                 </AuthContext.Provider>
             </Router>
-        );
+        );     
+        expect(screen.getByTestId("loader")).toBeInTheDocument();       
 
-        await screen.findAllByTitle("Открыть пост");
+        await act(async () => {
+            await new Promise((resolve) => setTimeout(resolve, 0));
+          });
         expect(screen.getAllByTitle("Открыть пост")).toHaveLength(2);
         expect(screen.getByText("Фотографии закончились")).toBeInTheDocument();
     });

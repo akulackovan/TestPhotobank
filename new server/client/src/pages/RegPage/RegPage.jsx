@@ -97,7 +97,7 @@ const RegPage = () => {
             name="password"
             onChange={changeForm}
           />
-          <div style={{ width: "80%", margin: "auto", textAlign: "left" }}>
+          <div style={{ width: "80%", margin: "auto", textAlign: "left" }} data-testid="city">
             <CityCombobox
               className="city"
               name="city"
@@ -108,9 +108,9 @@ const RegPage = () => {
             ЗАРЕГИСТРИРОВАТЬСЯ
           </button>
           <a className="link">
-            <Link to="/auth" className="link">
+            <a href="/auth" className="link">
               ОБРАТНО
-            </Link>
+            </a>
           </a>
         </div>
       </div>

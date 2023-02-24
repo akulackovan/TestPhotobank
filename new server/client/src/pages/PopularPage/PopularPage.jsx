@@ -8,11 +8,10 @@ const PopularPage = () => {
   const { userId } = useContext(AuthContext);
   const [post, setPosts] = useState([]);
   const [errorMessage, setErrorMessage] = React.useState("");
-  const [isToday, setToday] = useState(true);
   const [loader, setLoader] = useState(true);
 
   useEffect(() => {
-    try {
+    setLoader(true)
       axios({
         method: "get",
         url: "/post/popular",
@@ -33,12 +32,12 @@ const PopularPage = () => {
           setErrorMessage(error.response.data.message);
           setLoader(false);
         });
-    } catch (error) {
-      console.log(error);
-      setErrorMessage(error.response.data.message);
-      setLoader(false);
-    }
   }, []);
+
+
+  if (loader) {
+    return <Loader />;
+  }
 
   if (errorMessage !== "") {
     return (
@@ -58,9 +57,6 @@ const PopularPage = () => {
     );
   }
 
-  if (loader) {
-    return <Loader />;
-  }
 
   return (
     <div

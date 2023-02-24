@@ -437,7 +437,18 @@ describe("PostPage component start render", () => {
         id: "63c8416ddd700fb050db2515",
       },
     });
-    await expect(axios.get).not.toHaveBeenCalledWith();
+    expect(screen.getByTestId("author")).toBeInTheDocument()
+    expect(screen.getByTestId("date")).toBeInTheDocument()
+    expect(screen.getByTestId("city")).toBeInTheDocument()
+    expect(screen.getByTestId("img")).toBeInTheDocument()
+    expect(screen.getByTestId("comments")).toBeInTheDocument()
+    expect(screen.getByTestId("commentButton")).toBeInTheDocument()
+    expect(screen.getByTestId("commentInput")).toBeInTheDocument()
+    expect(screen.getByTestId("likeButton")).toBeInTheDocument()
+    expect(screen.getByTestId("numComments")).toBeInTheDocument()
+    expect(screen.getByTestId("text")).toBeInTheDocument()
+    expect(screen.getByTestId("numlike")).toBeInTheDocument()
+    expect(screen.getByTestId("view")).toBeInTheDocument()
   });
 });
 

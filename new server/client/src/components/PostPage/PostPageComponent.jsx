@@ -216,20 +216,20 @@ const PostPageComponent = ({ id }) => {
                   href={`/profile/${post.author._id}`}
                   title={`Автор: ${post.author.username}`}
                 >
-                  <h4 className="head">{post.author.username}</h4>
+                  <h4 className="head" data-testid="author">{post.author.username}</h4>
                 </a>
               </div>
               <div className="under">
-                <div className="date">
+                <div className="date" data-testid="date">
                   {post.timestamps[8]}
                   {post.timestamps[9]}.{post.timestamps[5]}
                   {post.timestamps[6]}.20{post.timestamps[2]}
                   {post.timestamps[3]}
                 </div>
-                <div className="city">г.{post.city.city}</div>
+                <div className="city" data-testid="city">г.{post.city.city}</div>
               </div>
             </div>
-            <img className="img" src={`${post.image}`} />
+            <img className="img" data-testid="img" src={`${post.image}`} />
             <div className="stat">
               <ul>
                 <li className="icon li">
@@ -238,7 +238,7 @@ const PostPageComponent = ({ id }) => {
                     <path d="M8 2.5A8.11 8.11 0 0 0 0 8a8.11 8.11 0 0 0 8 5.5A8.11 8.11 0 0 0 16 8a8.11 8.11 0 0 0-8-5.5zm5.4 7.5A6.91 6.91 0 0 1 8 12.25 6.91 6.91 0 0 1 2.6 10a7.2 7.2 0 0 1-1.27-2A7.2 7.2 0 0 1 2.6 6 6.91 6.91 0 0 1 8 3.75 6.91 6.91 0 0 1 13.4 6a7.2 7.2 0 0 1 1.27 2 7.2 7.2 0 0 1-1.27 2z" />
                   </svg>
 
-                  <div className="num">{post.views}</div>
+                  <div className="num" data-testid="view">{post.views}</div>
                 </li>
                 <li className="icon li">
                   <svg viewBox="0 0 32 32">
@@ -261,12 +261,12 @@ const PostPageComponent = ({ id }) => {
                     />
                   </svg>
 
-                  <div className="num">{comments.length}</div>
+                  <div className="num" data-testid="numComments">{comments.length}</div>
                 </li>
               </ul>
             </div>
             <div className="container">
-              <div className="discription">{post.text}</div>
+              <div className="discription" data-testid="text">{post.text}</div>
             </div>
           </div>
           <div className="second">
@@ -277,6 +277,7 @@ const PostPageComponent = ({ id }) => {
                   title="Поставить лайк"
                   onClick={changeLike}
                   id="like"
+                  data-testid="likeButton"
                 >
                   <svg
                     width="50px"
@@ -298,6 +299,7 @@ const PostPageComponent = ({ id }) => {
                   title="Отменить лайк"
                   onClick={changeLike}
                   id="unlike"
+                  data-testid="likeButton"
                 >
                   <svg
                     width="50px"
@@ -325,14 +327,14 @@ const PostPageComponent = ({ id }) => {
                 />
               </form>
               <div onClick={commentHandler}>
-                <button className="button" title="Отправить комментарий">
+                <button className="button" data-testid="commentButton" title="Отправить комментарий">
                   ОТПРАВИТЬ
                 </button>
               </div>
             </div>
             <div className="listComments">
               <hr className="hr" />
-              <div className="head">Комментарии</div>
+              <div className="head" data-testid="comments">Комментарии</div>
               {loadingComm && (
                 <div className="head">Загрузка комментариев...</div>
               )}

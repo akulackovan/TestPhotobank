@@ -4,6 +4,7 @@ import React from "react";
 const ErrorMessage = ({ msg }) => (
   <div
     className="errorMessage"
+    data-testid="error"
     style={{ height: "300px", width: "400px", zIndex: 999999 }}
   >
     <svg

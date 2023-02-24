@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">95.65% </span>
+                <span class="strong">94.56% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>88/92</span>
+                <span class='fraction'>87/92</span>
             </div>
         
             
@@ -37,9 +37,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">84% </span>
+                <span class="strong">80% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>21/25</span>
+                <span class='fraction'>20/25</span>
             </div>
         
             
@@ -430,7 +430,9 @@
 <a name='L365'></a><a href='#L365'>365</a>
 <a name='L366'></a><a href='#L366'>366</a>
 <a name='L367'></a><a href='#L367'>367</a>
-<a name='L368'></a><a href='#L368'>368</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L368'></a><a href='#L368'>368</a>
+<a name='L369'></a><a href='#L369'>369</a>
+<a name='L370'></a><a href='#L370'>370</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -777,6 +779,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">56x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -869,7 +873,7 @@ const PostPageComponent = ({ id }) =&gt; {
       .catch((error) =&gt; {
         setLoadingComm(false);
         setErrorMessage(error.response.data.message);
-        setTimeout(() =&gt; setErrorMessage(""), 2000);
+        setTimeout(<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >setErrorMessage(""),</span> 2000);
       });
   };
 &nbsp;
@@ -1015,20 +1019,20 @@ const PostPageComponent = ({ id }) =&gt; {
                   href={`/profile/${post.author._id}`}
                   title={`Автор: ${post.author.username}`}
                 &gt;
-                  &lt;h4 className="head"&gt;{post.author.username}&lt;/h4&gt;
+                  &lt;h4 className="head" data-testid="author"&gt;{post.author.username}&lt;/h4&gt;
                 &lt;/a&gt;
               &lt;/div&gt;
               &lt;div className="under"&gt;
-                &lt;div className="date"&gt;
+                &lt;div className="date" data-testid="date"&gt;
                   {post.timestamps[8]}
                   {post.timestamps[9]}.{post.timestamps[5]}
                   {post.timestamps[6]}.20{post.timestamps[2]}
                   {post.timestamps[3]}
                 &lt;/div&gt;
-                &lt;div className="city"&gt;г.{post.city.city}&lt;/div&gt;
+                &lt;div className="city" data-testid="city"&gt;г.{post.city.city}&lt;/div&gt;
               &lt;/div&gt;
             &lt;/div&gt;
-            &lt;img className="img" src={`${post.image}`} /&gt;
+            &lt;img className="img" data-testid="img" src={`${post.image}`} /&gt;
             &lt;div className="stat"&gt;
               &lt;ul&gt;
                 &lt;li className="icon li"&gt;
@@ -1037,7 +1041,7 @@ const PostPageComponent = ({ id }) =&gt; {
                     &lt;path d="M8 2.5A8.11 8.11 0 0 0 0 8a8.11 8.11 0 0 0 8 5.5A8.11 8.11 0 0 0 16 8a8.11 8.11 0 0 0-8-5.5zm5.4 7.5A6.91 6.91 0 0 1 8 12.25 6.91 6.91 0 0 1 2.6 10a7.2 7.2 0 0 1-1.27-2A7.2 7.2 0 0 1 2.6 6 6.91 6.91 0 0 1 8 3.75 6.91 6.91 0 0 1 13.4 6a7.2 7.2 0 0 1 1.27 2 7.2 7.2 0 0 1-1.27 2z" /&gt;
                   &lt;/svg&gt;
 &nbsp;
-                  &lt;div className="num"&gt;{post.views}&lt;/div&gt;
+                  &lt;div className="num" data-testid="view"&gt;{post.views}&lt;/div&gt;
                 &lt;/li&gt;
                 &lt;li className="icon li"&gt;
                   &lt;svg viewBox="0 0 32 32"&gt;
@@ -1060,12 +1064,12 @@ const PostPageComponent = ({ id }) =&gt; {
                     /&gt;
                   &lt;/svg&gt;
 &nbsp;
-                  &lt;div className="num"&gt;{comments.length}&lt;/div&gt;
+                  &lt;div className="num" data-testid="numComments"&gt;{comments.length}&lt;/div&gt;
                 &lt;/li&gt;
               &lt;/ul&gt;
             &lt;/div&gt;
             &lt;div className="container"&gt;
-              &lt;div className="discription"&gt;{post.text}&lt;/div&gt;
+              &lt;div className="discription" data-testid="text"&gt;{post.text}&lt;/div&gt;
             &lt;/div&gt;
           &lt;/div&gt;
           &lt;div className="second"&gt;
@@ -1076,6 +1080,7 @@ const PostPageComponent = ({ id }) =&gt; {
                   title="Поставить лайк"
                   onClick={changeLike}
                   id="like"
+                  data-testid="likeButton"
                 &gt;
                   &lt;svg
                     width="50px"
@@ -1097,6 +1102,7 @@ const PostPageComponent = ({ id }) =&gt; {
                   title="Отменить лайк"
                   onClick={changeLike}
                   id="unlike"
+                  data-testid="likeButton"
                 &gt;
                   &lt;svg
                     width="50px"
@@ -1124,14 +1130,14 @@ const PostPageComponent = ({ id }) =&gt; {
                 /&gt;
               &lt;/form&gt;
               &lt;div onClick={commentHandler}&gt;
-                &lt;button className="button" title="Отправить комментарий"&gt;
+                &lt;button className="button" data-testid="commentButton" title="Отправить комментарий"&gt;
                   ОТПРАВИТЬ
                 &lt;/button&gt;
               &lt;/div&gt;
             &lt;/div&gt;
             &lt;div className="listComments"&gt;
               &lt;hr className="hr" /&gt;
-              &lt;div className="head"&gt;Комментарии&lt;/div&gt;
+              &lt;div className="head" data-testid="comments"&gt;Комментарии&lt;/div&gt;
               {loadingComm &amp;&amp; (
                 &lt;div className="head"&gt;Загрузка комментариев...&lt;/div&gt;
               )}
@@ -1171,7 +1177,7 @@ export default PostPageComponent;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-02-24T15:03:27.733Z
+                at 2023-02-24T17:49:03.190Z
             </div>
         <script src="../../../../prettify.js"></script>
         <script>
