@@ -11,9 +11,9 @@ router.post('/post', createPost) // готово
 router.put('/addView', addView) // готово
 router.get('/getLike', getLike) // готово
 router.put('/setLike', setLike) // готово
+router.get('/post/id', getPostById) // готово
+router.get('/getMe', getMyPost) // готово
 
-router.get('/getMe', getMyPost)
-router.get('/post/id', getPostById)
 router.get('/comments', getPostComments)
 
 router.post('/comments', createComment) // не мое

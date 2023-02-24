@@ -5,6 +5,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/new server/client/src/pages/AddPostPAge/AddPostPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/new server/client/src/pages/AddPostPAge/AddPostPage.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/new server/controllers/post.js" beforeDir="false" afterPath="$PROJECT_DIR$/new server/controllers/post.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new server/router/post.js" beforeDir="false" afterPath="$PROJECT_DIR$/new server/router/post.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/new server/testsDev/post.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/new server/testsDev/post.test.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -35,7 +36,7 @@
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
-  <component name="RunManager" selected="Jest.getPostById">
+  <component name="RunManager" selected="Jest.post.test.js">
     <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -49,24 +50,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ProfilePage.test.jsx" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+    <configuration name="addView" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <node-options value="" />
-      <jest-package value="$PROJECT_DIR$/new server/client/node_modules/react-scripts" />
-      <working-dir value="$PROJECT_DIR$/new server/client" />
+      <jest-package value="$PROJECT_DIR$/new server/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$/new server" />
       <envs />
-      <scope-kind value="TEST_FILE" />
-      <test-file value="$PROJECT_DIR$/new server/client/src/tests/ProfilePage.test.jsx" />
-      <method v="2" />
-    </configuration>
-    <configuration name="SubscribePage.test.jsx" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
-      <node-interpreter value="project" />
-      <node-options value="" />
-      <jest-package value="$PROJECT_DIR$/new server/client/node_modules/react-scripts" />
-      <working-dir value="$PROJECT_DIR$/new server/client" />
-      <envs />
-      <scope-kind value="TEST_FILE" />
-      <test-file value="$PROJECT_DIR$/new server/client/src/tests/SubscribePage.test.jsx" />
+      <scope-kind value="SUITE" />
+      <test-file value="$PROJECT_DIR$/new server/testsDev/post.test.js" />
+      <test-names>
+        <test-name value="addView" />
+      </test-names>
       <method v="2" />
     </configuration>
     <configuration name="getPostById" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
@@ -82,6 +76,29 @@
       </test-names>
       <method v="2" />
     </configuration>
+    <configuration name="getPostComments" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/new server/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$/new server" />
+      <envs />
+      <scope-kind value="SUITE" />
+      <test-file value="$PROJECT_DIR$/new server/testsDev/post.test.js" />
+      <test-names>
+        <test-name value="getPostComments" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="postBy.test.js" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/new server/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$/new server" />
+      <envs />
+      <scope-kind value="TEST_FILE" />
+      <test-file value="$PROJECT_DIR$/new server/testsDev/postBy.test.js" />
+      <method v="2" />
+    </configuration>
     <configuration name="post.test.js" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <node-options value="" />
@@ -92,26 +109,13 @@
       <test-file value="$PROJECT_DIR$/new server/testsDev/post.test.js" />
       <method v="2" />
     </configuration>
-    <configuration name="setLike" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
-      <node-interpreter value="project" />
-      <node-options value="" />
-      <jest-package value="$PROJECT_DIR$/new server/node_modules/jest" />
-      <working-dir value="$PROJECT_DIR$/new server" />
-      <envs />
-      <scope-kind value="SUITE" />
-      <test-file value="$PROJECT_DIR$/new server/testsDev/post.test.js" />
-      <test-names>
-        <test-name value="setLike" />
-      </test-names>
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Jest.getPostById" />
-        <item itemvalue="Jest.setLike" />
         <item itemvalue="Jest.post.test.js" />
-        <item itemvalue="Jest.SubscribePage.test.jsx" />
-        <item itemvalue="Jest.ProfilePage.test.jsx" />
+        <item itemvalue="Jest.getPostComments" />
+        <item itemvalue="Jest.postBy.test.js" />
+        <item itemvalue="Jest.addView" />
+        <item itemvalue="Jest.getPostById" />
       </list>
     </recent_temporary>
   </component>
@@ -127,7 +131,7 @@
       <workItem from="1677092937300" duration="1738000" />
       <workItem from="1677097265590" duration="385000" />
       <workItem from="1677142353341" duration="48534000" />
-      <workItem from="1677219628884" duration="6833000" />
+      <workItem from="1677219628884" duration="9480000" />
     </task>
     <task id="LOCAL-00001" summary="add some tests">
       <created>1677224010088</created>
@@ -143,7 +147,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677225534379</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="getPostById tests">
+      <created>1677227118689</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1677227118689</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -176,7 +187,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add some tests" />
     <MESSAGE value="add some fixing tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="add some fixing tests" />
+    <MESSAGE value="getPostById tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="getPostById tests" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/AnotherTRKPO$AnotherUserPage.info" NAME="AnotherUserPage Coverage Results" MODIFIED="1677167632943" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="JestJavaScriptTestRunnerCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

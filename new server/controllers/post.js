@@ -3,39 +3,6 @@ import User from '../models/User.js'
 import City from '../models/City.js'
 import Comment from '../models/Comment.js'
 
-export const getPostById = async (req, res) => {
-    try {
-        const {id} = req.query
-        const isPost = await Post.findOne({_id: id})
-        if (!isPost) {
-            return res.status(400).json({
-                message: 'Поста не существует'
-            })
-        }
-
-        const likes = await User.find({likes: id})
-        isPost.likes = likes.length
-
-        const autor = await User.findOne({_id: isPost.author})
-        autor.password = ""
-        isPost.author = autor
-        console.log(isPost)
-        const city = await City.findOne({_id: isPost.city})
-        isPost.city = city
-
-        return res.json({
-            isPost,
-
-            message: 'Пост получен',
-        })
-    } catch (error) {
-        console.log(error)
-        return res.status(400).json({
-            message: 'Ошибка при получении поста'
-        })
-    }
-}
-
 export const getPostComments = async (req, res) => {
     try {
         const post = await Post.findById(req.query.id)
@@ -101,9 +68,6 @@ export const getMyPost = async (req, res) => {
         })
     }
 }
-
-
-
 export const setLike = async (req, res) => {
     try {
         const {idUser, idPost} = req.query
@@ -174,5 +138,37 @@ export const addView = async (req, res) => {
     } catch (error) {
         console.log(error)
         res.status(400).json({message: 'Ошибка при добавлении просмотра'})
+    }
+}
+export const getPostById = async (req, res) => {
+    try {
+        const {id} = req.query
+        const isPost = await Post.findOne({_id: id})
+        if (!isPost) {
+            return res.status(400).json({
+                message: 'Поста не существует'
+            })
+        }
+
+        const likes = await User.find({likes: id})
+        isPost.likes = likes.length
+
+        const autor = await User.findOne({_id: isPost.author})
+        autor.password = ""
+        isPost.author = autor
+        console.log(isPost)
+        const city = await City.findOne({_id: isPost.city})
+        isPost.city = city
+
+        return res.json({
+            isPost,
+
+            message: 'Пост получен',
+        })
+    } catch (error) {
+        console.log(error)
+        return res.status(400).json({
+            message: 'Ошибка при получении поста'
+        })
     }
 }
