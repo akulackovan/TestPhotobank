@@ -664,7 +664,7 @@ describe("PostPage comments write", () => {
     screen.debug();
   });
 
-  it("Shoud padd comment with 127 length comments", async () => {
+  it("Shoud add comment with 127 length comments", async () => {
     var comment = "";
     while (comment.length < 127) comment += "A";
     expect(comment).toHaveLength(127);
@@ -687,7 +687,7 @@ describe("PostPage comments write", () => {
     screen.debug();
   });
 
-  it("Shoud padd comment with 128 length comments", async () => {
+  it("Shoud add comment with 128 length comments", async () => {
     var comment = "";
     while (comment.length < 128) comment += "A";
     expect(comment).toHaveLength(128);
