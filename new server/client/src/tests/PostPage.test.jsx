@@ -630,7 +630,7 @@ describe("PostPage comments write", () => {
     const commentInput = screen.getByTestId("commentInput");
     fireEvent.change(commentInput, { target: { value: comment } });
     axios.mockResolvedValueOnce({
-      data: { newComment: { user: "test", comment: comment }},
+      data: { newComment: { user: "test", comment: comment } },
       status: 200,
     });
     fireEvent.click(screen.getByText("ОТПРАВИТЬ"));
@@ -638,20 +638,20 @@ describe("PostPage comments write", () => {
       await new Promise((resolve) => setTimeout(resolve, 0));
     });
     expect(screen.getByText("test"));
-    
+
     screen.debug();
   });
 
   it("Shoud print error message with 1 length comments", async () => {
     var comment = "1";
     expect(comment).toHaveLength(1);
-    let comments = screen.getAllByTestId("comment")
-    const length = comments.length
-    expect(comments).toHaveLength(2)
+    let comments = screen.getAllByTestId("comment");
+    const length = comments.length;
+    expect(comments).toHaveLength(2);
     const commentInput = screen.getByTestId("commentInput");
     fireEvent.change(commentInput, { target: { value: comment } });
     axios.mockResolvedValueOnce({
-      data: { newComment: { user: "test", comment: comment }},
+      data: { newComment: { user: "test", comment: comment } },
       status: 200,
     });
     fireEvent.click(screen.getByText("ОТПРАВИТЬ"));
@@ -659,8 +659,8 @@ describe("PostPage comments write", () => {
       await new Promise((resolve) => setTimeout(resolve, 0));
     });
     expect(screen.getByText("test"));
-    comments = screen.getAllByTestId("comment")
-    expect(comments).toHaveLength(length + 1)
+    comments = screen.getAllByTestId("comment");
+    expect(comments).toHaveLength(length + 1);
     screen.debug();
   });
 
@@ -668,13 +668,13 @@ describe("PostPage comments write", () => {
     var comment = "";
     while (comment.length < 127) comment += "A";
     expect(comment).toHaveLength(127);
-    let comments = screen.getAllByTestId("comment")
-    const length = comments.length
-    expect(comments).toHaveLength(2)
+    let comments = screen.getAllByTestId("comment");
+    const length = comments.length;
+    expect(comments).toHaveLength(2);
     const commentInput = screen.getByTestId("commentInput");
     fireEvent.change(commentInput, { target: { value: comment } });
     axios.mockResolvedValueOnce({
-      data: { newComment: { user: "test", comment: comment }},
+      data: { newComment: { user: "test", comment: comment } },
       status: 200,
     });
     fireEvent.click(screen.getByText("ОТПРАВИТЬ"));
@@ -682,8 +682,8 @@ describe("PostPage comments write", () => {
       await new Promise((resolve) => setTimeout(resolve, 0));
     });
     expect(screen.getByText("test"));
-    comments = screen.getAllByTestId("comment")
-    expect(comments).toHaveLength(length + 1)
+    comments = screen.getAllByTestId("comment");
+    expect(comments).toHaveLength(length + 1);
     screen.debug();
   });
 
@@ -691,13 +691,13 @@ describe("PostPage comments write", () => {
     var comment = "";
     while (comment.length < 128) comment += "A";
     expect(comment).toHaveLength(128);
-    let comments = screen.getAllByTestId("comment")
-    const length = comments.length
-    expect(comments).toHaveLength(2)
+    let comments = screen.getAllByTestId("comment");
+    const length = comments.length;
+    expect(comments).toHaveLength(2);
     const commentInput = screen.getByTestId("commentInput");
     fireEvent.change(commentInput, { target: { value: comment } });
     axios.mockResolvedValueOnce({
-      data: { newComment: { user: "test", comment: comment }},
+      data: { newComment: { user: "test", comment: comment } },
       status: 200,
     });
     fireEvent.click(screen.getByText("ОТПРАВИТЬ"));
@@ -705,18 +705,17 @@ describe("PostPage comments write", () => {
       await new Promise((resolve) => setTimeout(resolve, 0));
     });
     expect(screen.getByText("test"));
-    comments = screen.getAllByTestId("comment")
-    expect(comments).toHaveLength(length + 1)
+    comments = screen.getAllByTestId("comment");
+    expect(comments).toHaveLength(length + 1);
     screen.debug();
   });
-
 
   it("Shoud print error from axios comments", async () => {
     var comment = "123";
     const commentInput = screen.getByTestId("commentInput");
     fireEvent.change(commentInput, { target: { value: comment } });
     axios.mockRejectedValueOnce({
-      response: {data: { message: "Ошибка при добавлении комментария"}} ,
+      response: { data: { message: "Ошибка при добавлении комментария" } },
     });
     fireEvent.click(screen.getByText("ОТПРАВИТЬ"));
     await act(async () => {
@@ -725,14 +724,10 @@ describe("PostPage comments write", () => {
     expect(screen.getByText("Ошибка при добавлении комментария"));
     screen.debug();
   });
-
 });
 
-
 describe("PostPage comments write", () => {
-  beforeEach(async () => {
-    
-  });
+  beforeEach(async () => {});
 
   it("Shoud print error message from change like", async () => {
     const { userId } = jest.fn();
@@ -789,13 +784,15 @@ describe("PostPage comments write", () => {
       await new Promise((resolve) => setTimeout(resolve, 0));
     });
     axios.mockRejectedValueOnce({
-      response: {data: { message: "Ошибка при получении статуса лайка"}} ,
+      response: { data: { message: "Ошибка при получении статуса лайка" } },
     });
     fireEvent.click(screen.getByTestId("like"));
     await act(async () => {
       await new Promise((resolve) => setTimeout(resolve, 0));
     });
-    expect(screen.getByText("Ошибка при получении статуса лайка")).toBeInTheDocument();
+    expect(
+      screen.getByText("Ошибка при получении статуса лайка")
+    ).toBeInTheDocument();
     screen.debug();
   });
 
@@ -853,21 +850,21 @@ describe("PostPage comments write", () => {
     await act(async () => {
       await new Promise((resolve) => setTimeout(resolve, 0));
     });
-    let numlike =  screen.getByTestId("numlike")
+    let numlike = screen.getByTestId("numlike");
     expect(numlike).toBeInTheDocument();
-    expect(screen.getByTestId('numlike')).toHaveTextContent('1');
-    expect(screen.getByTestId('like')).toBeInTheDocument();
+    expect(screen.getByTestId("numlike")).toHaveTextContent("1");
+    expect(screen.getByTestId("like")).toBeInTheDocument();
     axios.mockResolvedValueOnce({
-      data: {like: true},
+      data: { like: true },
     });
     fireEvent.click(screen.getByTestId("like"));
     await act(async () => {
       await new Promise((resolve) => setTimeout(resolve, 0));
     });
-    numlike = screen.getByTestId("numlike")
+    numlike = screen.getByTestId("numlike");
     expect(numlike).toBeInTheDocument();
-    expect(screen.getByTestId('numlike')).toHaveTextContent('2');
-    expect(screen.getByTestId('unlike')).toBeInTheDocument();
+    expect(screen.getByTestId("numlike")).toHaveTextContent("2");
+    expect(screen.getByTestId("unlike")).toBeInTheDocument();
     screen.debug();
   });
 
@@ -925,27 +922,21 @@ describe("PostPage comments write", () => {
     await act(async () => {
       await new Promise((resolve) => setTimeout(resolve, 0));
     });
-    let numlike =  screen.getByTestId("numlike")
+    let numlike = screen.getByTestId("numlike");
     expect(numlike).toBeInTheDocument();
-    expect(screen.getByTestId('numlike')).toHaveTextContent('1');
-    expect(screen.getByTestId('unlike')).toBeInTheDocument();
+    expect(screen.getByTestId("numlike")).toHaveTextContent("1");
+    expect(screen.getByTestId("unlike")).toBeInTheDocument();
     axios.mockResolvedValueOnce({
-      data: {like: false},
+      data: { like: false },
     });
     fireEvent.click(screen.getByTestId("unlike"));
     await act(async () => {
       await new Promise((resolve) => setTimeout(resolve, 0));
     });
-    numlike = screen.getByTestId("numlike")
+    numlike = screen.getByTestId("numlike");
     expect(numlike).toBeInTheDocument();
-    expect(screen.getByTestId('numlike')).toHaveTextContent('0');
-    expect(screen.getByTestId('like')).toBeInTheDocument();
+    expect(screen.getByTestId("numlike")).toHaveTextContent("0");
+    expect(screen.getByTestId("like")).toBeInTheDocument();
     screen.debug();
   });
-
-
-
-
 });
-
-//Лайк
