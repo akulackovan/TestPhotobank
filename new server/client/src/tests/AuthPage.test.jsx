@@ -12,7 +12,7 @@ import { AuthContext } from "../context/AuthContext";
 jest.mock("axios");
 
 describe("AuthPage component", () => {
-  it("Shoulding the filling of AuthPage components", () => {
+  it("Should the filling of AuthPage components", () => {
     //Используем Mock-функцию
     //Игнорируем детали реализации
     const { login, logout, token, userId, isReady, isLogin } = jest.fn();
@@ -35,7 +35,7 @@ describe("AuthPage component", () => {
 });
 
 describe("AuthPage Error Message", () => {
-  it("Start doesn't have error message ", () => {
+  it("Should Start doesn't have error message ", () => {
     const { login, logout, token, userId, isReady, isLogin } = jest.fn();
     render(
       <AuthContext.Provider
@@ -717,6 +717,170 @@ describe("AuthPage Should axios request to render", () => {
     expect(error).toBeInTheDocument();
     screen.debug();
   });
+
+  
+describe("AuthPage username lenght", () => {
+  let username, password, regButton, mainField,cities ;
+
+   const ok = "test"
+
+  beforeEach(() => {
+    
+    axios.post.mockRejectedValueOnce({
+      response: {
+        data: {
+          message: "Ошибка при авторизации",
+        },
+      },
+      status: 400,
+    });
+    const { login, logout, token, userId, isLogin } = jest.fn();
+    render(
+      <AuthContext.Provider value={{ login, logout, token, userId, isLogin }}>
+        <AuthPage />
+      </AuthContext.Provider>
+    );
+    username = screen.getByPlaceholderText("Логин");
+    expect(username).toBeInTheDocument();
+     password = screen.getByPlaceholderText("Пароль");
+    expect(password).toBeInTheDocument();
+     regButton = screen.getByText("ВОЙТИ");
+    expect(regButton).toBeInTheDocument();
+    fireEvent.change(password, { target: { value: ok } });
+    
+  });
+
+    it("Should print error with empty username ", async () => {
+      fireEvent.change(username, { target: { value: "" } });
+      fireEvent.click(regButton);
+      expect(screen.getByText("Заполнены не все поля")).toBeInTheDocument();
+    });
+
+    it("Should not print error with 1 lenght username ", async () => {
+      fireEvent.change(username, { target: { value: "a" } });
+      fireEvent.click(regButton);
+      await act(async () => {
+        await new Promise((resolve) => setTimeout(resolve, 0));
+      });
+      expect(screen.getByText("Ошибка при авторизации")).toBeInTheDocument();
+    });
+
+    it("Should not print error with 127 lenght username ", async () => {
+      var user = "";
+    while (user.length < 127) user += "A";
+      fireEvent.change(username, { target: { value: user } });
+      fireEvent.click(regButton);
+      await act(async () => {
+        await new Promise((resolve) => setTimeout(resolve, 0));
+      });
+      expect(screen.getByText("Ошибка при авторизации")).toBeInTheDocument();
+    });
+
+    it("Should not print error with 127 lenght username ", async () => {
+      var user = "";
+    while (user.length < 127) user += "A";
+      fireEvent.change(username, { target: { value: user } });
+      fireEvent.click(regButton);
+      await act(async () => {
+        await new Promise((resolve) => setTimeout(resolve, 0));
+      });
+      expect(screen.getByText("Ошибка при авторизации")).toBeInTheDocument();
+    });
+
+    it("Should  print error with 129 lenght username ", async () => {
+      var user = "";
+    while (user.length < 129) user += "A";
+      fireEvent.change(username, { target: { value: user } });
+      fireEvent.click(regButton);
+      await act(async () => {
+        await new Promise((resolve) => setTimeout(resolve, 0));
+      });
+      expect(screen.getByText("Имя пользователя должно быть меньше 128 символов")).toBeInTheDocument();
+    });
+});
+
+describe("AuthPage password lenght", () => {
+  let username, password, regButton, mainField,cities ;
+
+   const ok = "test"
+
+  beforeEach(() => {
+    axios.post.mockRejectedValueOnce({
+      response: {
+        data: {
+          message: "Ошибка при авторизации",
+        },
+      },
+      status: 400,
+    });
+    const { login, logout, token, userId, isLogin } = jest.fn();
+    render(
+      <AuthContext.Provider value={{ login, logout, token, userId, isLogin }}>
+        <AuthPage />
+      </AuthContext.Provider>
+    );
+     username = screen.getByPlaceholderText("Логин");
+    expect(username).toBeInTheDocument();
+     password = screen.getByPlaceholderText("Пароль");
+    expect(password).toBeInTheDocument();
+     regButton = screen.getByText("ВОЙТИ");
+    expect(regButton).toBeInTheDocument();
+    fireEvent.change(username, { target: { value: ok } });
+    
+  });
+
+
+    it("Should print error with empty username ", async () => {
+      fireEvent.change(password, { target: { value: "" } });
+      fireEvent.click(regButton);
+      expect(screen.getByText("Заполнены не все поля")).toBeInTheDocument();
+    });
+
+
+    it("Should not print error with 1 lenght username ", async () => {
+      fireEvent.change(password, { target: { value: "a" } });
+      fireEvent.click(regButton);
+      await act(async () => {
+        await new Promise((resolve) => setTimeout(resolve, 0));
+      });
+      expect(screen.getByText("Ошибка при авторизации")).toBeInTheDocument();
+    });
+
+    it("Should not print error with 127 lenght username ", async () => {
+      var user = "";
+    while (user.length < 127) user += "A";
+      fireEvent.change(password, { target: { value: user } });
+      fireEvent.click(regButton);
+      await act(async () => {
+        await new Promise((resolve) => setTimeout(resolve, 0));
+      });
+      expect(screen.getByText("Ошибка при авторизации")).toBeInTheDocument();
+    });
+
+    it("Should not print error with 127 lenght username ", async () => {
+      var user = "";
+    while (user.length < 127) user += "A";
+      fireEvent.change(password, { target: { value: user } });
+      fireEvent.click(regButton);
+      await act(async () => {
+        await new Promise((resolve) => setTimeout(resolve, 0));
+      });
+      expect(screen.getByText("Ошибка при авторизации")).toBeInTheDocument();
+    });
+
+    it("Should  print error with 129 lenght username ", async () => {
+      var user = "";
+    while (user.length < 129) user += "A";
+      fireEvent.change(password, { target: { value: user } });
+      fireEvent.click(regButton);
+      await act(async () => {
+        await new Promise((resolve) => setTimeout(resolve, 0));
+      });
+      expect(screen.getByText("Пароль должен быть меньше 128 символов")).toBeInTheDocument();
+    });
+});
+
+
 
   /*it("Should not have error from server", async () => {
     

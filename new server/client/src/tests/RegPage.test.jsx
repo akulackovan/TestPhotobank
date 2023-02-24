@@ -31,7 +31,7 @@ afterEach(() => {
 });
 
 describe("PegPage component", () => {
-  it("Shoulding the filling of PegPage components", () => {
+  it("Should the filling of PegPage components", () => {
     const username = screen.getByPlaceholderText("Логин");
     expect(username).toBeInTheDocument();
     const password = screen.getByPlaceholderText("Пароль");
@@ -77,12 +77,12 @@ describe("PegPage component test field", () => {
     expect(cities).toHaveLength(3);
   });
 
-  it("All empty", () => {
+  it("Should with error All empty", () => {
     fireEvent.click(regButton);
     expect(screen.getByText("Заполнены не все поля")).toBeInTheDocument();
   });
 
-  it("Empty username and password length more then 128 and city is correct", () => {
+  it("Should with error  Empty username and password length more then 128 and city is correct", () => {
     
     fireEvent.change(username, { target: { value: "" } });
     fireEvent.change(password, { target: { value: moreThe128 } });
@@ -91,7 +91,7 @@ describe("PegPage component test field", () => {
     expect(screen.getByText("Заполнены не все поля")).toBeInTheDocument();
   });
 
-  it("Empty username and password has wrong symbols and city is empty", () => {
+  it("Should with error Empty username and password has wrong symbols and city is empty", () => {
     
     fireEvent.change(username, { target: { value: "" } });
     fireEvent.change(password, { target: { value: wrongSymbols } });
@@ -100,7 +100,7 @@ describe("PegPage component test field", () => {
     expect(screen.getByText("Заполнены не все поля")).toBeInTheDocument();
   });
 
-  it("Empty username and password is correct and city", () => {
+  it("Should with error Empty username and password is correct and city", () => {
     
     fireEvent.change(username, { target: { value: "" } });
     fireEvent.change(password, { target: { value: ok } });
@@ -110,7 +110,7 @@ describe("PegPage component test field", () => {
   });
 
   //5
-  it("Empty username and password is correct and city is empty", () => {
+  it("Should with error Empty username and password is correct and city is empty", () => {
     
     fireEvent.change(username, { target: { value: "" } });
     fireEvent.change(password, { target: { value: wrongAnd128 } });
@@ -119,7 +119,7 @@ describe("PegPage component test field", () => {
     expect(screen.getByText("Заполнены не все поля")).toBeInTheDocument();
   });
 
-  it("Username length more then 128 and password length more then 128  and city is empty", () => {
+  it("Should with error Username length more then 128 and password length more then 128  and city is empty", () => {
     
     fireEvent.change(username, { target: { value: moreThe128 } });
     fireEvent.change(password, { target: { value: moreThe128 } });
@@ -128,7 +128,7 @@ describe("PegPage component test field", () => {
     expect(screen.getByText("Заполнены не все поля")).toBeInTheDocument();
   });
 
-  it("Username length more then 128 and password has wrong symbols and city", () => {
+  it("Should with error Username length more then 128 and password has wrong symbols and city", () => {
     
     fireEvent.change(username, { target: { value: moreThe128 } });
     fireEvent.change(password, { target: { value: wrongSymbols } });
@@ -137,7 +137,7 @@ describe("PegPage component test field", () => {
     expect(screen.getByText("Имя пользователя должно быть меньше 128 символов")).toBeInTheDocument();
   });
 
-  it("Username length more then 128 and password is correct and city is empty", () => {
+  it("Should with error Username length more then 128 and password is correct and city is empty", () => {
     
     fireEvent.change(username, { target: { value: moreThe128 } });
     fireEvent.change(password, { target: { value: ok } });
@@ -146,7 +146,7 @@ describe("PegPage component test field", () => {
     expect(screen.getByText("Заполнены не все поля")).toBeInTheDocument();
   });
 
-  it("Username length more then 128 and password is uncorrect and city is empty", () => {
+  it("Should with error Username length more then 128 and password is uncorrect and city is empty", () => {
     
     fireEvent.change(username, { target: { value: moreThe128 } });
     fireEvent.change(password, { target: { value: wrongAnd128 } });
@@ -156,7 +156,7 @@ describe("PegPage component test field", () => {
   });
 
   //10
-  it("Username length more then 128 and password is empty and city", () => {
+  it("Should with error Username length more then 128 and password is empty and city", () => {
     
     fireEvent.change(username, { target: { value: moreThe128 } });
     fireEvent.change(password, { target: { value: "" } });
@@ -166,7 +166,7 @@ describe("PegPage component test field", () => {
   });
 
     //11
-    it("Username has wrong symbols and password has wrong symbols and city is empty", () => {
+    it("Should with error Username has wrong symbols and password has wrong symbols and city is empty", () => {
     
       fireEvent.change(username, { target: { value: wrongSymbols } });
       fireEvent.change(password, { target: { value: wrongSymbols } });
@@ -175,7 +175,7 @@ describe("PegPage component test field", () => {
       expect(screen.getByText("Заполнены не все поля")).toBeInTheDocument();
     });
 
-    it("Username has wrong symbols and password is ok and city is empty", () => {
+    it("Should with error Username has wrong symbols and password is ok and city is empty", () => {
     
       fireEvent.change(username, { target: { value: wrongSymbols } });
       fireEvent.change(password, { target: { value: ok } });
@@ -184,7 +184,7 @@ describe("PegPage component test field", () => {
       expect(screen.getByText("Заполнены не все поля")).toBeInTheDocument();
     });
 
-    it("Username has wrong symbols and password is uncorrect and city", () => {
+    it("Should with error Username has wrong symbols and password is uncorrect and city", () => {
     
       fireEvent.change(username, { target: { value: wrongSymbols } });
       fireEvent.change(password, { target: { value: wrongAnd128 } });
@@ -193,7 +193,7 @@ describe("PegPage component test field", () => {
       expect(screen.getByText("Имя пользователя должно содержать только символы русского и английского алфавита")).toBeInTheDocument();
     });
 
-    it("Username has wrong symbols and password is empty and city is empty", () => {
+    it("Should with error Username has wrong symbols and password is empty and city is empty", () => {
     
       fireEvent.change(username, { target: { value: wrongSymbols } });
       fireEvent.change(password, { target: { value: "" } });
@@ -204,7 +204,7 @@ describe("PegPage component test field", () => {
 
 
     //15
-    it("Username has wrong symbols and password length more then 128 and city", () => {
+    it("Should with error Username has wrong symbols and password length more then 128 and city", () => {
     
       fireEvent.change(username, { target: { value: wrongSymbols } });
       fireEvent.change(password, { target: { value: moreThe128 } });
@@ -214,7 +214,7 @@ describe("PegPage component test field", () => {
     });
 
     //17
-    it("Username is correct and password is uncorrect and city is empty", () => {
+    it("Should with error Username is correct and password is uncorrect and city is empty", () => {
     
       fireEvent.change(username, { target: { value: ok } });
       fireEvent.change(password, { target: { value: wrongAnd128 } });
@@ -223,7 +223,7 @@ describe("PegPage component test field", () => {
       expect(screen.getByText("Заполнены не все поля")).toBeInTheDocument();
     });
 
-    it("Username is correct and password is empty and city", () => {
+    it("Should with error Username is correct and password is empty and city", () => {
     
       fireEvent.change(username, { target: { value: ok } });
       fireEvent.change(password, { target: { value: "" } });
@@ -232,7 +232,7 @@ describe("PegPage component test field", () => {
       expect(screen.getByText("Заполнены не все поля")).toBeInTheDocument();
     });
 
-    it("Username is correct and password lenght more then 128 and city", () => {
+    it("Should with error Username is correct and password lenght more then 128 and city", () => {
     
       fireEvent.change(username, { target: { value: ok } });
       fireEvent.change(password, { target: { value: moreThe128 } });
@@ -242,7 +242,7 @@ describe("PegPage component test field", () => {
     });
 
     //20
-    it("Username is correct and password has uncorrect symbols and city", () => {
+    it("Should with error Username is correct and password has uncorrect symbols and city", () => {
     
       fireEvent.change(username, { target: { value: ok } });
       fireEvent.change(password, { target: { value: wrongSymbols } });
@@ -252,7 +252,7 @@ describe("PegPage component test field", () => {
     });
 
     
-    it("Username is uncorrect and password is uncorrect and city", () => {
+    it("Should with error Username is uncorrect and password is uncorrect and city", () => {
     
       fireEvent.change(username, { target: { value: wrongAnd128 } });
       fireEvent.change(password, { target: { value: wrongAnd128 } });
@@ -261,7 +261,7 @@ describe("PegPage component test field", () => {
       expect(screen.getByText("Имя пользователя должно содержать только символы русского и английского алфавита")).toBeInTheDocument();
     });
 
-    it("Username is uncorrect and password is empty and city is empty", () => {
+    it("Should with error Username is uncorrect and password is empty and city is empty", () => {
     
       fireEvent.change(username, { target: { value: wrongAnd128 } });
       fireEvent.change(password, { target: { value: wrongAnd128 } });
@@ -270,7 +270,7 @@ describe("PegPage component test field", () => {
       expect(screen.getByText("Заполнены не все поля")).toBeInTheDocument();
     });
 
-    it("Username is uncorrect and password lenght more then 128 and city is empty", () => {
+    it("Should with error Username is uncorrect and password lenght more then 128 and city is empty", () => {
     
       fireEvent.change(username, { target: { value: wrongAnd128 } });
       fireEvent.change(password, { target: { value: moreThe128 } });
@@ -279,7 +279,7 @@ describe("PegPage component test field", () => {
       expect(screen.getByText("Заполнены не все поля")).toBeInTheDocument();
     });
 
-    it("Username is uncorrect and password has wrong symbols and city", () => {
+    it("Should with error Username is uncorrect and password has wrong symbols and city", () => {
     
       fireEvent.change(username, { target: { value: wrongAnd128 } });
       fireEvent.change(password, { target: { value: wrongSymbols } });
@@ -288,7 +288,7 @@ describe("PegPage component test field", () => {
       expect(screen.getByText("Имя пользователя должно содержать только символы русского и английского алфавита")).toBeInTheDocument();
     });
 
-    it("Username is uncorrect and password has wrong symbols and city is empty", () => {
+    it("Should with error Username is uncorrect and password has wrong symbols and city is empty", () => {
     
       fireEvent.change(username, { target: { value: wrongAnd128 } });
       fireEvent.change(password, { target: { value: ok } });
@@ -323,7 +323,7 @@ describe("PegPage right field", () => {
   });
 
 
-    it("Username has wrong symbols and password is empty and city is empty", async () => {
+    it("Should with error Username has wrong symbols and password is empty and city is empty", async () => {
       axios.post.mockRejectedValueOnce({
         response: {
           data: {
@@ -343,7 +343,7 @@ describe("PegPage right field", () => {
     });
 
 
-    it("Username has wrong symbols and password is empty and city is empty", async () => {
+    it("Should with error Username has wrong symbols and password is empty and city is empty", async () => {
       axios.post.mockResolvedValueOnce({
         
           data: {
@@ -365,6 +365,176 @@ describe("PegPage right field", () => {
 
 
 });
+
+
+describe("PegPage username lenght", () => {
+  let username, password, regButton, mainField,cities ;
+
+   const ok = "test"
+
+  beforeEach(() => {
+    axios.post.mockRejectedValueOnce({
+      response: {
+        data: {
+          message: "Ошибка при авторизации",
+        },
+      },
+      status: 400,
+    });
+     username = screen.getByPlaceholderText("Логин");
+    expect(username).toBeInTheDocument();
+     password = screen.getByPlaceholderText("Пароль");
+    expect(password).toBeInTheDocument();
+    
+    expect(screen.getByTestId("city")).toBeInTheDocument()
+     regButton = screen.getByText("ЗАРЕГИСТРИРОВАТЬСЯ");
+    expect(regButton).toBeInTheDocument();
+
+     mainField = screen.getByText("Город");
+    expect(mainField).toBeInTheDocument();
+    fireEvent.click(mainField);
+     cities = screen.getAllByTestId("city-dropdownelement");
+    expect(cities).toBeDefined();
+    expect(cities).toHaveLength(3);
+    fireEvent.change(password, { target: { value: ok } });
+    fireEvent.click(screen.getByText("Москва"));
+    
+  });
+
+    it("Should print error with empty username ", async () => {
+      fireEvent.change(username, { target: { value: "" } });
+      fireEvent.click(regButton);
+      expect(screen.getByText("Заполнены не все поля")).toBeInTheDocument();
+    });
+
+    it("Should not print error with 1 lenght username ", async () => {
+      fireEvent.change(username, { target: { value: "a" } });
+      fireEvent.click(regButton);
+      await act(async () => {
+        await new Promise((resolve) => setTimeout(resolve, 0));
+      });
+      expect(screen.getByText("Ошибка при авторизации")).toBeInTheDocument();
+    });
+
+    it("Should not print error with 127 lenght username ", async () => {
+      var user = "";
+    while (user.length < 127) user += "A";
+      fireEvent.change(username, { target: { value: user } });
+      fireEvent.click(regButton);
+      await act(async () => {
+        await new Promise((resolve) => setTimeout(resolve, 0));
+      });
+      expect(screen.getByText("Ошибка при авторизации")).toBeInTheDocument();
+    });
+
+    it("Should not print error with 127 lenght username ", async () => {
+      var user = "";
+    while (user.length < 127) user += "A";
+      fireEvent.change(username, { target: { value: user } });
+      fireEvent.click(regButton);
+      await act(async () => {
+        await new Promise((resolve) => setTimeout(resolve, 0));
+      });
+      expect(screen.getByText("Ошибка при авторизации")).toBeInTheDocument();
+    });
+
+    it("Should  print error with 129 lenght username ", async () => {
+      var user = "";
+    while (user.length < 129) user += "A";
+      fireEvent.change(username, { target: { value: user } });
+      fireEvent.click(regButton);
+      await act(async () => {
+        await new Promise((resolve) => setTimeout(resolve, 0));
+      });
+      expect(screen.getByText("Имя пользователя должно быть меньше 128 символов")).toBeInTheDocument();
+    });
+});
+
+describe("PegPage password lenght", () => {
+  let username, password, regButton, mainField,cities ;
+
+   const ok = "test"
+
+  beforeEach(() => {
+    axios.post.mockRejectedValueOnce({
+      response: {
+        data: {
+          message: "Ошибка при авторизации",
+        },
+      },
+      status: 400,
+    });
+     username = screen.getByPlaceholderText("Логин");
+    expect(username).toBeInTheDocument();
+     password = screen.getByPlaceholderText("Пароль");
+    expect(password).toBeInTheDocument();
+    
+    expect(screen.getByTestId("city")).toBeInTheDocument()
+     regButton = screen.getByText("ЗАРЕГИСТРИРОВАТЬСЯ");
+    expect(regButton).toBeInTheDocument();
+
+     mainField = screen.getByText("Город");
+    expect(mainField).toBeInTheDocument();
+    fireEvent.click(mainField);
+     cities = screen.getAllByTestId("city-dropdownelement");
+    expect(cities).toBeDefined();
+    expect(cities).toHaveLength(3);
+    fireEvent.change(username, { target: { value: ok } });
+    fireEvent.click(screen.getByText("Москва"));
+    
+  });
+
+
+    it("Should print error with empty username ", async () => {
+      fireEvent.change(password, { target: { value: "" } });
+      fireEvent.click(regButton);
+      expect(screen.getByText("Заполнены не все поля")).toBeInTheDocument();
+    });
+
+
+    it("Should not print error with 1 lenght username ", async () => {
+      fireEvent.change(password, { target: { value: "a" } });
+      fireEvent.click(regButton);
+      await act(async () => {
+        await new Promise((resolve) => setTimeout(resolve, 0));
+      });
+      expect(screen.getByText("Ошибка при авторизации")).toBeInTheDocument();
+    });
+
+    it("Should not print error with 127 lenght username ", async () => {
+      var user = "";
+    while (user.length < 127) user += "A";
+      fireEvent.change(password, { target: { value: user } });
+      fireEvent.click(regButton);
+      await act(async () => {
+        await new Promise((resolve) => setTimeout(resolve, 0));
+      });
+      expect(screen.getByText("Ошибка при авторизации")).toBeInTheDocument();
+    });
+
+    it("Should not print error with 127 lenght username ", async () => {
+      var user = "";
+    while (user.length < 127) user += "A";
+      fireEvent.change(password, { target: { value: user } });
+      fireEvent.click(regButton);
+      await act(async () => {
+        await new Promise((resolve) => setTimeout(resolve, 0));
+      });
+      expect(screen.getByText("Ошибка при авторизации")).toBeInTheDocument();
+    });
+
+    it("Should  print error with 129 lenght username ", async () => {
+      var user = "";
+    while (user.length < 129) user += "A";
+      fireEvent.change(password, { target: { value: user } });
+      fireEvent.click(regButton);
+      await act(async () => {
+        await new Promise((resolve) => setTimeout(resolve, 0));
+      });
+      expect(screen.getByText("Пароль должен быть меньше 128 символов")).toBeInTheDocument();
+    });
+});
+
 
 
 
