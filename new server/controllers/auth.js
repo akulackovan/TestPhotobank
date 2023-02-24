@@ -78,12 +78,12 @@ export const login = async (req, res) => {
             })
         }
 
-        /*const isPasswordCorrect = await bcrypt.compare(password, user.password)
+        const isPasswordCorrect = await bcrypt.compare(password, user.password)
         if (!isPasswordCorrect) {
             return res.status(401).json({
                 message: 'Неверный пароль.',
             })
-        }*/
+        }
 
         const token = jwt.sign(
             {
@@ -93,7 +93,7 @@ export const login = async (req, res) => {
             {expiresIn: '1h'},
         )
 
-        res.json({
+        res.status(201).json({
             token,
             user,
             message: 'Успешный вход в систему.',
@@ -139,7 +139,7 @@ export const getAnother = async (req, res) => {
         )
 
         const city = await City.findOne({_id:user.city})
-        res.json({
+        res.status(200).json({
             user,
             subscibe,
             city:city.city,
@@ -176,7 +176,7 @@ export const getMe = async (req, res) => {
         )
 
 
-        res.json({
+        res.status(200).json({
             user,
             subscibe,
             token,
@@ -213,7 +213,7 @@ export const subscibe = async (req, res) => {
         }
 
         isSubs = !isSubs
-        res.json({
+        res.status(200).json({
             isSubs,
             message: 'Пользователь успешно подписан',
         })
