@@ -1,5 +1,6 @@
 import User from "../models/User.js";
 import Post from "../models/Post.js";
+import mongoose, {Schema} from 'mongoose'
 
 /** Получение популярных - изначально, как понял требования */
 /*export const getPopular = async (req, res) => {
@@ -71,8 +72,11 @@ export const getPopular = async (req, res) => {
     // Ищем пользователя по id
     const { id } = req.query;
     console.log("here1 " + id);
-    const user = await User.findOne({ _id: id });
-    if (!user) {
+    let user;
+    try {
+      user = await User.findOne({_id: id});
+    }
+    catch {
       return res.status(404).json({
         message: "Такого пользователя не существует.",
       });
@@ -155,3 +159,5 @@ function compare( a, b ) {
   }
   return 0;
 }
+
+export default compare
