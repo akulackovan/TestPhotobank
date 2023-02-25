@@ -9,7 +9,7 @@ export const getCity = async (req, res) => {
                 message: 'Города нет',
             })
         }
-        res.json({
+        return res.status(200).json({
             isCity,
             message: 'Город найден',
         })
@@ -24,7 +24,7 @@ export const getCity = async (req, res) => {
 export const getAllCity = async (req, res) => {
     try {
         const city = await City.find()
-        res.json({
+        return res.status(200).json({
             city,
             message: 'Города получены',
         })

@@ -23,7 +23,7 @@ export const getPostById = async (req, res) => {
     const city = await City.findOne({ _id: isPost.city });
     isPost.city = city;
 
-    return res.json({
+    return res.status(200).json({
       isPost,
 
       message: "Пост получен",
@@ -52,7 +52,7 @@ export const getMyPost = async (req, res) => {
       });
     }
 
-    return res.json({
+    return res.status(200).json({
       isPost,
       message: "Посты пользователя получены",
     });

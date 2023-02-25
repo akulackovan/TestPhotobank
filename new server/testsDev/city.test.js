@@ -22,6 +22,7 @@ describe("GET /city/getAllCity", () => {
     ]);
 
     await getAllCity(req, res);
+    expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({
       message: "Города получены",
       city: [
@@ -63,7 +64,7 @@ describe("GET /city/getcity", () => {
       );
 
      await getCity(req, res)
-
+     expect(res.status).toHaveBeenCalledWith(200);
      expect(res.json).toHaveBeenCalledWith({
       message: 'Город найден',
       isCity: { _id: "63b9473e70bfa1abe160400f", city: "Москва" }

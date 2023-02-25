@@ -31,7 +31,7 @@ export const createComment = async (req, res) => {
             $push: { comments: newComment._id },
         })
         
-        res.status(201).json({
+        return res.status(201).json({
             newComment: {user: isUser.username, comment: comment},
             message: 'Успешно созданный комментарий',
         })

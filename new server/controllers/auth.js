@@ -97,7 +97,7 @@ export const login = async (req, res) => {
             {expiresIn: 1000*20},
         )
 
-        res.json({
+        res.status(201).json({
             token,
             user,
             message: 'Успешный вход в систему.',
@@ -139,7 +139,7 @@ export const getAnother = async (req, res) => {
         //** Количество подписчиков */
         const subscibe = await User.find({subscriptions: userId})
 
-        res.json({
+        return res.status(201).json({
             user,
             subscibe,
             city:city.city,
@@ -168,7 +168,7 @@ export const getMe = async (req, res) => {
         /** Количество подписчиков */
         const subscibe = await User.find({subscriptions: req.query.userId})
 
-        res.json({
+        return res.status(201).json({
             user,
             subscibe,
             message: 'Профиль успешен',
@@ -213,7 +213,7 @@ export const subscibe = async (req, res) => {
             isSubs = true
         }
 
-        res.json({
+        return res.status(201).json({
             isSubs,
             message: 'Изменение состояние подписки одного пользователя на другого',
         })

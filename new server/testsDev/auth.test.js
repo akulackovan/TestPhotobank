@@ -299,6 +299,7 @@
          res.status = jest.fn().mockReturnValue(res)
          res.json = jest.fn().mockReturnValue(res)
          await getAnother(req, res);
+         expect(res.status).toHaveBeenCalledWith(201);
          expect(res.json).toHaveBeenCalledWith(expect.objectContaining({
              message: "Профиль успешен"
          }))
@@ -351,6 +352,7 @@
          res.status = jest.fn().mockReturnValue(res)
          res.json = jest.fn().mockReturnValue(res)
          await getMe(req, res);
+         expect(res.status).toHaveBeenCalledWith(201);
          expect(res.json).toHaveBeenCalledWith(expect.objectContaining({
              message: "Профиль успешен"
          }))
@@ -372,6 +374,7 @@
          res.json = jest.fn().mockReturnValue(res)
          User.find = jest.fn().mockResolvedValueOnce([])
          await search(req, res);
+         expect(res.status).toHaveBeenCalledWith(400);
          expect(res.json).toHaveBeenCalledWith({
              message: "Ничего не найдено"
          })
@@ -384,6 +387,7 @@
         res.json = jest.fn().mockReturnValue(res)
         User.find = jest.fn().mockResolvedValueOnce([])
         await search(req, res);
+        expect(res.status).toHaveBeenCalledWith(400);
         expect(res.json).toHaveBeenCalledWith({
             message:  'Запрос для поиска пустой'
         })
@@ -396,6 +400,7 @@
         res.json = jest.fn().mockReturnValue(res)
         User.find = jest.fn().mockRejectedValueOnce(new Error("Error"))
         await search(req, res);
+        expect(res.status).toHaveBeenCalledWith(401);
         expect(res.json).toHaveBeenCalledWith({
             message:  'Ошибка в поиске пользователя'
         })
@@ -416,6 +421,7 @@
          res.json = jest.fn().mockReturnValue(res)
          User.find = jest.fn().mockResolvedValueOnce([{user: 1}])
          await search(req, res);
+         expect(res.status).toHaveBeenCalledWith(200);
          expect(res.json).toHaveBeenCalledWith(expect.objectContaining({
              message: "Профили пользователей"
          }))
@@ -470,6 +476,7 @@
          res.status = jest.fn().mockReturnValue(res)
          res.json = jest.fn().mockReturnValue(res)
          await subscibe(req, res);
+         expect(res.status).toHaveBeenCalledWith(201);
          expect(res.json).toHaveBeenCalledWith(expect.objectContaining({
              message: 'Изменение состояние подписки одного пользователя на другого'
          }))
@@ -477,11 +484,12 @@
 
      it("main error", async () => {
         const req = {body:{params: {userId: "тест", subscribe: "cnng"}}}
-        User.findOne = jest.fn().mockRejectedValueOnce(new Error("Error"));
+        User.findOne = jest.fn().mockRejectedValue(new Error("Error"));
         const res = {}
         res.status = jest.fn().mockReturnValue(res)
         res.json = jest.fn().mockReturnValue(res)
         await subscibe(req, res);
+        expect(res.status).toHaveBeenCalledWith(401);
         expect(res.json).toHaveBeenCalledWith(expect.objectContaining({
             message: 'Подписка не успешна'
         }))

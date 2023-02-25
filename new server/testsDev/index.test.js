@@ -57,7 +57,7 @@ describe('Test the server', () => {
                 username: "тест",
                 password: "тест",
             });
-            expect(response.statusCode).toBe(200);
+            expect(response.statusCode).toBe(201);
         });
 
         test('POST /auth/reg should return 409', async () => {

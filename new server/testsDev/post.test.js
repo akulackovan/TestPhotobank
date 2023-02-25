@@ -252,7 +252,7 @@
          jest.spyOn(Post, 'updateOne').mockResolvedValue();
  
          await setLike(mockReq, mockRes);
- 
+         
          expect(Post.findById).toHaveBeenCalledWith(mockReq.query.idPost);
          expect(User.findOne).toHaveBeenCalledWith({_id: mockReq.query.idUser, likes: mockReq.query.idPost});
          expect(User.updateOne).toHaveBeenCalledWith({_id: mockReq.query.idUser}, {$pull: {likes: mockReq.query.idPost}});
@@ -287,8 +287,9 @@
  
          expect(Post.findById).toHaveBeenCalledWith(mockReq.query.idPost);
          expect(User.findOne).toHaveBeenCalledWith({_id: mockReq.query.idUser, likes: mockReq.query.idPost});
-         expect(User.updateOne).toHaveBeenCalledWith({_id: mockReq.query.idUser}, {$pull: {likes: mockReq.query.idPost
-             }});
+         expect(User.updateOne).toHaveBeenCalledWith({_id: mockReq.query.idUser}, {$pull: {likes: mockReq.query.idPost}})
+
+        
      });
  
      it('should return a bad status code and an error message if an error occurs while finding the post', async () => {
@@ -362,7 +363,7 @@
          expect(Post.findById).toHaveBeenCalledWith(mockReq.query.idPost);
          expect(User.findOne).toHaveBeenCalledWith({_id: mockReq.query.idUser, likes: mockReq.query.idPost});
          expect(User.updateOne).toHaveBeenCalledWith({_id: mockReq.query.idUser}, {$pull: {likes: mockReq.query.idPost}});
-         // expect(mockRes.status).toHaveBeenCalledWith(500);
+         expect(mockRes.status).toHaveBeenCalledWith(400);
          expect(mockRes.json).toHaveBeenCalledWith({message: 'Ошибка при получении статуса лайка'});
  
      });
@@ -480,7 +481,7 @@
  
          // Call the getMyPost function with the mock request and response objects
          const req = {query: {id: mockUserId}}
-         const res = {json: jest.fn()}
+         const res = {status: jest.fn().mockReturnThis(),json: jest.fn()}
          await getMyPost(req, res)
  
          // Expect User.findOne() to be called with the mock user ID
@@ -494,6 +495,8 @@
              isPost: [mockPost1, mockPost2],
              message: 'Посты пользователя получены',
          })
+         expect(res.status).toHaveBeenCalledWith(200)
+         
      })
  
      it('should return an error message when the user does not exist', async () => {
@@ -569,7 +572,7 @@
          User.findOne.mockResolvedValueOnce(mockAuthor)
          City.findOne.mockResolvedValueOnce(mockCity)
          const req = {query: {id: mockPostId}}
-         const res = {json: jest.fn()}
+         const res = {json: jest.fn(), status: jest.fn().mockReturnThis(),}
          await getPostById(req, res)
  
          expect(Post.findOne).toHaveBeenCalledWith({_id: mockPostId})
@@ -588,6 +591,8 @@
              },
              message: 'Пост получен'
          });
+         expect(res.status).toHaveBeenCalledWith(200);
+
  
      });
  
@@ -643,7 +648,7 @@
  
          // Call the getPostById function with the mock request and response objects
          const req = {query: {id: mockPostId}}
-         const res = {json: jest.fn()}
+         const res = {json: jest.fn(), status: jest.fn().mockReturnThis()}
          await getPostById(req, res)
  
          // Expect Post.findOne() to be called with the mock post ID
@@ -659,6 +664,7 @@
              },
              message: 'Пост получен',
          })
+         expect(res.status).toHaveBeenCalledWith(200)
      });
  
  });

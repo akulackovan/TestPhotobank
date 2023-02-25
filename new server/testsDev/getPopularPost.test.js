@@ -57,7 +57,7 @@ jest.mock("../models/User.js");
       sort: jest.fn().mockResolvedValueOnce([])
     }));
     await getPopular(req, res);
-
+    expect(res.status).toHaveBeenCalledWith(400)
     expect(res.json).toHaveBeenCalledWith({
       message: "Фотографий в городе нет",
     });
@@ -74,7 +74,7 @@ jest.mock("../models/User.js");
 
 
     await getPopular(req, res);
-
+    expect(res.status).toHaveBeenCalledWith(400)
     expect(res.json).toHaveBeenCalledWith({
       message: "Ошибка при получении популярных",
     });
