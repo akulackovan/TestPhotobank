@@ -3,7 +3,7 @@ import { useState, useEffect, useCallback } from "react";
 export function useAuth () {
   const [token, setToken] = useState(0);
   const [userId, setUserId] = useState(0);
-
+  const [isReady, setIsReady] = useState(false);
   const login = useCallback((jwtToken, id) => {
     console.log("Go to login");
     setToken(jwtToken);
@@ -28,7 +28,8 @@ export function useAuth () {
     if (data && data.token) {
       login(data.token, data.userId);
     }
+    setIsReady(true)
   }, [login]);
 
-  return { login, logout, token, userId };
+  return { login, logout, token, userId, isReady };
 };

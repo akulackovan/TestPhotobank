@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">80% </span>
+                <span class="strong">81.13% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>40/50</span>
+                <span class='fraction'>43/53</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">90.9% </span>
+                <span class="strong">91.48% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>40/44</span>
+                <span class='fraction'>43/47</span>
             </div>
         
             
@@ -187,7 +187,12 @@
 <a name='L122'></a><a href='#L122'>122</a>
 <a name='L123'></a><a href='#L123'>123</a>
 <a name='L124'></a><a href='#L124'>124</a>
-<a name='L125'></a><a href='#L125'>125</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L125'></a><a href='#L125'>125</a>
+<a name='L126'></a><a href='#L126'>126</a>
+<a name='L127'></a><a href='#L127'>127</a>
+<a name='L128'></a><a href='#L128'>128</a>
+<a name='L129'></a><a href='#L129'>129</a>
+<a name='L130'></a><a href='#L130'>130</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -195,24 +200,26 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">130x</span>
+<span class="cline-any cline-yes">137x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">130x</span>
-<span class="cline-any cline-yes">130x</span>
-<span class="cline-any cline-yes">130x</span>
-<span class="cline-any cline-yes">130x</span>
-<span class="cline-any cline-yes">130x</span>
+<span class="cline-any cline-yes">137x</span>
+<span class="cline-any cline-yes">137x</span>
+<span class="cline-any cline-yes">137x</span>
+<span class="cline-any cline-yes">137x</span>
+<span class="cline-any cline-yes">137x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">130x</span>
+<span class="cline-any cline-yes">137x</span>
 <span class="cline-any cline-yes">58x</span>
 <span class="cline-any cline-yes">58x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">130x</span>
+<span class="cline-any cline-yes">137x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">130x</span>
+<span class="cline-any cline-yes">137x</span>
+<span class="cline-any cline-yes">35x</span>
+<span class="cline-any cline-yes">35x</span>
 <span class="cline-any cline-yes">35x</span>
 <span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-yes">11x</span>
@@ -243,6 +250,7 @@
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -264,13 +272,15 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">130x</span>
+<span class="cline-any cline-yes">137x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">130x</span>
-<span class="cline-any cline-yes">130x</span>
+<span class="cline-any cline-yes">137x</span>
+<span class="cline-any cline-yes">137x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">130x</span>
+<span class="cline-any cline-yes">137x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -337,35 +347,38 @@ const AuthPage = () =&gt; {
   const { login } = useContext(AuthContext);
 &nbsp;
   const authHandler = async () =&gt; {
-    if (!(form.username &amp;&amp; form.password)) {
+    var username = document.getElementById("username").value
+    var password = document.getElementById("password").value
+    if (!(username &amp;&amp; password)) {
       setErrorMessage("Заполнены не все поля");
       setTimeout(<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >setErrorMessage(""),</span> 5000);
       return;
     }
-    if (!form.username.match(/^[A-Za-zА-Яа-яЁё]+$/)) {
+    if (!username.match(/^[A-Za-zА-Яа-яЁё]+$/)) {
       setErrorMessage(
         "Имя пользователя должно содержать только символы русского и английского алфавита"
       );
       setTimeout(<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >setErrorMessage(""),</span> 5000);
       return;
     }
-    if (!(form.username.length &lt; 128)) {
+    if (!(username.length &lt; 128)) {
       setErrorMessage("Имя пользователя должно быть меньше 128 символов");
       setTimeout(<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >setErrorMessage(""),</span> 5000);
       return;
     }
-    if (!form.password.match(/^[A-Za-zА-Яа-яЁё]+$/)) {
+    if (!password.match(/^[A-Za-zА-Яа-яЁё]+$/)) {
       setErrorMessage(
         "Пароль должен содержать только символы русского и английского алфавита"
       );
       setTimeout(<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >setErrorMessage(""),</span> 5000);
       return;
     }
-    if (!(form.password.length &lt; 128)) {
+    if (!(password.length &lt; 128)) {
       setErrorMessage("Пароль должен быть меньше 128 символов");
       setTimeout(<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >setErrorMessage(""),</span> 5000);
       return;
     }
+    setForm({username: username, password: password})
     await axios
       .post(
         "/auth/login",
@@ -406,6 +419,7 @@ const AuthPage = () =&gt; {
             name="username"
             data-testid="username"
             onChange={changeForm}
+            id="username"
           /&gt;
           &lt;input
             className="input"
@@ -413,6 +427,7 @@ const AuthPage = () =&gt; {
             name="password"
             type="password"
             onChange={changeForm}
+            id="password"
           /&gt;
           &lt;button
             className="button"
@@ -442,7 +457,7 @@ export default AuthPage;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-02-25T10:14:19.299Z
+                at 2023-02-25T17:04:23.880Z
             </div>
         <script src="../../../../prettify.js"></script>
         <script>

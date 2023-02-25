@@ -11,10 +11,13 @@ import SubscribePage from "./pages/SubscribePage/SubscribePage";
 import PostPage from "./pages/PostPage/PostPage";
 import SearchPage from "./pages/SearchPage/SearchPage";
 import AnotherUserPage from "./pages/AnotherUserPage/AnotherUserPage";
+import Loader from "./components/Loader/Loader";
 
-export const useRoutes = (isLogin) => {
+export const useRoutes = (isLogin, isReady) => {
   console.log(isLogin);
 
+  if(isReady)
+  {
   if (isLogin) {
     return (
       <div className="app">
@@ -41,15 +44,13 @@ export const useRoutes = (isLogin) => {
         <Switch>
           <Route exact path="/reg" component={RegPage} />
           <Route exact path="/auth" component={AuthPage} />
-          <Route
-            exact
-            path="/"
-            render={() =>
-              isLogin ? <Redirect to="/popular" /> : <Redirect to="/auth" />
-            }
-          />
+          <Redirect to="/auth" />
         </Switch>
       </div>
     );
   }
+}
+else{
+  return <Loader />
+}
 };

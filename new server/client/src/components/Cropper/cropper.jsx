@@ -30,11 +30,7 @@ const Cropper = ({ x = 480, y = 480, size = 7, setData}) => {
     const temp = URL.createObjectURL(e.target.files[0]);
     var img = new Image();
     console.log("Load");
-    img.src = window.URL.createObjectURL(e.target.files[0]);
-    img.onload = function () {
-      /** Проверка на формат */
-      console.log("Format");
-      const name = e.target.files[0].name;
+    const name = e.target.files[0].name;
       if (
         !(
           (name[name.length - 1] == "g" &&
@@ -56,6 +52,13 @@ const Cropper = ({ x = 480, y = 480, size = 7, setData}) => {
         setTimeout(() => setErrorMessage(""), 5000);
         return;
       }
+      else{
+
+      
+    img.src = window.URL.createObjectURL(e.target.files[0]);
+    img.onload = function () {
+      /** Проверка на формат */
+      console.log("Format");
       /** Проверка на ширину и длину изображения */
       if (size == 7 && !(img.height >= y && img.width >= x) && x == y) {
         setErrorMessage(
@@ -121,6 +124,7 @@ const Cropper = ({ x = 480, y = 480, size = 7, setData}) => {
       }
       setData(true)
     };
+  }
   };
 
   /** Обрезка изображения */

@@ -620,7 +620,7 @@ describe("PostPage comments write", () => {
     expect(comment).toHaveLength(129);
     const commentInput = screen.getByTestId("commentInput");
     fireEvent.change(commentInput, { target: { value: comment } });
-    fireEvent.click(screen.getByText("ОТПРАВИТЬ"));
+    fireEvent.click(screen.getByText("ОПУБЛИКОВАТЬ"));
     expect(screen.getByText("Комментарий должен быть меньше 128 символов"));
     screen.debug();
   });
@@ -630,7 +630,7 @@ describe("PostPage comments write", () => {
     expect(comment).toHaveLength(0);
     const commentInput = screen.getByTestId("commentInput");
     fireEvent.change(commentInput, { target: { value: comment } });
-    fireEvent.click(screen.getByText("ОТПРАВИТЬ"));
+    fireEvent.click(screen.getByText("ОПУБЛИКОВАТЬ"));
     expect(screen.getByText("Комментарий не должен быть пустым"));
     screen.debug();
   });
@@ -644,7 +644,7 @@ describe("PostPage comments write", () => {
       data: { newComment: { user: "test", comment: comment } },
       status: 200,
     });
-    fireEvent.click(screen.getByText("ОТПРАВИТЬ"));
+    fireEvent.click(screen.getByText("ОПУБЛИКОВАТЬ"));
     await act(async () => {
       await new Promise((resolve) => setTimeout(resolve, 0));
     });
@@ -665,7 +665,7 @@ describe("PostPage comments write", () => {
       data: { newComment: { user: "test", comment: comment } },
       status: 200,
     });
-    fireEvent.click(screen.getByText("ОТПРАВИТЬ"));
+    fireEvent.click(screen.getByText("ОПУБЛИКОВАТЬ"));
     await act(async () => {
       await new Promise((resolve) => setTimeout(resolve, 0));
     });
@@ -688,7 +688,7 @@ describe("PostPage comments write", () => {
       data: { newComment: { user: "test", comment: comment } },
       status: 200,
     });
-    fireEvent.click(screen.getByText("ОТПРАВИТЬ"));
+    fireEvent.click(screen.getByText("ОПУБЛИКОВАТЬ"));
     await act(async () => {
       await new Promise((resolve) => setTimeout(resolve, 0));
     });
@@ -711,7 +711,7 @@ describe("PostPage comments write", () => {
       data: { newComment: { user: "test", comment: comment } },
       status: 200,
     });
-    fireEvent.click(screen.getByText("ОТПРАВИТЬ"));
+    fireEvent.click(screen.getByText("ОПУБЛИКОВАТЬ"));
     await act(async () => {
       await new Promise((resolve) => setTimeout(resolve, 0));
     });
@@ -728,7 +728,7 @@ describe("PostPage comments write", () => {
     axios.mockRejectedValueOnce({
       response: { data: { message: "Ошибка при добавлении комментария" } },
     });
-    fireEvent.click(screen.getByText("ОТПРАВИТЬ"));
+    fireEvent.click(screen.getByText("ОПУБЛИКОВАТЬ"));
     await act(async () => {
       await new Promise((resolve) => setTimeout(resolve, 0));
     });

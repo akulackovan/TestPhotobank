@@ -20,35 +20,39 @@ const RegPage = () => {
   };
 
   const registerHandler = async () => {
-    if (!(form.username && form.password && form.city)) {
+    var username = document.getElementById("username").value
+    var password = document.getElementById("password").value
+    if (!(username && password && form.city)) {
       setErrorMessage("Заполнены не все поля");
       setTimeout(() => setErrorMessage(""), 5000);
       return;
     }
-    if (!form.username.match(/^[A-Za-zА-Яа-я]+$/)) {
+    if (!username.match(/^[A-Za-zА-Яа-я]+$/)) {
       setErrorMessage(
         "Имя пользователя должно содержать только символы русского и английского алфавита"
       );
       setTimeout(() => setErrorMessage(""), 2000);
       return;
     }
-    if (!(form.username.length < 128)) {
+    if (!(username.length < 128)) {
       setErrorMessage("Имя пользователя должно быть меньше 128 символов");
       setTimeout(() => setErrorMessage(""), 2000);
       return;
     }
-    if (!form.password.match(/^[A-Za-zА-Яа-я]+$/)) {
+    if (!password.match(/^[A-Za-zА-Яа-я]+$/)) {
       setErrorMessage(
         "Пароль должен содержать только символы русского и английского алфавита"
       );
       setTimeout(() => setErrorMessage(""), 2000);
       return;
     }
-    if (!(form.password.length < 128)) {
+    if (!(password.length < 128)) {
       setErrorMessage("Пароль должен быть меньше 128 символов");
       setTimeout(() => setErrorMessage(""), 2000);
       return;
     }
+    setForm({...form, username: username, password: password})
+
     try {
       await axios
         .post(
@@ -71,6 +75,7 @@ const RegPage = () => {
     } catch (error) {
       console.log(error);
       setErrorMessage(error.response.data.message);
+      setTimeout(() => setErrorMessage(""), 2000);
     }
   };
 
@@ -89,6 +94,7 @@ const RegPage = () => {
             placeholder="Логин"
             name="username"
             onChange={changeForm}
+            id="username"
           />
           <input
             className="input"
@@ -96,6 +102,7 @@ const RegPage = () => {
             placeholder="Пароль"
             name="password"
             onChange={changeForm}
+            id="password"
           />
           <div style={{ width: "80%", margin: "auto", textAlign: "left" }} data-testid="city">
             <CityCombobox

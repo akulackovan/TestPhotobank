@@ -68,7 +68,7 @@ const PostPageComponent = ({ id }) => {
         setLoadingComm(false);
       })
       .catch((error) => {
-        setLoadingComm(false);
+        setLoading(false);
         setErrorMessage(error.response.data.message);
         setTimeout(() => setErrorMessage(""), 2000);
       });
@@ -107,8 +107,11 @@ const PostPageComponent = ({ id }) => {
             } else {
               setCountLike(response.data.isPost.likes + 1);
             }
+            
             getComments();
-            setLoading(false);
+            
+        
+        setLoading(false);
           })
           .catch((error) => {
             setLoading(false);
@@ -156,12 +159,16 @@ const PostPageComponent = ({ id }) => {
   };
 
   const commentHandler = () => {
-    if (!(comment.length <= 128)) {
+    
+    
+    var str = document.getElementById("textarea").value;
+    console.log(str);
+    if (!(str.length <= 128)) {
       setErrorMessage("Комментарий должен быть меньше 128 символов");
       setTimeout(() => setErrorMessage(""), 2000);
       return;
     }
-    if (comment.length == 0) {
+    if (str.length == 0) {
       setErrorMessage("Комментарий не должен быть пустым");
       setTimeout(() => setErrorMessage(""), 2000);
       return;
@@ -176,17 +183,21 @@ const PostPageComponent = ({ id }) => {
       params: {
         postId: id,
         userId: userId,
-        comment: comment,
+        comment: str,
       },
     })
       .then((response) => {
         document.getElementById("inputs").reset();
-        setComments([
-          { user: response.data.newComment.user, comment: comment },
-          ...comments,
-        ]);
+        if (comments.length == 0) {
+          setComments([{ user: response.data.newComment.user, comment: str }]);
+        } else {
+          setComments([
+            { user: response.data.newComment.user, comment: str },
+            ...comments,
+          ]);
+        }
         setComment("");
-        console.log(comments);
+        console.log(response);
         setLoadingComm(false);
       })
       .catch((error) => {
@@ -216,7 +227,9 @@ const PostPageComponent = ({ id }) => {
                   href={`/profile/${post.author._id}`}
                   title={`Автор: ${post.author.username}`}
                 >
-                  <h4 className="head" data-testid="author">{post.author.username}</h4>
+                  <h4 className="head" data-testid="author">
+                    {post.author.username}
+                  </h4>
                 </a>
               </div>
               <div className="under">
@@ -226,7 +239,9 @@ const PostPageComponent = ({ id }) => {
                   {post.timestamps[6]}.20{post.timestamps[2]}
                   {post.timestamps[3]}
                 </div>
-                <div className="city" data-testid="city">г.{post.city.city}</div>
+                <div className="city" data-testid="city">
+                  г.{post.city.city}
+                </div>
               </div>
             </div>
             <img className="img" data-testid="img" src={`${post.image}`} />
@@ -238,7 +253,9 @@ const PostPageComponent = ({ id }) => {
                     <path d="M8 2.5A8.11 8.11 0 0 0 0 8a8.11 8.11 0 0 0 8 5.5A8.11 8.11 0 0 0 16 8a8.11 8.11 0 0 0-8-5.5zm5.4 7.5A6.91 6.91 0 0 1 8 12.25 6.91 6.91 0 0 1 2.6 10a7.2 7.2 0 0 1-1.27-2A7.2 7.2 0 0 1 2.6 6 6.91 6.91 0 0 1 8 3.75 6.91 6.91 0 0 1 13.4 6a7.2 7.2 0 0 1 1.27 2 7.2 7.2 0 0 1-1.27 2z" />
                   </svg>
 
-                  <div className="num" data-testid="view">{post.views}</div>
+                  <div className="num" data-testid="view">
+                    {post.views}
+                  </div>
                 </li>
                 <li className="icon li">
                   <svg viewBox="0 0 32 32">
@@ -261,12 +278,22 @@ const PostPageComponent = ({ id }) => {
                     />
                   </svg>
 
-                  <div className="num" data-testid="numComments">{comments.length}</div>
+                  <div className="num" data-testid="numComments">
+                    {comments.length}
+                  </div>
                 </li>
               </ul>
             </div>
             <div className="container">
-              <div className="discription" data-testid="text">{post.text}</div>
+              <div className="head">Описание</div>
+              {!post.text && (
+                <div className="discription" data-testid="text">
+                  Нет описания
+                </div>
+              )}
+              <div className="discription" data-testid="text">
+                {post.text}
+              </div>
             </div>
           </div>
           <div className="second">
@@ -324,17 +351,27 @@ const PostPageComponent = ({ id }) => {
                   name="text"
                   data-testid="commentInput"
                   onChange={changeForm}
+                  id="textarea"
                 />
               </form>
               <div onClick={commentHandler}>
-                <button className="button" data-testid="commentButton" title="Отправить комментарий">
-                  ОТПРАВИТЬ
+                <button
+                  className="button"
+                  data-testid="commentButton"
+                  title="Отправить комментарий"
+                  id="send"
+                  disabled={loadingComm}
+                >
+                  ОПУБЛИКОВАТЬ
                 </button>
+                
               </div>
             </div>
             <div className="listComments">
               <hr className="hr" />
-              <div className="head" data-testid="comments">Комментарии</div>
+              <div className="head" data-testid="comments">
+                Комментарии
+              </div>
               {loadingComm && (
                 <div className="head">Загрузка комментариев...</div>
               )}

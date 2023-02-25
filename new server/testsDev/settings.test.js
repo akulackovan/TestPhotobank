@@ -228,7 +228,7 @@ describe("POST /settings/ ", () => {
     expect(res.status).toHaveBeenCalledWith(401);
     expect(res.json).toHaveBeenCalledWith({
       message: 
-      "Описание пользователя содержит больше 512 символов."},
+      "Описание пользователя должно содержать не более 512 символов"},
     );
   });
 
@@ -254,7 +254,7 @@ describe("POST /settings/ ", () => {
     expect(res.status).toHaveBeenCalledWith(401);
     expect(res.json).toHaveBeenCalledWith({
       message: 
-      "Описание пользователя содержит больше 512 символов."},
+      "Описание пользователя должно содержать не более 512 символов"},
     );
   });
 
@@ -354,7 +354,7 @@ describe("POST /settings/ ", () => {
     await settings(req, res);
     expect(res.status).toHaveBeenCalledWith(400);
     expect(res.json).toHaveBeenCalledWith({
-      message: "Неверный пароль.",
+      message: "Указан неверный пароль",
     });
   });
 
@@ -404,7 +404,7 @@ describe("POST /settings/ ", () => {
     await settings(req, res);
     expect(res.status).toHaveBeenCalledWith(400);
     expect(res.json).toHaveBeenCalledWith({
-      message: "Неверный пароль.",
+      message: "Указан неверный пароль",
     });
   });
 
@@ -455,7 +455,7 @@ describe("POST /settings/ ", () => {
     await settings(req, res);
     expect(res.status).toHaveBeenCalledWith(400);
     expect(res.json).toHaveBeenCalledWith({
-      message: "Пароли не совпадают.",
+      message: "Пароли не совпадают",
     });
   });
 

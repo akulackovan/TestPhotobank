@@ -36,11 +36,13 @@ const AddPostPage = () => {
       setTimeout(() => setErrorMessage(""), 5000);
       return;
     }
-    if (form.description.length > 512) {
+
+    if (document.getElementById("description").value.length > 512) {
       setErrorMessage("Описание поста должно содержать от 0 до 512 символов");
       setTimeout(() => setErrorMessage(""), 5000);
       return;
     }
+    setForm({ ...form, description: document.getElementById("description").value });
     try {
       await axios
         .post(
@@ -58,7 +60,7 @@ const AddPostPage = () => {
             response.data.message +
               "    Вы будете перенаправлены на страницу профиля через 5 секунд"
           );
-          setTimeout(() => setRedirect(true), 5000);
+         setTimeout(() => setRedirect(true), 5000);
         });
     } catch (error) {
       console.log(error);
@@ -95,6 +97,7 @@ const AddPostPage = () => {
               placeholder="Описание"
               name="input"
               onChange={changeForm}
+              id="description"
             />
           </div>
 
