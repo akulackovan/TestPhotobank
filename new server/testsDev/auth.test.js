@@ -134,7 +134,7 @@
          })
      });
  
-     /*it("successful", async () => {
+     it("successful", async () => {
          const req = {body: {username: "тест", password: "1235", city: "63b9473e70bfa1abe160400f"}}
          const res = {}
          res.status = jest.fn().mockReturnValue(res)
@@ -149,7 +149,19 @@
          expect(res.status).toHaveBeenCalledWith(201);
          expect(res.json).toHaveBeenCalledWith(expect.objectContaining(
              {'message': 'Регистрация успешна'}))
-     });*/
+     });
+
+     it("main error", async () => {
+        const req = {body: {username: "тест", password: "1235", city: "63b9473e70bfa1abe160400f"}}
+        const res = {}
+        res.status = jest.fn().mockReturnValue(res)
+        res.json = jest.fn().mockReturnValue(res)
+        User.findOne = jest.fn().mockRejectedValueOnce(new Error("error"));
+        await register(req, res);
+        expect(res.status).toHaveBeenCalledWith(400);
+        expect(res.json).toHaveBeenCalledWith(expect.objectContaining(
+            {'message': 'Ошибка при авторизации'}))
+    });
  });
  
  describe("POST /auth/login", () => {
@@ -189,9 +201,10 @@
          })
      });
  
-    /* it("successful", async () => {
+    it("successful", async () => {
          const req = {body: {username: "тест", password: "тест",}}
          User.findOne = jest.fn().mockResolvedValue(mockedUser);
+         City.findOne = jest.fn().mockResolvedValue({_id: "123"});
          const res = {}
          res.status = jest.fn().mockReturnValue(res)
          res.json = jest.fn().mockReturnValue(res)
@@ -199,7 +212,19 @@
          expect(res.json).toHaveBeenCalledWith(expect.objectContaining({
              message: "Успешный вход в систему."
          }))
-     });*/
+     });
+
+     it("main error", async () => {
+        const req = {body: {username: "тест", password: "1235", city: "63b9473e70bfa1abe160400f"}}
+        const res = {}
+        res.status = jest.fn().mockReturnValue(res)
+        res.json = jest.fn().mockReturnValue(res)
+        User.findOne = jest.fn().mockRejectedValueOnce(new Error("error"));
+        await login(req, res);
+        expect(res.status).toHaveBeenCalledWith(400);
+        expect(res.json).toHaveBeenCalledWith(expect.objectContaining(
+            {'message': 'Ошибка при авторизации.'}))
+    });
  });
  
  describe("GET /auth/user", () => {
@@ -210,12 +235,26 @@
          const res = {}
          res.status = jest.fn().mockReturnValue(res)
          res.json = jest.fn().mockReturnValue(res)
+         User.findOne = jest.fn().mockResolvedValueOnce(null);
          await getAnother(req, res);
          expect(res.status).toHaveBeenCalledWith(404);
          expect(res.json).toHaveBeenCalledWith({
              message: "Такого пользователя не существует."
          })
      });
+
+     it("main error", async () => {
+        const req = {query: {myId: "тест", userId: "156",}}
+        const res = {}
+        res.status = jest.fn().mockReturnValue(res)
+        res.json = jest.fn().mockReturnValue(res)
+        User.findOne = jest.fn().mockRejectedValueOnce(new Error("error"));
+        await getAnother(req, res);
+        expect(res.status).toHaveBeenCalledWith(401);
+        expect(res.json).toHaveBeenCalledWith({
+            message: 'Нет доступа'
+        })
+    });
  
      afterEach(() => {
          jest.resetAllMocks();
@@ -283,6 +322,18 @@
          })
      });
  
+     it("Wrong user", async () => {
+        const req = {query: {myId: "тест", userId: "156",}}
+        User.findOne = jest.fn().mockRejectedValueOnce(new Error("Error"));
+        const res = {}
+        res.status = jest.fn().mockReturnValue(res)
+        res.json = jest.fn().mockReturnValue(res)
+        await getMe(req, res);
+        expect(res.status).toHaveBeenCalledWith(401);
+        expect(res.json).toHaveBeenCalledWith({
+            message: 'Нет'
+        })
+    });
      afterEach(() => {
          jest.resetAllMocks();
      });
@@ -325,6 +376,30 @@
              message: "Ничего не найдено"
          })
      });
+
+     it("nothing found", async () => {
+        const req = {query: {name: "",}}
+        const res = {}
+        res.status = jest.fn().mockReturnValue(res)
+        res.json = jest.fn().mockReturnValue(res)
+        User.find = jest.fn().mockResolvedValueOnce([])
+        await search(req, res);
+        expect(res.json).toHaveBeenCalledWith({
+            message:  'Запрос для поиска пустой'
+        })
+    });
+
+    it("main error", async () => {
+        const req = {query: {name: "333",}}
+        const res = {}
+        res.status = jest.fn().mockReturnValue(res)
+        res.json = jest.fn().mockReturnValue(res)
+        User.find = jest.fn().mockRejectedValueOnce(new Error("Error"))
+        await search(req, res);
+        expect(res.json).toHaveBeenCalledWith({
+            message:  'Ошибка в поиске пользователя'
+        })
+    });
  
      const mockedUser = {
          _id: '63b94e63401cafbbf0be0a8d',
@@ -399,4 +474,18 @@
              message: 'Изменение состояние подписки одного пользователя на другого'
          }))
      });
+
+     it("main error", async () => {
+        const req = {body:{params: {userId: "тест", subscribe: "cnng"}}}
+        User.findOne = jest.fn().mockRejectedValueOnce(new Error("Error"));
+        const res = {}
+        res.status = jest.fn().mockReturnValue(res)
+        res.json = jest.fn().mockReturnValue(res)
+        await subscibe(req, res);
+        expect(res.json).toHaveBeenCalledWith(expect.objectContaining({
+            message: 'Подписка не успешна'
+        }))
+    });
+
+     
  });

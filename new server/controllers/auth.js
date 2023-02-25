@@ -50,7 +50,7 @@ export const register = async (req, res) => {
             {
                 id: newUser._id,
             },
-            process.env.JWT_SECRET,
+            '0a6b944d-d2fb-46fc-a85e-0295c986cd9f',
             {expiresIn: '30d'},
         )
 
@@ -93,7 +93,7 @@ export const login = async (req, res) => {
             {
                 id: user._id,
             },
-            process.env.JWT_SECRET,
+            "0a6b944d-d2fb-46fc-a85e-0295c986cd9f",
             {expiresIn: 1000*20},
         )
 
@@ -114,19 +114,11 @@ export const getAnother = async (req, res) => {
         const {myId, userId} = req.query
         console.log(myId + " " + userId)
         /** Поиск пользователей */
-        try{
             var user = await User.findOne({_id: userId})
             var me = await User.findOne({_id: myId})
-        }
-        catch (error) {
-            if (userId && myId){
-                return res.status(404).json({
-                    message: 'Такого пользователя не существует.',
-                })
-            }
-        }
+
         
-        if (!user) {
+        if (!user || !me) {
             return res.status(404).json({
                 message: 'Такого пользователя не существует.',
             })
