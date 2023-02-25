@@ -69,11 +69,9 @@ export const getPopular = async (req, res) => {
     // Ищем пользователя по id
     const { id } = req.query;
     console.log("here1 " + id);
-    let user;
-    try {
-      user = await User.findOne({_id: id});
-    }
-    catch {
+    let user = await User.findOne({_id: id});
+    if(!user)
+    {
       return res.status(404).json({
         message: "Такого пользователя не существует.",
       });

@@ -9,7 +9,6 @@ const PostUser = ({ id }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    try {
       axios({
         method: "get",
         url: "/post/getMe",
@@ -32,9 +31,6 @@ const PostUser = ({ id }) => {
 
           setLoading(false);
         });
-    } catch (error) {
-      console.log(error);
-    }
   }, []);
 
   if (loading) {

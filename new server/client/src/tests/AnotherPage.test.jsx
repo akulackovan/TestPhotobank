@@ -120,6 +120,14 @@ describe('AnotherPage', () => {
                 </AuthContext.Provider>
             </MemoryRouter>,
         );
+        axios.mockRejectedValueOnce({
+            response: {
+              data: {
+                message: "Ошибка при получении пользователя.",
+              },
+            },
+            status: 400,
+          });
 
         expect(await screen.findByText('testuser')).toBeInTheDocument();
         expect(screen.getByText('Количество подписчиков: 0')).toBeInTheDocument();

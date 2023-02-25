@@ -87,6 +87,24 @@ describe("createComment", () => {
     });
   });
 
+
+  it("Should main error", async () => {
+    const req = { query: { postId: "1234", userId: "1234", comment: "" } };
+
+    const res = {
+      status: jest.fn(() => res),
+      json: jest.fn(),
+    };
+
+    User.findOne = jest.fn().mockRejectedValueOnce(new Error('Async error'));
+
+    await createComment(req, res);
+    expect(res.status).toHaveBeenCalledWith(400);
+    expect(res.json).toHaveBeenCalledWith({
+      message: "Ошибка при добавлении комментария",
+    });
+  });
+
   it("Should create comment", async () => {
     const req = { query: { postId: "1234", userId: "1234", comment: "123" } };
 

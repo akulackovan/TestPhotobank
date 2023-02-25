@@ -66,8 +66,7 @@ const AuthPage = () => {
       .then(function (response) {
         setAuthRed(true);
         console.log(authRed);
-        setToken(response.data.token);
-        setUserID(response.data.user._id);
+        login(response.data.token, response.data.user._id);
       })
       .catch(function (error) {
         console.log(error);
@@ -81,10 +80,6 @@ const AuthPage = () => {
   };
   console.log(authRed);
   console.log("authRed");
-  if (authRed) {
-    login(token, userId);
-    return <Redirect to="/popular" />;
-  }
 
   return (
     <div className="background">

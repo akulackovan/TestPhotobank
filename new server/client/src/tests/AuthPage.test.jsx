@@ -882,10 +882,11 @@ describe("AuthPage password lenght", () => {
 
 
 
-  /*it("Should not have error from server", async () => {
+ /* it("Should not have error from server", async () => {
     
     jest.mock('login');
     const { logout, token, userId, isLogin } = jest.fn();
+    const login = function (a, b) {};
     render(
       <AuthContext.Provider value={{ login, logout, token, userId, isLogin }}>
         <AuthPage />
@@ -904,14 +905,10 @@ describe("AuthPage password lenght", () => {
     axios.post.mockResolvedValueOnce({
       data: {
         token:
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYjk0ZTYzNDAxY2FmYmJmMGJlMGE4ZCIsImlhdCI6MTY3NzE1NzE3NSwiZXhwIjoxNjc3MTc3MTc1fQ.rVjnBbnQd05DK2kKe-t1sP9wKV4VIiHArCsTBAeLZxw",
+          "token",
         user: {
           _id: "63b94e63401cafbbf0be0a8d",
-          username: "тест",
-          password:
-            "$2a$10$NCUepd1./JlbdPTrMDGWRuKxkf6GtNGy0oj/l2cXpn/U6cXHX846y",
-          text: "Это тест",
-          city: "63b9473e70bfa1abe160400f",
+          username: "тест"
         },
         message: "Успешный вход в систему.",
       },

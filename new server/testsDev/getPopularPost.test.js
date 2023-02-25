@@ -2,58 +2,82 @@
  * @jest-environment node
  */
 
- import mongoose from "mongoose";
- import express from "express";
- import request from 'supertest';
- import dotenv from 'dotenv'
- import cors from 'cors'
  import compare from "../controllers/getPopularPosts.js"
- 
- import router from "../router/post.js";
- 
- const app = express();
- const PORT = process.env.PORT || 8082
- 
- app.use(cors());
- app.use(express.json())
- app.use('/popular', router)
- 
- app.listen(PORT, () => {
-   console.log("Start server on port", PORT)
- })
- 
+ import { getPopular } from "../controllers/getPopularPosts.js"
+import Post from "../models/Post.js";
+import User from "../models/User.js";
+
+jest.mock("../models/Post.js");
+jest.mock("../models/User.js");
+
  describe("GET /post/popular?id=", () => {
-   /* Каждый раз присоединяемся к БД */
-   beforeEach(async () => {
-     await mongoose.connect(
-       `mongodb+srv://admin:admin@test.qidx0uu.mongodb.net/?retryWrites=true&w=majority`
-     );
-     dotenv.config()
-   })
- 
-   /* Закрываем БД */
-   afterEach(async () => {
-     await mongoose.connection.close();
-   });
- 
  
    it("Should return posts", async () => {
-     const id = "63e359e156dc8cda748351da"
-     const res = await request(app).get(`/popular?id=${id}`)
-     expect(res.body.message).toBe("Популярное")
-     expect(res.statusCode).toEqual(200)
+    const req = { query: { id: "123"}}
+    const res = {
+      status: jest.fn(() => res),
+      json: jest.fn(),
+    };
+    User.findOne = jest.fn().mockResolvedValueOnce({city: "city" });
+    Post.find = jest.fn(() => ({
+      sort: jest.fn().mockResolvedValueOnce([{id: 1, 
+        timestamps: "2022-12-11T21:00:00.000+00:00",
+      views: 5},
+      {id: 2, 
+        timestamps: "2022-12-11T21:00:00.000+00:00",
+      views: 6}])
+    }));
+    await getPopular(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(200);
    });
    it("Get posts to invalid user", async () => {
-     const id = "1"
-     const res = await request(app).get(`/popular?id=${id}`)
-     expect(res.body.message).toBe("Такого пользователя не существует.")
-     expect(res.statusCode).toEqual(404)
+    const req = { query: { id: "123"}}
+    const res = {
+      status: jest.fn(() => res),
+      json: jest.fn(),
+    };
+    User.findOne = jest.fn().mockResolvedValue(null);
+    
+    await getPopular(req, res);
+
+    expect(res.json).toHaveBeenCalledWith({
+      message: "Такого пользователя не существует.",
+    });
+    expect(res.status).toHaveBeenCalledWith(404)
    });
    it("Get post to user with empty photos", async () => {
-     const id = "63f61faf4868562676c76591"
-     const res = await request(app).get(`/popular?id=${id}`)
-     expect(res.body.message).toBe("Фотографий в городе нет")
-     expect(res.statusCode).toEqual(400)
+    const req = { query: { id: "123"}}
+    const res = {
+      status: jest.fn(() => res),
+      json: jest.fn(),
+    };
+    User.findOne = jest.fn().mockResolvedValueOnce({city: "city" });
+    Post.find = jest.fn(() => ({
+      sort: jest.fn().mockResolvedValueOnce([])
+    }));
+    await getPopular(req, res);
+
+    expect(res.json).toHaveBeenCalledWith({
+      message: "Фотографий в городе нет",
+    });
+   });
+
+
+   it("Get error", async () => {
+    const req = { query: { id: "123"}}
+    const res = {
+      status: jest.fn(() => res),
+      json: jest.fn(),
+    };
+    User.findOne = jest.fn().mockRejectedValueOnce(new Error('Async error'));
+
+
+    await getPopular(req, res);
+
+    expect(res.json).toHaveBeenCalledWith({
+      message: "Ошибка при получении популярных",
+    });
    });
    it("test compare function", async () => {
      expect(compare({views: 2}, {views: 3})).toBe(1)

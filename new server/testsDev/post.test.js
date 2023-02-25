@@ -46,6 +46,23 @@
          expect(res.statusCode).toBe(200);
          expect(res._getJSONData().message).toBe('Успешно');
      });
+
+     it('should return error because post is not created', async () => {
+        const req = httpMocks.createRequest({
+            method: 'PUT',
+            url: '/addView',
+            query: {id: postId},
+        });
+        const res = httpMocks.createResponse();
+        Post.findById = jest.fn().mockResolvedValue(null);
+        await addView(req, res);
+
+        // expect(Post.updateOne).toHaveBeenCalledWith({_id: postId}, {views: 1});
+        expect(res.statusCode).toBe(400);
+        expect(res._getJSONData().message).toBe('Поста не существует');
+    });
+
+
  
      it('should return an error if post does not exist', async () => {
          // Create mock request and response objects
@@ -134,6 +151,18 @@
              message: 'Лайк получен',
          });
      });
+
+
+     it('returns error because post is not be created', async () => {
+        req.query = {idUser: mockedUser._id, idPost: mockedPost._id};
+        Post.findOne = jest.fn().mockResolvedValue(null);
+
+        await getLike(req, res, next);
+        expect(res.status).toHaveBeenCalledWith(400);
+        expect(res.json).toHaveBeenCalledWith({
+            message: 'Поста не существует',
+        });
+    });
  
      it('returns like status as true when user has liked post', async () => {
          req.query = {idUser: mockedUser._id, idPost: mockedPost._id};
@@ -337,6 +366,8 @@
          expect(mockRes.json).toHaveBeenCalledWith({message: 'Ошибка при получении статуса лайка'});
  
      });
+
+     
  });
  
  const mockPostId = 'mock_post_id'
