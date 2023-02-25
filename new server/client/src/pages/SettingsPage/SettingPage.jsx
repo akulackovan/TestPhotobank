@@ -12,6 +12,7 @@ import { Gapped, Radio, RadioGroup } from "@skbkontur/react-ui";
 const SettingsPage = () => {
   const { logout } = useContext(AuthContext);
   const { userId } = useContext(AuthContext);
+  const [disabled, setDisabled] = useState(false)
   const [form, setForm] = useState({
     userId: userId,
     username: "",
@@ -22,7 +23,7 @@ const SettingsPage = () => {
     city: "",
     base64: "",
   });
-  const [isOut, setOut] = useState(false)
+  
  
   const [errorMessage, setErrorMessage] = React.useState("");
   const [log, setLog] = React.useState(false);
@@ -108,6 +109,7 @@ const SettingsPage = () => {
       setTimeout(() => setErrorMessage(""), 2000);
       return;
     }
+    setDisabled(true)
     setForm({...form, username: username, password: password, checkpass: checkpass, newpass: newpass, text: text})
     try {
       await axios
@@ -137,11 +139,13 @@ const SettingsPage = () => {
             city: "",
             base64: "",
           });
+          setDisabled(false)
         });
     } catch (error) {
       console.log(error);
       setErrorMessage(error.response.data.message);
       setTimeout(() => setErrorMessage(""), 2000);
+      setDisabled(false)
     }
   };
 
@@ -202,6 +206,7 @@ const SettingsPage = () => {
                 name="city"
                 onChange={(value) => setForm({ ...form, city: value })}
                 key={formKey}
+                disabled={disabled}
               />
             </div>
           </div>
@@ -217,6 +222,7 @@ const SettingsPage = () => {
                 value="light"
                 onChange={changeTheme}
                 style={{color: 'black'}}
+                
               />{" "}
               <b>Светлая</b>
               <Radio
@@ -234,13 +240,14 @@ const SettingsPage = () => {
           <Cropper
             setData={(value) => setForm({ ...form, base64: value })}
             key={formKey}
+            disabled={disabled}
             />
         </div>
         <div className="buttons">
-          <button className="button" onClick={settingsHandler}>
+          <button className="button" onClick={settingsHandler} disabled={disabled}>
             СОХРАНИТЬ
           </button>
-          <button className="button" onClick={changeOut}>
+          <button className="button" onClick={changeOut} disabled={disabled}>
             ВЫЙТИ ИЗ АККАУНТА
           </button>
         </div>

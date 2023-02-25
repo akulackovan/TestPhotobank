@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import PostTable from "../PostsTable/PostsTable";
 
-const PostUser = ({ id }) => {
+const PostUser = ({ id, disabled=false }) => {
   const [post, setPost] = useState(null);
   const [errorMessage, setErrorMessage] = React.useState("");
 
@@ -45,7 +45,7 @@ const PostUser = ({ id }) => {
     );
   }
 
-  return <PostTable post={post} />;
+  return <PostTable post={post} disabled={disabled}/>;
 };
 
 export default PostUser;

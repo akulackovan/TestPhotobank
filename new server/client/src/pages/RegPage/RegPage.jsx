@@ -13,6 +13,7 @@ const RegPage = () => {
   });
   const [errorMessage, setErrorMessage] = React.useState("");
   const [redirect, setRedirect] = React.useState(false);
+  const [disabled, setDisabled] = useState(false);
 
   const changeForm = (event) => {
     setForm({ ...form, [event.target.name]: event.target.value });
@@ -20,8 +21,8 @@ const RegPage = () => {
   };
 
   const registerHandler = async () => {
-    var username = document.getElementById("username").value
-    var password = document.getElementById("password").value
+    var username = document.getElementById("username").value;
+    var password = document.getElementById("password").value;
     if (!(username && password && form.city)) {
       setErrorMessage("Заполнены не все поля");
       setTimeout(() => setErrorMessage(""), 5000);
@@ -51,7 +52,8 @@ const RegPage = () => {
       setTimeout(() => setErrorMessage(""), 2000);
       return;
     }
-    setForm({...form, username: username, password: password})
+    setForm({ ...form, username: username, password: password });
+    setDisabled(true);
 
     try {
       await axios
@@ -73,6 +75,7 @@ const RegPage = () => {
           setTimeout(() => setRedirect(true), 5000);
         });
     } catch (error) {
+      setDisabled(false);
       console.log(error);
       setErrorMessage(error.response.data.message);
       setTimeout(() => setErrorMessage(""), 2000);
@@ -104,14 +107,22 @@ const RegPage = () => {
             onChange={changeForm}
             id="password"
           />
-          <div style={{ width: "80%", margin: "auto", textAlign: "left" }} data-testid="city">
+          <div
+            style={{ width: "80%", margin: "auto", textAlign: "left" }}
+            data-testid="city"
+          >
             <CityCombobox
+              disabled={disabled}
               className="city"
               name="city"
               onChange={(value) => setForm({ ...form, city: value })}
             />
           </div>
-          <button className="button" onClick={registerHandler}>
+          <button
+            className="button"
+            onClick={registerHandler}
+            disabled={disabled}
+          >
             ЗАРЕГИСТРИРОВАТЬСЯ
           </button>
           <a className="link">

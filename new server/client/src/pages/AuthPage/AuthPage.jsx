@@ -14,6 +14,7 @@ const AuthPage = () => {
   const [redirect, setRedirect] = React.useState(false);
   const [token, setToken] = React.useState("");
   const [userId, setUserID] = React.useState("");
+  const [disabled, setDisabled] = React.useState(false)
   const [authRed, setAuthRed] = React.useState(false);
 
   const changeForm = (event) => {
@@ -55,6 +56,7 @@ const AuthPage = () => {
       setTimeout(() => setErrorMessage(""), 5000);
       return;
     }
+    setDisabled(true)
     setForm({username: username, password: password})
     await axios
       .post(
@@ -75,6 +77,7 @@ const AuthPage = () => {
         console.log(error);
         setErrorMessage(error.response.data.message);
         setTimeout(() => setErrorMessage(""), 5000);
+        setDisabled(false)
       });
   };
 
@@ -110,10 +113,13 @@ const AuthPage = () => {
             className="button"
             onClick={authHandler}
             data-testid="login-button"
+            disabled={disabled}
           >
             ВОЙТИ
           </button>
-          <button className="button" onClick={handleOnClick}>
+          <button className="button" onClick={handleOnClick}
+          
+          disabled={disabled}>
             РЕГИСТРАЦИЯ
           </button>
           {errorMessage && (

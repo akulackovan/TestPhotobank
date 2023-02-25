@@ -27,6 +27,14 @@ export function useAuth () {
     const data = JSON.parse(localStorage.getItem("userData"));
     if (data && data.token) {
       login(data.token, data.userId);
+      console.log(data.token)
+      const decode = JSON.parse(atob(data.token.split('.')[1]));
+      console.log(decode.exp * 1000);
+      console.log(new Date().getTime())
+      if (decode.exp * 1000 < new Date().getTime()) {
+        console.log('Time Expired');
+        logout()
+    }
     }
     setIsReady(true)
   }, [login]);

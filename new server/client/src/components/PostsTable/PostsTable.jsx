@@ -2,7 +2,10 @@ import React from "react";
 import "./PostTable.scss";
 import { Link } from "react-router-dom";
 
-const PostTable = ({ post, end = true }) => {
+const PostTable = ({ post, end = true, disabled=false }) => {
+  if (disabled == true){
+    disabled = 'none'
+  }
   return (
     <div className="wrapper">
       {post && (
@@ -11,7 +14,7 @@ const PostTable = ({ post, end = true }) => {
             <ul>
               {post.map((option) => (
                   <li className="gallery" key={option.id}>
-                  <Link to={`/post/${option._id}`} title="Открыть пост">
+                  <Link to={`/post/${option._id}`}  title="Открыть пост" style={{pointerEvents: {disabled}}}>
                     <img
                       style={{ width: 300, height: 223 }}
                       href={"/post/" + option._id}

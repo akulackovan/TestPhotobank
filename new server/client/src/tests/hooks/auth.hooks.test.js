@@ -7,10 +7,10 @@ describe("AuthHook", () => {
     const {result} = renderHook(() => useAuth())
     
     act(() => {
-      result.current.login("token", "userId")
+      result.current.login("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c", "userId")
     })
     expect(result.current.userId).toBe("userId")
-    expect(result.current.token).toBe("token")
+    expect(result.current.token).toBe("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c")
   });
 
 
@@ -18,10 +18,10 @@ describe("AuthHook", () => {
     const {result} = renderHook(() => useAuth())
     
     act(() => {
-      result.current.login("token", "userId")
+      result.current.login("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c", "userId")
     })
     expect(result.current.userId).toBe("userId")
-    expect(result.current.token).toBe("token")
+    expect(result.current.token).toBe("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c")
     act(() => {
       result.current.logout()
     })

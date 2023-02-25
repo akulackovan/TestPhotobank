@@ -7,7 +7,7 @@ import "react-image-crop/dist/ReactCrop.css";
 import "react-image-crop/src/ReactCrop.scss";
 
 
-const Cropper = ({ x = 480, y = 480, size = 7, setData}) => {
+const Cropper = ({ x = 480, y = 480, size = 7, disabled=false, setData}) => {
   const [info, setInfo] = useState({
     x: null,
     y: null,
@@ -57,6 +57,7 @@ const Cropper = ({ x = 480, y = 480, size = 7, setData}) => {
       
     img.src = window.URL.createObjectURL(e.target.files[0]);
     img.onload = function () {
+      
       /** Проверка на формат */
       console.log("Format");
       /** Проверка на ширину и длину изображения */
@@ -206,7 +207,7 @@ const Cropper = ({ x = 480, y = 480, size = 7, setData}) => {
                 <div className="center">Загружаемое изображение:</div>
                 <img src={output} />
               </div>
-              <button className="button " onClick={ChangeCrop}>
+              <button className="button " onClick={ChangeCrop} disabled={disabled}>
                 Изменить область
               </button>
             </div>
@@ -214,7 +215,7 @@ const Cropper = ({ x = 480, y = 480, size = 7, setData}) => {
           {error && <ErrorMessage msg={error} />}
         </center>
         {src && !output && (
-          <button className="button " onClick={cropImageNow}>
+          <button className="button " onClick={cropImageNow} disabled={disabled}>
             Обрезать
           </button>
         )}
@@ -234,6 +235,7 @@ const Cropper = ({ x = 480, y = 480, size = 7, setData}) => {
           onChange={(e) => {
             selectImage(e);
           }}
+          disabled={disabled}
           data-testid="input"
         />
         <label
@@ -270,7 +272,7 @@ const Cropper = ({ x = 480, y = 480, size = 7, setData}) => {
                   >
                     <img src={src} id="source" width={400} height={300} />
                   </ReactCrop>
-                  <button className="button " onClick={cropImageNow}>
+                  <button className="button " onClick={cropImageNow} disabled={disabled}>
                     Подтвердить
                   </button>
                 </div>
@@ -319,7 +321,7 @@ const Cropper = ({ x = 480, y = 480, size = 7, setData}) => {
                 <img src={output} />
               </div>
 
-              <button className="button " onClick={ChangeCrop}>
+              <button className="button " onClick={ChangeCrop} disabled={disabled}>
                 Изменить область
               </button>
             </div>
@@ -328,7 +330,7 @@ const Cropper = ({ x = 480, y = 480, size = 7, setData}) => {
           {error && <ErrorMessage msg={error} />}
 
           {src && !output && (
-            <button className="button " onClick={cropImageNow}>
+            <button className="button " onClick={cropImageNow} disabled={disabled}>
               Обрезать
             </button>
           )}

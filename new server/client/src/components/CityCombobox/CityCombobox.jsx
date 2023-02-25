@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import "./CityCombobox.scss";
 
-const CityCombobox = ({ onChange }) => {
+const CityCombobox = ({ onChange, disabled=false}) => {
   const [showMenu, setShowMenu] = useState(false);
   const [selected, setSelected] = useState(null);
   const [searchValue, setSearchValue] = useState("");
@@ -66,12 +66,13 @@ const CityCombobox = ({ onChange }) => {
   };
 
   return (
-    <div className="dropdown-container">
+    <div className="dropdown-container" >
       <div
         className="dropdown-input"
         onClick={handleInputClick}
         title="Выбрать город"
         data-testid='button'
+        disabled={disabled}
       >
         <div className="dropdown-selected-value" data-testid='display'>{getDisplay()}</div>
         <div className="dropdown-tools">
@@ -85,10 +86,13 @@ const CityCombobox = ({ onChange }) => {
       {showMenu && (
         <div className="dropdown-menu">
           <div className="search-box">
-            <input onChange={onSearch} value={searchValue} ref={searchRef} data-testid='city-input'/>
+            <input onChange={onSearch} value={searchValue} ref={searchRef} 
+        disabled={disabled} data-testid='city-input'/>
           </div>
           {getOptions().map((option) => (
             <div
+            
+        disabled={disabled}
               className={"dropdown-item"}
               onClick={() => onItemClick(option)}
               data-testid='city-dropdownelement'

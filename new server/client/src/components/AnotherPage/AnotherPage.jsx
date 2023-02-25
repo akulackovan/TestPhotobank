@@ -22,7 +22,7 @@ export const AnotherPage = ({ id }) => {
   const [isSubscription, setSubscriptions] = useState(false);
   //Колесо загрузки
   const [loader, setLoader] = useState(true);
-
+  const [disabled, setDisabled] = useState(false)
   const [error, setErrorMessage] = useState()
 
   const [sub, setSub] = useState()
@@ -32,6 +32,7 @@ export const AnotherPage = ({ id }) => {
 
   //** Подписка */
   const subscribe = async () => {
+    setDisabled(true)
     try {
       await axios
         .post("/auth/subscribe", {
@@ -52,9 +53,11 @@ export const AnotherPage = ({ id }) => {
           } else {
             setUser({ ...user, subscriptions: sub - 1});
           }
+          setDisabled(false)
         });
     } catch (error) {
       console.log(error);
+      setDisabled(false)
     }
   };
 
@@ -171,6 +174,7 @@ export const AnotherPage = ({ id }) => {
                         subscribe();
                       }}
                       title="Подписаться"
+                      disabled={disabled}
                     >
                       Подписаться
                     </button>
@@ -184,6 +188,7 @@ export const AnotherPage = ({ id }) => {
                         subscribe();
                       }}
                       title="Отписаться"
+                      disabled={disabled}
                     >
                       Отписаться
                     </button>
@@ -200,7 +205,7 @@ export const AnotherPage = ({ id }) => {
                 </div>
                 <div>
                   <Link to="post">
-                    <button className="button">Добавить фото</button>
+                    <button className="button" disabled={disabled}>Добавить фото</button>
                   </Link>
                 </div>
               </div>
@@ -210,7 +215,7 @@ export const AnotherPage = ({ id }) => {
       </div>
       <hr className="hr" />
       <div>
-        <PostUser id={id} />
+        <PostUser id={id} disabled={disabled}/>
       </div>
       
       <hr className="hr center" style={{ margin: "0 auto 50px auto" }} />
