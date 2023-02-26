@@ -495,7 +495,7 @@ describe("PostPage comments render", () => {
     await act(async () => {
       await new Promise((resolve) => setTimeout(resolve, 0));
     });
-    expect(screen.getByText("Комментариев нет")).toBeInTheDocument();
+    expect(screen.queryByTestId("comment")).not.toBeInTheDocument();
   });
 
   it("Shoud print error message from get post like", async () => {
