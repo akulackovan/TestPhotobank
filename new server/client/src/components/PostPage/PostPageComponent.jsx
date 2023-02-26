@@ -9,7 +9,6 @@ import ErrorMessage from "../ErrorMessage/ErrorMessage";
 const PostPageComponent = ({ id }) => {
   const [post, setPost] = useState("");
   const [loading, setLoading] = useState(true);
-
   const [loadingComm, setLoadingComm] = useState(true);
   const [error, setErrorMessage] = useState("");
   const [postError, setPostError] = useState("");
@@ -352,6 +351,7 @@ const PostPageComponent = ({ id }) => {
                   data-testid="commentInput"
                   onChange={changeForm}
                   id="textarea"
+                  disabled={loadingComm}
                 />
               </form>
               <div onClick={commentHandler}>
@@ -373,7 +373,7 @@ const PostPageComponent = ({ id }) => {
                 Комментарии
               </div>
               {loadingComm && (
-                <div className="head">Загрузка комментариев...</div>
+                <h5>Загрузка комментариев...</h5>
               )}
               {!loadingComm && comments.length == 0 && (
                 <div>

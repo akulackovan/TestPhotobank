@@ -215,7 +215,7 @@ export const AnotherPage = ({ id }) => {
       </div>
       <hr className="hr" />
       <div>
-        <PostUser id={id} disabled={disabled}/>
+        <PostUser id={id} />
       </div>
       
       <hr className="hr center" style={{ margin: "0 auto 50px auto" }} />

@@ -89,7 +89,7 @@ const RegPage = () => {
   return (
     <div className="background">
       <div className="box">
-        <div className="center back">
+        <div className="center back" style={disabled ? {pointerEvents: "none"} : null}>
           <h3 className="head">ФОТОБАНК</h3>
           <input
             className="input"

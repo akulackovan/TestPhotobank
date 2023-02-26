@@ -167,6 +167,7 @@ const SettingsPage = () => {
                 name="username"
                 onChange={changeForm}
                 id="username"
+                disabled={disabled}
               />
               <input
                 className="input"
@@ -175,6 +176,7 @@ const SettingsPage = () => {
                 type="password"
                 onChange={changeForm}
                 id="password"
+                disabled={disabled}
               />
               <input
                 className="input"
@@ -183,6 +185,7 @@ const SettingsPage = () => {
                 name="newpass"
                 onChange={changeForm}
                 id="newpass"
+                disabled={disabled}
               />
               <input
                 className="input"
@@ -191,6 +194,7 @@ const SettingsPage = () => {
                 name="checkpass"
                 onChange={changeForm}
                 id="checkpass"
+                disabled={disabled}
               />
             </div>
             <div className="sec" style={{ textAlign: "left" }}>
@@ -201,6 +205,7 @@ const SettingsPage = () => {
                 name="text"
                 onChange={changeForm}
                 id="text"
+                disabled={disabled}
               />
               <CityCombobox
                 name="city"
@@ -222,7 +227,7 @@ const SettingsPage = () => {
                 value="light"
                 onChange={changeTheme}
                 style={{color: 'black'}}
-                
+                disabled={disabled}
               />{" "}
               <b>Светлая</b>
               <Radio
@@ -230,6 +235,7 @@ const SettingsPage = () => {
                 className="radio"
                 value="dark"
                 onChange={changeTheme}
+                disabled={disabled}
               />{" "}
               <b>Темная</b>
             </Gapped>

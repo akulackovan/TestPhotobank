@@ -224,7 +224,7 @@ const Cropper = ({ x = 480, y = 480, size = 7, disabled=false, setData}) => {
   }
 
   return (
-    <div className="App">
+    <div className="App" style={error ? {pointerEvents: "none"} : null}>
       <div className="App">
         <input
           name="photo"

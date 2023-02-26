@@ -89,7 +89,7 @@ const AuthPage = () => {
 
   return (
     <div className="background">
-      <div className="auth">
+      <div className="auth" style={disabled ? {pointerEvents: "none"} : null}>
         <div className="back" style={{ height: "450px" }}>
           <h3 className="head">ФОТОБАНК</h3>
           <input

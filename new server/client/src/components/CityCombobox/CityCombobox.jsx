@@ -66,7 +66,7 @@ const CityCombobox = ({ onChange, disabled=false}) => {
   };
 
   return (
-    <div className="dropdown-container" >
+    <div className="dropdown-container" style={disabled ? {pointerEvents: "none"} : null}>
       <div
         className="dropdown-input"
         onClick={handleInputClick}
