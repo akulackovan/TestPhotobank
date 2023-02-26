@@ -10,6 +10,7 @@ import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 const AddPostPage = () => {
   const [errorMessage, setErrorMessage] = React.useState("");
   const [redirect, setRedirect] = React.useState(false);
+  const [disabled, setDisabled] = React.useState(false)
   const { userId } = useContext(AuthContext);
   const [form, setForm] = useState({
     photo: "",
@@ -26,7 +27,7 @@ const AddPostPage = () => {
 
   const addPostHandler = async () => {
     console.log(form.city);
-    if (form.photo == "") {
+    if (form.photo == "" || form.photo == true) {
       setErrorMessage("Необходимо добавить фото");
       setTimeout(() => setErrorMessage(""), 5000);
       return;
@@ -43,6 +44,7 @@ const AddPostPage = () => {
       return;
     }
     setForm({ ...form, description: document.getElementById("description").value });
+    setDisabled(true)
     try {
       await axios
         .post(
@@ -66,6 +68,7 @@ const AddPostPage = () => {
       console.log(error);
       setErrorMessage(error.response.data.message);
       setTimeout(() => setErrorMessage(""), 5000);
+      setDisabled(false)
     }
   };
 
@@ -75,19 +78,21 @@ const AddPostPage = () => {
 
   return (
     <div>
-      <div className="addPost">
+      <div className="addPost" style={disabled ? {pointerEvents: "none"} : null}>
         <div className="container">
           <Cropper
             size={16}
             y={383}
             x={480}
             setData={(value) => setForm({ ...form, photo: value })}
+            disabled={disabled}
           ></Cropper>
           <br />
           <div style={{ width: "80%", margin: "auto", textAlign: "left" }}>
             <CityCombobox
               name="city"
               onChange={(value) => setForm({ ...form, city: value })}
+              disabled={disabled}
             />
           </div>
           <div className="description">
@@ -98,10 +103,11 @@ const AddPostPage = () => {
               name="input"
               onChange={changeForm}
               id="description"
+              disabled={disabled}
             />
           </div>
 
-          <button className="button" onClick={addPostHandler}>
+          <button className="button" onClick={addPostHandler} disabled={disabled}>
             ЗАГРУЗИТЬ ФОТО
           </button>
           {errorMessage && <ErrorMessage msg={errorMessage} />}

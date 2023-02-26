@@ -60,11 +60,11 @@ const PopularPage = () => {
 
   return (
     <div
-      className="wrapper1"
-      style={{ width: "80%", marginLeft: "auto", marginRight: "auto" }}
+      className=""
+      
     >
       {post && (
-        <div className="gal1">
+        <div className="" >
           {post && (
             <div>
               {post.map((option) => (

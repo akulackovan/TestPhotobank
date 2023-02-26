@@ -53,7 +53,6 @@ describe("PostTable component", () => {
         const { getByTestId } = render(
             <MemoryRouter>
                 <PostTable post={null} />
-                <h2 className="h2" data-testid="no-posts-message">Нет постов</h2>
             </MemoryRouter>
         );
         expect(getByTestId('no-posts-message')).toBeInTheDocument();

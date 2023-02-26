@@ -65,7 +65,7 @@ const SubscribePage = () => {
     }
 
     return (
-        <div style={{width: '80%', marginLeft: 'auto', marginRight: 'auto'}}>
+        <div>
             {errorMessage && <div className="head">errorMessage</div>}
             <PostTable post={post}/>
             <hr className='hr center' style={{margin: '0 auto 50px auto'}}/>

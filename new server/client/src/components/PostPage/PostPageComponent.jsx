@@ -358,7 +358,7 @@ const PostPageComponent = ({ id }) => {
                 <button
                   className="button"
                   data-testid="commentButton"
-                  title="Отправить комментарий"
+                  title="Отправить"
                   id="send"
                   disabled={loadingComm}
                 >
