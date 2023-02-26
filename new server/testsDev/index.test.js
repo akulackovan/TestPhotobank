@@ -12,7 +12,7 @@ import cityRoute from '../router/city.js'
 import postRoute from '../router/post.js'
 import dotenv from "dotenv";
 const app = express();
-const PORT = process.env.PORT || 8077
+const PORT = process.env.PORT || 8080
 app.use(cors());
 app.use(express.json())
 app.use('/auth', authRoute);
@@ -20,12 +20,9 @@ app.use('/settings', settingRoute);
 app.use('/post', postRoute);
 app.use('/city', cityRoute);
 
-export const server = app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
     console.log("Start server on port", PORT)})
-    afterAll(() => {
-        server.close();
-      });
-      
+
 jest.setTimeout(50000);
 describe('Test the server', () => {
     beforeAll(async () => {
@@ -111,3 +108,6 @@ describe('Test the server', () => {
         await mongoose.connection.close();
     });
 });
+
+
+server.close();
