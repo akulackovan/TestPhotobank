@@ -55,6 +55,7 @@ export const register = async (req, res) => {
         )
 
         await newUser.save()
+        newUser.password=""
 
         console.log("save")
 

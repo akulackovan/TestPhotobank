@@ -621,7 +621,7 @@ describe("PostPage comments write", () => {
     const commentInput = screen.getByTestId("commentInput");
     fireEvent.change(commentInput, { target: { value: comment } });
     fireEvent.click(screen.getByText("ОПУБЛИКОВАТЬ"));
-    expect(screen.getByText("Комментарий должен быть меньше 128 символов"));
+    expect(screen.getByText("Комментарий должен содержать не более 128 символов"));
     screen.debug();
   });
 

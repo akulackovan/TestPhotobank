@@ -123,11 +123,11 @@ export const getPopular = async (req, res) => {
             }
         }
         if (postByDate.length == 0) {
-            popular.push({date: `${(date.getDate()) < 10 ? 0 : ''}${date.getDate()}.${date.getMonth()+ 1 < 10 ? 0 : ''}${date.getMonth()+1}.${date.getFullYear()}`, posts: "Фотографий за день нет"})
+            popular.push({date: `${(date.getDate()) < 10 ? 0 : ''}${date.getDate()}\\${date.getMonth()+ 1 < 10 ? 0 : ''}${date.getMonth()+1}\\${date.getFullYear()-2000}`, posts: "Фотографий за день нет"})
         }
         else {
             postByDate.sort(compare)
-            popular.push({date: `${(date.getDate()) < 10 ? 0 : ''}${date.getDate()}.${date.getMonth()+ 1 < 10 ? 0 : ''}${date.getMonth()+ 1}.${date.getFullYear()}`, posts: postByDate})
+            popular.push({date: `${(date.getDate()) < 10 ? 0 : ''}${date.getDate()}\\${date.getMonth()+ 1 < 10 ? 0 : ''}${date.getMonth()+ 1}\\${date.getFullYear()-2000}`, posts: postByDate})
         }
         date.setDate(date.getDate() - 1)
     }

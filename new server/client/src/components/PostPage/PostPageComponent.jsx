@@ -163,7 +163,7 @@ const PostPageComponent = ({ id }) => {
     var str = document.getElementById("textarea").value;
     console.log(str);
     if (!(str.length <= 128)) {
-      setErrorMessage("Комментарий должен быть меньше 128 символов");
+      setErrorMessage("Комментарий должен содержать не более 128 символов");
       setTimeout(() => setErrorMessage(""), 2000);
       return;
     }
@@ -300,7 +300,7 @@ const PostPageComponent = ({ id }) => {
               {!like && (
                 <button
                   className="like icon"
-                  title="Поставить лайк"
+                  title="Лайк"
                   onClick={changeLike}
                   id="like"
                   data-testid="likeButton"
@@ -322,7 +322,7 @@ const PostPageComponent = ({ id }) => {
               {like && (
                 <button
                   className="dislike icon"
-                  title="Отменить лайк"
+                  title="Лайк"
                   onClick={changeLike}
                   id="unlike"
                   data-testid="likeButton"

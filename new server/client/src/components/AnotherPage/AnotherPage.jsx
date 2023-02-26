@@ -155,7 +155,7 @@ export const AnotherPage = ({ id }) => {
           <div className="text">
             <div className="container">
               <div className="head">Описание:</div>
-              {user.text == "" && <div> Нет описания</div>}
+              {user.text == "" && <div> {`\n`} </div>}
               {user.text != "" && <div> {user.text} </div>}
             </div>
             {id != userId && (

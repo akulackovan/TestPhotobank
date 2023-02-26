@@ -401,7 +401,7 @@ describe("SettingsPage Error Message", () => {
     const saveButton = screen.getByText("СОХРАНИТЬ");
     expect(saveButton).toBeInTheDocument()
     fireEvent.click(saveButton)
-    const msg = screen.queryByText("Описание должно быть меньше 512 символов");
+    const msg = screen.queryByText("\"Описание пользователя\" должно содержать не более 512 символов");
 
     expect(msg).toBeInTheDocument()
     screen.debug();

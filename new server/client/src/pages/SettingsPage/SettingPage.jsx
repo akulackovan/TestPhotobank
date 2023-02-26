@@ -81,6 +81,13 @@ const SettingsPage = () => {
       setTimeout(() => setErrorMessage(""), 2000);
       return;
     }
+    if (password != "" && !password.match(/^[A-Za-zА-Яа-я]+$/)) {
+      setErrorMessage(
+        "Пароль должен содержать только символы русского и английского алфавита"
+      );
+      setTimeout(() => setErrorMessage(""), 2000);
+      return;
+    }
     if (newpass != "" && !newpass.match(/^[A-Za-zА-Яа-я]+$/)) {
       setErrorMessage(
         "Пароль должен содержать только символы русского и английского алфавита"
@@ -105,7 +112,7 @@ const SettingsPage = () => {
       return;
     }
     if (!(text.length < 512)) {
-      setErrorMessage("Описание должно быть меньше 512 символов");
+      setErrorMessage("\"Описание пользователя\" должно содержать не более 512 символов");
       setTimeout(() => setErrorMessage(""), 2000);
       return;
     }
