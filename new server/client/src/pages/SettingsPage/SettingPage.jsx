@@ -198,8 +198,9 @@ const SettingsPage = () => {
               />
             </div>
             <div className="sec" style={{ textAlign: "left" }}>
-              <input
-                className="input"
+              <textarea
+                className="textarea"
+                style={{height:"150px"}}
                 type="text"
                 placeholder="Описание пользователя"
                 name="text"

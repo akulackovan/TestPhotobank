@@ -234,8 +234,8 @@ const PostPageComponent = ({ id }) => {
               <div className="under">
                 <div className="date" data-testid="date">
                   {post.timestamps[8]}
-                  {post.timestamps[9]}.{post.timestamps[5]}
-                  {post.timestamps[6]}.20{post.timestamps[2]}
+                  {post.timestamps[9]}\{post.timestamps[5]}
+                  {post.timestamps[6]}\{post.timestamps[2]}
                   {post.timestamps[3]}
                 </div>
                 <div className="city" data-testid="city">

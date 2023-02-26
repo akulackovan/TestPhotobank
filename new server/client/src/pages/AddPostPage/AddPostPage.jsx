@@ -26,7 +26,7 @@ const AddPostPage = () => {
   };
 
   const addPostHandler = async () => {
-    console.log(form.city);
+    var description = document.getElementById("description").value;
     if (form.photo == "" || form.photo == true) {
       setErrorMessage("Необходимо добавить фото");
       setTimeout(() => setErrorMessage(""), 5000);
@@ -38,18 +38,20 @@ const AddPostPage = () => {
       return;
     }
 
-    if (document.getElementById("description").value.length > 512) {
+    if (description.length > 512) {
+    console.log(description)
       setErrorMessage("Описание поста должно содержать от 0 до 512 символов");
       setTimeout(() => setErrorMessage(""), 5000);
       return;
     }
-    setForm({ ...form, description: document.getElementById("description").value });
+    setForm({ ...form, description: "" });
+    console.log(form)
     setDisabled(true)
     try {
       await axios
         .post(
           "/post/post",
-          { ...form },
+          { ...form, description: description },
           {
             headers: {
               "Context-Type": "application/json",
@@ -96,14 +98,15 @@ const AddPostPage = () => {
             />
           </div>
           <div className="description">
-            <input
-              className="input"
+            <textarea
+              className="textarea"
               type="text"
               placeholder="Описание"
               name="input"
               onChange={changeForm}
               id="description"
               disabled={disabled}
+              resize='none'
             />
           </div>
 
