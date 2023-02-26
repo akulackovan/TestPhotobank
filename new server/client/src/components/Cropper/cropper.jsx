@@ -103,8 +103,8 @@ const Cropper = ({ x = 480, y = 480, size = 7, disabled=false, setData}) => {
       if (y == x) {
         setCrop({
           unit: "px",
-          width: x,
-          height: y,
+          width: 400,
+          height: 400,
           x: 0,
           y: 0,
         });
