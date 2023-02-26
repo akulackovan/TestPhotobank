@@ -26,12 +26,13 @@ export const AnotherPage = ({ id }) => {
   const [error, setErrorMessage] = useState()
 
   const [sub, setSub] = useState()
-
+  const [loadSub, setLoadSub] = useState(false)
   console.log(id);
   console.log(userId);
 
   //** Подписка */
   const subscribe = async () => {
+    setLoadSub(true)
     setDisabled(true)
     try {
       await axios
@@ -54,10 +55,13 @@ export const AnotherPage = ({ id }) => {
             setUser({ ...user, subscriptions: sub - 1});
           }
           setDisabled(false)
+          setLoadSub(false)
         });
     } catch (error) {
       console.log(error);
       setDisabled(false)
+      
+      setLoadSub(false)
     }
   };
 
@@ -149,7 +153,7 @@ export const AnotherPage = ({ id }) => {
         </div>
         <div className="second container">
           <div className="header">
-            <div className="user " data-testid="post-user">{user.username}</div>
+            <div className="user " data-testid="post-user" style={{ fontSize: 'min(3vw, 30px)'}}>{user.username}</div>
             {id != userId && <div className="city head">г.{user.city}</div>}
           </div>
           <div className="text">
@@ -162,7 +166,7 @@ export const AnotherPage = ({ id }) => {
               <div className="AnotherPage">
                 <div className="container">
                   <div className="head">
-                    Количество подписчиков: {user.subscriptions}
+                    Количество подписчиков: {loadSub ? "..." : `${user.subscriptions}`}
                   </div>
                 </div>
                 <div>
@@ -174,7 +178,7 @@ export const AnotherPage = ({ id }) => {
                         subscribe();
                       }}
                       title="Подписаться"
-                      disabled={disabled}
+                      disabled={loadSub}
                     >
                       Подписаться
                     </button>
@@ -188,7 +192,7 @@ export const AnotherPage = ({ id }) => {
                         subscribe();
                       }}
                       title="Отписаться"
-                      disabled={disabled}
+                      disabled={loadSub}
                     >
                       Отписаться
                     </button>

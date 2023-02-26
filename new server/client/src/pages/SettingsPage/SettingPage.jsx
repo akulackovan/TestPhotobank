@@ -258,12 +258,16 @@ const SettingsPage = () => {
             />
         </div>
         <div className="buttons">
+          <div className="elementButton">
           <button className="button" onClick={settingsHandler} disabled={disabled}>
             СОХРАНИТЬ
           </button>
+          </div>
+          <div className="elementButton">
           <button className="button" onClick={changeOut} disabled={disabled}>
             ВЫЙТИ ИЗ АККАУНТА
           </button>
+          </div>
         </div>
         {errorMessage && <ErrorMessage msg={errorMessage} />}
       </div>

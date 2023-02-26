@@ -183,6 +183,7 @@ const Cropper = ({ x = 480, y = 480, size = 7, disabled=false, setData}) => {
   const ChangeCrop = () => {
     setSrc(image);
     setOutput(null);
+    setData(true)
   };
 
   if (info.y > info.x) {

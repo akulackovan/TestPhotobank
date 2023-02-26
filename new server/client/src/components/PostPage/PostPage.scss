@@ -92,8 +92,12 @@
     padding: 1%;
   }
   .head {
-    font-size: 3vw;
+    font-size: min(3vw, 30px);
   }
+}
+
+.userCom{
+  font-size: 14px;
 }
 
 .h2 {
@@ -106,7 +110,7 @@
 }
 
 .comments ul {
-  height: 500px;
+  height: 35vw;
   overflow: hidden;
   overflow-y: scroll;
 

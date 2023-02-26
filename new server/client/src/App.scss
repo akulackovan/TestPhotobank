@@ -57,8 +57,9 @@ html {
 .head {
   color: var(--main-front);
   font-weight: bold;
-  font-size: 150%;
+  font-size: min(3vw, 30px);
 }
+
 
 .hr {
   border: none;

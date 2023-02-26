@@ -69,9 +69,9 @@ const PopularPage = () => {
             <div>
               {post.map((option) => (
                 <div>
-                  <div className="head center">{option.date}</div>
+                  <div className="head center" style={{fontSize: 'min(3vw, 30px)'}}>{option.date}</div>
                   {option.posts === "Фотографий за день нет" ? (
-                    <div className="head center" style={{ fontSize: "3vw" }}>
+                    <div className="head center"  style={{fontSize: 'min(3vw, 30px)'}}>
                       Фотографий за день нет
                     </div>
                   ) : (

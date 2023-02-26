@@ -18,6 +18,7 @@ const PostPageComponent = ({ id }) => {
   });
   const { userId } = useContext(AuthContext);
   const [like, setLike] = useState();
+  const [loadLike, setLoadLike] = useState(false)
   const [countLike, setCountLike] = useState();
   console.log(userId);
 
@@ -132,6 +133,7 @@ const PostPageComponent = ({ id }) => {
   };
 
   const changeLike = () => {
+    setLoadLike(true)
     axios({
       method: "put",
       url: "/post/setLike",
@@ -148,12 +150,14 @@ const PostPageComponent = ({ id }) => {
         } else {
           setPost({ ...post, likes: countLike - 1 });
         }
+        setLoadLike(false)
       })
       .catch((error) => {
         console.log(error);
         setErrorMessage(error.response.data.message);
         setTimeout(() => setErrorMessage(""), 2000);
         setLoading(false);
+        setLoadLike(false)
       });
   };
 
@@ -226,7 +230,7 @@ const PostPageComponent = ({ id }) => {
                   href={`/profile/${post.author._id}`}
                   title={`Автор: ${post.author.username}`}
                 >
-                  <h4 className="head" data-testid="author">
+                  <h4 className="head" data-testid="author" style={{overflowWrap: 'break-word', fontSize: 'min(3vw, 30px)'}}>
                     {post.author.username}
                   </h4>
                 </a>
@@ -264,7 +268,7 @@ const PostPageComponent = ({ id }) => {
                     ></path>
                   </svg>
                   <div className="num" data-testid="numlike">
-                    {post.likes}
+                    {loadLike ? "..." : `${post.likes}`}
                   </div>
                 </li>
                 <li className="icon li">
@@ -287,7 +291,7 @@ const PostPageComponent = ({ id }) => {
               <div className="head">Описание</div>
               {!post.text && (
                 <div className="discription" data-testid="text">
-                  Нет описания
+                  {`\n`}
                 </div>
               )}
               <div className="discription" data-testid="text">
@@ -377,7 +381,8 @@ const PostPageComponent = ({ id }) => {
               )}
               {!loadingComm && comments.length == 0 && (
                 <div>
-                  <div>Комментариев нет</div>
+                  <div><br/></div>
+                  <hr className="hr" />
                 </div>
               )}
               {!loadingComm && comments.length != 0 && (
@@ -386,7 +391,7 @@ const PostPageComponent = ({ id }) => {
                     {comments.map((item) => (
                       <div>
                         <li className="container" data-testid="comment">
-                          <h5>{item.user}</h5>
+                          <h5 className="userCom head" style={{fontSize: "22px"}}>{item.user}</h5>
                           <p>{item.comment}</p>
                         </li>
                         <hr className="hr" />

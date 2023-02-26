@@ -24,7 +24,18 @@
     margin-left: -30%;
   }
   .buttons {
-    margin: auto;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    .elementButton{
+      height: 60px;
+    }
+    .button{
+      width: 60%;
+      
+    }
+    
+
   }
   
 }

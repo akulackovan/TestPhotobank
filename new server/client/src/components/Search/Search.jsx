@@ -49,7 +49,8 @@ const Search = ({ id }) => {
                     href={`/profile/${item.id}`}
                     title={`Открыть профиль: ${item.username}`}
                   >
-                    <h5>{item.username}</h5>
+                    <h5 style={{overflowWrap: 'break-word'}}>{item.username}</h5>
+                    <hr className="hr"/>
                   </a>
                 </li>
               ))}
