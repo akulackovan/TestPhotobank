@@ -57,7 +57,7 @@ describe("SearchPage component", () => {
     await act(async () => {
       await new Promise((resolve) => setTimeout(resolve, 0));
     });
-    let user = screen.getByText("Запрос для поиска пустой");
+    let user = screen.getByText("Ничего не найдено");
     expect(user).toBeInTheDocument();
   });
 

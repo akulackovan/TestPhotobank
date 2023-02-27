@@ -95,7 +95,7 @@ export const login = async (req, res) => {
                 id: user._id,
             },
             "0a6b944d-d2fb-46fc-a85e-0295c986cd9f",
-            {expiresIn: "1h"},
+            {expiresIn: "3h"},
         )
         user.password = ""
 

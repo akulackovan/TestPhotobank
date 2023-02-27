@@ -134,7 +134,7 @@ describe("PegPage component test field", () => {
     fireEvent.change(password, { target: { value: wrongSymbols } });
     fireEvent.click(screen.getByText("Москва"));
     fireEvent.click(regButton);
-    expect(screen.getByText("Имя пользователя должно быть меньше 128 символов")).toBeInTheDocument();
+    expect(screen.getByText("Логин должен содержать до 128 символов")).toBeInTheDocument();
   });
 
   it("Should with error Username length more then 128 and password is correct and city is empty", () => {
@@ -190,7 +190,7 @@ describe("PegPage component test field", () => {
       fireEvent.change(password, { target: { value: wrongAnd128 } });
       fireEvent.click(screen.getByText("Москва"));
       fireEvent.click(regButton);
-      expect(screen.getByText("Имя пользователя должно содержать только символы русского и английского алфавита")).toBeInTheDocument();
+      expect(screen.getByText("Логин должен содержать только символы русского и английского алфавита")).toBeInTheDocument();
     });
 
     it("Should with error Username has wrong symbols and password is empty and city is empty", () => {
@@ -210,7 +210,7 @@ describe("PegPage component test field", () => {
       fireEvent.change(password, { target: { value: moreThe128 } });
       fireEvent.click(screen.getByText("Москва"));
       fireEvent.click(regButton);
-      expect(screen.getByText("Имя пользователя должно содержать только символы русского и английского алфавита")).toBeInTheDocument();
+      expect(screen.getByText("Логин должен содержать только символы русского и английского алфавита")).toBeInTheDocument();
     });
 
     //17
@@ -238,7 +238,7 @@ describe("PegPage component test field", () => {
       fireEvent.change(password, { target: { value: moreThe128 } });
       fireEvent.click(screen.getByText("Москва"));
       fireEvent.click(regButton);
-      expect(screen.getByText("Пароль должен быть меньше 128 символов")).toBeInTheDocument();
+      expect(screen.getByText("Пароль должен содержать до 128 символов")).toBeInTheDocument();
     });
 
     //20
@@ -258,7 +258,7 @@ describe("PegPage component test field", () => {
       fireEvent.change(password, { target: { value: wrongAnd128 } });
       fireEvent.click(screen.getByText("Москва"));
       fireEvent.click(regButton);
-      expect(screen.getByText("Имя пользователя должно содержать только символы русского и английского алфавита")).toBeInTheDocument();
+      expect(screen.getByText("Логин должен содержать только символы русского и английского алфавита")).toBeInTheDocument();
     });
 
     it("Should with error Username is uncorrect and password is empty and city is empty", () => {
@@ -285,7 +285,7 @@ describe("PegPage component test field", () => {
       fireEvent.change(password, { target: { value: wrongSymbols } });
       fireEvent.click(screen.getByText("Москва"));
       fireEvent.click(regButton);
-      expect(screen.getByText("Имя пользователя должно содержать только символы русского и английского алфавита")).toBeInTheDocument();
+      expect(screen.getByText("Логин должен содержать только символы русского и английского алфавита")).toBeInTheDocument();
     });
 
     it("Should with error Username is uncorrect and password has wrong symbols and city is empty", () => {
@@ -427,9 +427,9 @@ describe("PegPage username lenght", () => {
       expect(screen.getByText("Ошибка при авторизации")).toBeInTheDocument();
     });
 
-    it("Should not print error with 127 lenght username ", async () => {
+    it("Should not print error with 128 lenght username ", async () => {
       var user = "";
-    while (user.length < 127) user += "A";
+    while (user.length < 128) user += "A";
       fireEvent.change(username, { target: { value: user } });
       fireEvent.click(regButton);
       await act(async () => {
@@ -446,7 +446,7 @@ describe("PegPage username lenght", () => {
       await act(async () => {
         await new Promise((resolve) => setTimeout(resolve, 0));
       });
-      expect(screen.getByText("Имя пользователя должно быть меньше 128 символов")).toBeInTheDocument();
+      expect(screen.getByText("Логин должен содержать до 128 символов")).toBeInTheDocument();
     });
 });
 
@@ -512,9 +512,9 @@ describe("PegPage password lenght", () => {
       expect(screen.getByText("Ошибка при авторизации")).toBeInTheDocument();
     });
 
-    it("Should not print error with 127 lenght username ", async () => {
+    it("Should not print error with 128 lenght username ", async () => {
       var user = "";
-    while (user.length < 127) user += "A";
+    while (user.length < 128) user += "A";
       fireEvent.change(password, { target: { value: user } });
       fireEvent.click(regButton);
       await act(async () => {
@@ -531,7 +531,7 @@ describe("PegPage password lenght", () => {
       await act(async () => {
         await new Promise((resolve) => setTimeout(resolve, 0));
       });
-      expect(screen.getByText("Пароль должен быть меньше 128 символов")).toBeInTheDocument();
+      expect(screen.getByText("Пароль должен содержать до 128 символов")).toBeInTheDocument();
     });
 });
 

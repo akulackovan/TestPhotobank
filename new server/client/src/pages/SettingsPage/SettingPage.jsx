@@ -56,13 +56,13 @@ const SettingsPage = () => {
     var text = document.getElementById("text").value
     if (username != "" && !username.match(/^[A-Za-zА-Яа-я]+$/)) {
       setErrorMessage(
-        "Имя пользователя должно содержать только символы русского и английского алфавита"
+        "Логин должен содержать только символы русского и английского алфавита"
       );
       setTimeout(() => setErrorMessage(""), 2000);
       return;
     }
     if (!(username.length <= 128)) {
-      setErrorMessage("Имя пользователя должно быть меньше 128 символов");
+      setErrorMessage("Логин должен содержать до 128 символов");
       setTimeout(() => setErrorMessage(""), 2000);
       return;
     }
@@ -90,14 +90,19 @@ const SettingsPage = () => {
     }
     if (newpass != "" && !newpass.match(/^[A-Za-zА-Яа-я]+$/)) {
       setErrorMessage(
-        "Пароль должен содержать только символы русского и английского алфавита"
+        "Новый пароль должен содержать только символы русского и английского алфавита"
       );
       setTimeout(() => setErrorMessage(""), 2000);
       return;
     }
     
     if (!(newpass.length <= 128)) {
-      setErrorMessage("Пароль должен быть меньше 128 символов");
+      setErrorMessage("Новый пароль должен содержать до 128 символов");
+      setTimeout(() => setErrorMessage(""), 2000);
+      return;
+    }
+    if (!(password.length <= 128)) {
+      setErrorMessage("Пароль должен содержать до 128 символов");
       setTimeout(() => setErrorMessage(""), 2000);
       return;
     }
@@ -111,7 +116,7 @@ const SettingsPage = () => {
       setTimeout(() => setErrorMessage(""), 2000);
       return;
     }
-    if (!(text.length < 512)) {
+    if (!(text.length <= 512)) {
       setErrorMessage("\"Описание пользователя\" должно содержать не более 512 символов");
       setTimeout(() => setErrorMessage(""), 2000);
       return;

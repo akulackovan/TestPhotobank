@@ -255,7 +255,7 @@ describe("SettingsPage Error Message", () => {
     const saveButton = screen.getByText("СОХРАНИТЬ");
     expect(saveButton).toBeInTheDocument()
     fireEvent.click(saveButton)
-    const msg = screen.queryByText("Имя пользователя должно содержать только символы русского и английского алфавита");
+    const msg = screen.queryByText("Логин должен содержать только символы русского и английского алфавита");
 
     expect(msg).toBeInTheDocument()
     screen.debug();
@@ -272,7 +272,7 @@ describe("SettingsPage Error Message", () => {
     const saveButton = screen.getByText("СОХРАНИТЬ");
     expect(saveButton).toBeInTheDocument()
     fireEvent.click(saveButton)
-    const msg = screen.queryByText("Имя пользователя должно быть меньше 128 символов");
+    const msg = screen.queryByText("Логин должен содержать до 128 символов");
 
     expect(msg).toBeInTheDocument()
     screen.debug();
@@ -341,14 +341,14 @@ describe("SettingsPage Error Message", () => {
     const saveButton = screen.getByText("СОХРАНИТЬ");
     expect(saveButton).toBeInTheDocument()
     fireEvent.click(saveButton)
-    const msg = screen.queryByText("Пароль должен содержать только символы русского и английского алфавита");
+    const msg = screen.queryByText("Новый пароль должен содержать только символы русского и английского алфавита");
 
     expect(msg).toBeInTheDocument()
     screen.debug();
   })
 
   it("Checking password more than 128 symbols", async () => {
-    const moreThe128 = "fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+    const moreThe128 = "ццццццццццццццццццццццццццццццццццццццццццццццццццццццццццццццццццццццццццццццццццццццццццццццццццццццццццццццццццццццццццццццццц"
     screen.debug();
     expect(screen.queryByTestId("error")).toBeNull();
     const oldPassword = screen.getByPlaceholderText("Cтарый пароль");
@@ -363,7 +363,7 @@ describe("SettingsPage Error Message", () => {
     const saveButton = screen.getByText("СОХРАНИТЬ");
     expect(saveButton).toBeInTheDocument()
     fireEvent.click(saveButton)
-    const msg = screen.queryByText("Пароль должен быть меньше 128 символов");
+    const msg = screen.queryByText("Новый пароль должен содержать до 128 символов");
 
     expect(msg).toBeInTheDocument()
     screen.debug();

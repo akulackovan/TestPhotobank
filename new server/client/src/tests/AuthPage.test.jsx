@@ -191,7 +191,7 @@ describe("AuthPage Error Message", () => {
     const loginButton = screen.getByTestId("login-button");
     fireEvent.click(loginButton);
     const error = screen.getByText(
-      "Имя пользователя должно содержать только символы русского и английского алфавита"
+      "Логин должен содержать только символы русского и английского алфавита"
     );
     expect(error).toBeInTheDocument();
     screen.debug();
@@ -222,7 +222,7 @@ describe("AuthPage Error Message", () => {
     const loginButton = screen.getByTestId("login-button");
     fireEvent.click(loginButton);
     const error = screen.getByText(
-      "Имя пользователя должно быть меньше 128 символов"
+      "Логин должен содержать до 128 символов"
     );
     expect(error).toBeInTheDocument();
     screen.debug();
@@ -249,7 +249,7 @@ describe("AuthPage Error Message", () => {
     const loginButton = screen.getByTestId("login-button");
     fireEvent.click(loginButton);
     const error = screen.getByText(
-      "Имя пользователя должно содержать только символы русского и английского алфавита"
+      "Логин должен содержать только символы русского и английского алфавита"
     );
     expect(error).toBeInTheDocument();
     screen.debug();
@@ -280,7 +280,7 @@ describe("AuthPage Error Message", () => {
     const loginButton = screen.getByTestId("login-button");
     fireEvent.click(loginButton);
     const error = screen.getByText(
-      "Имя пользователя должно быть меньше 128 символов"
+      "Логин должен содержать до 128 символов"
     );
     expect(error).toBeInTheDocument();
     screen.debug();
@@ -310,7 +310,7 @@ describe("AuthPage Error Message", () => {
     expect(username.value === "test").toBe(true);
     const loginButton = screen.getByTestId("login-button");
     fireEvent.click(loginButton);
-    const error = screen.getByText("Пароль должен быть меньше 128 символов");
+    const error = screen.getByText("Пароль должен содержать до 128 символов");
     expect(error).toBeInTheDocument();
     screen.debug();
   });
@@ -386,7 +386,7 @@ describe("AuthPage Error Message", () => {
       const loginButton = screen.getByTestId("login-button");
       fireEvent.click(loginButton);
       const error = screen.getByText(
-        "Имя пользователя должно быть меньше 128 символов"
+        "Логин должен содержать до 128 символов"
       );
       expect(error).toBeInTheDocument();
       screen.debug();
@@ -411,7 +411,7 @@ describe("AuthPage Error Message", () => {
           const loginButton = screen.getByTestId("login-button");
           fireEvent.click(loginButton);
           const error = screen.getByText(
-            "Имя пользователя должно быть меньше 128 символов"
+            "Логин должен содержать до 128 символов"
           );
           expect(error).toBeInTheDocument();
           screen.debug();
@@ -460,7 +460,7 @@ describe("AuthPage Error Message", () => {
           const loginButton = screen.getByTestId("login-button");
           fireEvent.click(loginButton);
           const error = screen.getByText(
-            "Имя пользователя должно содержать только символы русского и английского алфавита"
+            "Логин должен содержать только символы русского и английского алфавита"
             );
           expect(error).toBeInTheDocument();
           screen.debug();
@@ -485,7 +485,7 @@ describe("AuthPage Error Message", () => {
           const loginButton = screen.getByTestId("login-button");
           fireEvent.click(loginButton);
           const error = screen.getByText(
-            "Имя пользователя должно содержать только символы русского и английского алфавита"
+            "Логин должен содержать только символы русского и английского алфавита"
             );
           expect(error).toBeInTheDocument();
           screen.debug();
@@ -586,7 +586,7 @@ describe("AuthPage Error Message", () => {
           const loginButton = screen.getByTestId("login-button");
           fireEvent.click(loginButton);
           const error = screen.getByText(
-            "Имя пользователя должно содержать только символы русского и английского алфавита"
+            "Логин должен содержать только символы русского и английского алфавита"
       
       );
           expect(error).toBeInTheDocument();
@@ -612,7 +612,7 @@ describe("AuthPage Error Message", () => {
           const loginButton = screen.getByTestId("login-button");
           fireEvent.click(loginButton);
           const error = screen.getByText(
-            "Имя пользователя должно содержать только символы русского и английского алфавита"
+            "Логин должен содержать только символы русского и английского алфавита"
       
       );
           expect(error).toBeInTheDocument();
@@ -638,7 +638,7 @@ describe("AuthPage Error Message", () => {
           const loginButton = screen.getByTestId("login-button");
           fireEvent.click(loginButton);
           const error = screen.getByText(
-            "Имя пользователя должно содержать только символы русского и английского алфавита"
+            "Логин должен содержать только символы русского и английского алфавита"
       
       );
           expect(error).toBeInTheDocument();
@@ -664,7 +664,7 @@ describe("AuthPage Error Message", () => {
           const loginButton = screen.getByTestId("login-button");
           fireEvent.click(loginButton);
           const error = screen.getByText(
-            "Имя пользователя должно содержать только символы русского и английского алфавита"
+            "Логин должен содержать только символы русского и английского алфавита"
       
       );
           expect(error).toBeInTheDocument();
@@ -776,9 +776,9 @@ describe("AuthPage username lenght", () => {
       expect(screen.getByText("Ошибка при авторизации")).toBeInTheDocument();
     });
 
-    it("Should not print error with 127 lenght username ", async () => {
+    it("Should not print error with 128 lenght username ", async () => {
       var user = "";
-    while (user.length < 127) user += "A";
+    while (user.length < 128) user += "A";
       fireEvent.change(username, { target: { value: user } });
       fireEvent.click(regButton);
       await act(async () => {
@@ -795,7 +795,7 @@ describe("AuthPage username lenght", () => {
       await act(async () => {
         await new Promise((resolve) => setTimeout(resolve, 0));
       });
-      expect(screen.getByText("Имя пользователя должно быть меньше 128 символов")).toBeInTheDocument();
+      expect(screen.getByText("Логин должен содержать до 128 символов")).toBeInTheDocument();
     });
 });
 
@@ -857,9 +857,9 @@ describe("AuthPage password lenght", () => {
       expect(screen.getByText("Ошибка при авторизации")).toBeInTheDocument();
     });
 
-    it("Should not print error with 127 lenght username ", async () => {
+    it("Should not print error with 128 lenght username ", async () => {
       var user = "";
-    while (user.length < 127) user += "A";
+    while (user.length < 128) user += "A";
       fireEvent.change(password, { target: { value: user } });
       fireEvent.click(regButton);
       await act(async () => {
@@ -876,7 +876,7 @@ describe("AuthPage password lenght", () => {
       await act(async () => {
         await new Promise((resolve) => setTimeout(resolve, 0));
       });
-      expect(screen.getByText("Пароль должен быть меньше 128 символов")).toBeInTheDocument();
+      expect(screen.getByText("Пароль должен содержать до 128 символов")).toBeInTheDocument();
     });
 });
 

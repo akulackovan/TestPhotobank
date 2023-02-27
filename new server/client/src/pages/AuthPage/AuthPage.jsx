@@ -34,13 +34,13 @@ const AuthPage = () => {
     }
     if (!username.match(/^[A-Za-zА-Яа-яЁё]+$/)) {
       setErrorMessage(
-        "Имя пользователя должно содержать только символы русского и английского алфавита"
+        "Логин должен содержать только символы русского и английского алфавита"
       );
       setTimeout(() => setErrorMessage(""), 5000);
       return;
     }
-    if (!(username.length < 128)) {
-      setErrorMessage("Имя пользователя должно быть меньше 128 символов");
+    if (!(username.length <= 128)) {
+      setErrorMessage("Логин должен содержать до 128 символов");
       setTimeout(() => setErrorMessage(""), 5000);
       return;
     }
@@ -51,8 +51,8 @@ const AuthPage = () => {
       setTimeout(() => setErrorMessage(""), 5000);
       return;
     }
-    if (!(password.length < 128)) {
-      setErrorMessage("Пароль должен быть меньше 128 символов");
+    if (!(password.length <= 128)) {
+      setErrorMessage("Пароль должен содержать до 128 символов");
       setTimeout(() => setErrorMessage(""), 5000);
       return;
     }
