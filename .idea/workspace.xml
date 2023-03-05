@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:akulackovan-tests" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="d7845c77-1760-40f2-a5de-a0d003cdf23a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/new server/client/src/components/CityCombobox/CityCombobox.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/new server/client/src/components/CityCombobox/CityCombobox.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new server/client/src/pages/AddPostPAge/AddPostPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/new server/client/src/pages/AddPostPAge/AddPostPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new server/client/src/pages/SettingsPage/SettingPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/new server/client/src/pages/SettingsPage/SettingPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new server/client/src/pages/SettingsPage/SettingsPage.scss" beforeDir="false" afterPath="$PROJECT_DIR$/new server/client/src/pages/SettingsPage/SettingsPage.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new server/coverage/clover.xml" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/clover.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new server/coverage/coverage-final.json" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/coverage-final.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/components/ErrorMessage/ErrorMessage.jsx.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/components/ErrorMessage/ErrorMessage.jsx.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/components/ErrorMessage/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/components/ErrorMessage/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/context/AuthContext.js.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/context/AuthContext.js.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/context/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/context/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/pages/AuthPage/AuthPage.jsx.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/pages/AuthPage/AuthPage.jsx.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov-report/pages/AuthPage/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov-report/pages/AuthPage/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new server/coverage/lcov.info" beforeDir="false" afterPath="$PROJECT_DIR$/new server/coverage/lcov.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new server/utils/checkAuth.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new server/utils/getCity.js" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2020.2.2\plugins\maven\lib\maven3" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2LUsA7c2azvDSLGTJpyHJPkZLwR" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="exceleditor.install" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/new server" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d7845c77-1760-40f2-a5de-a0d003cdf23a" name="Default Changelist" comment="" />
+      <created>1675936848802</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1675936848802</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="akulackovan-tests" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="0" y="183" width="847" height="691" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1676049924798">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="0" y="183" width="847" height="691" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1676049924798" />
+    <state x="92" y="92" width="1736" height="866" key="DiffContextDialog" timestamp="1675949588766">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="92" y="92" width="1736" height="866" key="DiffContextDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1675949588766" />
+    <state x="260" y="283" key="FileChooserDialogImpl" timestamp="1676049939001">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="260" y="283" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1676049939001" />
+  </component>
+</project>
