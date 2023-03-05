@@ -47,7 +47,7 @@ describe('AnotherPage', () => {
         const userId = "test-user-id";
         axios.mockRejectedValueOnce({
             response: {
-              data: { message: "Ошибка при получении пользователя" },
+              data: { message: "Нет доступа" },
               status: 400,
             },
           });
@@ -60,7 +60,7 @@ describe('AnotherPage', () => {
         expect(loading).toBeInTheDocument();
         await act(async () => {
             await new Promise((resolve) => setTimeout(resolve, 0));
-          }); 
+        }); 
         // add data-testid="another-page" to the div element that wraps the AnotherPage component in the ProfilePage component to be able to test it with getByTestId.
         expect(screen.getByTestId("Profile")).toBeInTheDocument();
     });

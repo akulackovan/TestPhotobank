@@ -34,8 +34,6 @@ describe("SearchPage component", () => {
       await new Promise((resolve) => setTimeout(resolve, 0));
     });
     
-    let head = screen.getByText("По запросу \"test\" найдено:");
-    expect(head).toBeInTheDocument();
     let user = screen.getByText("test1");
     expect(user).toBeInTheDocument();
     let searchUser = screen.getAllByTestId("searchUser");
@@ -75,8 +73,6 @@ describe("SearchPage component", () => {
     await act(async () => {
       await new Promise((resolve) => setTimeout(resolve, 0));
     });
-    let head = screen.getByText("По запросу \"1234\" найдено:");
-    expect(head).toBeInTheDocument();
     let user = screen.getByText("Ничего не найдено");
     expect(user).toBeInTheDocument();
   });

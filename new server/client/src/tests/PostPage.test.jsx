@@ -67,6 +67,7 @@ describe("PostPage component start render", () => {
     await expect(axios).toHaveBeenCalledTimes(1);
     const error = screen.getByText("Ошибка при добавлении просмотра");
     expect(error).toBeInTheDocument();
+    
   });
 
   it("Shoud print error message from get post by id", async () => {
@@ -195,6 +196,7 @@ describe("PostPage component start render", () => {
       },
     });
     await expect(axios.get).not.toHaveBeenCalledWith();
+    await expect(axios).toHaveBeenCalledTimes(3);
   });
 
   it("Shoud print error message from get post comment", async () => {
@@ -278,6 +280,7 @@ describe("PostPage component start render", () => {
       },
     });
     await expect(axios.get).not.toHaveBeenCalledWith();
+    await expect(axios).toHaveBeenCalledTimes(4);
   });
 
   it("Shoud print error message from get post like", async () => {
@@ -350,6 +353,7 @@ describe("PostPage component start render", () => {
       },
     });
     await expect(axios.get).not.toHaveBeenCalledWith();
+    await expect(axios).toHaveBeenCalledTimes(3);
   });
 
   it("Shoud get all for post", async () => {
@@ -449,6 +453,7 @@ describe("PostPage component start render", () => {
     expect(screen.getByTestId("text")).toBeInTheDocument()
     expect(screen.getByTestId("numlike")).toBeInTheDocument()
     expect(screen.getByTestId("view")).toBeInTheDocument()
+    await expect(axios).toHaveBeenCalledTimes(4);
   });
 });
 
@@ -554,10 +559,35 @@ describe("PostPage comments render", () => {
     const comments = screen.getAllByTestId("comment");
     expect(comments).toBeDefined();
     expect(comments).toHaveLength(2);
+    await expect(axios).toHaveBeenCalledTimes(4);
   });
 });
 
 describe("PostPage comments write", () => {
+
+  it("Shoud print error message with 0 comments", async () => {
+    var comment = "1";
+    expect(comment).toHaveLength(1);
+    let comments = screen.getAllByTestId("comment");
+    const length = comments.length;
+    expect(comments).toHaveLength(2);
+    const commentInput = screen.getByTestId("commentInput");
+    fireEvent.change(commentInput, { target: { value: comment } });
+    axios.mockResolvedValueOnce({
+      data: { newComment: { user: "test", comment: comment } },
+      status: 200,
+    });
+    fireEvent.click(screen.getByText("ОПУБЛИКОВАТЬ"));
+    await act(async () => {
+      await new Promise((resolve) => setTimeout(resolve, 0));
+    });
+    expect(screen.getByText("test"));
+    comments = screen.getAllByTestId("comment");
+    expect(comments).toHaveLength(length + 1);
+    screen.debug();
+  });
+
+
   beforeEach(async () => {
     const { userId } = jest.fn();
     screen.debug();
@@ -653,27 +683,7 @@ describe("PostPage comments write", () => {
     screen.debug();
   });
 
-  it("Shoud print error message with 1 length comments", async () => {
-    var comment = "1";
-    expect(comment).toHaveLength(1);
-    let comments = screen.getAllByTestId("comment");
-    const length = comments.length;
-    expect(comments).toHaveLength(2);
-    const commentInput = screen.getByTestId("commentInput");
-    fireEvent.change(commentInput, { target: { value: comment } });
-    axios.mockResolvedValueOnce({
-      data: { newComment: { user: "test", comment: comment } },
-      status: 200,
-    });
-    fireEvent.click(screen.getByText("ОПУБЛИКОВАТЬ"));
-    await act(async () => {
-      await new Promise((resolve) => setTimeout(resolve, 0));
-    });
-    expect(screen.getByText("test"));
-    comments = screen.getAllByTestId("comment");
-    expect(comments).toHaveLength(length + 1);
-    screen.debug();
-  });
+  
 
   it("Shoud add comment with 127 length comments", async () => {
     var comment = "";
@@ -737,7 +747,7 @@ describe("PostPage comments write", () => {
   });
 });
 
-describe("PostPage comments write", () => {
+describe("PostPage like", () => {
   beforeEach(async () => {});
 
   it("Shoud print error message from change like", async () => {

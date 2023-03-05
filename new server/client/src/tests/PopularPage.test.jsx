@@ -52,6 +52,7 @@ describe("PopularPage", () => {
           });
         expect(screen.getAllByTitle("Открыть пост")).toHaveLength(2);
         expect(screen.getByText("Фотографии закончились")).toBeInTheDocument();
+        await expect(axios).toHaveBeenCalledTimes(1);
     });
 
     it("renders error message when API call fails", async () => {
@@ -67,6 +68,7 @@ describe("PopularPage", () => {
         await screen.findByText(mockErrorMessage);
         expect(screen.getByText(mockErrorMessage)).toBeInTheDocument();
         expect(screen.queryByAltText("Открыть пост")).not.toBeInTheDocument();
+        await expect(axios).toHaveBeenCalledTimes(1);
     });
 
     it("renders 'Нет постов' message when post array is empty", async () => {
@@ -87,5 +89,6 @@ describe("PopularPage", () => {
         await screen.findByText("Нет постов");
         expect(screen.getByText("Нет постов")).toBeInTheDocument();
         expect(screen.queryByText("Фотографии закончились")).not.toBeInTheDocument();
+        await expect(axios).toHaveBeenCalledTimes(1);
     });
 });

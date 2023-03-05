@@ -221,9 +221,7 @@ describe("AuthPage Error Message", () => {
     expect(password.value === "test").toBe(true);
     const loginButton = screen.getByTestId("login-button");
     fireEvent.click(loginButton);
-    const error = screen.getByText(
-      "Логин должен содержать до 128 символов"
-    );
+    const error = screen.getByText("Логин должен содержать до 128 символов");
     expect(error).toBeInTheDocument();
     screen.debug();
   });
@@ -279,9 +277,7 @@ describe("AuthPage Error Message", () => {
     expect(password.value === "123").toBe(true);
     const loginButton = screen.getByTestId("login-button");
     fireEvent.click(loginButton);
-    const error = screen.getByText(
-      "Логин должен содержать до 128 символов"
-    );
+    const error = screen.getByText("Логин должен содержать до 128 символов");
     expect(error).toBeInTheDocument();
     screen.debug();
   });
@@ -354,322 +350,381 @@ describe("AuthPage Error Message", () => {
     screen.debug();
     expect(screen.queryByTestId("error")).toBeNull();
     const password = screen.getByPlaceholderText("Пароль");
-    fireEvent.change(password, { target: { value: "123reeeeeeeeeee232rdsgggggdgggggggggggggggggggggggggddddddddddddddddddddddddddddddddddddddddddssssssssssssssss" } });
+    fireEvent.change(password, {
+      target: {
+        value:
+          "123reeeeeeeeeee232rdsgggggdgggggggggggggggggggggggggddddddddddddddddddddddddddddddddddddddddddssssssssssssssss",
+      },
+    });
     const username = screen.getByPlaceholderText("Логин");
     fireEvent.change(username, { target: { value: "" } });
     expect(username.value === "").toBe(true);
     const loginButton = screen.getByTestId("login-button");
     fireEvent.click(loginButton);
+    const error = screen.getByText("Заполнены не все поля");
+    expect(error).toBeInTheDocument();
+    screen.debug();
+  });
+
+  //7
+  it("Should have error with empty username but password has wrong symbols and length", async () => {
+    const { login, logout, token, userId, isReady, isLogin } = jest.fn();
+    render(
+      <AuthContext.Provider
+        value={{ login, logout, token, userId, isReady, isLogin }}
+      >
+        <AuthPage />
+      </AuthContext.Provider>
+    );
+    screen.debug();
+    expect(screen.queryByTestId("error")).toBeNull();
+    const password = screen.getByPlaceholderText("Пароль");
+    fireEvent.change(password, {
+      target: {
+        value:
+          "роооооооооооооооооооооооооооооооооооооооооооооооrdsgggggdgggggggggggggggggggggggggddddddddddddddddddddddddddddddddddddddddddssssssssssssssss",
+      },
+    });
+    const username = screen.getByPlaceholderText("Логин");
+    fireEvent.change(username, {
+      target: {
+        value:
+          "ооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооо",
+      },
+    });
+    const loginButton = screen.getByTestId("login-button");
+    fireEvent.click(loginButton);
+    const error = screen.getByText("Логин должен содержать до 128 символов");
+    expect(error).toBeInTheDocument();
+    screen.debug();
+  });
+
+  //10
+  it("Should have error with 128 lenght username but password has wrong length", async () => {
+    const { login, logout, token, userId, isReady, isLogin } = jest.fn();
+    render(
+      <AuthContext.Provider
+        value={{ login, logout, token, userId, isReady, isLogin }}
+      >
+        <AuthPage />
+      </AuthContext.Provider>
+    );
+    screen.debug();
+    expect(screen.queryByTestId("error")).toBeNull();
+    const password = screen.getByPlaceholderText("Пароль");
+    fireEvent.change(password, {
+      target: {
+        value:
+          "роооооооооооооооооооооооооооооооооооооооооооооооrdsgggggdgggggggggggggggggggggggggddddddddddddddddddddddddddddddddddddddddddssssssssssssssss",
+      },
+    });
+    const username = screen.getByPlaceholderText("Логин");
+    fireEvent.change(username, {
+      target: {
+        value:
+          "ооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооо",
+      },
+    });
+    const loginButton = screen.getByTestId("login-button");
+    fireEvent.click(loginButton);
+    const error = screen.getByText("Логин должен содержать до 128 символов");
+    expect(error).toBeInTheDocument();
+    screen.debug();
+  });
+
+  //11
+  it("Should have error with uncorrect symbols username but password is empty", async () => {
+    const { login, logout, token, userId, isReady, isLogin } = jest.fn();
+    render(
+      <AuthContext.Provider
+        value={{ login, logout, token, userId, isReady, isLogin }}
+      >
+        <AuthPage />
+      </AuthContext.Provider>
+    );
+    screen.debug();
+    expect(screen.queryByTestId("error")).toBeNull();
+    const password = screen.getByPlaceholderText("Пароль");
+    fireEvent.change(password, { target: { value: "" } });
+    const username = screen.getByPlaceholderText("Логин");
+    fireEvent.change(username, { target: { value: "122" } });
+    const loginButton = screen.getByTestId("login-button");
+    fireEvent.click(loginButton);
+    const error = screen.getByText("Заполнены не все поля");
+    expect(error).toBeInTheDocument();
+    screen.debug();
+  });
+
+  //12
+  it("Should have error with uncorrect symbols username but password has wrong lenght", async () => {
+    const { login, logout, token, userId, isReady, isLogin } = jest.fn();
+    render(
+      <AuthContext.Provider
+        value={{ login, logout, token, userId, isReady, isLogin }}
+      >
+        <AuthPage />
+      </AuthContext.Provider>
+    );
+    screen.debug();
+    expect(screen.queryByTestId("error")).toBeNull();
+    const password = screen.getByPlaceholderText("Пароль");
+    fireEvent.change(password, {
+      target: {
+        value:
+          "ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss",
+      },
+    });
+    const username = screen.getByPlaceholderText("Логин");
+    fireEvent.change(username, { target: { value: "122" } });
+    const loginButton = screen.getByTestId("login-button");
+    fireEvent.click(loginButton);
     const error = screen.getByText(
-      "Заполнены не все поля"
+      "Логин должен содержать только символы русского и английского алфавита"
     );
     expect(error).toBeInTheDocument();
     screen.debug();
   });
 
-    //7
-    it("Should have error with empty username but password has wrong symbols and length", async () => {
-      const { login, logout, token, userId, isReady, isLogin } = jest.fn();
-      render(
-        <AuthContext.Provider
-          value={{ login, logout, token, userId, isReady, isLogin }}
-        >
-          <AuthPage />
-        </AuthContext.Provider>
-      );
-      screen.debug();
-      expect(screen.queryByTestId("error")).toBeNull();
-      const password = screen.getByPlaceholderText("Пароль");
-      fireEvent.change(password, { target: { value: "роооооооооооооооооооооооооооооооооооооооооооооооrdsgggggdgggggggggggggggggggggggggddddddddddddddddddddddddddddddddddddddddddssssssssssssssss" } });
-      const username = screen.getByPlaceholderText("Логин");
-      fireEvent.change(username, { target: { value: "ооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооо" } });
-      const loginButton = screen.getByTestId("login-button");
-      fireEvent.click(loginButton);
-      const error = screen.getByText(
-        "Логин должен содержать до 128 символов"
-      );
-      expect(error).toBeInTheDocument();
-      screen.debug();
+  //15
+  it("Should have error with uncorrect symbols username but password has wrong lenght and symbols", async () => {
+    const { login, logout, token, userId, isReady, isLogin } = jest.fn();
+    render(
+      <AuthContext.Provider
+        value={{ login, logout, token, userId, isReady, isLogin }}
+      >
+        <AuthPage />
+      </AuthContext.Provider>
+    );
+    screen.debug();
+    expect(screen.queryByTestId("error")).toBeNull();
+    const password = screen.getByPlaceholderText("Пароль");
+    fireEvent.change(password, {
+      target: {
+        value:
+          "sssssssssswe34343ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss",
+      },
     });
+    const username = screen.getByPlaceholderText("Логин");
+    fireEvent.change(username, { target: { value: "122" } });
+    const loginButton = screen.getByTestId("login-button");
+    fireEvent.click(loginButton);
+    const error = screen.getByText(
+      "Логин должен содержать только символы русского и английского алфавита"
+    );
+    expect(error).toBeInTheDocument();
+    screen.debug();
+  });
 
-        //10
-        it("Should have error with 128 lenght username but password has wrong length", async () => {
-          const { login, logout, token, userId, isReady, isLogin } = jest.fn();
-          render(
-            <AuthContext.Provider
-              value={{ login, logout, token, userId, isReady, isLogin }}
-            >
-              <AuthPage />
-            </AuthContext.Provider>
-          );
-          screen.debug();
-          expect(screen.queryByTestId("error")).toBeNull();
-          const password = screen.getByPlaceholderText("Пароль");
-          fireEvent.change(password, { target: { value: "роооооооооооооооооооооооооооооооооооооооооооооооrdsgggggdgggggggggggggggggggggggggddddddddddddddddddddddddddddddddddddddddddssssssssssssssss" } });
-          const username = screen.getByPlaceholderText("Логин");
-          fireEvent.change(username, { target: { value: "ооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооо" } });
-          const loginButton = screen.getByTestId("login-button");
-          fireEvent.click(loginButton);
-          const error = screen.getByText(
-            "Логин должен содержать до 128 символов"
-          );
-          expect(error).toBeInTheDocument();
-          screen.debug();
-        });
+  //16
+  it("Should have error with correct username but password is empty", async () => {
+    const { login, logout, token, userId, isReady, isLogin } = jest.fn();
+    render(
+      <AuthContext.Provider
+        value={{ login, logout, token, userId, isReady, isLogin }}
+      >
+        <AuthPage />
+      </AuthContext.Provider>
+    );
+    screen.debug();
+    expect(screen.queryByTestId("error")).toBeNull();
+    const password = screen.getByPlaceholderText("Пароль");
+    fireEvent.change(password, { target: { value: "" } });
+    const username = screen.getByPlaceholderText("Логин");
+    fireEvent.change(username, { target: { value: "122" } });
+    const loginButton = screen.getByTestId("login-button");
+    fireEvent.click(loginButton);
+    const error = screen.getByText("Заполнены не все поля");
+    expect(error).toBeInTheDocument();
+    screen.debug();
+  });
 
-        //11
-        it("Should have error with uncorrect symbols username but password is empty", async () => {
-          const { login, logout, token, userId, isReady, isLogin } = jest.fn();
-          render(
-            <AuthContext.Provider
-              value={{ login, logout, token, userId, isReady, isLogin }}
-            >
-              <AuthPage />
-            </AuthContext.Provider>
-          );
-          screen.debug();
-          expect(screen.queryByTestId("error")).toBeNull();
-          const password = screen.getByPlaceholderText("Пароль");
-          fireEvent.change(password, { target: { value: "" } });
-          const username = screen.getByPlaceholderText("Логин");
-          fireEvent.change(username, { target: { value: "122" } });
-          const loginButton = screen.getByTestId("login-button");
-          fireEvent.click(loginButton);
-          const error = screen.getByText(
-            "Заполнены не все поля");
-          expect(error).toBeInTheDocument();
-          screen.debug();
-        });
+  //20
+  it("Should have error with correct username but password has wrong lenght and symbols", async () => {
+    const { login, logout, token, userId, isReady, isLogin } = jest.fn();
+    render(
+      <AuthContext.Provider
+        value={{ login, logout, token, userId, isReady, isLogin }}
+      >
+        <AuthPage />
+      </AuthContext.Provider>
+    );
+    screen.debug();
+    expect(screen.queryByTestId("error")).toBeNull();
+    const password = screen.getByPlaceholderText("Пароль");
+    fireEvent.change(password, {
+      target: {
+        value:
+          "выыыыы2444444444444444ооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооо",
+      },
+    });
+    const username = screen.getByPlaceholderText("Логин");
+    fireEvent.change(username, { target: { value: "test" } });
+    const loginButton = screen.getByTestId("login-button");
+    fireEvent.click(loginButton);
+    const error = screen.getByText(
+      "Пароль должен содержать только символы русского и английского алфавита"
+    );
+    expect(error).toBeInTheDocument();
+    screen.debug();
+  });
 
-         //12
-         it("Should have error with uncorrect symbols username but password has wrong lenght", async () => {
-          const { login, logout, token, userId, isReady, isLogin } = jest.fn();
-          render(
-            <AuthContext.Provider
-              value={{ login, logout, token, userId, isReady, isLogin }}
-            >
-              <AuthPage />
-            </AuthContext.Provider>
-          );
-          screen.debug();
-          expect(screen.queryByTestId("error")).toBeNull();
-          const password = screen.getByPlaceholderText("Пароль");
-          fireEvent.change(password, { target: { value: "ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss" } });
-          const username = screen.getByPlaceholderText("Логин");
-          fireEvent.change(username, { target: { value: "122" } });
-          const loginButton = screen.getByTestId("login-button");
-          fireEvent.click(loginButton);
-          const error = screen.getByText(
-            "Логин должен содержать только символы русского и английского алфавита"
-            );
-          expect(error).toBeInTheDocument();
-          screen.debug();
-        });
+  //21
+  it("Should have error with uncorrect username but password is empty", async () => {
+    const { login, logout, token, userId, isReady, isLogin } = jest.fn();
+    render(
+      <AuthContext.Provider
+        value={{ login, logout, token, userId, isReady, isLogin }}
+      >
+        <AuthPage />
+      </AuthContext.Provider>
+    );
+    screen.debug();
+    expect(screen.queryByTestId("error")).toBeNull();
+    const password = screen.getByPlaceholderText("Пароль");
+    fireEvent.change(password, { target: { value: "" } });
+    const username = screen.getByPlaceholderText("Логин");
+    fireEvent.change(username, {
+      target: {
+        value:
+          "выыыыы2444444444444444ооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооо",
+      },
+    });
+    const loginButton = screen.getByTestId("login-button");
+    fireEvent.click(loginButton);
+    const error = screen.getByText("Заполнены не все поля");
+    expect(error).toBeInTheDocument();
+    screen.debug();
+  });
 
-        //15
-        it("Should have error with uncorrect symbols username but password has wrong lenght and symbols", async () => {
-          const { login, logout, token, userId, isReady, isLogin } = jest.fn();
-          render(
-            <AuthContext.Provider
-              value={{ login, logout, token, userId, isReady, isLogin }}
-            >
-              <AuthPage />
-            </AuthContext.Provider>
-          );
-          screen.debug();
-          expect(screen.queryByTestId("error")).toBeNull();
-          const password = screen.getByPlaceholderText("Пароль");
-          fireEvent.change(password, { target: { value: "sssssssssswe34343ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss" } });
-          const username = screen.getByPlaceholderText("Логин");
-          fireEvent.change(username, { target: { value: "122" } });
-          const loginButton = screen.getByTestId("login-button");
-          fireEvent.click(loginButton);
-          const error = screen.getByText(
-            "Логин должен содержать только символы русского и английского алфавита"
-            );
-          expect(error).toBeInTheDocument();
-          screen.debug();
-        });
+  //22
+  it("Should have error with uncorrect username but password has wrong length", async () => {
+    const { login, logout, token, userId, isReady, isLogin } = jest.fn();
+    render(
+      <AuthContext.Provider
+        value={{ login, logout, token, userId, isReady, isLogin }}
+      >
+        <AuthPage />
+      </AuthContext.Provider>
+    );
+    screen.debug();
+    expect(screen.queryByTestId("error")).toBeNull();
+    const password = screen.getByPlaceholderText("Пароль");
+    fireEvent.change(password, {
+      target: {
+        value:
+          "ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss",
+      },
+    });
+    const username = screen.getByPlaceholderText("Логин");
+    fireEvent.change(username, {
+      target: {
+        value:
+          "выыыыы2444444444444444ооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооо",
+      },
+    });
+    const loginButton = screen.getByTestId("login-button");
+    fireEvent.click(loginButton);
+    const error = screen.getByText(
+      "Логин должен содержать только символы русского и английского алфавита"
+    );
+    expect(error).toBeInTheDocument();
+    screen.debug();
+  });
 
+  //23
+  it("Should have error with uncorrect username but password has wrong symbols", async () => {
+    const { login, logout, token, userId, isReady, isLogin } = jest.fn();
+    render(
+      <AuthContext.Provider
+        value={{ login, logout, token, userId, isReady, isLogin }}
+      >
+        <AuthPage />
+      </AuthContext.Provider>
+    );
+    screen.debug();
+    expect(screen.queryByTestId("error")).toBeNull();
+    const password = screen.getByPlaceholderText("Пароль");
+    fireEvent.change(password, { target: { value: "12121" } });
+    const username = screen.getByPlaceholderText("Логин");
+    fireEvent.change(username, {
+      target: {
+        value:
+          "выыыыы2444444444444444ооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооо",
+      },
+    });
+    const loginButton = screen.getByTestId("login-button");
+    fireEvent.click(loginButton);
+    const error = screen.getByText(
+      "Логин должен содержать только символы русского и английского алфавита"
+    );
+    expect(error).toBeInTheDocument();
+    screen.debug();
+  });
 
-        //16
-        it("Should have error with correct username but password is empty", async () => {
-          const { login, logout, token, userId, isReady, isLogin } = jest.fn();
-          render(
-            <AuthContext.Provider
-              value={{ login, logout, token, userId, isReady, isLogin }}
-            >
-              <AuthPage />
-            </AuthContext.Provider>
-          );
-          screen.debug();
-          expect(screen.queryByTestId("error")).toBeNull();
-          const password = screen.getByPlaceholderText("Пароль");
-          fireEvent.change(password, { target: { value: "" } });
-          const username = screen.getByPlaceholderText("Логин");
-          fireEvent.change(username, { target: { value: "122" } });
-          const loginButton = screen.getByTestId("login-button");
-          fireEvent.click(loginButton);
-          const error = screen.getByText(
-            "Заполнены не все поля");
-          expect(error).toBeInTheDocument();
-          screen.debug();
-        });
+  //24
+  it("Should have error with uncorrect username but password is correct", async () => {
+    const { login, logout, token, userId, isReady, isLogin } = jest.fn();
+    render(
+      <AuthContext.Provider
+        value={{ login, logout, token, userId, isReady, isLogin }}
+      >
+        <AuthPage />
+      </AuthContext.Provider>
+    );
+    screen.debug();
+    expect(screen.queryByTestId("error")).toBeNull();
+    const password = screen.getByPlaceholderText("Пароль");
+    fireEvent.change(password, { target: { value: "test" } });
+    const username = screen.getByPlaceholderText("Логин");
+    fireEvent.change(username, {
+      target: {
+        value:
+          "выыыыы2444444444444444ооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооо",
+      },
+    });
+    const loginButton = screen.getByTestId("login-button");
+    fireEvent.click(loginButton);
+    const error = screen.getByText(
+      "Логин должен содержать только символы русского и английского алфавита"
+    );
+    expect(error).toBeInTheDocument();
+    screen.debug();
+  });
 
-
-        //20
-        it("Should have error with correct username but password has wrong lenght and symbols", async () => {
-          const { login, logout, token, userId, isReady, isLogin } = jest.fn();
-          render(
-            <AuthContext.Provider
-              value={{ login, logout, token, userId, isReady, isLogin }}
-            >
-              <AuthPage />
-            </AuthContext.Provider>
-          );
-          screen.debug();
-          expect(screen.queryByTestId("error")).toBeNull();
-          const password = screen.getByPlaceholderText("Пароль");
-          fireEvent.change(password, { target: { value: "выыыыы2444444444444444ооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооо" } });
-          const username = screen.getByPlaceholderText("Логин");
-          fireEvent.change(username, { target: { value: "test" } });
-          const loginButton = screen.getByTestId("login-button");
-          fireEvent.click(loginButton);
-          const error = screen.getByText(
-            "Пароль должен содержать только символы русского и английского алфавита"
-      );
-          expect(error).toBeInTheDocument();
-          screen.debug();
-        });
-
-        //21
-        it("Should have error with uncorrect username but password is empty", async () => {
-          const { login, logout, token, userId, isReady, isLogin } = jest.fn();
-          render(
-            <AuthContext.Provider
-              value={{ login, logout, token, userId, isReady, isLogin }}
-            >
-              <AuthPage />
-            </AuthContext.Provider>
-          );
-          screen.debug();
-          expect(screen.queryByTestId("error")).toBeNull();
-          const password = screen.getByPlaceholderText("Пароль");
-          fireEvent.change(password, { target: { value: "" } });
-          const username = screen.getByPlaceholderText("Логин");
-          fireEvent.change(username, { target: { value: "выыыыы2444444444444444ооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооо" } });
-          const loginButton = screen.getByTestId("login-button");
-          fireEvent.click(loginButton);
-          const error = screen.getByText(
-            "Заполнены не все поля"
-      );
-          expect(error).toBeInTheDocument();
-          screen.debug();
-        });
-
-        //22
-        it("Should have error with uncorrect username but password has wrong length", async () => {
-          const { login, logout, token, userId, isReady, isLogin } = jest.fn();
-          render(
-            <AuthContext.Provider
-              value={{ login, logout, token, userId, isReady, isLogin }}
-            >
-              <AuthPage />
-            </AuthContext.Provider>
-          );
-          screen.debug();
-          expect(screen.queryByTestId("error")).toBeNull();
-          const password = screen.getByPlaceholderText("Пароль");
-          fireEvent.change(password, { target: { value: "ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss" } });
-          const username = screen.getByPlaceholderText("Логин");
-          fireEvent.change(username, { target: { value: "выыыыы2444444444444444ооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооо" } });
-          const loginButton = screen.getByTestId("login-button");
-          fireEvent.click(loginButton);
-          const error = screen.getByText(
-            "Логин должен содержать только символы русского и английского алфавита"
-      
-      );
-          expect(error).toBeInTheDocument();
-          screen.debug();
-        });
-
-        //23
-        it("Should have error with uncorrect username but password has wrong symbols", async () => {
-          const { login, logout, token, userId, isReady, isLogin } = jest.fn();
-          render(
-            <AuthContext.Provider
-              value={{ login, logout, token, userId, isReady, isLogin }}
-            >
-              <AuthPage />
-            </AuthContext.Provider>
-          );
-          screen.debug();
-          expect(screen.queryByTestId("error")).toBeNull();
-          const password = screen.getByPlaceholderText("Пароль");
-          fireEvent.change(password, { target: { value: "12121" } });
-          const username = screen.getByPlaceholderText("Логин");
-          fireEvent.change(username, { target: { value: "выыыыы2444444444444444ооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооо" } });
-          const loginButton = screen.getByTestId("login-button");
-          fireEvent.click(loginButton);
-          const error = screen.getByText(
-            "Логин должен содержать только символы русского и английского алфавита"
-      
-      );
-          expect(error).toBeInTheDocument();
-          screen.debug();
-        });
-
-        //24
-        it("Should have error with uncorrect username but password is correct", async () => {
-          const { login, logout, token, userId, isReady, isLogin } = jest.fn();
-          render(
-            <AuthContext.Provider
-              value={{ login, logout, token, userId, isReady, isLogin }}
-            >
-              <AuthPage />
-            </AuthContext.Provider>
-          );
-          screen.debug();
-          expect(screen.queryByTestId("error")).toBeNull();
-          const password = screen.getByPlaceholderText("Пароль");
-          fireEvent.change(password, { target: { value: "test" } });
-          const username = screen.getByPlaceholderText("Логин");
-          fireEvent.change(username, { target: { value: "выыыыы2444444444444444ооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооо" } });
-          const loginButton = screen.getByTestId("login-button");
-          fireEvent.click(loginButton);
-          const error = screen.getByText(
-            "Логин должен содержать только символы русского и английского алфавита"
-      
-      );
-          expect(error).toBeInTheDocument();
-          screen.debug();
-        });
-
-        //25
-        it("Should have error with uncorrect username but password is uncorrect", async () => {
-          const { login, logout, token, userId, isReady, isLogin } = jest.fn();
-          render(
-            <AuthContext.Provider
-              value={{ login, logout, token, userId, isReady, isLogin }}
-            >
-              <AuthPage />
-            </AuthContext.Provider>
-          );
-          screen.debug();
-          expect(screen.queryByTestId("error")).toBeNull();
-          const password = screen.getByPlaceholderText("Пароль");
-          fireEvent.change(password, { target: { value: "выыыыы2444444444444444ооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооо" } });
-          const username = screen.getByPlaceholderText("Логин");
-          fireEvent.change(username, { target: { value: "выыыыы2444444444444444ооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооо" } });
-          const loginButton = screen.getByTestId("login-button");
-          fireEvent.click(loginButton);
-          const error = screen.getByText(
-            "Логин должен содержать только символы русского и английского алфавита"
-      
-      );
-          expect(error).toBeInTheDocument();
-          screen.debug();
-        });
+  //25
+  it("Should have error with uncorrect username but password is uncorrect", async () => {
+    const { login, logout, token, userId, isReady, isLogin } = jest.fn();
+    render(
+      <AuthContext.Provider
+        value={{ login, logout, token, userId, isReady, isLogin }}
+      >
+        <AuthPage />
+      </AuthContext.Provider>
+    );
+    screen.debug();
+    expect(screen.queryByTestId("error")).toBeNull();
+    const password = screen.getByPlaceholderText("Пароль");
+    fireEvent.change(password, {
+      target: {
+        value:
+          "выыыыы2444444444444444ооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооо",
+      },
+    });
+    const username = screen.getByPlaceholderText("Логин");
+    fireEvent.change(username, {
+      target: {
+        value:
+          "выыыыы2444444444444444ооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооооо",
+      },
+    });
+    const loginButton = screen.getByTestId("login-button");
+    fireEvent.click(loginButton);
+    const error = screen.getByText(
+      "Логин должен содержать только символы русского и английского алфавита"
+    );
+    expect(error).toBeInTheDocument();
+    screen.debug();
+  });
 });
 
 describe("AuthPage Should axios request to render", () => {
@@ -713,42 +768,40 @@ describe("AuthPage Should axios request to render", () => {
     await act(async () => {
       await new Promise((resolve) => setTimeout(resolve, 0));
     });
+    await expect(axios.post).toHaveBeenCalledTimes(1);
     const error = screen.getByText("Ошибка при авторизации.");
     expect(error).toBeInTheDocument();
     screen.debug();
   });
 
-  
-describe("AuthPage username lenght", () => {
-  let username, password, regButton, mainField,cities ;
+  describe("AuthPage username lenght", () => {
+    let username, password, regButton, mainField, cities;
 
-   const ok = "test"
+    const ok = "test";
 
-  beforeEach(() => {
-    
-    axios.post.mockRejectedValueOnce({
-      response: {
-        data: {
-          message: "Ошибка при авторизации",
+    beforeEach(() => {
+      axios.post.mockRejectedValueOnce({
+        response: {
+          data: {
+            message: "Ошибка при авторизации",
+          },
         },
-      },
-      status: 400,
+        status: 400,
+      });
+      const { login, logout, token, userId, isLogin } = jest.fn();
+      render(
+        <AuthContext.Provider value={{ login, logout, token, userId, isLogin }}>
+          <AuthPage />
+        </AuthContext.Provider>
+      );
+      username = screen.getByPlaceholderText("Логин");
+      expect(username).toBeInTheDocument();
+      password = screen.getByPlaceholderText("Пароль");
+      expect(password).toBeInTheDocument();
+      regButton = screen.getByText("ВОЙТИ");
+      expect(regButton).toBeInTheDocument();
+      fireEvent.change(password, { target: { value: ok } });
     });
-    const { login, logout, token, userId, isLogin } = jest.fn();
-    render(
-      <AuthContext.Provider value={{ login, logout, token, userId, isLogin }}>
-        <AuthPage />
-      </AuthContext.Provider>
-    );
-    username = screen.getByPlaceholderText("Логин");
-    expect(username).toBeInTheDocument();
-     password = screen.getByPlaceholderText("Пароль");
-    expect(password).toBeInTheDocument();
-     regButton = screen.getByText("ВОЙТИ");
-    expect(regButton).toBeInTheDocument();
-    fireEvent.change(password, { target: { value: ok } });
-    
-  });
 
     it("Should print error with empty username ", async () => {
       fireEvent.change(username, { target: { value: "" } });
@@ -762,80 +815,82 @@ describe("AuthPage username lenght", () => {
       await act(async () => {
         await new Promise((resolve) => setTimeout(resolve, 0));
       });
+      await expect(axios.post).toHaveBeenCalledTimes(1);
       expect(screen.getByText("Ошибка при авторизации")).toBeInTheDocument();
     });
 
     it("Should not print error with 127 lenght username ", async () => {
       var user = "";
-    while (user.length < 127) user += "A";
+      while (user.length < 127) user += "A";
       fireEvent.change(username, { target: { value: user } });
       fireEvent.click(regButton);
       await act(async () => {
         await new Promise((resolve) => setTimeout(resolve, 0));
       });
+      await expect(axios.post).toHaveBeenCalledTimes(1);
       expect(screen.getByText("Ошибка при авторизации")).toBeInTheDocument();
     });
 
     it("Should not print error with 128 lenght username ", async () => {
       var user = "";
-    while (user.length < 128) user += "A";
+      while (user.length < 128) user += "A";
       fireEvent.change(username, { target: { value: user } });
       fireEvent.click(regButton);
       await act(async () => {
         await new Promise((resolve) => setTimeout(resolve, 0));
       });
+      await expect(axios.post).toHaveBeenCalledTimes(1);
       expect(screen.getByText("Ошибка при авторизации")).toBeInTheDocument();
     });
 
     it("Should  print error with 129 lenght username ", async () => {
       var user = "";
-    while (user.length < 129) user += "A";
+      while (user.length < 129) user += "A";
       fireEvent.change(username, { target: { value: user } });
       fireEvent.click(regButton);
       await act(async () => {
         await new Promise((resolve) => setTimeout(resolve, 0));
       });
-      expect(screen.getByText("Логин должен содержать до 128 символов")).toBeInTheDocument();
+      expect(
+        screen.getByText("Логин должен содержать до 128 символов")
+      ).toBeInTheDocument();
     });
-});
-
-describe("AuthPage password lenght", () => {
-  let username, password, regButton, mainField,cities ;
-
-   const ok = "test"
-
-  beforeEach(() => {
-    axios.post.mockRejectedValueOnce({
-      response: {
-        data: {
-          message: "Ошибка при авторизации",
-        },
-      },
-      status: 400,
-    });
-    const { login, logout, token, userId, isLogin } = jest.fn();
-    render(
-      <AuthContext.Provider value={{ login, logout, token, userId, isLogin }}>
-        <AuthPage />
-      </AuthContext.Provider>
-    );
-     username = screen.getByPlaceholderText("Логин");
-    expect(username).toBeInTheDocument();
-     password = screen.getByPlaceholderText("Пароль");
-    expect(password).toBeInTheDocument();
-     regButton = screen.getByText("ВОЙТИ");
-    expect(regButton).toBeInTheDocument();
-    fireEvent.change(username, { target: { value: ok } });
-    
   });
 
+  describe("AuthPage password lenght", () => {
+    let username, password, regButton, mainField, cities;
+
+    const ok = "test";
+
+    beforeEach(() => {
+      axios.post.mockRejectedValueOnce({
+        response: {
+          data: {
+            message: "Ошибка при авторизации",
+          },
+        },
+        status: 400,
+      });
+      const { login, logout, token, userId, isLogin } = jest.fn();
+      render(
+        <AuthContext.Provider value={{ login, logout, token, userId, isLogin }}>
+          <AuthPage />
+        </AuthContext.Provider>
+      );
+      username = screen.getByPlaceholderText("Логин");
+      expect(username).toBeInTheDocument();
+      password = screen.getByPlaceholderText("Пароль");
+      expect(password).toBeInTheDocument();
+      regButton = screen.getByText("ВОЙТИ");
+      expect(regButton).toBeInTheDocument();
+      fireEvent.change(username, { target: { value: ok } });
+    });
 
     it("Should print error with empty username ", async () => {
       fireEvent.change(password, { target: { value: "" } });
       fireEvent.click(regButton);
       expect(screen.getByText("Заполнены не все поля")).toBeInTheDocument();
     });
-
 
     it("Should not print error with 1 lenght username ", async () => {
       fireEvent.change(password, { target: { value: "a" } });
@@ -844,45 +899,50 @@ describe("AuthPage password lenght", () => {
         await new Promise((resolve) => setTimeout(resolve, 0));
       });
       expect(screen.getByText("Ошибка при авторизации")).toBeInTheDocument();
+      await expect(axios.post).toHaveBeenCalledTimes(1);
+      
     });
 
     it("Should not print error with 127 lenght username ", async () => {
       var user = "";
-    while (user.length < 127) user += "A";
+      while (user.length < 127) user += "A";
       fireEvent.change(password, { target: { value: user } });
       fireEvent.click(regButton);
       await act(async () => {
         await new Promise((resolve) => setTimeout(resolve, 0));
       });
       expect(screen.getByText("Ошибка при авторизации")).toBeInTheDocument();
+      await expect(axios.post).toHaveBeenCalledTimes(1);
     });
 
     it("Should not print error with 128 lenght username ", async () => {
       var user = "";
-    while (user.length < 128) user += "A";
+      while (user.length < 128) user += "A";
       fireEvent.change(password, { target: { value: user } });
       fireEvent.click(regButton);
       await act(async () => {
         await new Promise((resolve) => setTimeout(resolve, 0));
       });
+      await expect(axios.post).toHaveBeenCalledTimes(1);
       expect(screen.getByText("Ошибка при авторизации")).toBeInTheDocument();
+      
     });
 
     it("Should  print error with 129 lenght username ", async () => {
       var user = "";
-    while (user.length < 129) user += "A";
+      while (user.length < 129) user += "A";
       fireEvent.change(password, { target: { value: user } });
       fireEvent.click(regButton);
       await act(async () => {
         await new Promise((resolve) => setTimeout(resolve, 0));
       });
-      expect(screen.getByText("Пароль должен содержать до 128 символов")).toBeInTheDocument();
+      expect(
+        screen.getByText("Пароль должен содержать до 128 символов")
+      ).toBeInTheDocument();
     });
-});
+  });
 
-
-
- /* it("Should not have error from server", async () => {
+  /* it("Should not have error from server", async () => {
     
     jest.mock('login');
     const { logout, token, userId, isLogin } = jest.fn();

@@ -39,7 +39,6 @@ const Search = ({ id }) => {
     <div className="searchUser container">
       {id && (
         <div>
-          <h2 className="head">По запросу "{id}" найдено:</h2>
           {search && (
             <div className="container">
               <div className="search">
@@ -64,7 +63,6 @@ const Search = ({ id }) => {
       )}
       {error && (
         <div>
-          { id == "" && <h2 className="head">По запросу "{id}" найдено:</h2> }
           <h3 align="center">Ничего не найдено</h3>
         </div>
       )}
