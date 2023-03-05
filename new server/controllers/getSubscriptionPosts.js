@@ -1,8 +1,10 @@
 import User from '../models/User.js';
 import Post from "../models/Post.js";
 
+/** Получение постов посписок */
 export const getSubscriptionPosts = async (req, res) => {
     try {
+        //** Параметр и проверка */
         const {id}= req.query;
         console.log("HERE " + id)
         const user = await User.findById({_id:id});
@@ -11,11 +13,15 @@ export const getSubscriptionPosts = async (req, res) => {
                 message: 'Такого пользователя не существует.',
             });
         }
+
+        //** Получение подписки */
         const subscriptions = user.subscriptions;
         console.log(subscriptions)
         if (subscriptions == null || subscriptions.length==0) {
             return res.status(400).json({message: 'Нет подписок'});
         }
+
+        /** Получение их постов */
         const returnedPosts = [];
         for (let i = 0; i < subscriptions.length; i++) {
             const posts = await Post.find({author:subscriptions[i]._id})
@@ -30,8 +36,9 @@ export const getSubscriptionPosts = async (req, res) => {
             }
         }
         if (!returnedPosts || returnedPosts.length == 0) {
-            return res.status(400).json({message: 'Нет опубликованных фотографий у подписчиков'});
+            return res.status(400).json({message: 'Нет опубликованных фотографий'});
         }
+        /** Сортировка */
         if (returnedPosts.length > 1) {
             returnedPosts.sort(sortByDate);
         }
@@ -41,11 +48,10 @@ export const getSubscriptionPosts = async (req, res) => {
         })
     } catch (error) {
         console.log(error)
-        return res.status(400).json({message: 'Ошибка при получении постов.'});
+        return res.status(400).json({message: 'Ошибка при получении подписных постов'});
     }
 };
 
 function sortByDate(first, second) {
-    return first.timestamps - second.timestamps;
-    // todo или return second.view - first.view;
+    return second.timestamps - first.timestamps;
 }

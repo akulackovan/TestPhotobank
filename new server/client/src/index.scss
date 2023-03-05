@@ -1,35 +1,51 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Montserrat', sans-serif;
-  }
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+}
 
-  html[data-theme='dark'] {
-    --button-text-color: #eceeeb;
-    --button-background-color: #4e005c;
+//Для темной темы
+html[data-theme="dark"] {
+  --button-text-color: #eceeeb;
+  --button-background-color: #4e005c;
 
-    --nav-bar-background-color: #4e005c;
+  --nav-bar-background-color: #4e005c;
 
-    --font-color: #eceeeb;
+  --font-color: #eceeeb;
 
-    --input-front:#323235;
-    --input-background: #423944;
+  --input-front: #323235;
+  --input-background: #423944;
 
-    --background-color: #292929;
-    --icon-color: #ba8fc2;
-  }
-  
-  html[data-theme='light'] {
-    --button-text-color: #eceeeb;
-    --button-background-color: #6d9ea3ff;
+  --background-color: #292929f5;
+  --icon-color: #ba8fc2;
 
-    --nav-bar-background-color: #6d9ea3ff;
-    --font-color: #323235;
-    
-    --input-front:#323235;
-    --input-background: #eceeeb;
-  
-    --background-color: #ffffff;
-    --icon-color: #4e005c;
-  }
+  --main-front: #ba8fc2;
+
+  --back-1: rgb(97, 77, 96);
+  --back-2: #7e4d88;
+  --back-3: #53134b;
+  --back-4: #2c0233;
+}
+
+//Для светлой темы
+html[data-theme="light"] {
+  --button-text-color: #eceeeb;
+  --button-background-color: #6d9ea3ff;
+
+  --nav-bar-background-color: #6d9ea3ff;
+  --font-color: #323235;
+
+  --input-front: #323235;
+  --input-background: #fcfcfc;
+
+  --background-color: #ffffffad;
+  --icon-color: #4e005c;
+
+  --main-front: #6d9ea3ff;
+
+  --back-1: #d3d2cdff;
+  --back-2: #c4d3d3ff;
+  --back-3: #a2c1c3ff;
+  --back-4: #6d9ea3ff;
+}

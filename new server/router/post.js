@@ -3,12 +3,13 @@ const router = new Router()
 import {getPopular} from "../controllers/getPopularPosts.js";
 import {createPost} from "../controllers/postController.js";
 import {getSubscriptionPosts} from "../controllers/getSubscriptionPosts.js";
-import {getPostById, getMyPost, getPostComments, getLike, addView, setLike, updateLike} from '../controllers/post.js'
+import {getPostById, getMyPost, getPostComments, getLike, addView, setLike } from '../controllers/post.js'
 import {createComment} from '../controllers/comments.js'
+//import {rePost, getAllPost} from "../controllers/dops.js"
 
 router.post('/post', createPost) //создание поста
 
-router.get('/', getPopular) //получение всех постов
+router.get('/', getPopular) //получение популярных
 
 router.get('/getMe', getMyPost)
 
@@ -24,8 +25,10 @@ router.get('/popular', getPopular)
 
 router.get('/subscription', getSubscriptionPosts)
 
-router.post('/addView', addView)
-router.post('/setLike', setLike)
-router.get('/updateLike', updateLike)
+router.put('/addView', addView)
+router.put('/setLike', setLike)
+
+//router.put('/post', rePost)
+//router.get('/getAllPost', getAllPost)
 
 export default router

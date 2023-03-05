@@ -1,156 +1,157 @@
+//Назначаем цвет фона
 html {
   background-color: var(--background-color);
-  //transition: background-color 1000ms linear;
 }
 
-*{
+* {
+  margin: 0;
+  padding: 0;
   color: var(--font-color);
 }
 
-.button{
-    color: var(--button-text-color);
-    background-color: var(--button-background-color);
-    //transition: color 500ms linear, background-color 500ms linear;
-    border-radius: 999px;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: 700;
-    line-height: 24px;
-    opacity: 1;
-    outline: 0 solid transparent;
-    padding: 8px 18px;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    width: fit-content;
-    word-break: break-word;
-    border: 0;
+//Фон для регистрации и входа
+.background {
+  height: 100vh;
+  width: 100vw;
+  background-color: var(--back-1);
+  background-image: linear-gradient(-2deg, var(--back-4) 15%, transparent 15%),
+    linear-gradient(4deg, var(--back-3) 45%, transparent 45%),
+    linear-gradient(-7deg, var(--back-2) 70%, transparent 70%);
 }
 
-.head {
-    color: var(--main-front);
-    font-weight: bold;
-    font-size: 400%;
+//Полоса прокрутки
+*::-webkit-scrollbar {
+  width: 10px; /* ширина всей полосы прокрутки */
 }
 
-
-.city {
-    margin-top: 2%;
-    width: 80%;
-    padding-left: 2%;
-    font-weight: 900;
-    box-sizing: border-box;
-  
-  }
-  
-  .error {
-    background: rgba(255, 255, 255, 0);
-    color: var(--main-front);
-    margin-top: 2%;
-  }
-  
-  .back {
-    background-color: rgba(236, 236, 236, 0.20);
-    box-shadow: #323235 0 10px 20px -10px;
-  
-  
-    text-align: center;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%);
-    border: none;
-    border-radius: 30px;
-  
-  }
-  
-  .container {
-    text-align: center;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%);
-    border: none;
-    border-radius: 30px;
-  }
-
-
-  .link {
-    margin-top: 2%;
-    background: rgba(255, 255, 255, 0);
-    color: var(--main-front);
-    font-weight: bold;
-    font-size: 150%;
-  
-  }
-
-  .input {
-    background-color: var(--input-background) !important;
-    color: var(--font-color) !important;
-    
+*::-webkit-scrollbar-track {
+  background: var(--back-2); /* цвет зоны отслеживания */
 }
 
+*::-webkit-scrollbar-thumb {
+  background-color: var(--button-background-color); /* цвет бегунка */
+  border-radius: 20px; /* округлось бегунка */
+}
 
-.dropdown-container {
-  text-align: left;
-  border: 1px solid;
-  position: relative;
-  border-radius: 5px;
+//Simple кнопка
+.button {
+  color: var(--button-text-color);
+  background-color: var(--button-background-color);
+  border-radius: 999px;
   cursor: pointer;
-  
-  background-color: var(--input-background);
-}
-
-.dropdown-input {
-  padding: 5px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  opacity: 1;
+  outline: 0 solid transparent;
+  padding: 8px 18px;
   user-select: none;
-  
-  background-color: var(--input-background);
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: fit-content;
+  word-break: break-word;
+  border: 0;
 }
 
-.dropdown-menu{
-  position:absolute;
-  transform: translateY(4px);
-  width: 100%;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  overflow: auto;
-  max-height: 150px;
-  
-  background-color: var(--input-background);
+//Назначаем стиль для заголовков
+.head {
+  color: var(--main-front);
+  font-weight: bold;
+  font-size: min(3vw, 30px);
 }
 
-.dropdown-item {
-  padding: 5px;
-  cursor: pointer;
-  background-color: var(--input-background);
+
+.hr {
+  border: none;
+  background-color: var(--button-background-color);
+  color: var(--button-background-color);
+  height: 7px;
+  width: 98%;
+  border-radius: 30px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.dropdown-item:hover{
-  background-color: var(--icon-color);
+//
+.back {
+  background-color: var(--background-color);
+  box-shadow: #323235 0 10px 20px -10px;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  border: none;
+  border-radius: 30px;
 }
 
-.search-box {
-  padding: 5px;
-}
-.search-box input {
-  width: 100%;
-  box-sizing: border-box;
-  padding: 5px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+.container {
+  background-color: var(--background-color);
+  box-shadow: #323235 0 10px 20px -10px;
+  border: none;
+  border-radius: 30px;
+  padding: 0% 1%;
+  margin: 0% 0% 1%;
 }
 
-.textarea{
+//Окна ввода
+.input {
+  background-color: var(--input-background) !important;
+  color: var(--font-color) !important;
+  border: none !important;
+  border-radius: 10px !important;
+}
+
+//Окна ввода - textarea
+.textarea {
   resize: none;
   background-color: var(--input-background);
   font-size: 17px;
   padding: 2% 2% 2% 2%;
   border: var(--input-background);
   border-radius: 10px;
+}
+
+//Колесо загрузки
+.loader {
+  border: 20px solid var(--font-color);
+  border-top: 20px solid var(--button-background-color);
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  animation: spin 1s linear infinite;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -25px 0 0 -25px;
+}
+
+//Анимация колеса
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+//Сообщение о ошибке
+.errorMessage {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  width: 50%;
+  height: 20%;
+  border-radius: 10px;
+  font-size: 20px;
+  background-color: var(--back-1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  fill: var(--font-color);
+  font-weight: 700;
 }
