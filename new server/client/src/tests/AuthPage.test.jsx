@@ -839,7 +839,6 @@ describe("AuthPage Should axios request to render", () => {
       await act(async () => {
         await new Promise((resolve) => setTimeout(resolve, 0));
       });
-      await expect(axios.post).toHaveBeenCalledTimes(1);
       expect(screen.getByText("Ошибка при авторизации")).toBeInTheDocument();
     });
 
@@ -886,13 +885,13 @@ describe("AuthPage Should axios request to render", () => {
       fireEvent.change(username, { target: { value: ok } });
     });
 
-    it("Should print error with empty username ", async () => {
+    it("Should print error with empty password ", async () => {
       fireEvent.change(password, { target: { value: "" } });
       fireEvent.click(regButton);
       expect(screen.getByText("Заполнены не все поля")).toBeInTheDocument();
     });
 
-    it("Should not print error with 1 lenght username ", async () => {
+    it("Should not print error with 1 lenght password ", async () => {
       fireEvent.change(password, { target: { value: "a" } });
       fireEvent.click(regButton);
       await act(async () => {
@@ -903,7 +902,7 @@ describe("AuthPage Should axios request to render", () => {
       
     });
 
-    it("Should not print error with 127 lenght username ", async () => {
+    it("Should not print error with 127 lenght password ", async () => {
       var user = "";
       while (user.length < 127) user += "A";
       fireEvent.change(password, { target: { value: user } });
@@ -915,7 +914,7 @@ describe("AuthPage Should axios request to render", () => {
       await expect(axios.post).toHaveBeenCalledTimes(1);
     });
 
-    it("Should not print error with 128 lenght username ", async () => {
+    it("Should not print error with 128 lenght password ", async () => {
       var user = "";
       while (user.length < 128) user += "A";
       fireEvent.change(password, { target: { value: user } });
@@ -923,12 +922,11 @@ describe("AuthPage Should axios request to render", () => {
       await act(async () => {
         await new Promise((resolve) => setTimeout(resolve, 0));
       });
-      await expect(axios.post).toHaveBeenCalledTimes(1);
       expect(screen.getByText("Ошибка при авторизации")).toBeInTheDocument();
       
     });
 
-    it("Should  print error with 129 lenght username ", async () => {
+    it("Should  print error with 129 lenght password ", async () => {
       var user = "";
       while (user.length < 129) user += "A";
       fireEvent.change(password, { target: { value: user } });

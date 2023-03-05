@@ -26,7 +26,7 @@ const postDataMock = {
     isPost: {
       _id: "63c8416ddd700fb050db2515",
       image: "",
-      text: "Это тестовый пост",
+      text: "",
       views: 250,
       likes: 1,
       city: {
@@ -375,7 +375,26 @@ describe("PostPage component start render", () => {
     let loading = screen.getByTestId("loader");
     expect(loading).toBeInTheDocument();
     //2
-    axios.mockResolvedValueOnce(postDataMock);
+    axios.mockResolvedValueOnce({
+      data: {
+        isPost: {
+          _id: "63c8416ddd700fb050db2515",
+          image: "",
+          text: "Test",
+          views: 250,
+          likes: 1,
+          city: {
+            city: "Москва",
+          },
+          author: {
+            _id: "63b94e63401cafbbf0be0a8d",
+            username: "тест",
+          },
+          timestamps: "2022-12-11T21:00:00.000Z",
+        },
+      },
+      status: 200,
+    });
     let error = screen.queryByText("Ошибка при получении поста");
     expect(error).not.toBeInTheDocument();
     loading = screen.getByTestId("loader");
@@ -565,29 +584,6 @@ describe("PostPage comments render", () => {
 
 describe("PostPage comments write", () => {
 
-  it("Shoud print error message with 0 comments", async () => {
-    var comment = "1";
-    expect(comment).toHaveLength(1);
-    let comments = screen.getAllByTestId("comment");
-    const length = comments.length;
-    expect(comments).toHaveLength(2);
-    const commentInput = screen.getByTestId("commentInput");
-    fireEvent.change(commentInput, { target: { value: comment } });
-    axios.mockResolvedValueOnce({
-      data: { newComment: { user: "test", comment: comment } },
-      status: 200,
-    });
-    fireEvent.click(screen.getByText("ОПУБЛИКОВАТЬ"));
-    await act(async () => {
-      await new Promise((resolve) => setTimeout(resolve, 0));
-    });
-    expect(screen.getByText("test"));
-    comments = screen.getAllByTestId("comment");
-    expect(comments).toHaveLength(length + 1);
-    screen.debug();
-  });
-
-
   beforeEach(async () => {
     const { userId } = jest.fn();
     screen.debug();
@@ -747,6 +743,76 @@ describe("PostPage comments write", () => {
   });
 });
 
+
+describe("PostPage comments write", () => {
+
+  it("Shoud print error message with 0 comments", async () => {
+    const { userId } = jest.fn();
+    screen.debug();
+
+    axios.mockResolvedValueOnce({
+      data: { message: "Успешно" },
+      status: 200,
+    });
+
+    render(
+      <AuthContext.Provider value={{ userId }}>
+        <PostPage match={{ params: { id: "63c8416ddd700fb050db2515" } }} />
+      </AuthContext.Provider>
+    );
+    //1
+    const postPage = screen.getByTestId("postPage");
+    expect(postPage).toBeInTheDocument();
+    let loading = screen.getByTestId("loader");
+    expect(loading).toBeInTheDocument();
+    //2
+    axios.mockResolvedValueOnce(postDataMock);
+    let error = screen.queryByText("Ошибка при получении поста");
+    expect(error).not.toBeInTheDocument();
+    loading = screen.getByTestId("loader");
+    expect(loading).toBeInTheDocument();
+    //3
+    axios.mockResolvedValueOnce({
+      data: { like: false, message: "Успешно" },
+      status: 200,
+    });
+    loading = screen.getByTestId("loader");
+    expect(loading).toBeInTheDocument();
+
+    //4
+    axios.mockResolvedValueOnce({
+      data: {
+        total: [],
+      },
+      status: 200,
+    });
+    loading = screen.getByTestId("loader");
+    expect(loading).toBeInTheDocument();
+    await act(async () => {
+      await new Promise((resolve) => setTimeout(resolve, 0));
+    });
+    var comment = "1";
+    expect(comment).toHaveLength(1);
+    let comments = screen.queryAllByTestId("comment");
+    const length = comments.length;
+    expect(comments).toHaveLength(0);
+    const commentInput = screen.getByTestId("commentInput");
+    fireEvent.change(commentInput, { target: { value: comment } });
+    axios.mockResolvedValueOnce({
+      data: { newComment: { user: "test", comment: comment } },
+      status: 200,
+    });
+    fireEvent.click(screen.getByText("ОПУБЛИКОВАТЬ"));
+    await act(async () => {
+      await new Promise((resolve) => setTimeout(resolve, 0));
+    });
+    expect(screen.getByText("test"));
+    comments = screen.getAllByTestId("comment");
+    expect(comments).toHaveLength(length + 1);
+    screen.debug();
+  });
+})
+
 describe("PostPage like", () => {
   beforeEach(async () => {});
 
@@ -815,6 +881,7 @@ describe("PostPage like", () => {
       screen.getByText("Ошибка при получении статуса лайка")
     ).toBeInTheDocument();
     screen.debug();
+    expect(axios).toHaveBeenCalledTimes(5);
   });
 
   it("Shoud add like from change like, start without like", async () => {
@@ -886,6 +953,7 @@ describe("PostPage like", () => {
     expect(numlike).toBeInTheDocument();
     expect(screen.getByTestId("numlike")).toHaveTextContent("2");
     expect(screen.getByTestId("unlike")).toBeInTheDocument();
+    expect(axios).toHaveBeenCalledTimes(5);
     screen.debug();
   });
 
@@ -959,5 +1027,6 @@ describe("PostPage like", () => {
     expect(screen.getByTestId("numlike")).toHaveTextContent("0");
     expect(screen.getByTestId("like")).toBeInTheDocument();
     screen.debug();
+    expect(axios).toHaveBeenCalledTimes(5);
   });
 });

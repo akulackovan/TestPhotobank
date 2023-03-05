@@ -12,7 +12,7 @@ import cityRoute from '../router/city.js'
 import postRoute from '../router/post.js'
 import dotenv from "dotenv";
 const app = express();
-const PORT = process.env.PORT || 8080
+const PORT = process.env.PORT || 8008
 app.use(cors());
 app.use(express.json())
 app.use('/auth', authRoute);

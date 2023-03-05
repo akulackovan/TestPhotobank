@@ -7,7 +7,7 @@
     "server": "nodemon index.js ",
     "client": "npm run start --prefix=client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "test": "jest --coverage"
+    "test": "jest --coverage --coverageDirectory=output/coverage/jest"
   },
   "keywords": [],
   "author": "",

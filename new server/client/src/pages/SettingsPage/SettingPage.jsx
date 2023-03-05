@@ -101,11 +101,6 @@ const SettingsPage = () => {
       setTimeout(() => setErrorMessage(""), 2000);
       return;
     }
-    if (!(password.length <= 128)) {
-      setErrorMessage("Пароль должен содержать до 128 символов");
-      setTimeout(() => setErrorMessage(""), 2000);
-      return;
-    }
     if (form.base64 == true) {
       setErrorMessage("Изображение не обрезано");
       setTimeout(() => setErrorMessage(""), 2000);

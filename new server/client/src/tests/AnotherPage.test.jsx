@@ -23,7 +23,7 @@ describe('AnotherPage', () => {
         const { userId } = jest.fn();
         axios.mockRejectedValueOnce({
           response: {
-            data: { message: "Ошибка при получении пользователя" },
+            data: { message: "Нет доступа" },
             status: 400,
           },
         });
@@ -40,6 +40,7 @@ describe('AnotherPage', () => {
       
         const AnotherUser = screen.getByTestId("AnotherPage");
         expect(AnotherUser).toBeInTheDocument();
+        expect(axios).toHaveBeenCalledTimes(1);
        
       });
 
@@ -61,6 +62,7 @@ describe('AnotherPage', () => {
         await act(async () => {
             await new Promise((resolve) => setTimeout(resolve, 0));
         }); 
+        expect(axios).toHaveBeenCalledTimes(1);
         // add data-testid="another-page" to the div element that wraps the AnotherPage component in the ProfilePage component to be able to test it with getByTestId.
         expect(screen.getByTestId("Profile")).toBeInTheDocument();
     });

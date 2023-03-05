@@ -40,6 +40,7 @@ describe("SearchPage component", () => {
     expect(searchUser).toBeDefined();
     expect(searchUser).toHaveLength(2)
     expect(screen.getByText('test1').closest('a')).toHaveAttribute('href', '/profile/63d82644b88c7334ac1ac6aa')
+    
   });
 
   it("Should print error when id is empty ", async () => {

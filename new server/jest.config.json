@@ -8,5 +8,9 @@
         "navigator": {}
       },
       "setupFilesAfterEnv": ["<rootDir>/jest.setup.js"],
-      "testEnvironment": "jsdom"
+      "testEnvironment": "jsdom",
+      "coverageReporters": [
+        "text",
+        "cobertura"
+      ]
     }
