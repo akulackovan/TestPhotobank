@@ -36,7 +36,7 @@ jest.mock("../src/pages/ProfilePage/ProfilePage");
 
 //2 сценарий - проверка переключения кнопок NavBar - оказываемся на замоканных страницах
 //Должен меняться url
-test("Check redirect on NavBar", async () => {
+test("2: Check redirect on NavBar", async () => {
 
   //Мок страниц, тк нам для теста неважно, что на них находится
   PopularPage.mockImplementation(() => <div>PopularPage</div>);
