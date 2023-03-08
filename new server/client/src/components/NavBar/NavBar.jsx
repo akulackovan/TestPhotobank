@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import "./NavBar.scss";
 
 const NavBar = () => {
@@ -22,29 +22,29 @@ const NavBar = () => {
 
   return (
     <nav className="nav">
-      <div className="parent">
+      <div className="parent" data-testid="nav">
         <div className="child">
           <a className="site-title">ФОТОБАНК</a>
           <ul>
             <li data-testid="popular">
-              <a href="/popular" title="Популярное">
+              <Link to="/popular" title="Популярное">
                 Популярное
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/subsc" title="Подписки">
+              <Link to="/subsc" title="Подписки">
                 Подписки
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/profile" title="Профиль">
+              <Link to="/profile" title="Профиль">
                 Профиль
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/settings" title="Настройки">
+              <Link to="/settings" title="Настройки">
                 Настройки
-              </a>
+              </Link>
             </li>
             <li>
               <input
