@@ -11,8 +11,9 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '12'
+      - run:
+          working-directory: ./new server
       - run: npm install
-      - run: cd '.\new server\'
       - run: npm test
 
       - name: Tests 🎉
