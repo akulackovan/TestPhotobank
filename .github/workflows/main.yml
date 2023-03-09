@@ -12,6 +12,7 @@ jobs:
         with:
           node-version: '12'
       - run: npm install
+      - run: cd '.\new server\'
       - run: npm test
 
       - name: Tests 🎉
