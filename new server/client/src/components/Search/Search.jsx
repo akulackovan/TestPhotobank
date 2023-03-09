@@ -45,14 +45,13 @@ const Search = ({ id }) => {
                 <ul>
                   {search.map((item) => (
                     <li className="element container" data-testid="searchUser">
-                      <a
-                        href={`/profile/${item.id}`}
+                      <Link to={`/profile/${item.id}`}
                         title={`Открыть профиль: ${item.username}`}
                       >
                         <h5 style={{ overflowWrap: "break-word" }}>
                           {item.username}
                         </h5>
-                      </a>
+                      </Link>
                     </li>
                   ))}
                 </ul>

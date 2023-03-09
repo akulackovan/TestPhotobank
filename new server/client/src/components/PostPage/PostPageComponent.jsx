@@ -226,14 +226,13 @@ const PostPageComponent = ({ id }) => {
           <div className="one">
             <div className="container">
               <div>
-                <a
-                  href={`/profile/${post.author._id}`}
+                <Link to={`/profile/${post.author._id}`}
                   title={`Автор: ${post.author.username}`}
                 >
                   <h4 className="head" data-testid="author" style={{overflowWrap: 'break-word', fontSize: 'min(3vw, 30px)'}}>
                     {post.author.username}
                   </h4>
-                </a>
+                </Link>
               </div>
               <div className="under">
                 <div className="date" data-testid="date">

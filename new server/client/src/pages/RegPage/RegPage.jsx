@@ -126,9 +126,9 @@ const RegPage = () => {
             ЗАРЕГИСТРИРОВАТЬСЯ
           </button>
           <a className="link">
-            <a href="/auth" className="link">
+            <Link to="/auth" className="link">
               ОБРАТНО
-            </a>
+            </Link>
           </a>
         </div>
       </div>

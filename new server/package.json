@@ -8,7 +8,7 @@
     "client": "npm run start --prefix=client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "test": "jest --coverage --coverageDirectory=output/coverage/jest",
-    "test:ci": "jest --watchAll=false --ci --coverage"
+    "test:ci": "jest --watchAll=false --ci"
   },
   "keywords": [],
   "author": "",
