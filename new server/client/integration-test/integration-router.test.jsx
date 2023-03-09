@@ -2,12 +2,9 @@ import RegPage from "../src/pages/RegPage/RegPage";
 import App from "../src/App";
 import {useAuth} from '../src/hooks/auth.hook'
 import {
-  cleanup,
   render,
   screen,
   fireEvent,
-  waitFor,
-  act,
 } from "@testing-library/react";
 import React from "react";
 import "@testing-library/jest-dom";

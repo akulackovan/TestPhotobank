@@ -11,11 +11,17 @@ const CityCombobox = ({ onChange, disabled=false}) => {
 
   useEffect(() => {
     console.log("City")
+    try{
       axios.get(
         "/city/getallcity"
       ).then(function (response) {
+        console.log("City")
         setOptions(response.data.city);
       })
+    }
+      catch (error){
+        console.log(error.response.data)
+      }
   }, []);
 
   const searchRef = useRef();
@@ -64,6 +70,7 @@ const CityCombobox = ({ onChange, disabled=false}) => {
         option.city.toLowerCase().indexOf(searchValue.toLowerCase()) >= 0
     );
   };
+
 
   return (
     <div className="dropdown-container" style={disabled ? {pointerEvents: "none"} : null}>
