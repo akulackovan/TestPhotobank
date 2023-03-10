@@ -8,10 +8,10 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Install modules
-      run: yarn
+      run: yarn set version 2.0.0-rc.30
       working-directory: ./new server
     - name: Install modules
-      run: yarn
+      run: yarn set version 2.0.0-rc.30
       working-directory: ./new server/client
     - name: Run tests
       run: yarn test:ci
