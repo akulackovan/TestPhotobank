@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Loader from "../Loader/Loader";
 import "./Search.scss";
+import { Link } from "react-router-dom";
 
 const Search = ({ id }) => {
   const [loader, setLoader] = useState(true);
