@@ -12,7 +12,7 @@ import { BrowserRouter as Router } from "react-router-dom"
 
 import PopularPage from "../src/pages/PopularPage/PopularPage"
 import SubscribePage from "../src/pages/SubscribePage/SubscribePage"
-//import SettingsPage from "../src/pages/SettingsPage/SettingPage";
+import SettingsPage from "../src/pages/SettingsPage/SettingPage";
 import ProfilePage from "../src/pages/ProfilePage/ProfilePage";
 
 
@@ -20,10 +20,8 @@ import ProfilePage from "../src/pages/ProfilePage/ProfilePage";
 //важно только, что совершен переход
 jest.mock("../src/pages/PopularPage/PopularPage");
 jest.mock("../src/pages/SubscribePage/SubscribePage");
-//jest.mock("../src/pages/SettingsPage/SettingPage");
+jest.mock("../src/pages/SettingsPage/SettingPage");
 jest.mock("../src/pages/ProfilePage/ProfilePage");
-
-
 
 //2 сценарий - проверка переключения кнопок NavBar - оказываемся на замоканных страницах
 //Должен меняться url
@@ -32,9 +30,8 @@ test("2: Check redirect on NavBar", async () => {
   //Мок страниц, тк нам для теста неважно, что на них находится
   PopularPage.mockImplementation(() => <div>PopularPage</div>);
   SubscribePage.mockImplementation(() => <div>SubscribePage</div>);
-  //SettingsPage.mockImplementation(() => <div>SettingsPage</div>);
+  SettingsPage.mockImplementation(() => <div>SettingsPage</div>);
   ProfilePage.mockImplementation(() => <div>ProfilePage</div>);
-
 
   const routes = useRoutes(true, true)
 
@@ -62,9 +59,8 @@ test("2: Check redirect on NavBar", async () => {
   expect(screen.getByText("ProfilePage")).toBeInTheDocument();
   expect(global.window.location.href).toContain('http://localhost/profile') 
 
-
-  /*await fireEvent.click(screen.getByText("Настройки"))
+  await fireEvent.click(screen.getByText("Настройки"))
   expect(screen.getByText("SettingsPage")).toBeInTheDocument();
-  expect(global.window.location.href).toContain('http://localhost/settings') */
+  expect(global.window.location.href).toContain('http://localhost/settings')
 
 })

@@ -7,7 +7,7 @@ import CityCombobox from "../../components/CityCombobox/CityCombobox";
 import { useTheme } from "../../hooks/use.theme";
 import Cropper from "../../components/Cropper/cropper";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
-import { Gapped, Radio, RadioGroup } from "@skbkontur/react-ui";
+//import { Gapped, Radio, RadioGroup } from "@skbkontur/react-ui";
 
 const SettingsPage = () => {
   const { logout } = useContext(AuthContext);
@@ -226,6 +226,9 @@ const SettingsPage = () => {
         </form>
 
         <div className="theme">
+        {/*Вернуть обратно потом
+        
+        
         <RadioGroup name="number-complex" defaultValue={now}>
             <Gapped horizontal gap={0} >
               <b>Тема: </b>
@@ -247,7 +250,7 @@ const SettingsPage = () => {
               />{" "}
               <b>Темная</b>
             </Gapped>
-          </RadioGroup>
+  </RadioGroup> */}
         </div>
 
         <div>
