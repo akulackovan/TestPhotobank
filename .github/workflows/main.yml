@@ -15,6 +15,7 @@ jobs:
       working-directory: ./new server/client
     - name: Install skbkontur
       run: yarn add @skbkontur/react-ui@4.10.0
+      run: yarn upgrade react react-dom
       working-directory: ./new server
     - name: Run tests
       run: yarn test:ci
