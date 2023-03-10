@@ -13,5 +13,7 @@ jobs:
           node-version: '8'
       - run: npm install
         working-directory: ./new server
+      - run: npm install
+        working-directory: ./new server/client
       - run: npm test
         working-directory: ./new server
