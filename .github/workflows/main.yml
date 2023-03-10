@@ -10,9 +10,5 @@ jobs:
     - name: Install modules
       run: yarn
       working-directory: ./new server
-    - name: Install modules
-     run: yarn
-     working-directory: ./new server
     - name: Run tests
       run: yarn test
-      working-directory: ./new server
