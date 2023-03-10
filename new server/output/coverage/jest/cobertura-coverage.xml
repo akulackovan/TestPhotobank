@@ -1,11 +1,11 @@
 <?xml version="1.0" ?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
-<coverage lines-valid="654" lines-covered="70" line-rate="0.107" branches-valid="308" branches-covered="16" branch-rate="0.0519" timestamp="1678394967630" complexity="0" version="0.1">
+<coverage lines-valid="656" lines-covered="71" line-rate="0.1082" branches-valid="308" branches-covered="16" branch-rate="0.0519" timestamp="1678439796059" complexity="0" version="0.1">
   <sources>
     <source>D:\GitHub\Another\new server</source>
   </sources>
   <packages>
-    <package name="src" line-rate="0.3846" branch-rate="0.3333">
+    <package name="client.src" line-rate="0.3846" branch-rate="0.3333">
       <classes>
         <class name="App.js" filename="client\src\App.js" line-rate="0" branch-rate="1">
           <methods>
@@ -44,7 +44,7 @@
         </class>
       </classes>
     </package>
-    <package name="src.components.AnotherPage" line-rate="0.0178" branch-rate="0">
+    <package name="client.src.components.AnotherPage" line-rate="0.0178" branch-rate="0">
       <classes>
         <class name="AnotherPage.jsx" filename="client\src\components\AnotherPage\AnotherPage.jsx" line-rate="0.0178" branch-rate="0">
           <methods>
@@ -160,7 +160,7 @@
         </class>
       </classes>
     </package>
-    <package name="src.components.CityCombobox" line-rate="0.7209" branch-rate="0.6923">
+    <package name="client.src.components.CityCombobox" line-rate="0.7209" branch-rate="0.6923">
       <classes>
         <class name="CityCombobox.jsx" filename="client\src\components\CityCombobox\CityCombobox.jsx" line-rate="0.7209" branch-rate="0.6923">
           <methods>
@@ -288,7 +288,7 @@
         </class>
       </classes>
     </package>
-    <package name="src.components.Cropper" line-rate="0.011699999999999999" branch-rate="0">
+    <package name="client.src.components.Cropper" line-rate="0.011699999999999999" branch-rate="0">
       <classes>
         <class name="cropper.jsx" filename="client\src\components\Cropper\cropper.jsx" line-rate="0.011699999999999999" branch-rate="0">
           <methods>
@@ -438,7 +438,7 @@
         </class>
       </classes>
     </package>
-    <package name="src.components.ErrorMessage" line-rate="0.5" branch-rate="1">
+    <package name="client.src.components.ErrorMessage" line-rate="0.5" branch-rate="1">
       <classes>
         <class name="ErrorMessage.jsx" filename="client\src\components\ErrorMessage\ErrorMessage.jsx" line-rate="0.5" branch-rate="1">
           <methods>
@@ -455,7 +455,7 @@
         </class>
       </classes>
     </package>
-    <package name="src.components.Loader" line-rate="1" branch-rate="1">
+    <package name="client.src.components.Loader" line-rate="1" branch-rate="1">
       <classes>
         <class name="Loader.jsx" filename="client\src\components\Loader\Loader.jsx" line-rate="1" branch-rate="1">
           <methods>
@@ -471,7 +471,7 @@
         </class>
       </classes>
     </package>
-    <package name="src.components.NavBar" line-rate="0.6363" branch-rate="0.25">
+    <package name="client.src.components.NavBar" line-rate="0.6363" branch-rate="0.25">
       <classes>
         <class name="NavBar.jsx" filename="client\src\components\NavBar\NavBar.jsx" line-rate="0.6363" branch-rate="0.25">
           <methods>
@@ -507,7 +507,7 @@
         </class>
       </classes>
     </package>
-    <package name="src.components.PostPage" line-rate="0.0105" branch-rate="0">
+    <package name="client.src.components.PostPage" line-rate="0.0105" branch-rate="0">
       <classes>
         <class name="PostPageComponent.jsx" filename="client\src\components\PostPage\PostPageComponent.jsx" line-rate="0.0105" branch-rate="0">
           <methods>
@@ -737,7 +737,7 @@
         </class>
       </classes>
     </package>
-    <package name="src.components.PostUser" line-rate="0.0588" branch-rate="0">
+    <package name="client.src.components.PostUser" line-rate="0.0588" branch-rate="0">
       <classes>
         <class name="PostUser.jsx" filename="client\src\components\PostUser\PostUser.jsx" line-rate="0.0588" branch-rate="0">
           <methods>
@@ -784,7 +784,7 @@
         </class>
       </classes>
     </package>
-    <package name="src.components.PostsTable" line-rate="0.3333" branch-rate="0">
+    <package name="client.src.components.PostsTable" line-rate="0.3333" branch-rate="0">
       <classes>
         <class name="PostsTable.jsx" filename="client\src\components\PostsTable\PostsTable.jsx" line-rate="0.3333" branch-rate="0">
           <methods>
@@ -807,7 +807,7 @@
         </class>
       </classes>
     </package>
-    <package name="src.components.Search" line-rate="0.0625" branch-rate="0">
+    <package name="client.src.components.Search" line-rate="0.0625" branch-rate="0">
       <classes>
         <class name="Search.jsx" filename="client\src\components\Search\Search.jsx" line-rate="0.0625" branch-rate="0">
           <methods>
@@ -858,7 +858,7 @@
         </class>
       </classes>
     </package>
-    <package name="src.context" line-rate="1" branch-rate="1">
+    <package name="client.src.context" line-rate="1" branch-rate="1">
       <classes>
         <class name="AuthContext.js" filename="client\src\context\AuthContext.js" line-rate="1" branch-rate="1">
           <methods>
@@ -869,7 +869,7 @@
         </class>
       </classes>
     </package>
-    <package name="src.hooks" line-rate="0.0909" branch-rate="0.1">
+    <package name="client.src.hooks" line-rate="0.0909" branch-rate="0.1">
       <classes>
         <class name="auth.hook.js" filename="client\src\hooks\auth.hook.js" line-rate="0" branch-rate="0">
           <methods>
@@ -948,7 +948,7 @@
         </class>
       </classes>
     </package>
-    <package name="src.pages.AddPostPage" line-rate="0.023799999999999998" branch-rate="0">
+    <package name="client.src.pages.AddPostPage" line-rate="0.023799999999999998" branch-rate="0">
       <classes>
         <class name="AddPostPage.jsx" filename="client\src\pages\AddPostPage\AddPostPage.jsx" line-rate="0.023799999999999998" branch-rate="0">
           <methods>
@@ -1055,7 +1055,7 @@
         </class>
       </classes>
     </package>
-    <package name="src.pages.AnotherUserPage" line-rate="0" branch-rate="1">
+    <package name="client.src.pages.AnotherUserPage" line-rate="0" branch-rate="1">
       <classes>
         <class name="AnotherUserPage.jsx" filename="client\src\pages\AnotherUserPage\AnotherUserPage.jsx" line-rate="0" branch-rate="1">
           <methods>
@@ -1071,7 +1071,7 @@
         </class>
       </classes>
     </package>
-    <package name="src.pages.AuthPage" line-rate="0.02" branch-rate="0">
+    <package name="client.src.pages.AuthPage" line-rate="0.02" branch-rate="0">
       <classes>
         <class name="AuthPage.jsx" filename="client\src\pages\AuthPage\AuthPage.jsx" line-rate="0.02" branch-rate="0">
           <methods>
@@ -1191,7 +1191,7 @@
         </class>
       </classes>
     </package>
-    <package name="src.pages.PopularPage" line-rate="0.047599999999999996" branch-rate="0">
+    <package name="client.src.pages.PopularPage" line-rate="0.047599999999999996" branch-rate="0">
       <classes>
         <class name="PopularPage.jsx" filename="client\src\pages\PopularPage\PopularPage.jsx" line-rate="0.047599999999999996" branch-rate="0">
           <methods>
@@ -1247,7 +1247,7 @@
         </class>
       </classes>
     </package>
-    <package name="src.pages.PostPage" line-rate="0" branch-rate="1">
+    <package name="client.src.pages.PostPage" line-rate="0" branch-rate="1">
       <classes>
         <class name="PostPage.jsx" filename="client\src\pages\PostPage\PostPage.jsx" line-rate="0" branch-rate="1">
           <methods>
@@ -1263,7 +1263,7 @@
         </class>
       </classes>
     </package>
-    <package name="src.pages.ProfilePage" line-rate="0.3333" branch-rate="1">
+    <package name="client.src.pages.ProfilePage" line-rate="0.3333" branch-rate="1">
       <classes>
         <class name="ProfilePage.jsx" filename="client\src\pages\ProfilePage\ProfilePage.jsx" line-rate="0.3333" branch-rate="1">
           <methods>
@@ -1281,7 +1281,7 @@
         </class>
       </classes>
     </package>
-    <package name="src.pages.RegPage" line-rate="0.1956" branch-rate="0.1578">
+    <package name="client.src.pages.RegPage" line-rate="0.1956" branch-rate="0.1578">
       <classes>
         <class name="RegPage.jsx" filename="client\src\pages\RegPage\RegPage.jsx" line-rate="0.1956" branch-rate="0.1578">
           <methods>
@@ -1397,7 +1397,7 @@
         </class>
       </classes>
     </package>
-    <package name="src.pages.SearchPage" line-rate="0" branch-rate="1">
+    <package name="client.src.pages.SearchPage" line-rate="0" branch-rate="1">
       <classes>
         <class name="SearchPage.jsx" filename="client\src\pages\SearchPage\SearchPage.jsx" line-rate="0" branch-rate="1">
           <methods>
@@ -1413,7 +1413,7 @@
         </class>
       </classes>
     </package>
-    <package name="src.pages.SettingsPage" line-rate="0.0109" branch-rate="0">
+    <package name="client.src.pages.SettingsPage" line-rate="0.0109" branch-rate="0">
       <classes>
         <class name="SettingPage.jsx" filename="client\src\pages\SettingsPage\SettingPage.jsx" line-rate="0.0109" branch-rate="0">
           <methods>
@@ -1619,7 +1619,7 @@
         </class>
       </classes>
     </package>
-    <package name="src.pages.SubscribePage" line-rate="0.0454" branch-rate="0">
+    <package name="client.src.pages.SubscribePage" line-rate="0.0454" branch-rate="0">
       <classes>
         <class name="SubscribePage.jsx" filename="client\src\pages\SubscribePage\SubscribePage.jsx" line-rate="0.0454" branch-rate="0">
           <methods>
@@ -1667,6 +1667,23 @@
             <line number="58" hits="0" branch="true" condition-coverage="0% (0/2)"/>
             <line number="59" hits="0" branch="false"/>
             <line number="67" hits="0" branch="false"/>
+          </lines>
+        </class>
+      </classes>
+    </package>
+    <package name="mock" line-rate="0.5" branch-rate="1">
+      <classes>
+        <class name="styleMock.js" filename="mock\styleMock.js" line-rate="0.5" branch-rate="1">
+          <methods>
+            <method name="(anonymous_0)" hits="0" signature="()V">
+              <lines>
+                <line number="2" hits="0"/>
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="1" hits="7" branch="false"/>
+            <line number="3" hits="0" branch="false"/>
           </lines>
         </class>
       </classes>
