@@ -1,6 +1,3 @@
-import RegPage from "../src/pages/RegPage/RegPage";
-import App from "../src/App";
-import {useAuth} from '../src/hooks/auth.hook'
 import {
   render,
   screen,
@@ -8,8 +5,6 @@ import {
 } from "@testing-library/react";
 import React from "react";
 import "@testing-library/jest-dom";
-import * as hooks from '../src/hooks/auth.hook';
-import { Switch, Route, Redirect,  } from "react-router-dom";
 import { MemoryRouter } from "react-router";
 import {useRoutes} from '../src/routes'
 import { BrowserRouter as Router } from "react-router-dom"
@@ -74,40 +69,3 @@ test("2: Check redirect on NavBar", async () => {
   expect(global.window.location.href).toContain('http://localhost/settings') 
 
 })
-
-
-//4 сценарий
-/*test("Test reg page with busy login", async () => {
-  axios.get.mockResolvedValue({
-    data: {
-      city: [
-        { _id: "63b9473e70bfa1abe160400f", city: "Москва" },
-        { _id: "63b94e8d70bfa1abe1604015", city: "Санкт-Петербург" },
-        { _id: "63b96121b19de65ebdf4cd50", city: "Абаза\r", __v: 0 },
-      ],
-    },
-    status: 200,
-  });
-  render(<RegPage />);
-  await act(async () => {
-    await new Promise((resolve) => setTimeout(resolve, 0));
-  });
-  const username = screen.getByPlaceholderText("Логин");
-  expect(username).toBeInTheDocument();
-  const password = screen.getByPlaceholderText("Пароль");
-  expect(password).toBeInTheDocument();
-
-  expect(screen.getByTestId("city")).toBeInTheDocument();
-  const regButton = screen.getByText("ЗАРЕГИСТРИРОВАТЬСЯ");
-  expect(regButton).toBeInTheDocument();
-
-  const mainField = screen.getByText("Город");
-  expect(mainField).toBeInTheDocument();
-  fireEvent.click(mainField);
-  const cities = screen.getAllByTestId("city-dropdownelement");
-  expect(cities).toBeDefined();
-  expect(cities).toHaveLength(3);
-  fireEvent.change(username, { target: { value: "тест" } });
-  fireEvent.change(password, { target: { value: "тест" } });
-  fireEvent.click(screen.getByText("Москва"));
-});*/
