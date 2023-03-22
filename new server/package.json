@@ -7,7 +7,7 @@
     "server": "nodemon index.js ",
     "client": "npm run start --prefix=client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "test": "jest --coverage --coverageDirectory=output/coverage/jest",
+    "test": "jest",
     "test:ci": "jest --watchAll=false --ci"
   },
   "keywords": [],
@@ -39,6 +39,7 @@
     "node-mocks-http": "^1.12.1",
     "node-sass": "^8.0.0",
     "nodemon": "^2.0.20",
+    "react": "^18.2.0",
     "react-advanced-cropper": "^0.18.0",
     "react-alert": "^7.0.3",
     "react-cropper": "^2.1.8",
