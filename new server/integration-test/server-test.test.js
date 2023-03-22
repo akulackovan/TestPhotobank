@@ -10,14 +10,11 @@
   2. tessi - tessi - Красноярск
   //----При необходимости добавить, но привести к первоночальному варианту----
 
-
   Города:
   1. Москва
   2. Красноярск
-
-
-
 */
+
 //Импортируем настройки app
 import { app } from "../app.js";
 import request from "supertest";
@@ -25,7 +22,7 @@ import mongoose from "mongoose";
 import User from "../models/User";
 
 beforeEach(async () => {
-  //Подключаемся к базе данных mongoDB, DB Photobank - тестовая
+  //Подключаемся к тетовой базе данных mongoDB, DB Photobank - тестовая
   await mongoose.connect(
     `mongodb+srv://admin:admin@test.qidx0uu.mongodb.net/photobank`,
     { dbName: "photobank" }
@@ -46,13 +43,11 @@ test("Checking the connection between users and changing settings", async () => 
   const searchPath = "/auth/search/?name=" + username;
   //Запрос
   const resSearch = await request(app).get(searchPath);
-  //запрос успешен
+  //Запрос успешен
   expect(resSearch.statusCode).toBe(200);
   //Нужный пользователь с данным username
-  //Переделать если будет другой id
   const user = { username: username };
-
-  //пользователь с именем test есть
+  //Пользователь с именем test есть
   expect(resSearch.body.user).toEqual( 
   expect.arrayContaining([    
     expect.objectContaining(
@@ -60,6 +55,7 @@ test("Checking the connection between users and changing settings", async () => 
     )
   ]))
 
+  //То, что посылаем с post
   const settings = {
     userId: "641a0989c55304c0d7de669c",
     username: "test",
@@ -70,11 +66,14 @@ test("Checking the connection between users and changing settings", async () => 
     city: "",
     base64: "",
   };
+  //Путь
   const settingsPath = "/settings";
+  //Запрос
   const resSettings = await request(app).post(settingsPath).send(settings);
   //Ошибка
   expect(resSettings.statusCode).toBe(400);
-  //Текст
+  //Текст ошибки
+  //ТК данные не поменялись, то ничего и не убираем после
   expect(resSettings.body.message).toBe("Логин занят. Выберите другой");
 });
 
@@ -115,6 +114,6 @@ test("Checking the connection between the user and subscriptions on the server s
   expect(resSubTwo.statusCode).toBe(400);
   expect(resSubTwo.body.message).toBe("Нет опубликованных фотографий");
 
-  //Изменить?
+  //После отработки теста, возвращаем данные обратно, тк они поменялись
   await User.updateOne({ _id: id }, { $pull: { subscriptions: id2 } });
 });

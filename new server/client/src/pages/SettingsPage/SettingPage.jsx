@@ -1,18 +1,18 @@
 import React, { useContext, useState } from "react";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
-import  AuthContext  from "../../context/AuthContext";
+import AuthContext from "../../context/AuthContext";
 import "./SettingsPage.scss";
 import CityCombobox from "../../components/CityCombobox/CityCombobox";
 import { useTheme } from "../../hooks/use.theme";
 import Cropper from "../../components/Cropper/cropper";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
-//import { Gapped, Radio, RadioGroup } from "@skbkontur/react-ui";
+import { Gapped, Radio, RadioGroup } from "@skbkontur/react-ui";
 
 const SettingsPage = () => {
   const { logout } = useContext(AuthContext);
   const { userId } = useContext(AuthContext);
-  const [disabled, setDisabled] = useState(false)
+  const [disabled, setDisabled] = useState(false);
   const [form, setForm] = useState({
     userId: userId,
     username: "",
@@ -23,8 +23,7 @@ const SettingsPage = () => {
     city: "",
     base64: "",
   });
-  
- 
+
   const [errorMessage, setErrorMessage] = React.useState("");
   const [log, setLog] = React.useState(false);
 
@@ -49,11 +48,11 @@ const SettingsPage = () => {
   };
 
   const settingsHandler = async () => {
-    var username = document.getElementById("username").value
-    var newpass = document.getElementById("newpass").value
-    var password = document.getElementById("password").value
-    var checkpass = document.getElementById("checkpass").value
-    var text = document.getElementById("text").value
+    var username = document.getElementById("username").value;
+    var newpass = document.getElementById("newpass").value;
+    var password = document.getElementById("password").value;
+    var checkpass = document.getElementById("checkpass").value;
+    var text = document.getElementById("text").value;
     if (username != "" && !username.match(/^[A-Za-zА-Яа-я]+$/)) {
       setErrorMessage(
         "Логин должен содержать только символы русского и английского алфавита"
@@ -95,7 +94,7 @@ const SettingsPage = () => {
       setTimeout(() => setErrorMessage(""), 2000);
       return;
     }
-    
+
     if (!(newpass.length <= 128)) {
       setErrorMessage("Новый пароль должен содержать до 128 символов");
       setTimeout(() => setErrorMessage(""), 2000);
@@ -112,12 +111,21 @@ const SettingsPage = () => {
       return;
     }
     if (!(text.length <= 512)) {
-      setErrorMessage("\"Описание пользователя\" должно содержать не более 512 символов");
+      setErrorMessage(
+        '"Описание пользователя" должно содержать не более 512 символов'
+      );
       setTimeout(() => setErrorMessage(""), 2000);
       return;
     }
-    setDisabled(true)
-    setForm({...form, username: username, password: password, checkpass: checkpass, newpass: newpass, text: text})
+    setDisabled(true);
+    setForm({
+      ...form,
+      username: username,
+      password: password,
+      checkpass: checkpass,
+      newpass: newpass,
+      text: text,
+    });
     try {
       await axios
         .post(
@@ -146,13 +154,13 @@ const SettingsPage = () => {
             city: "",
             base64: "",
           });
-          setDisabled(false)
+          setDisabled(false);
         });
     } catch (error) {
       console.log(error);
       setErrorMessage(error.response.data.message);
       setTimeout(() => setErrorMessage(""), 2000);
-      setDisabled(false)
+      setDisabled(false);
     }
   };
 
@@ -207,7 +215,7 @@ const SettingsPage = () => {
             <div className="sec" style={{ textAlign: "left" }}>
               <textarea
                 className="textarea"
-                style={{height:"150px"}}
+                style={{ height: "150px" }}
                 type="text"
                 placeholder="Описание пользователя"
                 name="text"
@@ -226,18 +234,15 @@ const SettingsPage = () => {
         </form>
 
         <div className="theme">
-        {/*Вернуть обратно потом
-        
-        
-        <RadioGroup name="number-complex" defaultValue={now}>
-            <Gapped horizontal gap={0} >
+          <RadioGroup name="number-complex" defaultValue={now}>
+            <Gapped horizontal gap={0}>
               <b>Тема: </b>
               <Radio
                 data-testid="light-button"
                 className="radio"
                 value="light"
                 onChange={changeTheme}
-                style={{color: 'black'}}
+                style={{ color: "black" }}
                 disabled={disabled}
               />{" "}
               <b>Светлая</b>
@@ -250,7 +255,7 @@ const SettingsPage = () => {
               />{" "}
               <b>Темная</b>
             </Gapped>
-  </RadioGroup> */}
+          </RadioGroup>
         </div>
 
         <div>
@@ -258,18 +263,22 @@ const SettingsPage = () => {
             setData={(value) => setForm({ ...form, base64: value })}
             key={formKey}
             disabled={disabled}
-            />
+          />
         </div>
         <div className="buttons">
           <div className="elementButton">
-          <button className="button" onClick={settingsHandler} disabled={disabled}>
-            СОХРАНИТЬ
-          </button>
+            <button
+              className="button"
+              onClick={settingsHandler}
+              disabled={disabled}
+            >
+              СОХРАНИТЬ
+            </button>
           </div>
           <div className="elementButton">
-          <button className="button" onClick={changeOut} disabled={disabled}>
-            ВЫЙТИ ИЗ АККАУНТА
-          </button>
+            <button className="button" onClick={changeOut} disabled={disabled}>
+              ВЫЙТИ ИЗ АККАУНТА
+            </button>
           </div>
         </div>
         {errorMessage && <ErrorMessage msg={errorMessage} />}

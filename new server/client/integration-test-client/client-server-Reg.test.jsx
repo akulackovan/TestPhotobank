@@ -1,6 +1,3 @@
-//https://codylillyw.medium.com/testing-mern-stack-websites-3a4d3aa9bbbd
-//
-
 import RegPage from "../src/pages/RegPage/RegPage";
 import { render, screen, fireEvent } from "@testing-library/react";
 import React from "react";
