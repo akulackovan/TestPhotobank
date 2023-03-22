@@ -6,22 +6,10 @@ import * as ReactDOM from "react-dom";
 import { act } from "react-dom/test-utils";
 import { MemoryRouter } from "react-router-dom";
 
-let container;
-
-beforeEach(async () => {
-  container = document.createElement("div");
-  document.body.appendChild(container);
-});
-
-afterEach(async () => {
-  document.body.removeChild(container);
-  container = null;
-});
-
 //4 сценарий
 test("Test reg page with busy login", async () => {
   act(() => {
-    ReactDOM.createRoot(container).render(
+    render(
       <MemoryRouter>
         <RegPage />
       </MemoryRouter>
@@ -39,12 +27,12 @@ test("Test reg page with busy login", async () => {
   const mainField = screen.getByText("Город");
   expect(mainField).toBeInTheDocument();
   fireEvent.click(mainField);
-  /*const cities = screen.getAllByTestId("city-dropdownelement");
+  const cities = screen.getAllByTestId("city-dropdownelement");
   expect(cities).toBeDefined();
   expect(cities).toHaveLength(3);
   fireEvent.change(username, { target: { value: "тест" } });
   fireEvent.change(password, { target: { value: "тест" } });
-  fireEvent.click(screen.getByText("Москва"));*/
+  fireEvent.click(screen.getByText("Москва"));
 });
 
 
