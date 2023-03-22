@@ -18,13 +18,14 @@
 
 
 */
-
+//Импортируем настройки app
 import { app } from "../app.js";
 import request from "supertest";
 import mongoose from "mongoose";
-import User from "../models/User"
+import User from "../models/User";
 
 beforeEach(async () => {
+  //Подключаемся к базе данных mongoDB, DB Photobank - тестовая
   await mongoose.connect(
     `mongodb+srv://admin:admin@test.qidx0uu.mongodb.net/photobank`,
     { dbName: "photobank" }
@@ -39,7 +40,6 @@ afterEach(async () => {
 //17 сценарий - негативный
 //Проверка связи между пользователем и изменением настроек
 test("Checking the connection between users and changing settings", async () => {
-
   //Проверка на то, что user с test существует
   const username = "test";
   //URL
@@ -50,10 +50,15 @@ test("Checking the connection between users and changing settings", async () => 
   expect(resSearch.statusCode).toBe(200);
   //Нужный пользователь с данным username
   //Переделать если будет другой id
-  const user = { id: "641a06240f9a67fef8978340", username: username };
+  const user = { username: username };
 
   //пользователь с именем test есть
-  expect(resSearch.body.user).toContainEqual(user);
+  expect(resSearch.body.user).toEqual( 
+  expect.arrayContaining([    
+    expect.objectContaining(
+      user          
+    )
+  ]))
 
   const settings = {
     userId: "641a0989c55304c0d7de669c",
@@ -65,7 +70,7 @@ test("Checking the connection between users and changing settings", async () => 
     city: "",
     base64: "",
   };
-  const settingsPath = "/settings"
+  const settingsPath = "/settings";
   const resSettings = await request(app).post(settingsPath).send(settings);
   //Ошибка
   expect(resSettings.statusCode).toBe(400);
@@ -76,7 +81,6 @@ test("Checking the connection between users and changing settings", async () => 
 //19 сценарий - позитивный
 //Проверка связи между пользователем и подписками на стороне сервера
 test("Checking the connection between the user and subscriptions on the server side", async () => {
-
   //Проверка на 1 запрос подписок
   const id = "641a06240f9a67fef8978340";
   //URL
@@ -87,18 +91,23 @@ test("Checking the connection between the user and subscriptions on the server s
   expect(resSubOne.statusCode).toBe(400);
   expect(resSubOne.body.message).toBe("Нет подписок");
 
-
   const id2 = "641a0989c55304c0d7de669c";
   //URL
   const authSubPath = "/auth/subscribe";
   //Запрос
-  const resAuthSubOne = await request(app).post(authSubPath).send({params: {
-    userId: id,
-    subscribe: id2
-  }});
+  const resAuthSubOne = await request(app)
+    .post(authSubPath)
+    .send({
+      params: {
+        userId: id,
+        subscribe: id2,
+      },
+    });
   //Успех - 'Изменение состояние подписки одного пользователя на другого'
   expect(resAuthSubOne.statusCode).toBe(201);
-  expect(resAuthSubOne.body.message).toBe('Изменение состояние подписки одного пользователя на другого');
+  expect(resAuthSubOne.body.message).toBe(
+    "Изменение состояние подписки одного пользователя на другого"
+  );
 
   //Запрос
   const resSubTwo = await request(app).get(subPath);
@@ -106,11 +115,6 @@ test("Checking the connection between the user and subscriptions on the server s
   expect(resSubTwo.statusCode).toBe(400);
   expect(resSubTwo.body.message).toBe("Нет опубликованных фотографий");
 
-  
   //Изменить?
-  await User.updateOne({_id: id}, {$pull: {subscriptions: id2}})
-  
+  await User.updateOne({ _id: id }, { $pull: { subscriptions: id2 } });
 });
-
-
-
