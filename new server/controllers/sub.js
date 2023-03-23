@@ -40,6 +40,7 @@ export const getSubsribeUsers = async (req, res) => {
       sub,
       message: "Получены подписки",
     });
+    
   } catch (error) {
     console.log(error);
     res.status(401).json({ message: "Не удалось получить подписки" });
