@@ -10,6 +10,10 @@ import SubscribePage from "../src/pages/SubscribePage/SubscribePage";
 import SettingsPage from "../src/pages/SettingsPage/SettingPage";
 import ProfilePage from "../src/pages/ProfilePage/ProfilePage";
 
+afterEach(() => {
+  jest.clearAllMocks();
+});
+
 //мок страниц, тк нам неважно для 2 теста, что именно на них будет
 //важно только, что совершен переход
 //Для других тестов по типу переход Профиль->Добавление фото надо, но можно (и желательно) замокать ответ от сервера
@@ -33,16 +37,19 @@ test("2: Checking the interface link between the site header module and page mod
 
   //Начинаем с пути /, должен автоматически перекинуть на popular
   render(
-    <MemoryRouter initialEntries={["/"]}>
+    <MemoryRouter initialEntries={["/popular"]}>
       <Router>{routes}</Router>
     </MemoryRouter>
   );
+  expect(global.window.location.href).toContain("http://localhost/popular");
+
 
   //Проверка на NavBar
   const nav = screen.getByTestId("nav");
   expect(nav).toBeInTheDocument();
 
   //Перекинул на Popular
+  fireEvent.click(screen.getByText("Популярное"));
   const popular = screen.getByText("PopularPage");
   expect(popular).toBeInTheDocument();
   expect(global.window.location.href).toContain("http://localhost/popular");
