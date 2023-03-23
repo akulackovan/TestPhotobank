@@ -11,7 +11,7 @@ import mongoose from "mongoose";
 import User from "../models/User";
 
 beforeEach(async () => {
-  //Подключаемся к тетовой базе данных mongoDB, DB Photobank - тестовая
+  //Подключаемся к тестовой базе данных mongoDB, DB Photobank - тестовая
   await mongoose.connect(
     `mongodb+srv://admin:admin@test.qidx0uu.mongodb.net/photobank`,
     { dbName: "photobank" }
