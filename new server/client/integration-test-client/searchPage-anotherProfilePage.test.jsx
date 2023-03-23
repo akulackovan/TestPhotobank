@@ -22,7 +22,7 @@ afterEach(() => {
 
 //5 сценарий - проверка переключения кнопок NavBar - оказываемся на замоканных страницах
 //Должен меняться url
-test("5: Checking the interface link between the site header module and page modules popular, subscriptions, settings, profile", async () => {
+test("5: Checking the interface link between the search page and another profile page", async () => {
 
   //Мокаем id пользователя за которым сидим
   const { userId } = jest.fn();
@@ -91,7 +91,21 @@ test("5: Checking the interface link between the site header module and page mod
   });
   fireEvent.click(user);
 
-  //Проверяем id пользователя по истории
+  //Проверяем id пользователя по истории, должен совпадать с id замоканного пользователя
   expect(history.location.pathname).toBe("/profile/" + testUser.id);
+
+
+  //До появления данных юзера, должна быть загрузка
+  loading = screen.getByTestId("loader");
+  expect(loading).toBeInTheDocument();
+  //"Ожидаем" данные
+  await act(async () => {
+    await new Promise((resolve) => setTimeout(resolve, 0));
+  });
+
+  //Проверям, что имя пользователя есть на странице
+  const username = screen.getByTestId("post-user");
+  expect(username).toHaveTextContent(testUser.username);
+
 
 });
