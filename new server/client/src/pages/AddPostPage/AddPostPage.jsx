@@ -79,7 +79,7 @@ const AddPostPage = () => {
   }
 
   return (
-    <div>
+    <div data-testid="addPost">
       <div className="addPost" style={disabled ? {pointerEvents: "none"} : null}>
         <div className="container">
           <Cropper

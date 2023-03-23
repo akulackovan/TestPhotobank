@@ -205,7 +205,6 @@ export const subscibe = async (req, res) => {
 
         const fint = await User.findOne({ _id: userId, subscriptions: subscribe})
 
-
         if (fint){
             await User.updateOne({_id: userId}, {$pull: {subscriptions: subscribe}})
             isSubs = false

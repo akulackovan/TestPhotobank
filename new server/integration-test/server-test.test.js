@@ -36,7 +36,7 @@ afterEach(async () => {
 
 //17 сценарий - негативный
 //Проверка связи между пользователем и изменением настроек
-test("Checking the connection between users and changing settings", async () => {
+test("17: Checking the connection between users and changing settings", async () => {
   //Проверка на то, что user с test существует
   const username = "test";
   //URL
@@ -79,7 +79,7 @@ test("Checking the connection between users and changing settings", async () => 
 
 //19 сценарий - позитивный
 //Проверка связи между пользователем и подписками на стороне сервера
-test("Checking the connection between the user and subscriptions on the server side", async () => {
+test("19: Checking the connection between the user and subscriptions on the server side", async () => {
   //Проверка на 1 запрос подписок
   const id = "641a06240f9a67fef8978340";
   //URL
