@@ -15,8 +15,8 @@ afterEach(() => {
   jest.clearAllMocks();
 });
 
-//6 сценарий - Проверка связи между страницей пользователя и страницы добавления поста
-test("6: Checking the link between the user page and the add post page", async () => {
+//Проверка связи между страницей пользователя и страницы добавления поста
+test("Checking the link between the user page and the add post page", async () => {
   //Мокаем (задаем) id пользователя за которым сидим
   const { userId } = "63d82644b88c7334ac1ac6aa";
 
@@ -87,6 +87,6 @@ test("6: Checking the link between the user page and the add post page", async (
   //Проверяем путь
   expect(history.location.pathname).toBe("/post");
   //Проверяем, что страница загрузилась через общий div
-  expect(screen.getByTestId("addPost"))
+  expect(screen.getByTestId("auth"))
 
 });

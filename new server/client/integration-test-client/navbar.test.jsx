@@ -24,7 +24,7 @@ afterEach(() => {
   jest.clearAllMocks();
 });
 
-//2 сценарий - проверка переключения кнопок NavBar - оказываемся на замоканных страницах
+//проверка переключения кнопок NavBar - оказываемся на замоканных страницах
 //Должен меняться url
 test("2: Checking the interface link between the site header module and page modules popular, subscriptions, settings, profile", async () => {
   //Мок страниц, тк нам для теста неважно, что на них находится, будем просто выводить их названия

@@ -18,7 +18,7 @@ afterEach(() => {
 });
 
 
-test("11: return to auth from reg", async () => {
+test("Checking the interface link between the registration page and the login page", async () => {
     //Мокаем данные о городах
     axios.get.mockResolvedValue({
         data: {

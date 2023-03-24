@@ -19,7 +19,7 @@ afterEach(() => server.resetHandlers());
 // останавливаем сервер после всех тестов
 afterAll(() => server.close());
 
-test("Checking communication between client and server API on post page. No post", async () => {
+test("Checking the connection between the client and server API when registering a user with an existing user", async () => {
   //Мок
   createDefault();
 
