@@ -22,32 +22,12 @@ import mongoose from "mongoose";
 import User from "../models/User";
 import Comment from "../models/Comment";
 import Post from "../models/Post";
+import { user1 } from "./database.js"
+import { user2 } from "./database.js"
+import { post } from "./database.js"
+import { city1 } from "./database.js"
+import { city2 } from "./database.js"
 
-const user1 = {
-  id: "641a06240f9a67fef8978340",
-  username: "test",
-  city: "641a05b85f099a95d1e261a0",
-};
-const user2 = {
-  id: "641a0989c55304c0d7de669c",
-  username: "tessi",
-  city: "641a09655f099a95d1e261a3",
-};
-const post = {
-  id: "641c9a9ae23b02867f76d766",
-  author: "641a06240f9a67fef8978340",
-  city: "641a05b85f099a95d1e261a0",
-};
-
-const city1 = {
-  id: "641a05b85f099a95d1e261a0",
-  city: "Москва",
-};
-
-const city2 = {
-  id: "641a09655f099a95d1e261a3",
-  city: "Красноярск",
-};
 
 beforeEach(async () => {
   //Подключаемся к тетовой базе данных mongoDB, DB Photobank - тестовая
