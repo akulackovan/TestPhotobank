@@ -20,7 +20,7 @@ import { app } from "../app.js";
 import request from "supertest";
 import mongoose from "mongoose";
 import User from "../models/User";
-import { user1 } from "./database.js"
+import { city1, user1, city2} from "./database.js"
 import { user2 } from "./database.js"
 
 

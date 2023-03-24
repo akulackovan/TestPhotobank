@@ -9,6 +9,7 @@ import { app } from "../app.js";
 import request from "supertest";
 import mongoose from "mongoose";
 import User from "../models/User";
+import {user1, user2} from "./database.js"
 
 beforeEach(async () => {
   //Подключаемся к тестовой базе данных mongoDB, DB Photobank - тестовая
@@ -25,7 +26,7 @@ afterEach(async () => {
 
 
 test("Add 1: Checking the connection between users and changing settings", async () => {
-   const id = "641a0989c55304c0d7de669c";
+   const id = user1.id;
   //Запрос 1
   const subPath = "/auth/getSub?userId=" + id;
   const resSubOne = await request(app).get(subPath);
@@ -33,7 +34,7 @@ test("Add 1: Checking the connection between users and changing settings", async
   expect(resSubOne.body.message).toBe("Нет подписок");
 
   //Запрос 2
-  const id2 = "641a06240f9a67fef8978340";
+  const id2 = user2.id;
   const authSubPath = "/auth/subscribe";
   const resAuthSubOne = await request(app)
     .post(authSubPath)
@@ -53,7 +54,7 @@ test("Add 1: Checking the connection between users and changing settings", async
   //expect(resSubTwo.statusCode).toBe(200);
   expect(resSubTwo.body.message).toBe("Получены подписки");
   expect(resSubTwo.body.sub[0].id).toBe(id2);
-  expect(resSubTwo.body.sub[0].username).toBe( "test");
+  expect(resSubTwo.body.sub[0].username).toBe( "tessi");
 
   await User.updateOne({ _id: id }, { $pull: { subscriptions: id2 } });
 });
