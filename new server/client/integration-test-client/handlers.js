@@ -40,6 +40,43 @@ export const handlers = [
     );
   }),
 
+  rest.get("/post/post/id", async (req, res, ctx) => {
+    //Получаем id от запроса
+
+    const id = await req.url.searchParams.get("id");
+    let post = await db.post.findFirst({
+      where: {
+        id: {
+          equals: id,
+        },
+      },
+    });
+
+    return res(
+      ctx.delay(0),
+      ctx.status(200, "Получен пост"),
+      ctx.json({ isPost: post })
+    );
+  }),
+
+  rest.get("/post/getLike", async (req, res, ctx) => {
+    return res(
+      ctx.delay(0),
+      ctx.status(200, "Получен лайк"),
+      ctx.json({ like: false })
+    );
+  }),
+
+  rest.get("/post/comments", async (req, res, ctx) => {
+    const id = await req.url.searchParams.get("id");
+    const comments = db.comments.findMany({});
+    return res(
+      ctx.delay(0),
+      ctx.status(200, "Получены комментарии"),
+      ctx.json({ total: comments })
+    );
+  }),
+
   //получение всегда будет с другой страницы, тк при получении
   //profile - id действительный
   rest.get("/auth/user", async (req, res, ctx) => {
@@ -47,7 +84,7 @@ export const handlers = [
     const id = await req.url.searchParams.get("userId");
     const user = await db.user.findFirst({
       where: {
-        id: {
+        _id: {
           equals: id,
         },
       },
@@ -63,7 +100,7 @@ export const handlers = [
     return res(
       ctx.delay(0),
       ctx.status(200, "Получен пользователь"),
-      ctx.json({ user: user })
+      ctx.json({ user: user, isSubscribe: false, subscibe: [] })
     );
   }),
 
@@ -102,10 +139,8 @@ export const handlers = [
     );
   }),
   rest.get("/city/getallcity", async (req, res, ctx) => {
-    console.log("Hiiiiiiiii")
     const city = db.city.findMany({});
-    console.log("Hiiiiiiiii")
-    console.log(city)
+    console.log(city);
     return res(
       ctx.delay(0),
       ctx.status(200, "Города получены"),
@@ -128,17 +163,17 @@ export const handlers = [
         ctx.json({ message: "Такого пользователя нет" })
       );
     }
-    if (user.password != password){
-        return res(
-            ctx.delay(0),
-            ctx.status(404, "Неверный пароль"),
-            ctx.json({ message: "Неверный пароль" })
-          );
+    if (user.password != password) {
+      return res(
+        ctx.delay(0),
+        ctx.status(404, "Неверный пароль"),
+        ctx.json({ message: "Неверный пароль" })
+      );
     }
     return res(
       ctx.delay(0),
       ctx.status(200, "Вход успешен"),
-      ctx.json({ id: user.id, token: "Token"})
+      ctx.json({ id: user.id, token: "Token" })
     );
   }),
 ];

@@ -19,10 +19,11 @@ export const db = factory({
     views: (Number) => 0,
     likes: (Number) => 0,
     comments: manyOf("comments"),
+    timestamps: (String) => "2023-03-24T19:42:18.066+00:00"
   },
 
   comments: {
-    id: primaryKey(faker.datatype.uuid),
+    _id: primaryKey(faker.datatype.uuid),
     author: oneOf("user"),
     comment: String,
   },
@@ -33,7 +34,7 @@ export const db = factory({
   },
 
   user: {
-    id: primaryKey(faker.datatype.uuid),
+    _id: primaryKey(faker.datatype.uuid),
     username: String,
     password: String,
     text: nullable(String),
