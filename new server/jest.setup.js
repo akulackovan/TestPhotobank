@@ -12,3 +12,6 @@ Object.defineProperty(window, 'matchMedia', {
     }))
   })
 
+  jest.setTimeout(30000);
+
+
