@@ -10,7 +10,7 @@
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "test": "jest",
     "testingRunServer": "concurrently \"npm run serverTest\" \"npm run client\"",
-    "test:ci": "jest --watchAll=false --ci -c jest.config.js"
+    "test:ci": "jest --watchAll=false --ci"
   },
   "keywords": [],
   "author": "",
