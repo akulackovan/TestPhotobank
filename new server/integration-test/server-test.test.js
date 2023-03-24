@@ -20,7 +20,9 @@ import { app } from "../app.js";
 import request from "supertest";
 import mongoose from "mongoose";
 import User from "../models/User";
-import { city1, user1, city2} from "./database.js"
+import Comment from "../models/Comment"
+import Post from "../models/Post"
+import { city1, user1, city2, post} from "./database.js"
 import { user2 } from "./database.js"
 
 
@@ -77,9 +79,57 @@ test("17: Checking the connection between users and changing settings", async ()
   expect(resSettings.body.message).toBe("Логин занят. Выберите другой");
 });
 
+//18 сценарий - позитивный
+//Проверка связи между пользователем и комментариями на стороне сервера
+test("18: Checking the connection between the user and comments", async () => {
+  //Проверка на комментарии 1
+  const postId = post.id;
+  //URL
+  const postCommentsPath = "/post/comments?id=" + postId;
+
+  await Comment.deleteMany({});
+  await Post.updateOne({_id: post.id}, {$set: {comments: []}});
+  const postComments = await request(app).get(postCommentsPath);
+  //Нет комментариев
+  expect(postComments.statusCode).toBe(200);
+  expect(postComments.body.total.length).toBe(0);
+
+  const userId2 = user2.id;
+  const commentText2 = "Test 2";
+  const addComment2 = await request(app).post("/post/comments").query({
+    postId: postId,
+    userId: userId2,
+    comment: commentText2,
+  });
+
+  expect(addComment2.statusCode).toBe(201);
+  expect(addComment2.body.message).toBe("Успешно созданный комментарий");
+
+  const userId1 = user1.id;
+  const commentText1 = "Test 1";
+  const addComment1 = await request(app).post("/post/comments").query({
+    postId: postId,
+    userId: userId1,
+    comment: commentText1,
+  });
+
+  expect(addComment1.statusCode).toBe(201);
+  expect(addComment1.body.message).toBe("Успешно созданный комментарий");
+
+  const finalPostComments = await request(app).get(postCommentsPath);
+  expect(finalPostComments.statusCode).toBe(200);
+  expect(finalPostComments.body.total.length).toBe(2);
+  expect(finalPostComments.body.total[0].user).toBe(user1.username);
+  expect(finalPostComments.body.total[0].comment).toBe(commentText1);
+  expect(finalPostComments.body.total[1].user).toBe(user2.username);
+  expect(finalPostComments.body.total[1].comment).toBe(commentText2);
+  await Comment.deleteMany({});
+  await Post.updateOne({ _id: post.id }, { $set: { comments: [] } });
+});
+
 //19 сценарий - позитивный
 //Проверка связи между пользователем и подписками на стороне сервера
-test("19: Checking the connection between adding comments and post", async () => {
+test("19: Checking the connection between user and subscriptions", async () => {
   //Проверка на 1 запрос подписок
   const id = user1.id;
   //URL
