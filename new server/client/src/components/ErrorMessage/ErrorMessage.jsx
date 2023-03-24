@@ -53,7 +53,7 @@ const ErrorMessage = ({ msg }) => {
           />
         </g>
       </svg>
-      <p>{msg} </p>{" "}
+      <p className="error">{msg} </p>{" "}
     </div>
   );
 };

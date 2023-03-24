@@ -88,7 +88,7 @@ const AuthPage = () => {
   console.log("authRed");
 
   return (
-    <div className="background">
+    <div className="background" data-testid="auth">
       <div className="auth" style={disabled ? {pointerEvents: "none"} : null}>
         <div className="back" style={{ height: "450px" }}>
           <h3 className="head">ФОТОБАНК</h3>

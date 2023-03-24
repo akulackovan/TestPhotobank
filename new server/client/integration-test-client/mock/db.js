@@ -28,7 +28,7 @@ export const db = factory({
   },
 
   city: {
-    id: primaryKey(faker.datatype.uuid),
+    _id: primaryKey(faker.datatype.uuid),
     city: String,
   },
 
