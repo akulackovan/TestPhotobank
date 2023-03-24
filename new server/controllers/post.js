@@ -25,7 +25,6 @@ export const getPostById = async (req, res) => {
 
     return res.status(200).json({
       isPost,
-
       message: "Пост получен",
     });
   } catch (error) {

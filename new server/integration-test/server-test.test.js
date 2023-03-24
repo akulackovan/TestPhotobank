@@ -6,7 +6,7 @@
   Должно быть:
   User
   по умолчанию:
-  1. test - test - Москва
+  1. test - test - Москва - 1 пост из Москвы
   2. tessi - tessi - Красноярск
   //----При необходимости добавить, но привести к первоночальному варианту----
 
@@ -20,6 +20,34 @@ import { app } from "../app.js";
 import request from "supertest";
 import mongoose from "mongoose";
 import User from "../models/User";
+import Comment from "../models/Comment";
+import Post from "../models/Post";
+
+const user1 = {
+  id: "641a06240f9a67fef8978340",
+  username: "test",
+  city: "641a05b85f099a95d1e261a0",
+};
+const user2 = {
+  id: "641a0989c55304c0d7de669c",
+  username: "tessi",
+  city: "641a09655f099a95d1e261a3",
+};
+const post = {
+  id: "641c9a9ae23b02867f76d766",
+  author: "641a06240f9a67fef8978340",
+  city: "641a05b85f099a95d1e261a0",
+};
+
+const city1 = {
+  id: "641a05b85f099a95d1e261a0",
+  city: "Москва",
+};
+
+const city2 = {
+  id: "641a09655f099a95d1e261a3",
+  city: "Красноярск",
+};
 
 beforeEach(async () => {
   //Подключаемся к тетовой базе данных mongoDB, DB Photobank - тестовая
@@ -38,7 +66,7 @@ afterEach(async () => {
 //Проверка связи между пользователем и изменением настроек
 test("17: Checking the connection between users and changing settings", async () => {
   //Проверка на то, что user с test существует
-  const username = "test";
+  const username = user1.username;
   //URL
   const searchPath = "/auth/search/?name=" + username;
   //Запрос
@@ -48,17 +76,14 @@ test("17: Checking the connection between users and changing settings", async ()
   //Нужный пользователь с данным username
   const user = { username: username };
   //Пользователь с именем test есть
-  expect(resSearch.body.user).toEqual( 
-  expect.arrayContaining([    
-    expect.objectContaining(
-      user          
-    )
-  ]))
+  expect(resSearch.body.user).toEqual(
+    expect.arrayContaining([expect.objectContaining(user)])
+  );
 
   //То, что посылаем с post
   const settings = {
-    userId: "641a0989c55304c0d7de669c",
-    username: "test",
+    userId: user2.id,
+    username: username,
     password: "",
     newpass: "",
     checkpass: "",
@@ -79,9 +104,9 @@ test("17: Checking the connection between users and changing settings", async ()
 
 //19 сценарий - позитивный
 //Проверка связи между пользователем и подписками на стороне сервера
-test("19: Checking the connection between the user and subscriptions on the server side", async () => {
+test("19: Checking the connection between adding comments and post", async () => {
   //Проверка на 1 запрос подписок
-  const id = "641a06240f9a67fef8978340";
+  const id = user1.id;
   //URL
   const subPath = "/post/subscription/?id=" + id;
   //Запрос
@@ -90,7 +115,7 @@ test("19: Checking the connection between the user and subscriptions on the serv
   expect(resSubOne.statusCode).toBe(400);
   expect(resSubOne.body.message).toBe("Нет подписок");
 
-  const id2 = "641a0989c55304c0d7de669c";
+  const id2 = user2.id;
   //URL
   const authSubPath = "/auth/subscribe";
   //Запрос
@@ -117,3 +142,4 @@ test("19: Checking the connection between the user and subscriptions on the serv
   //После отработки теста, возвращаем данные обратно, тк они поменялись
   await User.updateOne({ _id: id }, { $pull: { subscriptions: id2 } });
 });
+
