@@ -7,7 +7,7 @@ import { app } from "../app.js";
 import request from "supertest";
 import mongoose from "mongoose";
 import Post from "../models/Post.js";
-import { user2, city1, photo } from "./database.js";
+import { user2, city1 } from "./database.js";
 
 beforeEach(async () => {
     await mongoose.connect(
@@ -33,7 +33,7 @@ test("12: Checking the connection of adding and getting the post", async () => {
     const addPostPath = "/post/post";
     const resAddPost = await request(app).post(addPostPath).send({
         city: city1.id,
-        photo: photo,
+        photo: 'photo.png',
         userId: user2.id
     });
     expect(resAddPost.statusCode).toBe(201);

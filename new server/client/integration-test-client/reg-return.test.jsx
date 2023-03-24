@@ -8,6 +8,7 @@ import { act } from "react-dom/test-utils";
 import { MemoryRouter } from "react-router-dom";
 import createMemoryHistory from "history/createMemoryHistory";
 import axios from "axios";
+import { AuthContext } from "../src/context/AuthContext";
 
 jest.mock("axios");
 
@@ -37,18 +38,20 @@ test("11: return to auth from reg", async () => {
     //Создаем историю переходов
     const history = createMemoryHistory();
 
-    history.push("/auth/reg");
+    history.push("/reg");
+
+    const userId = jest.fn()
 
     //Рендерим
     render(
-        <AuthContext.Provider value={}>
+        <AuthContext.Provider value={userId}>
             <Router history={history}>{routes}</Router>
         </AuthContext.Provider>
     );
 
 
     //Проверяем путь
-    expect(history.location.pathname).toBe("/auth/reg");
+    expect(history.location.pathname).toBe("/reg");
 
     //"Ждем" обработку от axios
     await act(async () => {
@@ -79,7 +82,7 @@ test("11: return to auth from reg", async () => {
     });
 
     //Проверяем путь
-    expect(history.location.pathname).toBe("/auth/login");
+    expect(history.location.pathname).toBe("/auth");
     //Проверяем, что страница загрузилась через общий div
     expect(screen.getByTestId("addPost"))
 
