@@ -38,5 +38,33 @@ rest.put("/post/addView", async (req, res, ctx) => {
       ctx.status(200, "Успешно добавлен просмотр"),
       ctx.json({ message: "Успешно добавлен просмотр" })
     );
+  }),
+
+
+  //получение всегда будет с другой страницы, тк при получении
+  //profile - id действительный
+  rest.get("/auth/user", async (req, res, ctx) => {
+    //Получаем id от запроса
+    const id = await req.url.searchParams.get("userId");    
+    const user = await db.user.findFirst({
+      where: {
+        id: {
+          equals: id,
+        },
+      },
+    });
+    if (!user) {
+      return res(
+        ctx.delay(0),
+        ctx.status(404, "Пользователя не существует"),
+        ctx.json({ message: "Пользователя не существует" })
+      );
+    }
+
+    return res(
+      ctx.delay(0),
+      ctx.status(200, "Получен пользователь"),
+      ctx.json({user: user})
+    );
   })
 ]
