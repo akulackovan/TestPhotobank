@@ -10,6 +10,7 @@ import request from "supertest";
 import mongoose from "mongoose";
 import User from "../models/User";
 import Post from "../models/Post.js";
+import {user1, user2, post} from "./database"
 
 beforeEach(async () => {
   //Подключаемся к тестовой базе данных mongoDB, DB Photobank - тестовая
@@ -26,8 +27,8 @@ afterEach(async () => {
 
 
 test("Add 1: Checking the connection between users and changing like", async () => {
-  const userId = "641a06240f9a67fef8978340"
-  const postId = "63e0069aa21a301d9852da3a"
+  const userId = user1.id
+  const postId = post.id
 
   //Запрос 1
   const profilePath = "/auth/profile?userId=" + userId;
