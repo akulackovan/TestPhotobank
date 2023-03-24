@@ -168,3 +168,39 @@ test("19: Checking the connection between user and subscriptions", async () => {
   await User.updateOne({ _id: id }, { $pull: { subscriptions: id2 } });
 });
 
+//Проверка связи между пользователем и подписками на стороне сервера
+test("Checking the connection between user and subscribe on the server side", async () => {
+  //Популярное 1
+  const user = user2.id;
+  //URL
+  const popularPath = "/post/popular?id=" + user;
+  const postPopular1 = await request(app).get(popularPath);
+  //Нет постов
+  expect(postPopular1.statusCode).toBe(400);
+  expect(postPopular1.body.message).toBe("Фотографий в городе нет");
+
+  //Меняем настройки
+  const settings = {
+    userId: user,
+    username: "",
+    password: "",
+    newpass: "",
+    checkpass: "",
+    text: "",
+    city: post.city,
+    base64: "",
+  };
+  const settingsPath = "/settings";
+  const resSettings = await request(app).post(settingsPath).send(settings);
+  expect(resSettings.statusCode).toBe(201);
+  expect(resSettings.body.message).toBe("Настройки изменены");
+
+  //3 запрос
+  const postPopular2 = await request(app).get(popularPath);
+  expect(postPopular2.statusCode).toBe(200);
+  expect(postPopular2.body.popular.length).toBeGreaterThanOrEqual(1);
+
+  //Обратно
+  await User.updateOne({ _id: user }, { $set: { city: user2.city } });
+});
+
