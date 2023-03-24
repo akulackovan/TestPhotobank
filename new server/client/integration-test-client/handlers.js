@@ -104,6 +104,75 @@ export const handlers = [
     );
   }),
 
+  rest.get("/auth/profile", async (req, res, ctx) => {
+    //Получаем id от запроса
+    const id = await req.url.searchParams.get("userId");
+    const user = await db.user.findFirst({
+      where: {
+        _id: {
+          equals: id,
+        },
+      },
+    });
+    if (!user) {
+      return res(
+        ctx.delay(0),
+        ctx.status(404, "Пользователя не существует"),
+        ctx.json({ message: "Пользователя не существует" })
+      );
+    }
+
+    return res(
+      ctx.delay(0),
+      ctx.status(200, "Получен пользователь"),
+      ctx.json({ user: user, subscibe: [] })
+    );
+  }),
+
+
+
+  rest.post("/settings", async (req, res, ctx) => {
+    //Получаем id от запроса
+    const { username, userId } = await req.body;
+    
+    const user = await db.user.findFirst({
+      where: {
+        username: {
+          equals: username,
+        },
+      },
+    });
+    if (user) {
+      return res(
+        ctx.delay(0),
+        ctx.status(404, "Имя пользователя занято"),
+        ctx.json({ message: "Имя пользователя занято" })
+      );
+    }
+
+    db.user.update({
+      where: {
+        _id: {
+          equals: userId,
+        },
+      },
+      // Provide partial next data to be
+      // merged with the existing properties.
+      data: {
+        username: username
+      },
+    })
+    return res(
+      ctx.delay(0),
+      ctx.status(200, "Настройки изменены"),
+      ctx.json({ message: "Настройки изменены" })
+    );
+  }),
+
+  
+
+
+
   rest.post("/auth/reg", async (req, res, ctx) => {
     const { username, password, city } = await req.body;
     const user = await db.user.findFirst({
