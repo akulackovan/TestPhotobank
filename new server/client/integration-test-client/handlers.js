@@ -112,4 +112,33 @@ export const handlers = [
       ctx.json({ city: city })
     );
   }),
+  rest.post("/auth/login", async (req, res, ctx) => {
+    const { username, password } = await req.body;
+    const user = await db.user.findFirst({
+      where: {
+        username: {
+          equals: username,
+        },
+      },
+    });
+    if (!user) {
+      return res(
+        ctx.delay(0),
+        ctx.status(404, "Такого пользователя нет"),
+        ctx.json({ message: "Такого пользователя нет" })
+      );
+    }
+    if (user.password != password){
+        return res(
+            ctx.delay(0),
+            ctx.status(404, "Неверный пароль"),
+            ctx.json({ message: "Неверный пароль" })
+          );
+    }
+    return res(
+      ctx.delay(0),
+      ctx.status(200, "Вход успешен"),
+      ctx.json({ id: user.id, token: "Token"})
+    );
+  }),
 ];
