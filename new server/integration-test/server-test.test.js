@@ -20,13 +20,8 @@ import { app } from "../app.js";
 import request from "supertest";
 import mongoose from "mongoose";
 import User from "../models/User";
-import Comment from "../models/Comment";
-import Post from "../models/Post";
 import { user1 } from "./database.js"
 import { user2 } from "./database.js"
-import { post } from "./database.js"
-import { city1 } from "./database.js"
-import { city2 } from "./database.js"
 
 
 beforeEach(async () => {
