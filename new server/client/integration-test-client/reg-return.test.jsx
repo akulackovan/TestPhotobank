@@ -84,6 +84,6 @@ test("Checking the interface link between the registration page and the login pa
     //Проверяем путь
     expect(history.location.pathname).toBe("/auth");
     //Проверяем, что страница загрузилась через общий div
-    expect(screen.getByTestId("addPost"))
+    expect(screen.getByTestId("auth"))
 
 });

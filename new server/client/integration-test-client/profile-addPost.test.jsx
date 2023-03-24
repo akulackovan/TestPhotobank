@@ -87,6 +87,6 @@ test("Checking the link between the user page and the add post page", async () =
   //Проверяем путь
   expect(history.location.pathname).toBe("/post");
   //Проверяем, что страница загрузилась через общий div
-  expect(screen.getByTestId("auth"))
+  expect(screen.getByTestId("addPost"))
 
 });
