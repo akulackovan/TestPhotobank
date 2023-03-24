@@ -1,10 +1,10 @@
 import { db } from "./mock/db";
-import { rest } from 'msw'
+import { rest } from "msw";
 
 export const handlers = [
-rest.put("/post/addView", async (req, res, ctx) => {
+  rest.put("/post/addView", async (req, res, ctx) => {
     //Получаем id от запроса
-    const id = await req.url.searchParams.get("id");    
+    const id = await req.url.searchParams.get("id");
     const post = await db.post.findFirst({
       where: {
         id: {
@@ -21,18 +21,18 @@ rest.put("/post/addView", async (req, res, ctx) => {
     }
 
     db.post.update({
-        // Query for the entity to modify.
-        where: {
-          id: {
-            equals: id,
-          },
+      // Query for the entity to modify.
+      where: {
+        id: {
+          equals: id,
         },
-        // Provide partial next data to be
-        // merged with the existing properties.
-        data: {
-          views: post.views + 1
-        },
-      })
+      },
+      // Provide partial next data to be
+      // merged with the existing properties.
+      data: {
+        views: post.views + 1,
+      },
+    });
     return res(
       ctx.delay(0),
       ctx.status(200, "Успешно добавлен просмотр"),
@@ -40,12 +40,11 @@ rest.put("/post/addView", async (req, res, ctx) => {
     );
   }),
 
-
   //получение всегда будет с другой страницы, тк при получении
   //profile - id действительный
   rest.get("/auth/user", async (req, res, ctx) => {
     //Получаем id от запроса
-    const id = await req.url.searchParams.get("userId");    
+    const id = await req.url.searchParams.get("userId");
     const user = await db.user.findFirst({
       where: {
         id: {
@@ -64,7 +63,53 @@ rest.put("/post/addView", async (req, res, ctx) => {
     return res(
       ctx.delay(0),
       ctx.status(200, "Получен пользователь"),
-      ctx.json({user: user})
+      ctx.json({ user: user })
     );
-  })
-]
+  }),
+
+  rest.post("/auth/reg", async (req, res, ctx) => {
+    const { username, password, city } = await req.body;
+    const user = await db.user.findFirst({
+      where: {
+        username: {
+          equals: username,
+        },
+      },
+    });
+    if (user) {
+      return res(
+        ctx.delay(0),
+        ctx.status(404, "Имя пользователя занято"),
+        ctx.json({ message: "Имя пользователя занято" })
+      );
+    }
+    const cityDB = await db.user.findFirst({
+      where: {
+        id: {
+          equals: city,
+        },
+      },
+    });
+    const userDB = db.user.create({
+      username: username,
+      password: password,
+      city: cityDB,
+    });
+    return res(
+      ctx.delay(0),
+      ctx.status(200, "Регистрация успешна"),
+      ctx.json({ user: userDB })
+    );
+  }),
+  rest.get("/city/getallcity", async (req, res, ctx) => {
+    console.log("Hiiiiiiiii")
+    const city = db.city.findMany({});
+    console.log("Hiiiiiiiii")
+    console.log(city)
+    return res(
+      ctx.delay(0),
+      ctx.status(200, "Города получены"),
+      ctx.json({ city: city })
+    );
+  }),
+];
