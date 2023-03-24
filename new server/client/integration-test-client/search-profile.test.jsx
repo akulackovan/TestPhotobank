@@ -19,13 +19,15 @@ afterEach(() => server.resetHandlers());
 // останавливаем сервер после всех тестов
 afterAll(() => server.close());
 
-test("Checking communication between client and server API on user page. No user", async () => {
+test("Checking the link between search page and profile page", async () => {
   createDefault();
   const { userId } = jest.fn();
-  const post = db.post.findFirst({});
+  
+  const search = db.user.findMany({});
+  const path = search[0].username
 
   const history = createMemoryHistory();
-  history.push("/post/" + post.id);
+  history.push("/search/" + path);
 
   const routes = useRoutes(true, true);
   render(
@@ -33,8 +35,9 @@ test("Checking communication between client and server API on user page. No user
       <Router history={history}>{routes}</Router>
     </AuthContext.Provider>
   );
+  expect(screen.getByTestId("searchPage")).toBeInTheDocument();
 
-  expect(screen.getByTestId("postPage")).toBeInTheDocument();
+  expect(history.location.pathname).toBe("/search/" + path);
   const loading = screen.getByTestId("loader");
   expect(loading).toBeInTheDocument();
   await act(async () => {
@@ -44,18 +47,18 @@ test("Checking communication between client and server API on user page. No user
     await new Promise((resolve) => setTimeout(resolve, 0));
   });
 
-  expect(screen.getByTestId("author")).toHaveTextContent(post.author.username);
+  expect(screen.getAllByTestId("searchUser")[0]).toHaveTextContent(path);
 
-  fireEvent.click(screen.getByTestId("author"));
+  fireEvent.click(screen.getByText(path));
 
   //Проверка на путь
-  expect(history.location.pathname).toBe("/profile/" + post.author._id);
+  expect(history.location.pathname).toBe("/profile/" + search[0]._id);
   await act(async () => {
     await new Promise((resolve) => setTimeout(resolve, 0));
   });
   //Проверка на имя
   expect(screen.getByTestId("post-user")).toHaveTextContent(
-    post.author.username
+    path
   );
   expect(screen.getByTestId("profile")).toBeInTheDocument()
   clearDB();

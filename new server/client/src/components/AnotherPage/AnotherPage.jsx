@@ -146,7 +146,7 @@ export const AnotherPage = ({ id }) => {
 
 
   return (
-    <div className="profile">
+    <div className="profile" data-testid="profile">
       <div className="header">
         <div className="first">
           <img className="img" src={user.userProfileImage} />

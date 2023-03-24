@@ -138,6 +138,25 @@ export const handlers = [
       ctx.json({ user: userDB })
     );
   }),
+  rest.get("/auth/search", async (req, res, ctx) => {
+    const name = await req.url.searchParams.get("name");
+    const user = db.user.findMany({where: {
+        username: {
+          equals: name,
+        },
+      },});
+
+      const search = await Promise.all(
+        user.map((us) => {
+          return {id: us._id, username: us.username};
+        })
+      );
+    return res(
+      ctx.delay(0),
+      ctx.status(200, "Успешный поиск"),
+      ctx.json({ user: search })
+    );
+  }),
   rest.get("/city/getallcity", async (req, res, ctx) => {
     const city = db.city.findMany({});
     console.log(city);
