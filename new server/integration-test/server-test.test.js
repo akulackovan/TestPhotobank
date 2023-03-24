@@ -16,7 +16,7 @@
 */
 
 //Импортируем настройки app
-import { app } from "../app.js";
+import {app} from "../app.js";
 import request from "supertest";
 import mongoose from "mongoose";
 import User from "../models/User";
@@ -24,12 +24,12 @@ import Comment from "../models/Comment";
 import Post from "../models/Post";
 
 const user1 = {
-  id: "641a06240f9a67fef8978340",
+  id: "641de3cb94ae5238b2ce1b12",
   username: "test",
   city: "641a05b85f099a95d1e261a0",
 };
 const user2 = {
-  id: "641a0989c55304c0d7de669c",
+  id: "641de507eb5f99ce0e215de5",
   username: "tessi",
   city: "641a09655f099a95d1e261a3",
 };
@@ -53,7 +53,7 @@ beforeEach(async () => {
   //Подключаемся к тетовой базе данных mongoDB, DB Photobank - тестовая
   await mongoose.connect(
     `mongodb+srv://admin:admin@test.qidx0uu.mongodb.net/photobank`,
-    { dbName: "photobank" }
+    {dbName: "photobank"}
   );
 });
 
@@ -74,7 +74,7 @@ test("17: Checking the connection between users and changing settings", async ()
   //Запрос успешен
   expect(resSearch.statusCode).toBe(200);
   //Нужный пользователь с данным username
-  const user = { username: username };
+  const user = {username: username};
   //Пользователь с именем test есть
   expect(resSearch.body.user).toEqual(
     expect.arrayContaining([expect.objectContaining(user)])
@@ -140,6 +140,41 @@ test("19: Checking the connection between adding comments and post", async () =>
   expect(resSubTwo.body.message).toBe("Нет опубликованных фотографий");
 
   //После отработки теста, возвращаем данные обратно, тк они поменялись
-  await User.updateOne({ _id: id }, { $pull: { subscriptions: id2 } });
+  await User.updateOne({_id: id}, {$pull: {subscriptions: id2}});
+});
+
+//21 сценарий - позитивный
+//Проверка связи между добавлением поста и популярным
+test("21: Checking the connection between adding post and popular on the server side", async () => {
+  //Популярное 1
+  const user = user2.id;
+  //URL
+  const popularPath = "/post/popular?id=" + user2.id
+  const postPopular1 = await request(app).get(popularPath);
+  //Нет постов
+  expect(postPopular1.statusCode).toBe(400);
+  expect(postPopular1.body.message).toBe("Фотографий в городе нет");
+
+  //Добавляем пост
+  const addPostPath = "/post/post"
+  const addPostPopular1 = await request(app)
+    .post(addPostPath)
+    .send({
+      city: user2.city,
+      photo: "asfs",
+      userId: user2.id,
+    });
+  expect(addPostPopular1.statusCode).toBe(201)
+  expect(addPostPopular1.body.message).toBe("Успешно созданный пост")
+  console.log(addPostPopular1.body)
+  const postId = addPostPopular1.body.newPost._id
+
+  //3 запрос
+  const postPopular2 = await request(app).get(popularPath);
+  expect(postPopular2.statusCode).toBe(200);
+  expect(postPopular2.body.popular.length).toBe(1);
+
+  //Обратно
+  await Post.deleteOne({_id:postId})
 });
 
