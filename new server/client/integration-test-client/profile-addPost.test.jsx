@@ -1,7 +1,6 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import React from "react";
 import "@testing-library/jest-dom";
-import { MemoryRouter } from "react-router";
 import { useRoutes } from "../src/routes";
 import { Router, Route } from "react-router-dom";
 import createMemoryHistory from "history/createMemoryHistory";
@@ -45,9 +44,8 @@ test("Checking the link between the user page and the add post page", async () =
   axios.mockResolvedValue({
     data: {
       user: testUser,
-      subscibe: 0,    
+      subscibe: 0,
     },
-    
   });
   //Рендерим
   render(
@@ -87,6 +85,5 @@ test("Checking the link between the user page and the add post page", async () =
   //Проверяем путь
   expect(history.location.pathname).toBe("/post");
   //Проверяем, что страница загрузилась через общий div
-  expect(screen.getByTestId("addPost"))
-
+  expect(screen.getByTestId("addPost"));
 });

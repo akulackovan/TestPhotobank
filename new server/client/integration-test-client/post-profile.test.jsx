@@ -1,4 +1,3 @@
-import { rest } from "msw";
 import { setupServer } from "msw/node";
 import { render, fireEvent, waitFor, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
@@ -19,7 +18,7 @@ afterEach(() => server.resetHandlers());
 // останавливаем сервер после всех тестов
 afterAll(() => server.close());
 
-test("Checking communication between client and server API on user page. No user", async () => {
+test("Checking the link between profile page and post page", async () => {
   createDefault();
   const { userId } = jest.fn();
   const post = db.post.findFirst({});
@@ -57,6 +56,6 @@ test("Checking communication between client and server API on user page. No user
   expect(screen.getByTestId("post-user")).toHaveTextContent(
     post.author.username
   );
-  expect(screen.getByTestId("profile")).toBeInTheDocument()
+  expect(screen.getByTestId("profile")).toBeInTheDocument();
   clearDB();
 });

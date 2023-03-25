@@ -1,4 +1,3 @@
-import { rest } from "msw";
 import { setupServer } from "msw/node";
 import { render, fireEvent, waitFor, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
@@ -7,7 +6,6 @@ import { AuthContext } from "../src/context/AuthContext";
 import { act } from "react-dom/test-utils";
 import { db, createDefault, clearDB } from "./mock/db";
 import { handlers } from "./handlers";
-import { useRoutes } from "../src/routes";
 import SettingsPage from "../src/pages/SettingsPage/SettingPage";
 
 const server = setupServer(...handlers);
@@ -24,6 +22,7 @@ test("Checking the connection between the client and server API when changing th
   //Поиск пользователя
   const user = db.user.findMany({});
   const { userId } = user[1]._id;
+  //Его имя
   const path = user[0].username;
   console.log("adsds");
   console.log(path);

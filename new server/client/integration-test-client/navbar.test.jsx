@@ -3,12 +3,12 @@ import React from "react";
 import "@testing-library/jest-dom";
 import { MemoryRouter } from "react-router";
 import { useRoutes } from "../src/routes";
-import { Router, Route } from 'react-router-dom';
+import { Router, Route } from "react-router-dom";
 import PopularPage from "../src/pages/PopularPage/PopularPage";
 import SubscribePage from "../src/pages/SubscribePage/SubscribePage";
 import SettingsPage from "../src/pages/SettingsPage/SettingPage";
 import ProfilePage from "../src/pages/ProfilePage/ProfilePage";
-import createMemoryHistory from 'history/createMemoryHistory';
+import createMemoryHistory from "history/createMemoryHistory";
 import { AuthContext } from "../src/context/AuthContext";
 
 //мок страниц, тк нам неважно для 2 теста, что именно на них будет
@@ -38,15 +38,12 @@ test("2: Checking the interface link between the site header module and page mod
   //Для тестов готов должен быть всегда true, логин по необходимости (false, если нужны страницы регистрации и пользователя)
   const routes = useRoutes(true, true);
   const history = createMemoryHistory();
-  history.push('/');
-  
+  history.push("/");
 
   //Начинаем с пути /, должен автоматически перекинуть на popular
   render(
     <AuthContext.Provider value={{ userId }}>
-    <Router history={history}>
-      {routes}
-    </Router>
+      <Router history={history}>{routes}</Router>
     </AuthContext.Provider>
   );
 

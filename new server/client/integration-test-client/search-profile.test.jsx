@@ -19,13 +19,12 @@ afterEach(() => server.resetHandlers());
 // останавливаем сервер после всех тестов
 afterAll(() => server.close());
 
-
 test("Checking the link between search page and profile page", async () => {
   createDefault();
   const { userId } = jest.fn();
-  
+
   const search = db.user.findMany({});
-  const path = search[0].username
+  const path = search[0].username;
 
   const history = createMemoryHistory();
   history.push("/search/" + path);
@@ -58,9 +57,7 @@ test("Checking the link between search page and profile page", async () => {
     await new Promise((resolve) => setTimeout(resolve, 0));
   });
   //Проверка на имя
-  expect(screen.getByTestId("post-user")).toHaveTextContent(
-    path
-  );
-  expect(screen.getByTestId("profile")).toBeInTheDocument()
+  expect(screen.getByTestId("post-user")).toHaveTextContent(path);
+  expect(screen.getByTestId("profile")).toBeInTheDocument();
   clearDB();
 });

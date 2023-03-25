@@ -20,8 +20,8 @@ afterEach(async () => {
   await mongoose.connection.close();
 });
 
-//10 сценарий - позитивный
-test("10: Checking the connection of changing the user password in settings and user login", async () => {
+
+test("Checking the connection of changing the user password in settings and user login", async () => {
   //Поиск пользователя из DB и его сохранение
   const user = await User.findById(user1.id);
   const oldpass = user.password;

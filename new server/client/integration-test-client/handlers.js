@@ -129,12 +129,10 @@ export const handlers = [
     );
   }),
 
-
-
   rest.post("/settings", async (req, res, ctx) => {
     //Получаем id от запроса
     const { username, userId } = await req.body;
-    
+
     const user = await db.user.findFirst({
       where: {
         username: {
@@ -159,19 +157,15 @@ export const handlers = [
       // Provide partial next data to be
       // merged with the existing properties.
       data: {
-        username: username
+        username: username,
       },
-    })
+    });
     return res(
       ctx.delay(0),
       ctx.status(200, "Настройки изменены"),
       ctx.json({ message: "Настройки изменены" })
     );
   }),
-
-  
-
-
 
   rest.post("/auth/reg", async (req, res, ctx) => {
     const { username, password, city } = await req.body;
@@ -209,17 +203,19 @@ export const handlers = [
   }),
   rest.get("/auth/search", async (req, res, ctx) => {
     const name = await req.url.searchParams.get("name");
-    const user = db.user.findMany({where: {
+    const user = db.user.findMany({
+      where: {
         username: {
           equals: name,
         },
-      },});
+      },
+    });
 
-      const search = await Promise.all(
-        user.map((us) => {
-          return {id: us._id, username: us.username};
-        })
-      );
+    const search = await Promise.all(
+      user.map((us) => {
+        return { id: us._id, username: us.username };
+      })
+    );
     return res(
       ctx.delay(0),
       ctx.status(200, "Успешный поиск"),

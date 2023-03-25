@@ -19,7 +19,7 @@ export const db = factory({
     views: (Number) => 0,
     likes: (Number) => 0,
     comments: manyOf("comments"),
-    timestamps: (String) => "2023-03-24T19:42:18.066+00:00"
+    timestamps: (String) => "2023-03-24T19:42:18.066+00:00",
   },
 
   comments: {

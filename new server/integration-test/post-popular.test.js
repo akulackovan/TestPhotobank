@@ -16,7 +16,7 @@
 */
 
 //Импортируем настройки app
-import {app} from "../app.js";
+import { app } from "../app.js";
 import request from "supertest";
 import mongoose from "mongoose";
 import Post from "../models/Post";
@@ -51,7 +51,7 @@ beforeEach(async () => {
   //Подключаемся к тетовой базе данных mongoDB, DB Photobank - тестовая
   await mongoose.connect(
     `mongodb+srv://admin:admin@test.qidx0uu.mongodb.net/photobank`,
-    {dbName: "photobank"}
+    { dbName: "photobank" }
   );
 });
 
@@ -60,30 +60,27 @@ afterEach(async () => {
   await mongoose.connection.close();
 });
 
-
-test("21: Checking the connection between adding post and popular on the server side", async () => {
+test("Checking the connection between adding post and popular on the server side", async () => {
   //Популярное 1
   const user = user2.id;
   //URL
-  const popularPath = "/post/popular?id=" + user2.id
+  const popularPath = "/post/popular?id=" + user2.id;
   const postPopular1 = await request(app).get(popularPath);
   //Нет постов
   expect(postPopular1.statusCode).toBe(400);
   expect(postPopular1.body.message).toBe("Фотографий в городе нет");
 
   //Добавляем пост
-  const addPostPath = "/post/post"
-  const addPostPopular1 = await request(app)
-    .post(addPostPath)
-    .send({
-      city: user2.city,
-      photo: "asfs",
-      userId: user2.id,
-    });
-  expect(addPostPopular1.statusCode).toBe(201)
-  expect(addPostPopular1.body.message).toBe("Успешно созданный пост")
-  console.log(addPostPopular1.body)
-  const postId = addPostPopular1.body.newPost._id
+  const addPostPath = "/post/post";
+  const addPostPopular1 = await request(app).post(addPostPath).send({
+    city: user2.city,
+    photo: "asfs",
+    userId: user2.id,
+  });
+  expect(addPostPopular1.statusCode).toBe(201);
+  expect(addPostPopular1.body.message).toBe("Успешно созданный пост");
+  console.log(addPostPopular1.body);
+  const postId = addPostPopular1.body.newPost._id;
 
   //3 запрос
   const postPopular2 = await request(app).get(popularPath);
@@ -91,5 +88,5 @@ test("21: Checking the connection between adding post and popular on the server 
   expect(postPopular2.body.popular.length).toBe(1);
 
   //Обратно
-  await Post.deleteOne({_id:postId})
+  await Post.deleteOne({ _id: postId });
 });

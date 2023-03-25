@@ -1,4 +1,3 @@
-import { rest } from "msw";
 import { setupServer } from "msw/node";
 import { render, waitFor, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
@@ -8,8 +7,7 @@ import { db, createDefault, clearDB } from "./mock/db";
 import { handlers } from "./handlers";
 import RegPage from "../src/pages/RegPage/RegPage";
 import { MemoryRouter } from "react-router-dom";
-import { fireEvent } from '@testing-library/react'
-
+import { fireEvent } from "@testing-library/react";
 
 const server = setupServer(...handlers);
 //Открываем сервер
@@ -24,8 +22,10 @@ test("Checking the connection between the client and server API when registering
   createDefault();
 
   render(
-    <MemoryRouter><RegPage />
-     </MemoryRouter>);
+    <MemoryRouter>
+      <RegPage />
+    </MemoryRouter>
+  );
   //"Ждем" обработку от axios
   await act(async () => {
     await new Promise((resolve) => setTimeout(resolve, 0));
@@ -35,13 +35,13 @@ test("Checking the connection between the client and server API when registering
   expect(username).toBeInTheDocument();
   //Заполняем поле
   fireEvent.change(username, { target: { value: "test" } });
-  expect(username.value).toBe('test')
+  expect(username.value).toBe("test");
   //Пароль на месте
   const password = screen.getByPlaceholderText("Пароль");
   expect(password).toBeInTheDocument();
   //Заполняем
   fireEvent.change(password, { target: { value: "test" } });
-  expect(password.value).toBe('test')
+  expect(password.value).toBe("test");
 
   //Отобразился ли Cpmbobox?
   expect(screen.getByTestId("city")).toBeInTheDocument();

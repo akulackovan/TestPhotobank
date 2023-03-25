@@ -44,7 +44,7 @@ test("Checking the connection between the login and registration pages", async (
   expect(auth).toBeInTheDocument();
 
   //Нажимаем на кнопку
-  const button = screen.getByText(/Регистрация/i)
+  const button = screen.getByText(/Регистрация/i);
   expect(button).toBeInTheDocument();
   fireEvent.click(button);
 

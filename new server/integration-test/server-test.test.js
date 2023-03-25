@@ -20,11 +20,10 @@ import { app } from "../app.js";
 import request from "supertest";
 import mongoose from "mongoose";
 import User from "../models/User";
-import Comment from "../models/Comment"
-import Post from "../models/Post"
-import { city1, user1, city2, post} from "./database.js"
-import { user2 } from "./database.js"
-
+import Comment from "../models/Comment";
+import Post from "../models/Post";
+import { city1, user1, city2, post } from "./database.js";
+import { user2 } from "./database.js";
 
 beforeEach(async () => {
   //Подключаемся к тетовой базе данных mongoDB, DB Photobank - тестовая
@@ -39,9 +38,8 @@ afterEach(async () => {
   await mongoose.connection.close();
 });
 
-//17 сценарий - негативный
 //Проверка связи между пользователем и изменением настроек
-test("17: Checking the connection between users and changing settings", async () => {
+test("Checking the connection between users and changing settings", async () => {
   //Проверка на то, что user с test существует
   const username = user1.username;
   //URL
@@ -79,16 +77,15 @@ test("17: Checking the connection between users and changing settings", async ()
   expect(resSettings.body.message).toBe("Логин занят. Выберите другой");
 });
 
-//18 сценарий - позитивный
 //Проверка связи между пользователем и комментариями на стороне сервера
-test("18: Checking the connection between the user and comments", async () => {
+test("Checking the connection between the user and comments", async () => {
   //Проверка на комментарии 1
   const postId = post.id;
   //URL
   const postCommentsPath = "/post/comments?id=" + postId;
 
   await Comment.deleteMany({});
-  await Post.updateOne({_id: post.id}, {$set: {comments: []}});
+  await Post.updateOne({ _id: post.id }, { $set: { comments: [] } });
   const postComments = await request(app).get(postCommentsPath);
   //Нет комментариев
   expect(postComments.statusCode).toBe(200);
@@ -127,9 +124,8 @@ test("18: Checking the connection between the user and comments", async () => {
   await Post.updateOne({ _id: post.id }, { $set: { comments: [] } });
 });
 
-//19 сценарий - позитивный
 //Проверка связи между пользователем и подписками на стороне сервера
-test("19: Checking the connection between user and subscriptions", async () => {
+test("Checking the connection between user and subscriptions", async () => {
   //Проверка на 1 запрос подписок
   const id = user1.id;
   //URL
@@ -169,7 +165,7 @@ test("19: Checking the connection between user and subscriptions", async () => {
 });
 
 //Проверка связи между пользователем и подписками на стороне сервера
-test("Checking the connection between user and subscribe on the server side", async () => {
+test("Checking the connection between user and popular page on the server side", async () => {
   //Популярное 1
   const user = user2.id;
   //URL
@@ -203,4 +199,3 @@ test("Checking the connection between user and subscribe on the server side", as
   //Обратно
   await User.updateOne({ _id: user }, { $set: { city: user2.city } });
 });
-

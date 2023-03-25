@@ -9,7 +9,7 @@ import { app } from "../app.js";
 import request from "supertest";
 import mongoose from "mongoose";
 import User from "../models/User";
-import {user1, user2} from "./database.js"
+import { user1, user2 } from "./database.js";
 
 beforeEach(async () => {
   //Подключаемся к тестовой базе данных mongoDB, DB Photobank - тестовая
@@ -24,9 +24,8 @@ afterEach(async () => {
   await mongoose.connection.close();
 });
 
-
 test("Add 1: Checking the connection between users and changing settings", async () => {
-   const id = user1.id;
+  const id = user1.id;
   //Запрос 1
   const subPath = "/auth/getSub?userId=" + id;
   const resSubOne = await request(app).get(subPath);
@@ -54,7 +53,7 @@ test("Add 1: Checking the connection between users and changing settings", async
   //expect(resSubTwo.statusCode).toBe(200);
   expect(resSubTwo.body.message).toBe("Получены подписки");
   expect(resSubTwo.body.sub[0].id).toBe(id2);
-  expect(resSubTwo.body.sub[0].username).toBe( "tessi");
+  expect(resSubTwo.body.sub[0].username).toBe("tessi");
 
   await User.updateOne({ _id: id }, { $pull: { subscriptions: id2 } });
 });

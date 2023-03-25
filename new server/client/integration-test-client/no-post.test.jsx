@@ -1,4 +1,3 @@
-import { rest } from "msw";
 import { setupServer } from "msw/node";
 import { render, fireEvent, waitFor, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
@@ -7,11 +6,9 @@ import React from "react";
 import { AuthContext } from "../src/context/AuthContext";
 import { act } from "react-dom/test-utils";
 import { db, createDefault, clearDB } from "./mock/db";
-import { handlers } from './handlers'
+import { handlers } from "./handlers";
 
-const server = setupServer(...handlers
-  
-);
+const server = setupServer(...handlers);
 //Открываем сервер
 beforeAll(() => server.listen());
 // сбрасываем обработчики к дефолтной реализации после каждого теста
