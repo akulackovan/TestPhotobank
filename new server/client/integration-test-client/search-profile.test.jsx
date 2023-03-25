@@ -19,6 +19,7 @@ afterEach(() => server.resetHandlers());
 // останавливаем сервер после всех тестов
 afterAll(() => server.close());
 
+
 test("Checking the link between search page and profile page", async () => {
   createDefault();
   const { userId } = jest.fn();
