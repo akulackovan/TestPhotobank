@@ -8,7 +8,8 @@
         "navigator": {}
       },
       "setupFilesAfterEnv": ["<rootDir>/jest.setup.js"],
-      "testEnvironment": "jsdom",
+      "testEnvironment": "puppeteer",
+      "preset": "jest-puppeteer",
       "coverageReporters": [
         "text",
         "cobertura"

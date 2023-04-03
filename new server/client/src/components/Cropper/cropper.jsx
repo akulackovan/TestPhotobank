@@ -247,7 +247,7 @@ const Cropper = ({ x = 480, y = 480, size = 7, disabled=false, setData}) => {
             selectImage(e);
           }}
           disabled={disabled}
-          data-testid="input"
+          data-testid="inputfile"
         />
         <label
           id="label-cropper"
