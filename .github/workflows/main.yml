@@ -1,9 +1,13 @@
 name: Tests CI
 
-on: [push, pull_request]
+on: 
+  push:
+    branches: [ system ]
+  pull_request:
+    branches: [ system ]
 
 jobs:
-  build:
+  ci:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
@@ -14,8 +18,9 @@ jobs:
       run: yarn
       working-directory: ./new server/client
     - name: Run tests
-      run: yarn client
-      run: yarn server
-      run: sleep 10
-      run: yarn test:ci
+      run: |  
+            yarn client
+            yarn server
+            sleep 10
+            yarn test:ci
       working-directory: ./new server
