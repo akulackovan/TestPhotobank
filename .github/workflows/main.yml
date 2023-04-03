@@ -19,5 +19,5 @@ jobs:
       working-directory: ./new server/client
     - name: Run tests
       run: |
-            yarn test:ci
+            yarn test:all
       working-directory: ./new server

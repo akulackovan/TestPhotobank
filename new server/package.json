@@ -9,8 +9,8 @@
     "client": "npm run start --prefix=client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "test": "jest search-reg.test.js",
-    "testingRunServer": "concurrently \"npm run serverTest\" \"npm run client\"",
-    "test:ci": "jest --watchAll=false --ci"
+    "test:ci": "jest --watchAll=false --ci --detectOpenHandles",
+    "test:all": "start-server-and-test \"npm run dev\" 3000 \"test:ci\""
   },
   "keywords": [],
   "author": "",
@@ -57,6 +57,7 @@
     "react-widgets": "^5.8.4",
     "reactstrap": "^9.1.5",
     "sass": "^1.57.1",
+    "start-test": "^0.0.1",
     "styled-components": "^5.3.6"
   },
   "devDependencies": {
@@ -75,6 +76,7 @@
     "jest-mock-axios": "^4.7.0-beta4",
     "jest-puppeteer": "^8.0.6",
     "react-test-renderer": "^18.2.0",
+    "start-server-and-test": "^2.0.0",
     "supertest": "^6.3.3"
   }
 }

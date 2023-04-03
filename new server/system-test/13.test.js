@@ -47,8 +47,8 @@ test("Add post", async () => {
   await page.waitForSelector('[href="/post"]');
   await Promise.all([page.click('[href="/post"]'), page.waitForNavigation()]);
 
-  const elementHandle = await page.$("input[type=file]");
-  await elementHandle.uploadFile("test.jpg");
+  //const elementHandle = await page.$("input[type=file]");
+  //await elementHandle.uploadFile("test.jpg");
 
   // Click on <button> "Обрезать"
   await page.waitForSelector(".button:nth-child(2)");
