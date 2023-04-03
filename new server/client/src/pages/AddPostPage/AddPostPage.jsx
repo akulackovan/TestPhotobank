@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
-import "./AddPostPage.scss";
+//import "./AddPostPage.scss";
 import CityCombobox from "../../components/CityCombobox/CityCombobox";
 import Cropper from "../../components/Cropper/cropper";
 import  AuthContext from "../../context/AuthContext";

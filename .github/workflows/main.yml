@@ -15,7 +15,5 @@ jobs:
       working-directory: ./new server/client
     - name: Run tests
       run: |
-            yarn dev
-            sleep 60
             yarn test:ci
       working-directory: ./new server
