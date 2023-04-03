@@ -2,8 +2,8 @@ import puppeteer from "puppeteer";
 
 test("Add post", async () => {
   const browser = await puppeteer.launch({
-    headless: false,
-    slowMo: 100, // Uncomment to visualize test
+    //headless: false,
+    //slowMo: 100, // Uncomment to visualize test
   });
   const page = await browser.newPage();
 
