@@ -9,7 +9,7 @@
     "client": "npm run start --prefix=client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "test": "jest search-reg.test.js",
-    "test:ci": "jest --watchAll=false --ci --detectOpenHandles",
+    "test:ci": "jest --watchAll=false --ci",
     "test:all": "start-server-and-test \"npm run dev\" 3000 \"test:ci\""
   },
   "keywords": [],
