@@ -271,6 +271,8 @@ const SettingsPage = () => {
               className="button"
               onClick={settingsHandler}
               disabled={disabled}
+              name="save"
+              id="save"
             >
               СОХРАНИТЬ
             </button>
