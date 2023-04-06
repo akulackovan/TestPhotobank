@@ -8,10 +8,9 @@
     "serverTest": "nodemon indexData.js ",
     "client": "npm run start --prefix=client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "dev:test": "concurrently \"npm run serverTest\" \"npm run client\"",
-    "test": "jest search-reg.test.js",
+    "devtest": "concurrently \"npm run serverTest\" \"npm run client\"",
     "test:ci": "jest --watchAll=false --ci  --detectOpenHandles --forceExit",
-    "test:all": "start-server-and-test \"npm run dev:test\" 3000 \"test:ci\""
+    "test:all": "start-server-and-test \"npm run devtest\" 3000 \"test:ci\""
   },
   "keywords": [],
   "author": "",

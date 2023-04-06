@@ -251,7 +251,7 @@ const Cropper = ({ x = 480, y = 480, size = 7, disabled=false, setData}) => {
         />
         <label
           id="label-cropper"
-          htmlFor="input__file"
+          htmlFor="input__file_img"
           className="input__file-button"
           style={{ width: `480px`, height: `360px` }}
           title="Выбрать изображение"

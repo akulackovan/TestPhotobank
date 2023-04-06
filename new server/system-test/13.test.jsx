@@ -43,9 +43,12 @@ test("Add post", async () => {
   await Promise.all([page.click('[href="/post"]'), page.waitForNavigation()]);
 
   await page.waitForSelector('.input__file_img');
+
+  
+
   const [ fileChooser ] = await Promise.all([
     page.waitForFileChooser(),
-    page.click('.input__file_img')
+    page.click(".input__file-button")
   ])
 
   await fileChooser.accept(['test.jpg'])
