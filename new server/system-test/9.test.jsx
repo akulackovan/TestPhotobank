@@ -2,7 +2,7 @@ import puppeteer from "puppeteer";
 
 test("Wrong text", async () => {
   const browser = await puppeteer.launch({
-    // headless: false, slowMo: 100, // Uncomment to visualize test
+    //headless: false, slowMo: 100, // Uncomment to visualize test
   });
   const page = await browser.newPage();
 
@@ -10,15 +10,11 @@ test("Wrong text", async () => {
   await page.goto("http://localhost:3000/auth");
 
   // Resize window to 871 x 881
-  await page.setViewport({ width: 871, height: 881 });
-
-  // Click on <input> [data-testid="username"]
-  await page.waitForSelector('[data-testid="username"]');
-  await page.click('[data-testid="username"]');
+  //await page.setViewport({ width: 871, height: 881 });
 
   // Fill "тест" on <input> [data-testid="username"]
   await page.waitForSelector('[data-testid="username"]:not([disabled])');
-  await page.type('[data-testid="username"]', "тест");
+  await page.type('[data-testid="username"]', "test");
 
   // Click on <input> #password
   await page.waitForSelector("#password");
@@ -26,7 +22,7 @@ test("Wrong text", async () => {
 
   // Fill "тест" on <input> #password
   await page.waitForSelector("#password:not([disabled])");
-  await page.type("#password", "тест");
+  await page.type("#password", "test");
 
   // Click on <button> "ВОЙТИ"
   await page.waitForSelector('[data-testid="login-button"]');
@@ -50,12 +46,18 @@ test("Wrong text", async () => {
   );
 
   // Click on <button> "СОХРАНИТЬ"
-  await page.waitForSelector(".elementButton:nth-child(1) > .button");
-  await page.click(".elementButton:nth-child(1) > .button");
+  await page.waitForSelector(".save");
+  await page.click(".save");
 
   // Click on <p> ""Описание пользователя" д..."
   await page.waitForSelector(".error");
-  await page.click(".error");
+  //Проверка на сообщение
+  await page.$eval(
+    ".error",
+    (el) =>
+      (el.textContent =
+        '"Описание пользователя" должно содержать не более 512 символов')
+  );
 
   await browser.close();
 });

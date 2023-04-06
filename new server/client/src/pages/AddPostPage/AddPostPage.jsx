@@ -1,16 +1,16 @@
 import React, { useState, useContext } from "react";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
-//import "./AddPostPage.scss";
+//import style from "./AddPostPage.scss";
 import CityCombobox from "../../components/CityCombobox/CityCombobox";
 import Cropper from "../../components/Cropper/cropper";
-import  AuthContext from "../../context/AuthContext";
+import AuthContext from "../../context/AuthContext";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 
 const AddPostPage = () => {
   const [errorMessage, setErrorMessage] = React.useState("");
   const [redirect, setRedirect] = React.useState(false);
-  const [disabled, setDisabled] = React.useState(false)
+  const [disabled, setDisabled] = React.useState(false);
   const { userId } = useContext(AuthContext);
   const [form, setForm] = useState({
     photo: "",
@@ -39,14 +39,14 @@ const AddPostPage = () => {
     }
 
     if (description.length > 512) {
-    console.log(description)
+      console.log(description);
       setErrorMessage("Описание поста должно содержать от 0 до 512 символов");
       setTimeout(() => setErrorMessage(""), 5000);
       return;
     }
     setForm({ ...form, description: "" });
-    console.log(form)
-    setDisabled(true)
+    console.log(form);
+    setDisabled(true);
     try {
       await axios
         .post(
@@ -64,13 +64,13 @@ const AddPostPage = () => {
             response.data.message +
               "    Вы будете перенаправлены на страницу профиля через 5 секунд"
           );
-         setTimeout(() => setRedirect(true), 5000);
+          setTimeout(() => setRedirect(true), 5000);
         });
     } catch (error) {
       console.log(error);
       setErrorMessage(error.response.data.message);
       setTimeout(() => setErrorMessage(""), 5000);
-      setDisabled(false)
+      setDisabled(false);
     }
   };
 
@@ -80,7 +80,10 @@ const AddPostPage = () => {
 
   return (
     <div data-testid="addPost">
-      <div className="addPost" style={disabled ? {pointerEvents: "none"} : null}>
+      <div
+        className="addPost"
+        style={disabled ? { pointerEvents: "none" } : null}
+      >
         <div className="container">
           <Cropper
             size={16}
@@ -106,11 +109,16 @@ const AddPostPage = () => {
               onChange={changeForm}
               id="description"
               disabled={disabled}
-              resize='none'
+              resize="none"
             />
           </div>
 
-          <button className="button" onClick={addPostHandler} disabled={disabled}>
+          <button
+            className="button"
+            onClick={addPostHandler}
+            disabled={disabled}
+            data-testid="upload"
+          >
             ЗАГРУЗИТЬ ФОТО
           </button>
           {errorMessage && <ErrorMessage msg={errorMessage} />}

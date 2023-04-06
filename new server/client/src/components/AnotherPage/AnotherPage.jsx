@@ -1,12 +1,11 @@
 import React, { useState, useContext, useEffect, Component } from "react";
 import axios from "axios";
-import  AuthContext  from "../../context/AuthContext";
+import AuthContext from "../../context/AuthContext";
 import { Link } from "react-router-dom";
 import Loader from "../Loader/Loader";
 import "./AnotherPage.scss";
 import PostUser from "../PostUser/PostUser";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
-
 
 export const AnotherPage = ({ id }) => {
   const { userId } = useContext(AuthContext);
@@ -22,18 +21,18 @@ export const AnotherPage = ({ id }) => {
   const [isSubscription, setSubscriptions] = useState(false);
   //Колесо загрузки
   const [loader, setLoader] = useState(true);
-  const [disabled, setDisabled] = useState(false)
-  const [error, setErrorMessage] = useState()
+  const [disabled, setDisabled] = useState(false);
+  const [error, setErrorMessage] = useState();
 
-  const [sub, setSub] = useState()
-  const [loadSub, setLoadSub] = useState(false)
+  const [sub, setSub] = useState();
+  const [loadSub, setLoadSub] = useState(false);
   console.log(id);
   console.log(userId);
 
   //** Подписка */
   const subscribe = async () => {
-    setLoadSub(true)
-    setDisabled(true)
+    setLoadSub(true);
+    setDisabled(true);
     try {
       await axios
         .post("/auth/subscribe", {
@@ -50,18 +49,18 @@ export const AnotherPage = ({ id }) => {
           //ЗДЕСЬ тест
           if (response.data.isSubs) {
             console.log("Update");
-            setUser({ ...user, subscriptions: sub});
+            setUser({ ...user, subscriptions: sub });
           } else {
-            setUser({ ...user, subscriptions: sub - 1});
+            setUser({ ...user, subscriptions: sub - 1 });
           }
-          setDisabled(false)
-          setLoadSub(false)
+          setDisabled(false);
+          setLoadSub(false);
         });
     } catch (error) {
       console.log(error);
-      setDisabled(false)
-      
-      setLoadSub(false)
+      setDisabled(false);
+
+      setLoadSub(false);
     }
   };
 
@@ -79,31 +78,32 @@ export const AnotherPage = ({ id }) => {
           userId: id,
           myId: userId,
         },
-      }).then((response) => {
-        setUser({
-          username: response.data.user.username,
-          text: response.data.user.text,
-          subscriptions: response.data.subscibe.length,
-          userProfileImage: response.data.user.image,
-          city: response.data.city,
-        });
-        setSubscriptions(response.data.isSubscribe);
-        console.log("Sub" + response.data.isSubscribe)
-        if (response.data.isSubscribe) {
-          setSub(response.data.subscibe.length + 1)
-        }
-        else {
-          setSub(response.data.subscibe.length)
-        }
-        console.log(response.data.subscibe);
-        setLoader(false);
-      }).catch((error)=>{
-        setErrorMessage(error.response.data.message)
-        if (error.response.data.message === "Нет доступа"){
-          setErrorMessage("Пользователь не найден")
-        }
-        setLoader(false)
       })
+        .then((response) => {
+          setUser({
+            username: response.data.user.username,
+            text: response.data.user.text,
+            subscriptions: response.data.subscibe.length,
+            userProfileImage: response.data.user.image,
+            city: response.data.city,
+          });
+          setSubscriptions(response.data.isSubscribe);
+          console.log("Sub" + response.data.isSubscribe);
+          if (response.data.isSubscribe) {
+            setSub(response.data.subscibe.length + 1);
+          } else {
+            setSub(response.data.subscibe.length);
+          }
+          console.log(response.data.subscibe);
+          setLoader(false);
+        })
+        .catch((error) => {
+          setErrorMessage(error.response.data.message);
+          if (error.response.data.message === "Нет доступа") {
+            setErrorMessage("Пользователь не найден");
+          }
+          setLoader(false);
+        });
     } else {
       /** Получение пользователя */
       axios({
@@ -116,19 +116,22 @@ export const AnotherPage = ({ id }) => {
         params: {
           userId: userId,
         },
-      }).then((response) => { //ЗДЕСЬ Тест
-        console.log("Profile: " + response.data.user);
-        setUser({
-          username: response.data.user.username,
-          text: response.data.user.text,
-          subscriptions: response.data.subscibe.length,
-          userProfileImage: response.data.user.image,
+      })
+        .then((response) => {
+          //ЗДЕСЬ Тест
+          console.log("Profile: " + response.data.user);
+          setUser({
+            username: response.data.user.username,
+            text: response.data.user.text,
+            subscriptions: response.data.subscibe.length,
+            userProfileImage: response.data.user.image,
+          });
+          setLoader(false);
+        })
+        .catch((error) => {
+          console.log(error);
+          setErrorMessage(error.response.data.message);
         });
-        setLoader(false);
-      }).catch((error)=>{
-        console.log(error)
-        setErrorMessage(error.response.data.message)
-      });
     }
   }, []);
 
@@ -136,14 +139,9 @@ export const AnotherPage = ({ id }) => {
     return <Loader />;
   }
 
-
-  if(error){
-    return(
-      <ErrorMessage msg={error}/>
-    )
+  if (error) {
+    return <ErrorMessage msg={error} />;
   }
-
-
 
   return (
     <div className="profile" data-testid="profile">
@@ -153,7 +151,13 @@ export const AnotherPage = ({ id }) => {
         </div>
         <div className="second container">
           <div className="header">
-            <div className="user " data-testid="post-user" style={{ fontSize: 'min(3vw, 30px)'}}>{user.username}</div>
+            <div
+              className="user"
+              data-testid="post-user"
+              style={{ fontSize: "min(3vw, 30px)" }}
+            >
+              {user.username}
+            </div>
             {id != userId && <div className="city head">г.{user.city}</div>}
           </div>
           <div className="text">
@@ -164,9 +168,10 @@ export const AnotherPage = ({ id }) => {
             </div>
             {id != userId && (
               <div className="AnotherPage">
-                <div className="container">
-                  <div className="head">
-                    Количество подписчиков: {loadSub ? "..." : `${user.subscriptions}`}
+                <div className="container head">
+                  Количество подписчиков:{" "}
+                  <div className="subs">
+                    {loadSub ? "..." : `${user.subscriptions}`}
                   </div>
                 </div>
                 <div>
@@ -204,12 +209,16 @@ export const AnotherPage = ({ id }) => {
               <div>
                 <div className="back2">
                   <div className="head container">
+                    <div className="subs">
                     Количество подписчиков: {user.subscriptions}
+                    </div>
                   </div>
                 </div>
-                <div>
+                <div className="addPhoto">
                   <Link to="post">
-                    <button className="button" disabled={disabled}>Добавить фото</button>
+                    <button className="button" disabled={disabled}>
+                      Добавить фото
+                    </button>
                   </Link>
                 </div>
               </div>
@@ -219,13 +228,10 @@ export const AnotherPage = ({ id }) => {
       </div>
       <hr className="hr" />
       <div>
-        <PostUser id={id} />
+        <PostUser id={id} className="posts" />
       </div>
-      
+
       <hr className="hr center" style={{ margin: "0 auto 50px auto" }} />
-      
-      
     </div>
-    
   );
 };

@@ -272,7 +272,7 @@ const SettingsPage = () => {
               onClick={settingsHandler}
               disabled={disabled}
             >
-              СОХРАНИТЬ
+              <div className="save">СОХРАНИТЬ</div>
             </button>
           </div>
           <div className="elementButton">
