@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "server": "nodemon index.js ",
-    "serverTest": "nodemon indexData.js ",
+    "serverTest": "nodemon indexdata.js ",
     "client": "npm run start --prefix=client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "devtest": "concurrently \"npm run serverTest\" \"npm run client\"",
