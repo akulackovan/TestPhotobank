@@ -5,8 +5,8 @@ import { user2 } from "./database.js";
 
 test("Add post", async () => {
   const browser = await puppeteer.launch({
-    headless: false,
-    slowMo: 10, // Uncomment to visualize test
+    //headless: false,
+    //slowMo: 10, // Uncomment to visualize test
   });
   const page = await browser.newPage();
 
@@ -42,9 +42,13 @@ test("Add post", async () => {
   await page.waitForSelector('[href="/post"]');
   await Promise.all([page.click('[href="/post"]'), page.waitForNavigation()]);
 
-  const elementHandle = await page.$("input[type=file]");
-  await elementHandle.uploadFile("test.jpg");
+  await page.waitForSelector('.input__file_img');
+  const [ fileChooser ] = await Promise.all([
+    page.waitForFileChooser(),
+    page.click('.input__file_img')
+  ])
 
+  await fileChooser.accept(['test.jpg'])
 
   // Click on <button> "Обрезать"
   await page.waitForSelector(".button:nth-child(2)");

@@ -240,9 +240,9 @@ const Cropper = ({ x = 480, y = 480, size = 7, disabled=false, setData}) => {
         <input
           name="photo"
           type="file"
-          id="input__file"
+          id="input__file_img"
           accept="image/jpeg, image/png, image/jpg"
-          className="input input__file"
+          className="input__file_img"
           onChange={(e) => {
             selectImage(e);
           }}
