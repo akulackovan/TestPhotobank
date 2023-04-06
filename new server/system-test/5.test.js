@@ -11,22 +11,14 @@ test("Busy login in settings", async () => {
     
       // Resize window to 1745 x 890
       await page.setViewport({ width: 1745, height: 890 });
-    
-      // Click on <input> [data-testid="username"]
-      await page.waitForSelector('[data-testid="username"]');
-      await page.click('[data-testid="username"]');
-    
-      // Fill "тест" on <input> [data-testid="username"]
+       
+      // Fill "test" on <input> [data-testid="username"]
       await page.waitForSelector('[data-testid="username"]:not([disabled])');
-      await page.type('[data-testid="username"]', "тест");
-    
-      // Press Tab on input
-      await page.waitForSelector('[data-testid="username"]');
-      await page.keyboard.press('Tab');
-    
-      // Fill "тест" on <input> #password
+      await page.type('[data-testid="username"]', "test");
+  
+      // Fill "test" on <input> #password
       await page.waitForSelector('#password:not([disabled])');
-      await page.type('#password', "тест");
+      await page.type('#password', "test");
     
       // Click on <button> "ВОЙТИ"
       await page.waitForSelector('[data-testid="login-button"]');
