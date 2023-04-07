@@ -53,6 +53,7 @@ const NavBar = () => {
                 placeholder="ПОИСК"
                 name="user"
                 title="Поиск"
+                data-testid="searchInput"
                 onKeyPress={handleKeyPress}
                 onChange={changeForm}
               />
