@@ -38,6 +38,15 @@ test("Add post", async () => {
     page.click('[href="/profile"]'),
     page.waitForNavigation(),
   ]);
+  
+
+  // Нет постов
+  // Click on <h1> "Нет постов"
+  await page.waitForSelector('.wrapper > h1');
+  await page.$eval(
+    '.wrapper > h1',
+    (el) => (el.textContent = "Нет постов")
+  );
 
   // Click on <a> "Добавить фото"
   await page.waitForSelector('[href="/post"]');
@@ -46,7 +55,6 @@ test("Add post", async () => {
   await page.waitForSelector('.input__file_img');
 
   
-
   const [ fileChooser ] = await Promise.all([
     page.waitForFileChooser(),
     page.click(".input__file-button")
@@ -71,6 +79,10 @@ test("Add post", async () => {
   // Click on <button> "ЗАГРУЗИТЬ ФОТО"
   await page.waitForSelector('[data-testid="upload"]');
   await Promise.all([page.click('[data-testid="upload"]'), page.waitForNavigation()]);
+
+
+  // Проверка на то, что есть галерея
+  await page.waitForSelector('.gal');
 
   await browser.close();
 
