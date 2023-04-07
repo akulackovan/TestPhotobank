@@ -4,6 +4,7 @@ import Post from "../models/Post";
 import { user2 } from "./database.js";
 
 test("Add post", async () => {
+
   const browser = await puppeteer.launch({
     //headless: false,
     //slowMo: 10, // Uncomment to visualize test
@@ -73,5 +74,12 @@ test("Add post", async () => {
 
   await browser.close();
 
-  //await Post.deleteOne({ author: "641de507eb5f99ce0e215de5" });
+  await mongoose.connect(
+    `mongodb+srv://admin:admin@test.qidx0uu.mongodb.net/photobank`,
+    { dbName: "photobank" }
+  );
+
+  await Post.deleteOne({ author: "641de507eb5f99ce0e215de5" });
+
+  await mongoose.connection.close();
 });
