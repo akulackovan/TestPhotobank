@@ -1,6 +1,5 @@
 import puppeteer from "puppeteer";
 
-
 test("Search page", async () => {
   const browser = await puppeteer.launch({
     //headless: false, slowMo: 100, // Uncomment to visualize test
@@ -33,9 +32,7 @@ test("Search page", async () => {
   ]);
 
   // Fill "test" on <input> [placeholder="\41F\41E\418\421\41A"]
-  await page.waitForSelector(
-    '[data-testid="searchInput"]:not([disabled])'
-  );
+  await page.waitForSelector('[data-testid="searchInput"]:not([disabled])');
   await page.type('[data-testid="searchInput"]', "test");
 
   // Press Enter on input
@@ -44,6 +41,9 @@ test("Search page", async () => {
 
   // Click on <li> "test"
   await page.waitForSelector('[data-testid="searchUser"]');
+
+  //Ссылка на test
+  await page.waitForSelector('[href="/profile/641de3cb94ae5238b2ce1b12"]');
 
   await browser.close();
 });

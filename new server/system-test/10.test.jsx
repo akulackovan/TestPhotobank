@@ -42,25 +42,14 @@ test("Wrong password in settings", async () => {
 
   // Press м on textarea
   await page.waitForSelector("#password");
-  await page.type(
-    "#password",
-    "тест"
-  );
-    // Press м on textarea
-    await page.waitForSelector("#newpass");
-    await page.type(
-      "#newpass",
-      "тест"
-    );
+  await page.type("#password", "тест");
+  // Press м on textarea
+  await page.waitForSelector("#newpass");
+  await page.type("#newpass", "тест");
 
   // Press м on textarea
   await page.waitForSelector("#checkpass");
-  await page.type(
-    "#checkpass",
-    "тест"
-  );
-
-
+  await page.type("#checkpass", "тест");
 
   // Click on <button> "СОХРАНИТЬ"
   await page.waitForSelector(".save");
@@ -71,14 +60,12 @@ test("Wrong password in settings", async () => {
   //Проверка на сообщение
   await page.$eval(
     ".error",
-    (el) =>
-      (el.textContent =
-        'Указан неверный пароль')
+    (el) => (el.textContent = "Указан неверный пароль")
   );
 
   await browser.close();
 
-    await mongoose.connect(
+  await mongoose.connect(
     `mongodb+srv://admin:admin@test.qidx0uu.mongodb.net/photobank`,
     { dbName: "photobank" }
   );

@@ -3,7 +3,6 @@ import mongoose from "mongoose";
 import Post from "../models/Post";
 
 test("Add post", async () => {
-
   const browser = await puppeteer.launch({
     //headless: false,
     //slowMo: 10, // Uncomment to visualize test
@@ -37,29 +36,24 @@ test("Add post", async () => {
     page.click('[href="/profile"]'),
     page.waitForNavigation(),
   ]);
-  
 
   // Нет постов
   // Click on <h1> "Нет постов"
-  await page.waitForSelector('.wrapper > h1');
-  await page.$eval(
-    '.wrapper > h1',
-    (el) => (el.textContent = "Нет постов")
-  );
+  await page.waitForSelector(".wrapper > h1");
+  await page.$eval(".wrapper > h1", (el) => (el.textContent = "Нет постов"));
 
   // Click on <a> "Добавить фото"
   await page.waitForSelector('[href="/post"]');
   await Promise.all([page.click('[href="/post"]'), page.waitForNavigation()]);
 
-  await page.waitForSelector('.input__file_img');
+  await page.waitForSelector(".input__file_img");
 
-  
-  const [ fileChooser ] = await Promise.all([
+  const [fileChooser] = await Promise.all([
     page.waitForFileChooser(),
-    page.click(".input__file-button")
-  ])
+    page.click(".input__file-button"),
+  ]);
 
-  await fileChooser.accept(['test.jpg'])
+  await fileChooser.accept(["test.jpg"]);
 
   // Click on <button> "Обрезать"
   await page.waitForSelector(".button:nth-child(2)");
@@ -77,11 +71,13 @@ test("Add post", async () => {
 
   // Click on <button> "ЗАГРУЗИТЬ ФОТО"
   await page.waitForSelector('[data-testid="upload"]');
-  await Promise.all([page.click('[data-testid="upload"]'), page.waitForNavigation()]);
-
+  await Promise.all([
+    page.click('[data-testid="upload"]'),
+    page.waitForNavigation(),
+  ]);
 
   // Проверка на то, что есть галерея
-  await page.waitForSelector('.gal');
+  await page.waitForSelector(".gal");
 
   await browser.close();
 

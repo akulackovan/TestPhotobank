@@ -7,7 +7,7 @@ test("Wrong password", async () => {
   const page = await browser.newPage();
 
   // Load "http://localhost:3000/auth"
-  await page.goto('http://localhost:3000/auth');
+  await page.goto("http://localhost:3000/auth");
 
   // Fill "test" on <input> [data-testid="username"]
   await page.waitForSelector('[data-testid="username"]:not([disabled])');
@@ -21,15 +21,10 @@ test("Wrong password", async () => {
   await page.waitForSelector('[data-testid="login-button"]');
   await page.click('[data-testid="login-button"]');
 
-    // Click on <p> ""Описание пользователя" д..."
-    await page.waitForSelector(".error");
-    //Проверка на сообщение
-    await page.$eval(
-      ".error",
-      (el) =>
-        (el.textContent =
-          'Неверный пароль')
-    );
+  // Click on <p> ""Описание пользователя" д..."
+  await page.waitForSelector(".error");
+  //Проверка на сообщение
+  await page.$eval(".error", (el) => (el.textContent = "Неверный пароль"));
 
   await browser.close();
 });

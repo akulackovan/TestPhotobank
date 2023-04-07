@@ -7,7 +7,7 @@ test("Go to profile page", async () => {
   const page = await browser.newPage();
 
   // Load "http://localhost:3000/auth"
-  await page.goto('http://localhost:3000/auth');
+  await page.goto("http://localhost:3000/auth");
 
   // Fill "test" on <input> [data-testid="username"]
   await page.waitForSelector('[data-testid="username"]:not([disabled])');

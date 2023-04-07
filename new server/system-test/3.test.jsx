@@ -2,13 +2,12 @@ import puppeteer from "puppeteer";
 import mongoose from "mongoose";
 import User from "../models/User";
 
-
 test("Change password in settings", async () => {
   const password =
     "$2a$10$0zVbkDsjdxyQNSF0FFJC0.4djOJt6Je2RbmMjD9Brnf3i32XpmfC.";
 
   const browser = await puppeteer.launch({
-   // headless: false, slowMo: 100, // Uncomment to visualize test
+    // headless: false, slowMo: 100, // Uncomment to visualize test
   });
   const page = await browser.newPage();
 
@@ -92,8 +91,10 @@ test("Change password in settings", async () => {
     { dbName: "photobank" }
   );
 
-  await User.updateOne({ _id: "641de3cb94ae5238b2ce1b12" }, { password: password });
+  await User.updateOne(
+    { _id: "641de3cb94ae5238b2ce1b12" },
+    { password: password }
+  );
 
   await mongoose.connection.close();
-
 });

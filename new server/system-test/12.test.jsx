@@ -41,26 +41,20 @@ test("Change like", async () => {
     page.waitForNavigation(),
   ]);
 
-    // Click on <svg> #like > svg
-    await page.waitForSelector('#like > svg');
-    await page.click('#like > svg');
+  // Click on <svg> #like > svg
+  await page.waitForSelector("#like > svg");
+  await page.click("#like > svg");
 
-    // Click on <div> "1"
-    await page.waitForSelector('[data-testid="numlike"]');
-    await page.$eval(
-        '[data-testid="numlike"]',
-        (el) => (el.textContent = "0")
-      );
+  // Click on <div> "1"
+  await page.waitForSelector('[data-testid="numlike"]');
+  await page.$eval('[data-testid="numlike"]', (el) => (el.textContent = "0"));
 
-    // Click on <svg> #unlike > svg
-    await page.waitForSelector('#unlike > svg');
+  // Click on <svg> #unlike > svg
+  await page.waitForSelector("#unlike > svg");
 
-    // Click on <div> "1"
-    await page.waitForSelector('[data-testid="numlike"]');
-    await page.$eval(
-        '[data-testid="numlike"]',
-        (el) => (el.textContent = "1")
-      );
+  // Click on <div> "1"
+  await page.waitForSelector('[data-testid="numlike"]');
+  await page.$eval('[data-testid="numlike"]', (el) => (el.textContent = "1"));
 
   await browser.close();
   await mongoose.connect(

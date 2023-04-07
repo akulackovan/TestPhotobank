@@ -12,35 +12,33 @@ test("Registration", async () => {
   await page.goto("http://localhost:3000/auth");
 
   // Click on <button> "РЕГИСТРАЦИЯ"
-  await page.waitForSelector('.button:nth-child(5)');
+  await page.waitForSelector(".button:nth-child(5)");
   await Promise.all([
-    page.click('.button:nth-child(5)'),
-    page.waitForNavigation()
+    page.click(".button:nth-child(5)"),
+    page.waitForNavigation(),
   ]);
 
   // Fill "test" on <input> #username
-  await page.waitForSelector('#username:not([disabled])');
-  await page.type('#username', "testik");
+  await page.waitForSelector("#username:not([disabled])");
+  await page.type("#username", "testik");
 
   // Fill "test" on <input> #password
-  await page.waitForSelector('#password:not([disabled])');
-  await page.type('#password', "testik");
+  await page.waitForSelector("#password:not([disabled])");
+  await page.type("#password", "testik");
 
   // Click on <div> "Город"
   await page.waitForSelector('[data-testid="button"]');
   await page.click('[data-testid="button"]');
 
   // Click on <div> "Москва"
-  await page.waitForSelector('[data-testid="city-dropdownelement"]:nth-child(2)');
+  await page.waitForSelector(
+    '[data-testid="city-dropdownelement"]:nth-child(2)'
+  );
   await page.click('[data-testid="city-dropdownelement"]:nth-child(2)');
 
   // Click on <button> "ЗАРЕГИСТРИРОВАТЬСЯ"
-  await page.waitForSelector('.button');
-  await Promise.all([
-    await page.click('.button'),
-    page.waitForNavigation()
-  ]);
-
+  await page.waitForSelector(".button");
+  await Promise.all([await page.click(".button"), page.waitForNavigation()]);
 
   // Fill "test" on <input> [data-testid="username"]
   await page.waitForSelector('[data-testid="username"]:not([disabled])');
@@ -62,7 +60,6 @@ test("Registration", async () => {
     visible: true,
   });
 
-
   await browser.close();
   await mongoose.connect(
     `mongodb+srv://admin:admin@test.qidx0uu.mongodb.net/photobank`,
@@ -72,6 +69,4 @@ test("Registration", async () => {
   await User.deleteOne({ username: "testik" });
 
   await mongoose.connection.close();
-
-
 });
