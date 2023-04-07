@@ -1,4 +1,6 @@
 import puppeteer from "puppeteer";
+import mongoose from "mongoose";
+import Post from "../models/Post";
 
 test("Wrong password in settings", async () => {
   const browser = await puppeteer.launch({
