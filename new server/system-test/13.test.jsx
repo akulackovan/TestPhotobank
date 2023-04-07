@@ -1,7 +1,6 @@
 import puppeteer from "puppeteer";
 import mongoose from "mongoose";
 import Post from "../models/Post";
-import { user2 } from "./database.js";
 
 test("Add post", async () => {
 

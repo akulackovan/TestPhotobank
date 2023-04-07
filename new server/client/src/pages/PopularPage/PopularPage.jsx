@@ -60,7 +60,7 @@ const PopularPage = () => {
 
   return (
     <div
-      className=""
+      className="wrapper1"
       
     >
       {post && (
