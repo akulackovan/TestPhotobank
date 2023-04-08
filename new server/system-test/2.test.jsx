@@ -2,7 +2,7 @@ import puppeteer from "puppeteer";
 
 test("Wrong password", async () => {
   const browser = await puppeteer.launch({
-    //headless: false, slowMo: 100, // Uncomment to visualize test
+    headless: false, slowMo: 100, // Uncomment to visualize test
   });
   const page = await browser.newPage();
 
@@ -15,7 +15,7 @@ test("Wrong password", async () => {
 
   // Fill "test123" on <input> #password
   await page.waitForSelector("#password:not([disabled])");
-  await page.type("#password", "test123");
+  await page.type("#password", "testyuh");
 
   // Click on <button> "ВОЙТИ"
   await page.waitForSelector('[data-testid="login-button"]');
