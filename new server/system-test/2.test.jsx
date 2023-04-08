@@ -2,7 +2,7 @@ import puppeteer from "puppeteer";
 
 test("Wrong password", async () => {
   const browser = await puppeteer.launch({
-    headless: false, slowMo: 100, // Uncomment to visualize test
+    //headless: false, slowMo: 100, // Uncomment to visualize test
   });
   const page = await browser.newPage();
 
